@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quote Me</title>
+    <link rel="stylesheet" href="/css/styles.css" media="screen" title="no title">
+
+    <!-- app.bundle.js- which requires all of our client side js -->
+    <script src="js/app.bundle.js"></script>
+  </head>
+  <body>
+
+    <!-- nav bar -->
+    <nav>
+      <ul>
+        <li ui-sref="home">Home</li>
+        <li ui-sref="quotes">Quotes</li>
+        <li ui-sref="netflix">Netflix</li>
+      </ul>
+    </nav>
+
+    <!-- the other views show up here -->
+    <ui-view>
+    </ui-view>
+
+  </body>
+</html>

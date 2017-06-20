@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>UI Router | Criminals</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.bundle.js"></script>
+</head>
+<body ng-app="criminals">
+  <nav>
+    <a ui-sref="homePage">Home</a> |
+    <a ui-sref="about">About</a> |
+    <a ui-sref="criminals">Criminals</a> |
+    <a ui-sref="criminalsNew">Add +</a>
+  </nav>
+
+  <h1>Infamous Criminals</h1>
+  <ui-view></ui-view>
+
+</body>
+</html>
