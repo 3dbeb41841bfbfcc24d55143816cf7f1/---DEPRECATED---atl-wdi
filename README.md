@@ -1,25 +1,17 @@
 ![ga](http://mobbook.generalassemb.ly/ga_cog.png)
-# Welcome to WDI-10
-April 24, 2017 - June 30, 2017
-
+# Welcome to WDI
 
 ### Instructors
 ##### Instructional Leads
 - Danny Hurley
     - danny.hurley@generalassemb.ly
-- Maren Woodruff
-    - maren.woodruff@generalassemb.ly
-
-##### Instructional Associates
-- Justin Jacot
-	- Slack: @jeowulf
+- Jamie King
+    - james.king@generalassemb.ly
   
 ##### Slack
 
 - Danny: @dp_hurley
-- Maren: @marenwoodruff
-- Justin: @jeowulf
-
+- Jamie: @jamieking
 
 ### Class Hours
 - Monday - Friday: 9:00am - 5:00pm EDT
@@ -41,33 +33,29 @@ April 24, 2017 - June 30, 2017
 
 
 ### Attendance
-- Attendance is taken twice daily at 10:00AM and 2:30PM
-- No more than 2 unexcused absences
+- Attendance is taken twice daily at 9:00AM and 2:30PM
+- No more than 3 unexcused absences
 - 3 tardies (more than 30 minutes late) = 1 absence
 - Missing part of the day counts as 1/2 absence.
-- You MUST inform Maren if you are anticipating any absences or need to leave early.
+- You must inform BOTH instructors if you are anticipating any absences or need to leave early.
 
 
 ### HW & Projects
-- Completion of 80% of assignments
-- Completion of all projects
+- You must have an average of 80% across all homework assignments to qualify for a letter of completion / Outcomes support.
+- You must have an average of 80% across all project assignments to qualify for a letter of completion / Outcomes support.
 
 
 ### Curriculum Overview
-- Unit 1: Fundamentals and Static Front End
-- Unit 2: Server Side in Node + Express
-- Unit 3: Front End Framework
-- Unit 4: Ruby on Rails
-- Unit 5: Final Projects
+- Unit 1: Fundamentals and Static Front End Applications
+- Unit 2: Full Stack Javascript, pt. 1: Server-Side Rendering with Node / Express / MongoDB
+- Unit 3: Full Stack Javascript, pt. 2: Client-Side Rendering with MEAN Stack (Mongo, Express, AngularJS, Node)
+- Unit 4: Ruby on Rails: Server-Side Rendering and React on Rails
+- Unit 5: Interview Preparation and Final Project
 
 
-#### [Class Wiki!](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/wiki)
+#### [Class Wiki!](https://github.com/ATL-WDI-Curriculum/atl-wdi/wiki)
 
 #### [Bug Journal](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/wiki/Bug-Journal)
-
-<!-- #### Course Content
-
-- [Schedule](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/blob/master/schedule.md) -->
 
 #### Google Calendar Schedule
 
