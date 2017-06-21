@@ -1,5 +1,5 @@
 <img src="bootflix-logo.png" alt="Bootflix">
-###Summary
+### Summary
 
 Today you are going to build a movie search application, similar to Netflix's search feature. You will do this using **jQuery** and **Ajax**. You will also create a **model** and a **view** in this project. When you're on the job in the real world you will need to make requests to APIs and present that data to your users. This project is meant to mimic the functionality of a real-world application's (Netflix) feature.
 
