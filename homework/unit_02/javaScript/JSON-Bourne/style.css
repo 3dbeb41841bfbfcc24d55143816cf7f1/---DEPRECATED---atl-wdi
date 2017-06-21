@@ -1,0 +1,29 @@
+body {
+  background: #f00 url("world_map.jpg") no-repeat top center;
+  color: #fff;
+  text-align: center;
+}
+
+body, button {
+  font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+}
+
+button {
+  width: 40%;
+  font-size: 2em;
+}
+.dossier {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  margin-left: -295px;
+}
+
+.wrapper {
+  background-color: #000;
+  opacity: .7;
+  positive: relative;
+  width: 700px;
+  height: 520px;
+  margin: 20px auto;
+}
