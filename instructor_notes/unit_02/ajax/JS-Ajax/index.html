@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demonstrating Asynchronicity</title>
+        <script>
+window.onload = function(){
+    
+    var output = document.getElementById("messages");
+    
+    var functionChain = [
+        function(goToNextFunction){
+            document.body.innerHTML += ("0 seconds elapsed...");
+            goToNextFunction();
+        },
+        function(goToNextFunction){
+            setTimeout(function(){
+                document.body.innerHTML += ("1 second elapsed...");
+                goToNextFunction();
+            }, 1000);
+        },
+        function(goToNextFunction){
+            setTimeout(function(){
+                goToNextFunction("2 seconds", "elapsed...");
+            }, 1000);
+        },
+        function(goToNextFunction, passedInArguments){
+            document.body.innerHTML += (passedInArguments[0] + " " + passedInArguments[1]);
+            setTimeout(goToNextFunction, 1000);
+        },
+        function(){
+            document.body.innerHTML += ("3 seconds, and done!");
+        }
+    ];
+    
+    executeChainedFunctions(functionChain);
+    
+}
+
+// Note: `arguments` is a special variable available in all JS functions
+// It's an object containing all the arguments that were passed into that function
+// See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
+
+function executeChainedFunctions(functions){
+    var index = -1;
+    goToNextFunction();
+    
+    function goToNextFunction(){
+        index += 1;
+        var currentFunction = functions[index];
+        if(currentFunction) currentFunction(goToNextFunction, arguments);
+    }
+}
+        </script>
+    </head>
+    <body>
+        
+        <h1>This demonstrates asynchronous Javascript</h1>
+        
+        <p id="messages"></p>
+        
+    </body>
+</html>
