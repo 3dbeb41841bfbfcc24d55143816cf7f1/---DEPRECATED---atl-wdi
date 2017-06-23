@@ -14,7 +14,7 @@ instructors' repository. You shouldn't hit a merge conflict here, but if you do,
 - gain understanding on using `method-override` for non-POST/GET requests
 - gain more practice rendering views with Handlebars, including forms
 
-<details><summary>**CRUD & RESTful RECAP**</summary>
+<details><summary>CRUD & RESTful RECAP</summary>
 
 CRUD stands for Create, Read, Update, and Destroy-- these are the fundamental actions we perform on data.
 
