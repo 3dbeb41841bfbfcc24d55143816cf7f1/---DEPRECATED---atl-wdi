@@ -6,7 +6,7 @@
 - or [Pure](http://purecss.io/)-ify
 - or ????????-ify
 
-...something that you built earlier in the course. If you don't want to overwrite your previous styling, you're welcome to work on a branch. Open an issue with a link to your re-styled homework/project/lab [here](https://github.com/ga-dc/bootstrap-ify).
+...something that you built earlier in the course. If you don't want to overwrite your previous styling, you're welcome to work on a branch. Post a link to your Bootstrap-ified site on a Github repo to Schoology.
 
 ### A Smarter Way To Learn Javascript
 
