@@ -71,7 +71,7 @@ Since the app can store new pirate entries, you can also update an existing pira
 
 ### Part 2: Setting up Controllers
 
-###server.js
+### server.js
 - Before creating routes, we have to hook up our controllers to our server. Previously, we were writing our routes directly in `server.js`. Instead, we will use [express routers](https://expressjs.com/en/guide/routing.html), which creates a route handler module. In `server.js`, we have added it at the end of the middlewares, before the listener like this:
 
 ```
