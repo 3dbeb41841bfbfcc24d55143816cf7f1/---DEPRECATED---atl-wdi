@@ -15,7 +15,7 @@ Read through `hw.md` and follow all of the directions given there.
 When you're ready to submit your work,
 
 #### In your terminal
-(Make sure that you are in you atl-wdi-10 repo)
+(Make sure that you are in your forked `atl-wdi` repo)
 - `git add .`
 - `git commit -m "updated data modeling hw"`
 - `git push`
