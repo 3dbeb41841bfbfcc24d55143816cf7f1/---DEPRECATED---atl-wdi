@@ -1,7 +1,7 @@
 # Update and Destroy some Pirates
 
 ## Setup
-1. Make sure that you are on the `master` branch of your `wdi-remote-...` repo.
+1. Make sure that you are on the `master` branch of your `atl-wdi` repo.
 Then run `git pull upstream master` to pull the latest materials from the
 instructors' repository. You shouldn't hit a merge conflict here, but if you do, flag down an instructor right away.
 
@@ -154,11 +154,6 @@ router.get("/", function(req, res){
   When you're ready to submit your work,
 
   1.  Add, commit, and push your code to your fork of the class repo.
-  2.  File an issue on the class repo titled "Your Name -- wXXdXX".
-
-  The issue should include:
-
-  -   A link that points back to your fork.
-
-  -   A 'comfort' score on how you feel about the material, from 1 (very
+  2.  Submit a link to your github repo to Schoology.
+  3.  Along with the link, post a 'comfort' score on how you feel about the material, from 1 (very
       uncomfortable) to 5 (very comfortable)
