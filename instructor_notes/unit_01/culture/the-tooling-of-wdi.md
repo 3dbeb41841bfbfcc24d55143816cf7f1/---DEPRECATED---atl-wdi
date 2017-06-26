@@ -28,14 +28,14 @@ competencies: Computer Usage
 
 Slack is your main means of communication during and after class.
 
-There are five channels we'll use:
+There are five channels we'll use (X is the number of your class):
 
-- `atl-wdi10-classroom`
-- `atl-wdi10-debugging`
-- `atl-wdi10-outcomes`
-- `atl-wdi10-partytime`
-- `atl-wdi10-parkinglot`
-- `atl-wdi10-resources`
+- `atl-wdiX-classroom`
+- `atl-wdiX-debugging`
+- `atl-wdiX-outcomes`
+- `atl-wdiX-partytime`
+- `atl-wdiX-parkinglot`
+- `atl-wdiX-resources`
 
 1. We'll run our lessons in the `atl-wdi10-classroom` channel. After class, the TA will come online in this channel.
 2. The `atl-wdi10-debugging` channel is probably the most important channel of the four. Throughout this course, whether it's during class, during homework, late-late at night, on the weekends, whenever, you're going to run into errors in your code.
@@ -44,11 +44,11 @@ There are five channels we'll use:
 5. The `atl-wdi10-parkinglot` channel is for class-related conversations that are more in-depth than class time allows for.
 6. The `atl-wdi10-resources` channel is for any resources that you find.  You can add any resources that you find into this channel, and they will all be exported for you at the end of the class.  This will be the only public channel.
 
-#### `atl-wdi10-debugging` channel
+#### `atl-wdiX-debugging` channel
 
 Debugging and learning how to read and work toward solving errors is one of the most important skills you will learn during this course. It's a skill you'll need to practice and hone constantly.
 
-The `atl-wdi10-debugging` channel will help facilitate this.
+The `atl-wdiX-debugging` channel will help facilitate this.
 
 When you encounter an error that you can't solve or are stuck on you'll create a `Bug Report` and post it to the debugging channel. Once you've posted it an instructor and eventually, your classmates will be able to help you find a solution to your problem.
 
