@@ -5,10 +5,6 @@
 In this assignment, you will read through the class wiki and answer the
 questions given below.
 
-## Setup
-
-  None.
-
 ## Questions
 
 Please do not use any resource other than the class wiki
