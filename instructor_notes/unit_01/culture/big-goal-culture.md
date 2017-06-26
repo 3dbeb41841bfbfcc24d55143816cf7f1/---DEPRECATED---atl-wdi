@@ -2,8 +2,9 @@
 
 ## Instructor Introduction
 - Danny Hurley - Instructional Lead
-- Maren Woodruff - Instructional Lead
+- Jamie King - Instructional Lead
 - Larissa Boyce - Outcomes
+- TAs
 
 ## Roles (Danny)
 1. Instructional Lead
@@ -14,8 +15,12 @@
 2. Outcomes
   - Outcomes sessions
   - Prioritize!
+3. TAs
+  - Classroom / LAB help
+  - Morning exercises
+  - Homework help / grading
 
-## Emotional Framing (Maren)
+## Emotional Framing
 - Programming is not about learning a sequence of steps, it's about developing a mindset to solve problems and think programmatically.
 - Language not important
     - critical/analytical/programatic thinking.
@@ -37,11 +42,11 @@
 - This experience is a rollercoaster.
 ![informed optimism?](https://i.imgur.com/0XjqOPa.png)
 
-## You Are Not Your Code!(Maren)
+## You Are Not Your Code!
 
 https://vimeo.com/85040589
 
-## Classroom Culture (Danny)
+## Classroom Culture
 - Open safe environment
 - Take ownership of your experience
 - Check your ego at the door
@@ -49,7 +54,7 @@ https://vimeo.com/85040589
 - Don't compare yourself to others, compare yourself to who you were yesterday
 - You get what you put in
 
-## Mentorship Culture (Danny)
+## Mentorship Culture
 - Take care of each other
 - Benchmarking; some are good at one thing, others at another. Leverage each other's strengths.
 - Teaching is the best way of truly solidifying your understanding of a concept.
@@ -59,7 +64,7 @@ https://vimeo.com/85040589
   - After class hours
   - COLLABORATE!!
 
-## Student Expectations (Maren)
+## Student Expectations
 1. Be Present
   - Attendance at 9:00 AM
   - Pay attention
@@ -73,7 +78,7 @@ https://vimeo.com/85040589
 1. Be Creative
   - this is not paint by numbers
 
-## Plagiarism (Danny)
+## Plagiarism
 ### Statement
 
 General Assembly takes academic honesty very seriously, and as such will not tolerate any student who plagiarizes in order to satisfy class requirements.  Programs at General Assembly are intensive, require a lot of work on the part of the student, and students will occasionally not be able to complete work in a timely fashion.  
@@ -94,13 +99,13 @@ If an instructor is in doubt of a students work or has evidence of plagiarism, t
 
 Instances of plagiarism will be evaluated on a case by case basis, but will most likely result in removal from the program
 
-## Stand-Up (Danny)
+## Stand-Up
 - Yesterday (What's been a win since your last Standup?)
 - Blockers (What is something you'd like to see again since your last standup? What is still challenging you?)
 - Today's wins (What would you like to accomplish today?)
 - `Stand-ups should focus on generating ACTIONABLE goals for each day.`
 
-## Common Student Worries (Maren)
+## Common Student Worries
 1. I'm making a lot of mistakes
 2. Imposter syndrome
 3. I don't "do" math
