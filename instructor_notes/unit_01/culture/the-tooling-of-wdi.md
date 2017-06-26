@@ -28,7 +28,7 @@ competencies: Computer Usage
 
 Slack is your main means of communication during and after class.
 
-There are five channels we'll use (X is the number of your class):
+There are six channels we'll use (X is the number of your class):
 
 - `atl-wdiX-classroom`
 - `atl-wdiX-debugging`
