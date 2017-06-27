@@ -1,6 +1,6 @@
 # Typeracer
 
-#### Compete in some Typeracer races and post a screenshot to Schoology of your highest WPM score.
+Compete in some Typeracer races and post screenshots to Schoology of your three highest WPM scores.
 
 # Accessibility
 
