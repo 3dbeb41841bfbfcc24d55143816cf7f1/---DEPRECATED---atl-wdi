@@ -30,10 +30,6 @@ creator:
 
 <br />
 
-Similarly, git is a **distributed version control system** that allows us to keep track, or keep snapshots, of our projects as we develop them.
-
-<br />
-
 ---
 
 ## YOU DO (15m)
