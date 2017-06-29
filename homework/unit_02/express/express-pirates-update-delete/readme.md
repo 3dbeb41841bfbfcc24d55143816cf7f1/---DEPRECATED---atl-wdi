@@ -1,7 +1,7 @@
 # Update and Destroy some Pirates
 
 ## Setup
-1. Make sure that you are on the `master` branch of your `wdi-remote-...` repo.
+1. Make sure that you are on the `master` branch of your `atl-wdi` repo.
 Then run `git pull upstream master` to pull the latest materials from the
 instructors' repository. You shouldn't hit a merge conflict here, but if you do, flag down an instructor right away.
 
@@ -14,7 +14,7 @@ instructors' repository. You shouldn't hit a merge conflict here, but if you do,
 - gain understanding on using `method-override` for non-POST/GET requests
 - gain more practice rendering views with Handlebars, including forms
 
-<details><summary>**CRUD & RESTful RECAP**</summary>
+<details><summary>CRUD & RESTful RECAP</summary>
 
 CRUD stands for Create, Read, Update, and Destroy-- these are the fundamental actions we perform on data.
 
@@ -71,7 +71,7 @@ Since the app can store new pirate entries, you can also update an existing pira
 
 ### Part 2: Setting up Controllers
 
-###server.js
+### server.js
 - Before creating routes, we have to hook up our controllers to our server. Previously, we were writing our routes directly in `server.js`. Instead, we will use [express routers](https://expressjs.com/en/guide/routing.html), which creates a route handler module. In `server.js`, we have added it at the end of the middlewares, before the listener like this:
 
 ```
@@ -154,11 +154,6 @@ router.get("/", function(req, res){
   When you're ready to submit your work,
 
   1.  Add, commit, and push your code to your fork of the class repo.
-  2.  File an issue on the class repo titled "Your Name -- wXXdXX".
-
-  The issue should include:
-
-  -   A link that points back to your fork.
-
-  -   A 'comfort' score on how you feel about the material, from 1 (very
+  2.  Submit a link to your github repo to Schoology.
+  3.  Along with the link, post a 'comfort' score on how you feel about the material, from 1 (very
       uncomfortable) to 5 (very comfortable)
