@@ -21,12 +21,16 @@ competencies: Programming
 
 Iterating in programming is a way of incrementally repeating a task. For example:
 
-* <details>If I wanted to console.log something 5 times, how would I do that without a loop? 
-    <summary>I would have to write it out 5 times.</summary>  
+  <details>
+    <summary>If I wanted to console.log something 5 times, how would I do that without a loop?</summary>  
+    
+    I would have to write it out 5 times.
   </details>
 
-* <details>If I wanted to uppercase every name in an array, how would I do that without a loop?
-    <summary>I would have to call array[index].toUpperCase() for every single index individually.</summary>  
+  <details>
+    <summary>If I wanted to uppercase every name in an array, how would I do that without a loop?</summary>  
+    
+    I would have to call array[index].toUpperCase() for every single index individually.
   </details>
   
   Loops are extremely helpful in programming.  We can use them to iterate over arrays or objects.  They allow us to keep our code more DRY- Don't Repeat Yourself.
