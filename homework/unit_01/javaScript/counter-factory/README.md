@@ -12,7 +12,7 @@
 
 ## Setup
 
-Make sure that you are on the `master` branch of your `wdi-remote-...` repo.
+Make sure that you are on the `master` branch of your class repo.
 Then run `git pull upstream master` to pull the latest materials from the
 instructors' repository. You shouldn't hit a merge conflict here, but if you do,
 flag down an instructor right away.
@@ -94,7 +94,7 @@ accordance with the specs.
 When you're ready to submit your work,
 
 1.  Git add, commit and push your code to your fork of the class repo.
-2.  Add the url to of repo to Schoology.
+2.  Add the url from your repo to Schoology.
 
 The issue should include:
 

@@ -1,6 +1,6 @@
 # Intro to Rails Asset Pipeline
 
-##Learning Objectives
+## Learning Objectives
 By the end of this lecture you should be able to...
 
 - Review Rails philosophy
@@ -8,7 +8,7 @@ By the end of this lecture you should be able to...
 - Add Bootswatch to your Rails app
 
 
-##Rails Philosophy
+## Rails Philosophy
 
 Rails values...
 
@@ -21,8 +21,6 @@ Rails values...
 
 In writing a large application it is important to establish something known as **Separation of Concerns**, *writing modular code that focuses on one aspect within the application.* The benefit of this is similar to idea of **compartmentalization** with respect to a production line, which allows for *more rapid development* by being able to **divide and conquer** the construction of a product. Compartments can focus on one task and optimize functional concerns far outside the scope of other compartments, but still work together to achieve the same product.  Ultimately it reduces the headache of debugging and controlling a large application that can ultimately grow to a level of complexity that no one person could ever fully comprehend (nor want or need to). 
 
-- Also, explain a laundry metaphor
-
 ### Organizational Principles
 
 In order to manage the development of emerging aspects within a project it is important to construct a guideline that will shape how things are separated, a **design pattern**, which everyone can use to maintain **consistent** organization of different aspects. This is a *conventional* choice that helps to understandably scale a project. Part of the role of a developer is to become familiar with using design patterns, but this takes time (and trust), as different patterns emphasize an array of qualities: scalability, modularity, security, performance, et cetera.
@@ -30,7 +28,7 @@ In order to manage the development of emerging aspects within a project it is im
 
 <br>
 
-##MVC
+## MVC
 
 Rails uses an __MVC__ architecture
 
@@ -44,7 +42,7 @@ Rails uses an __MVC__ architecture
 
 ![MVC Diagram](https://softcover.s3.amazonaws.com/636/ruby_on_rails_tutorial_3rd_edition/images/figures/mvc_detailed.png)
 
-##Railstaurant Metaphore
+## Railstaurant Metaphore
 The **client** is a customer eating in the restaurant, the **server** is the waiter, the **router** is waiter who hands off orders, the **controller** is the kitchen, the **database** is the giant walk-in refrigerator with ingredients, the **model** is the person fetching ingredients from the refrigerator, the **view** is the chef who makes the meal look pretty and relays it back to the customer.
 
 <br>
@@ -61,13 +59,13 @@ The **client** is a customer eating in the restaurant, the **server** is the wai
     - mailers - for sending emails
     - assets -> where we put static files
 - **bin** 
-    - bundle, rails, rake our binary files
+    - bundle, rails, our binary files
 - **config**
     - Application configuration, set config files for routes, db and environments
 - **db**
     - store code related to db - Migrations go here!
 - **gemfile/gemfile lock**
-    - Gems are like NPMs. You have to put any gem you want to use in your Gemfile. You have to run bundle anytime you change your Gemfile. Your rails server needs to be restarted after any changes to your Gemfile.
+    - Gems are like NPM packagess. You have to put any gem you want to use in your Gemfile. You have to run bundle anytime you change your Gemfile. Your rails server needs to be restarted after any changes to your Gemfile.
 - **doc** - Documentation for the application
 - **lib** - Library modules
 - **log** - Application log files
@@ -81,7 +79,7 @@ The **client** is a customer eating in the restaurant, the **server** is the wai
 - **Rakefile**  - Utility tasks available via the rake command
 
 
-##Asset Pipeline
+## Asset Pipeline
 
 [Launchschool Article](https://launchschool.com/blog/rails-asset-pipeline-best-practices)
 
@@ -158,6 +156,3 @@ After running `bundle` in the terminal, let's create a new file in our `app/asse
 // United
 // Yeti
 ```
-## Homework
-
-- Start reading Hartl
