@@ -6,7 +6,7 @@ In this assignment, we will create a Pizza Express app, serving up pizzas in a j
 
 ## Setup
 
-Make sure that you are on the `master` branch of your `atl-wdi` repo.
+Make sure that you are on the `master` branch of your class repo.
 Then run `git pull upstream master` to pull the latest materials from the
 instructors' repository. You shouldn't hit a merge conflict here, but if you do,
 flag down an instructor right away.
@@ -198,4 +198,3 @@ My message is {{message}}, woohoo!
 
   1.  Add, commit, and push your code to your fork of the class repo.
   2.  Post a link to your `pizza-express` folder on Schoology
-  3.  Along with the link, post a 'comfort' score on how you feel about the material, from 1 (very
