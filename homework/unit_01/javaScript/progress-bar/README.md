@@ -4,7 +4,7 @@
 
 ## Setup
 
-Make sure that you are on the `master` branch of your `atl-wdi-...` repo.
+Make sure that you are on the `master` branch of your class repo.
 Then run `git pull upstream master` to pull the latest materials from the
 instructors' repository. You shouldn't hit a merge conflict here, but if you do, flag down an instructor right away.
 
@@ -105,7 +105,7 @@ carefully -- it may give you a clue about what to do next.
 
   1.  git add and git commit one more time
   2.  Push your code to your fork of the class repo.
-  3.  Add a link to the schoology, to the unit_01, week 2 link.
+  3.  Add a link on Schoology to your homework.
 
   The submission should include:
 
