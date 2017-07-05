@@ -14,7 +14,7 @@ instructors' repository. You shouldn't hit a merge conflict here, but if you do,
 - gain understanding linking files in different folders together with relative paths
 - gain more practice rendering views with Handlebars, including forms
 
-<details><summary><b>CRUD & RESTful RECAP<b></summary>
+<details><summary>CRUD & RESTful RECAP</summary>
 
 CRUD stands for Create, Read, Update, and Destroy-- these are the fundamental actions we perform on data.
 
