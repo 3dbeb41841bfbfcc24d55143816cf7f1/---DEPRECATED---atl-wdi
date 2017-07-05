@@ -10,8 +10,12 @@
 // Input: an array of numbers
 // Output: the sum of the numbers that were passed in
 // Edge Case: If the array is empty, return 0
-var sumOfNums = function(numsArray){
-  // Your Code Here
+var sumOfNums = function(numsArray) {
+  var sum = 0;
+  for (var i = 0; i < numsArray.length; i++) {
+    sum += numsArray[i];
+  }
+  return sum;
 };
 
 // #2
@@ -19,22 +23,41 @@ var sumOfNums = function(numsArray){
 // Output: an array of the numbers from the first array that are strictly
 //         greater (i.e. greater than but not equal to) than 10
 var numsGreaterThanTen = function(numsArray){
-  // Your Code Here
-};
+  var results = [];
+  for (var i = 0; i < numsArray.length; i++) {
+    if (numsArray[i] > 10) {
+      results.push(numsArray[i]);
+    }
+  }
+  return results;
 
 // #3
 // Input: an array of numbers
 // Output: `true` if ALL numbers passed in are strictly greater than 10;
 //         `false` otherwise
 // Edge Case: If the input array is empty, the function should return `true`.
-var allGreaterThanTen = function(numsArray){
-  // Your Code Here
+var allGreaterThanTen = function(numsArray) {
+  for (var i = 0; i < numsArray.length; i++) {
+    if (!(numsArray[i] > 10)) {
+      return false;
+    }
+  }
+  return true;
+  //// alternatively, using Array methods
+  // return numsArray.every(function(num){return num > 10;});
 };
 
 // #4
 // Input: an array of words
 // Output: an array of all words from the first array with five or more letters
 var wordsWithAtLeastFiveLetters = function(words){
+  var fiveLetterWords = [];
+  for (var i = 0; i < words.length; i++) {
+    if (words[i].length >= 5){
+      fiveLetterWords.push(words[i]);
+    }
+  }
+  return fiveLetterWords;
   // Your Code Here
 };
 
@@ -43,16 +66,33 @@ var wordsWithAtLeastFiveLetters = function(words){
 // Output: `true` if ALL words start with the letter 'a' (case-insensitive),
 //          `false` otherwise
 // Edge Case: If the array is empty, the function should return `true`.
-var allStartingWithA = function(words){
-  // Your Code Here
+
+var allStartingWithA = function(words) {
+  for (var i = 0; i < words.length; i++) {
+    if (!(words[i].slice(0, 1) === 'a' || words[i].slice(0, 1) === 'A'))   {
+      return false;
+    }
+  }
+  return true;
+  //// alternatively, using Array methods
+  // return numsArray.every(function(num){return num > 10;});
 };
 
 // #6
 // Input: an array of words
 // Output: `true` if there are ANY words that start with the letter 'b'
 //          (case-insensitive), `false` otherwise
-var anyStartingWithB = function(words){
-  // Your Code Here
+var anyStartingWithB = function(words) {
+  for (var i = 0; i < words.length; i++) {
+    if (words[i].slice(0, 1) === 'b' || words[i].slice(0, 1) === 'B') {
+      return true;
+    }
+  }
+  return false;
+  //// alternatively, using Array methods
+  // return words.some(function(word){
+  //   return words[i].slice(0,1) === 'b' || words[i].slice(0,1) === 'B';
+  // });
 };
 
 // #7
@@ -61,8 +101,22 @@ var anyStartingWithB = function(words){
 //          `false` otherwise
 //    Assume that vowels are 'a', 'e', 'i', 'o', and 'u' (NOT 'y')
 // Edge Case: If `n` is less than zero, return `null`.
-var hasAtLeastNVowels = function(word, n){
-  // Your Code Here
+var hasAtLeastNVowels = function(word, n) {
+  if (n < 0) {
+    return null;
+  }
+  var count = 0;
+  for (var i = 0; i < word.length; i++) {
+    if (word.charAt(i) === 'a' || word.charAt(i) === 'A' ||
+      word.charAt(i) === 'e' || word.charAt(i) === 'E' ||
+      word.charAt(i) === 'i' || word.charAt(i) === 'I' ||
+      word.charAt(i) === 'o' || word.charAt(i) === 'O' ||
+      word.charAt(i) === 'u' || word.charAt(i) === 'U'
+    ) {
+      count++;
+    }
+  }
+  return count >= n;
 };
 
 // #8
@@ -71,6 +125,31 @@ var hasAtLeastNVowels = function(word, n){
 //          vowels
 var wordsWithAtLeastTwoVowels = function(words){
   // Your Code Here
+};
+
+var wordsWithAtLeastTwoVowels = function(words) {
+  var correctWords = [];
+  
+  for (var j = 0; j < words.length; j++) {
+    var testWord = words[j];
+
+var count = 0;
+  for (var i = 0; i < testWord[i].length; i++) {
+    if (testWord.charAt(i) === 'a' || testWord.charAt(i) === 'A' ||
+      testWord.charAt(i) === 'e' || testWord.charAt(i) === 'E' ||
+      testWord.charAt(i) === 'i' || testWord.charAt(i) === 'I' ||
+      testWord.charAt(i) === 'o' || testWord.charAt(i) === 'O' ||
+      testWord.charAt(i) === 'u' || testWord.charAt(i) === 'U'
+    ) {
+      count++;
+    }
+    if (count >= 2){
+      correctWords.push(testWord);
+    }
+  }
+
+
+  }
 };
 
 // #9
