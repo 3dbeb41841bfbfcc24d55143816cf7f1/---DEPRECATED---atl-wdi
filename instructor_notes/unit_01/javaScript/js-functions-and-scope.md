@@ -160,7 +160,7 @@ EXPERIMENT
 
 <br>
 ---
-<a name="codealong2"></a>
+ <a name="codealong2"></a>
 ## Parameters (25 min)
 
 If a function did the same thing every time it was called, it wouldn't be a very powerful codebase. We would also have to write a new function for each new feature in order to enable additional behaviors in our application:
