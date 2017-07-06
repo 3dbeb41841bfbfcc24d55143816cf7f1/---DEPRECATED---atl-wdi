@@ -143,7 +143,7 @@ abstraction can often be represented in multiple different ways, and there may
 be trade-offs in speed and simplicity that come from using one representation
 vs another.
 
-### 5. Subway System
+### 5. Subway System  
 
 Suppose that you're building an app that tells travelers how many stops they
 need to travel to get from one station to another. Two abstractions that you
@@ -190,6 +190,8 @@ var exampleLine = {
 What are some advantages and disadvantages of choosing these representations? Please give at least one example of each.
 
 > Answer here
+
+It's nice and concise to keep the stations as a subset of the lines and to store all that data in the same object. However, a problem arises if, for example, the haymarket station is used by both the green and the orange lines. In this data model, you would have to duplicate the content again. Instead, I would recommend a single object for all the lines, and a second object for the lines themselves, which would then reference the station object. 
 
 ### 6. Doctor Appointment App
 
@@ -294,6 +296,10 @@ the better choice?
 
 > Answer here
 
+The first option would be frustrating because while some patients are tied to a specific doctor, what happens if they need a consult with a separate physician? The second option is much better, since these appointments can be assigned and re-assigned much more easily. Additionally, having a separate appointment object makes it easier to create a patient record. 
+
+The first option's biggest benefit is that it would be easy to see/print a doctor's schedule for the day, with all his/her appointments listed cleanly. 
+
 ## Tying It Together
 
 ### 7. Tic-Tac-Toe
@@ -304,12 +310,22 @@ a.  What are some possible entities that your application might use to model its
     data? Please pick at least two, with at least two properties apiece.
 
   > Answer here
+  playerOne would need to be X's, playerTwo would need to be O's. There would need to be some way to track wins over time. And something to track how many marks in a row equals a win. 
 
 b.  How might those entities be represented in JavaScript code?
 
   > Answer here
 
+  var player {
+    playerMark: 'X',
+    playerOne: true,
+    playerName: 'Jonathan',
+    playerWins: 10
+  }
+
 c.  Justify your choices in a) and b). Why these entities? Why these
     representations?
 
   > Answer here
+
+Tic Tac Toe relies on one player moving first. It is alternating game play. Therefore, the first player inherently has the advantage. If this is a true two-player game (not person against computer), the individuals would want to see how they fare against each other over time. Finally, I'm sure the player name would need to be displayed on the screen somewhere to know when it was your turn.
