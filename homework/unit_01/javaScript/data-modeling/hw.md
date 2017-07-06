@@ -62,11 +62,32 @@ keep them organized.
 
 > Answer here
 
+var task = {
+  taskName: 'Clean out fridge',
+  creatorName: 'Jonathan Watson',
+  dateCreated: '20170705',
+  dateDue: '20170706',
+  timeToComplete: '2 hours',
+  projectGroup: 'Household chores'
+}
+
+People need a name to remember what they are supposed to do. Additionally, if group sharing is a feature, you want to see who created the task. Seeing how long ago the task was created helps, as well as having a due date. Time to complete was suggested in the directions, as was project groups. 
+
 ### 2. Photo Sharing App
 
 In this app, users can upload photos to their accounts and share them with others. These photos can be grouped into albums.
 
 > Answer here
+
+var photo = {
+  photoFileName: 'IMG_60912.png',
+  creatorName: 'Jonathan Watson',
+  dateCreated: '20170705',
+  photoAlbumName: 'Hawaiian Cruise'
+  sharePublicly: true,
+}
+
+There will be additional metadata that we may want to scrape from the photo itself, but knowing the title, the uploader, and the date created provide standard search features. Additionally, if you can group into albums, you need an album name. And we can add a boolean value to make sure that users actually want their photos shared online. 
 
 ### 3. Home Automation Manager
 
@@ -77,6 +98,23 @@ and down.
 
 > Answer here
 
+var house = {
+  rooms: ['bedroomOne', 'bedroomTwo', 'livingRoom', 'kitchen', 'hallway', 'bathroomOne', 'bathroomTwo'],
+  thermostatTemperature = 72;
+  outdoorTemperature = 89;
+}
+var devices = {
+  lightBulbOne: 'LKJ098761',
+  lightBulbTwo: 'LKJ123942',
+  lightSwitchOne: 'BWM573829',
+  lightSwitchTwo: 'BWM1234098',
+  motionDetectorOne: 'PH1234790',
+  motionDetextorTwo: 'PH09747638'
+}
+
+With these two objects, you can assign various devices to individual rooms. Then, if the internal temperature rises above the set temperature, you can turn off appropriate lights. Then, schedule various lights to turn on when someone arrives, as well as lower the thermostat. Finally, by checking the outdoor temperature, you could watch for a heat wave and adjust temperature accordingly, or, in winter months, switch over to the heater.
+
+
 ### 4. Sneaker Store
 
 This app will allow customers to browse a list of products (sneakers, in this
@@ -84,6 +122,18 @@ case), add those products to a cart, and save that cart as a past order once the
 purchase is complete.
 
 > Answer here
+
+var shoe = {
+  shoeType: ['sneaker', 'loafer', 'slip-on', 'sandal']
+  size: 12,
+  brand: nike,
+  quantityAvailable: 50,
+  inCart = true,
+  pastOrder = true
+}
+
+I feel like this would be better served with multiple objects. One for the customer for his/her order history, shoe size, preferences, etc. and a second object for the shoes themselves. But this should hold all the necessary data for the app. 
+
 
 ## Representing Abstractions in Code
 
