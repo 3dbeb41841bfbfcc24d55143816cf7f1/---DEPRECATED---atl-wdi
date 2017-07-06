@@ -90,10 +90,6 @@ Let's create a web page and begin to inspect its structure.
 </html>
 ```
 
-<!-- Here is the DOM tree for the above HTML document:
-
-![DOM Tree](https://i.imgur.com/8goR1EO.png) -->
-
 <br />
 
 ### Everything is a Node
