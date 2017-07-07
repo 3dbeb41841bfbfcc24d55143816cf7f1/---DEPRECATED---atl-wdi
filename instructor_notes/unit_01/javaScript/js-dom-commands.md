@@ -116,8 +116,9 @@ We will then come back together as class. Each group will briefly demo and expla
   * document.getElementById
   * document.getElementsByClassName
   * document.getElementsByName
-* **Creation** 
   * document.querySelector
+* **Creation** 
+
   * node.style
   * node.setAttribute
 * **Traversal** 
