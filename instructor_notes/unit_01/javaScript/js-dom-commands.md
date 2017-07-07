@@ -263,7 +263,9 @@ Let's use JavaScript DOM manipulation to make an app that will give us a random 
   `var newElement = document.createElement("p");`
 
 7. Now let's add text to this new node.  We'll use our random quote and author here.
-  `newElement.textContent = \`${randomQuote.quote} -${randomQuote.author}\``
+  ```js
+    newElement.textContent = `${randomQuote.quote} -${randomQuote.author}`
+  ```
 
 8. Now we have a basic element that is ready to be inserted into the DOM. 
   `document.body.appendChild(newElement)`
