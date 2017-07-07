@@ -22,7 +22,9 @@ window.onload = function() {
   var ring3 = document.querySelector('.ring-3');
 
   body.addEventListener('click', bullseyeGame.miss);
-  ring1.addEventListener('click', bullseyeGame.outerRing)
+  ring1.addEventListener('click', bullseyeGame.outerRing);
+  ring2.addEventListener('click', bullseyeGame.middleRing);
+  ring3.addEventListener('click', bullseyeGame.innerRing);
 }
 
 
@@ -44,8 +46,37 @@ var bullseyeGame = {
     // [ALERT:] needs to be bullseyeGame because this in clickEvents refers to the html element that was clicked
   },
 
+  // innerRing: function(event) {
+  //   event.stopPropogation();
+  //   bullseyeGame.updateScore(100);
+  //   alert('innerRing was clicked')
+  // },
+  innerRing: function(event) {
+    event.stopPropagation();
+    bullseyeGame.updateScore(100);
+    bullseyeGame.colorMeYellow(event);
+    alert('innerRing was clicked')
+  },
+
+  middleRing: function(event) {
+    event.stopPropagation();
+    bullseyeGame.updateScore(50);
+    bullseyeGame.colorMeYellow(event);
+    alert('middleRing was clicked')
+  },
+
   outerRing: function(event) {
     event.stopPropagation();
+    bullseyeGame.updateScore(10);
+    bullseyeGame.colorMeYellow(event);
     alert('outerRing was clicked')
+  },
+  colorMeYellow: function(event) {
+    console.log('colorMeYellow was called');
+    var backgroundColorOld = event.target.style.backgroundColor;
+    event.target.style.backgroundColor = "yellow";
+    setTimeout(function() {
+      event.target.style.backgroundColor = backgroundColorOld;
+    }, 2000);
   }
 }
