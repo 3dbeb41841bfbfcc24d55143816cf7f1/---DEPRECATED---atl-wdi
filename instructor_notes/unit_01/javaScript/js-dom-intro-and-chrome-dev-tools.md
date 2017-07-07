@@ -6,7 +6,7 @@ creator:
     name: Shawn Johnson
     city: Atlanta
 edited:
-    name: Maren Woodruff
+    name: Jamie King
     city: Atlanta
     
 ---
@@ -32,15 +32,16 @@ edited:
 
 ## What are Dev Tools? – Intro
 
-One of the most important traits a developer can have is an inner Sherlock Homes. A developer needs to be a world class detective- to always have an eye/interest in looking deeper, under the surface, for solving the problem.
+One of the most important traits a developer can have is an inner Sherlock Homes. A developer needs to be a world class detective- to always have an eye/interest in looking deeper, under the surface, for solving the problem.  A large percentage of your time in development will be debugging errors and figuring out why something doesn't work the way you expect it to.
 
 ![](http://cdn2.hubspot.net/hub/485203/file-2549982505-jpg/blog-files/sherlock_holmes_questionmark_white_bg-289x300.jpg) 
 
-Every great detective needs a great set of tools. Most modern browsers include a set of tools that allow developers to monitor and explore what is going on on a web page. The Chrome Developer Tools, often shortened to "Dev Tools", are a set of debugging tools built into Google Chrome.  
+Every great detective needs a great set of tools. These tools should help you spot errors and catch mistakes much faster than the naked eye. Most modern browsers include a set of tools that allow developers to monitor and explore what is going on on a web page. The Chrome Developer Tools, often shortened to "Dev Tools", are a set of debugging tools built into Google Chrome.  As of 2017, they are by far the most popular debugging tool in web development.  
 
 We can do a lot of useful things with these tools, but here are some of the things that are the most useful:
 
 - We can view and manipulate the HTML & CSS as the browser has rendered them, via the DOM
+- We can simulate what our project will look like in mobile browsers
 - We can watch requests and responses as they are made and received
 - We can observe JavaScript being run
 - We can debug problems in our code
@@ -91,7 +92,7 @@ Let's go ahead and play around with some of these tools.
 
 ### Modifying CSS On-the-Fly
 
-The Chrome DevTools have made it very easy to quickly test and edit the CSS before incorporating it back into your application. On [http://jezebel.com/](http://jezebel.com/) do the following:
+The Chrome DevTools have made it very easy to quickly test and edit the CSS before incorporating it back into your application. On [http://lifehacker.com/](http://lifehacker.com/) do the following:
 
 - Press `command(⌘) + option + i` to open the inspector view
   - You can open the DevTools with any shortcut that you like, then press the square with the arrow on the top left corner of the tools section.
@@ -107,7 +108,7 @@ body {
 }
 ```
 
-What happened? When we have are looking at CSS via the DOM, we are able to do whatever we want to change it!  But remember that if you refresh the page, everything will re-render in the way that it was originally intentioned and you will lose your changes!  Your browser will have sent a new request and received a new response back - aka the default HTML + CSS files and folders associated with the `jezebel` endpoint.
+What happened? When we have are looking at CSS via the DOM, we are able to do whatever we want to change it!  But remember that if you refresh the page, everything will re-render in the way that it was originally intentioned and you will lose your changes!  Your browser will have sent a new request and received a new response back - aka the default HTML + CSS files and folders associated with the `lifehacker` endpoint.
 
 A few other things to try:
 
@@ -154,7 +155,7 @@ The Network panel records information about each network operation in your appli
     - under the 'Network' list, 
     - select 'Disable Cache (while DevTools is open' so that the requests are processed as 'new' each time we ask for a resource from the server
   - Refresh the page, and you should see that the resources are now of **200** or ok status.
-- Take 2 minutes to try to find the main HTML Page (GA.com may not work, you may need to go to jezebel.com, sort by the `doc` filter, and find the main html document) and check out the IP address and the request/responses.
+- Take 2 minutes to try to find the main HTML Page (GA.com may not work, you may need to go to lifehacker.com, sort by the `doc` filter, and find the main html document) and check out the IP address and the request/responses.
 
 <br />
 

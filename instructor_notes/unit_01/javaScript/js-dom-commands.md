@@ -5,7 +5,7 @@ duration: "1:30"
 creator:
   name: Colin Hart
 edited: 
-  name: Maren Woodruff
+  name: Jamie King
 competencies: Programming
 ---
 
@@ -89,10 +89,6 @@ Let's create a web page and begin to inspect its structure.
   </body>
 </html>
 ```
-
-<!-- Here is the DOM tree for the above HTML document:
-
-![DOM Tree](https://i.imgur.com/8goR1EO.png) -->
 
 <br />
 
@@ -230,6 +226,66 @@ window.onload = function() {
 Refresh your window and make sure your script is still running!
 
 <br />
+
+### Combining DOM selectors with other JS tricks
+
+Now that we know how to create and edit HTML elements in JavaScript, we can create entire apps just using JavaScript! (sneak peek: This is exactly what frameworks like React, Angular, and Vue are doing)
+
+#### Random Quotes Generator
+
+Let's use JavaScript DOM manipulation to make an app that will give us a random quote every time you load the page.
+
+1. First, let's create an `index.html`
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Random Quotes</title>
+</head>
+<body>
+  <script src="app.js"></script>
+</body>
+</html>
+```
+2. That's ALL the html that we're going to write for this app.  Everything else, we'll do in JavaScript.
+
+3. Let's create an `app.js` and start things off with an object that contains some random quotes for our app.
+
+4. First we'll create an array of objects that contain an `author` and a `quote` (I'll provide this in class)
+
+5. Now let's use `Math.random()` to get a random quote from this array.
+  `var randomQuote = quotes[Math.random() * quotes.length];`
+
+6. After we have our quote, we need to create an HTML node to insert into our DOM.
+  `var newElement = document.createElement("p");`
+
+7. Now let's add text to this new node.  We'll use our random quote and author here.
+  ```js
+    newElement.textContent = `${randomQuote.quote} -${randomQuote.author}`
+  ```
+
+8. Now we have a basic element that is ready to be inserted into the DOM. 
+  `document.body.appendChild(newElement)`
+
+9. Let's open up our page and see what happens!
+
+
+### You Do!
+
+1. Research how to add styling onto a HTML node in JavaScript
+  - Change the color of the text to Red
+  - Change the margin-left to 15px
+  - Increase the font-size to 24px
+
+2. Create a loop in JavaScript that will take all of our quotes and add each of them to an unordered list.  (Hint: Create a `<ul></ul>` element in your index.html and append many `<li></li>` tags to them.)
+
+
+### Closing
+With this knowledge of how to manipulate the DOM, you now know the secret weapon behind all of the modern front-end frameworks.  Next up, we will learn how to use JavaScript to make our apps interactive through click events!
+
 
 <!-- If you have time, you can add the lab back in, but usually the class exercise/presentations take a few minutes -->
 <!-- ---

@@ -107,11 +107,4 @@ carefully -- it may give you a clue about what to do next.
   2.  Push your code to your fork of the class repo.
   3.  Add a link on Schoology to your homework.
 
-  The submission should include:
-
-  -   A link that points back to your fork.
-
-  -   The screenshot that you took.
-
-  -   A 'comfort' score on how you feel about the material, from 1 (very
-      uncomfortable) to 5 (very comfortable)
+ 
