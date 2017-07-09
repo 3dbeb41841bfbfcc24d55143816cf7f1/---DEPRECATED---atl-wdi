@@ -66,11 +66,14 @@ const Presenter = {
 const AppController = {
   counterNumber: 1,
   addOne: null,
+  deleteButton: null,
 
   onClickNewCounter: function(event){
     console.log("You asked for a new counter!");
     document.getElementById('counter-list').innerHTML = htmlMarkup;
     AppController.addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.helpWriteThis);
+    AppController.deleteButton = document.getElementsByClassName('delete')[0].addEventListener('click', AppController.deleteThis);
+    AppController.counterNumber = 1;
     // AppController.counterNumber = 1;
     // AppController.counterNumber = 1;
   },
