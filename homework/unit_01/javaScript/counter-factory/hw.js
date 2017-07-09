@@ -68,7 +68,6 @@ const AppController = {
   addOne: null,
   deleteButton: null,
   i: 0,
-  deleteButtonArray: [],
 
   onClickNewCounter: function(event){
     console.log("You asked for a new counter!");
@@ -84,7 +83,6 @@ const AppController = {
     AppController.deleteButton = document.getElementsByClassName('delete')[AppController.i].addEventListener('click', AppController.onClickDelete);
     AppController.i++;
     console.log(AppController.i);
-    AppController.deleteButtonArray.push(AppController.addOne);
   },
   onClickIncrement: function(event){
     console.log("you clicked a button")
