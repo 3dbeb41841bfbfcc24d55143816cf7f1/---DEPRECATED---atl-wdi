@@ -67,10 +67,12 @@ const AppController = {
   counterNumber: 1,
 
   onClickNewCounter: function(event){
-    // Stupid code goes here.
+    console.log("You asked for a new counter!");
+    document.getElementById('counter-list').innerHTML = htmlMarkup;
+    addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.helpWriteThis);
   },
   onClickIncrement: function(event){
-    var clickIncrement = document.querySelector(':.counter > h3 > span').innerHTML = 3;
+    // var clickIncrement = document.querySelector(':.counter > h3 > span').innerHTML = 3;
   },
   onClickDelete: function(event){                           // REACH
     // Your Code Here
@@ -89,7 +91,7 @@ window.onload = function(){
   // var counterNumber = 1;
   var addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.helpWriteThis);
   var deleteButton = document.getElementById('delete').addEventListener('click', AppController.deleteThis);
-  
+  var newCounterButton = document.getElementById('new-counter').addEventListener('click', AppController.onClickNewCounter);
 };
   var htmlMarkup = `<div class='counter' data-index='2'>
   <h3>Count: <span>0</span></h3>
