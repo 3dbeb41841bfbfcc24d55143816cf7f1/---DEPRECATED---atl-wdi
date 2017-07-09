@@ -67,15 +67,27 @@ const AppController = {
   counterNumber: 1,
   addOne: null,
   deleteButton: null,
+  i: 0,
 
   onClickNewCounter: function(event){
     console.log("You asked for a new counter!");
-    document.getElementById('counter-list').innerHTML = htmlMarkup;
+    // document.getElementById('counter-list').innerHTML = htmlMarkup;
+    var newDiv = document.createElement("div");
+    newDiv.setAttribute('data-index', AppController.i);
+    var node = document.createTextNode('');
+    // var node = document.getElementById('fancy-div').innerHTML = htmlMarkup;
+    newDiv.appendChild(node);
+    var element = document.getElementById('counter-list');
+    element.appendChild(newDiv);
+    // var fancyDiv = document.querySelectorAll("[data-index]");
+    document.querySelectorAll("[data-index]")[AppController.i].innerHTML = htmlMarkup;
     AppController.addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.helpWriteThis);
     AppController.deleteButton = document.getElementsByClassName('delete')[0].addEventListener('click', AppController.deleteThis);
-    AppController.counterNumber = 1;
     // AppController.counterNumber = 1;
     // AppController.counterNumber = 1;
+    // AppController.counterNumber = 1;
+    AppController.i++;
+    console.log(AppController.i);
   },
   onClickIncrement: function(event){
     // var clickIncrement = document.querySelector(':.counter > h3 > span').innerHTML = 3;
@@ -104,7 +116,7 @@ window.onload = function(){
   var newCounterButton = document.getElementById('new-counter').addEventListener('click', AppController.onClickNewCounter);
 }
 };
-  var htmlMarkup = `<div class='counter' data-index='2'>
+  var htmlMarkup = `<div class='counter'>
   <h3>Count: <span>0</span></h3>
   <button class='increment'> + 1 </button>
   <button class='delete'>Delete</button>
