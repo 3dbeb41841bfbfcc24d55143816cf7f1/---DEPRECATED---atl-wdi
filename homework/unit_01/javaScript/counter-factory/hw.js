@@ -71,37 +71,25 @@ const AppController = {
 
   onClickNewCounter: function(event){
     console.log("You asked for a new counter!");
-    // document.getElementById('counter-list').innerHTML = htmlMarkup;
     var newDiv = document.createElement("div");
     newDiv.setAttribute('data-index', AppController.i);
     var node = document.createTextNode('');
-    // var node = document.getElementById('fancy-div').innerHTML = htmlMarkup;
     newDiv.appendChild(node);
     var element = document.getElementById('counter-list');
     element.appendChild(newDiv);
-    // var fancyDiv = document.querySelectorAll("[data-index]");
     document.querySelectorAll("[data-index]")[AppController.i].innerHTML = htmlMarkup;
-    AppController.addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.helpWriteThis);
-    AppController.deleteButton = document.getElementsByClassName('delete')[0].addEventListener('click', AppController.deleteThis);
-    // AppController.counterNumber = 1;
-    // AppController.counterNumber = 1;
-    // AppController.counterNumber = 1;
+    AppController.addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.onClickIncrement);
+    AppController.deleteButton = document.getElementsByClassName('delete')[0].addEventListener('click', AppController.onClickDelete);
     AppController.i++;
     console.log(AppController.i);
   },
   onClickIncrement: function(event){
-    // var clickIncrement = document.querySelector(':.counter > h3 > span').innerHTML = 3;
-  },
-  onClickDelete: function(event){                           // REACH
-    // Your Code Here
-  },
-  helpWriteThis: function(event){
     console.log("you clicked a button")
     document.querySelector('.counter h3 span').innerHTML = AppController.counterNumber;
     console.log(AppController.counterNumber);
     AppController.counterNumber++;
   },
-  deleteThis: function(event){
+  onClickDelete: function(event){                           // REACH
     document.getElementsByClassName('counter')[0].remove();
   }
 };
@@ -109,8 +97,8 @@ const AppController = {
 window.onload = function(){
   // var counterNumber = 1;
   if (!document.getElementsByClassName('increment')[0] === undefined){
-    var addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.helpWriteThis);
-    var deleteButton = document.getElementById('delete').addEventListener('click', AppController.deleteThis);
+    var addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.onClickIncrement);
+    var deleteButton = document.getElementById('delete').addEventListener('click', AppController.onClickDelete);
     var newCounterButton = document.getElementById('new-counter').addEventListener('click', AppController.onClickNewCounter);
 } else {
   var newCounterButton = document.getElementById('new-counter').addEventListener('click', AppController.onClickNewCounter);
