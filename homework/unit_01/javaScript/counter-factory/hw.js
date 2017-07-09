@@ -60,20 +60,37 @@ const Presenter = {
     // Your Code Here
   }
 };
+    // var counterNumber = 1;
 
 // Top-Level Application Control //
 const AppController = {
+  counterNumber: 1,
+  htmlMarkup: `<div class='counter' data-index='2'>
+  <h3>Count: <span>0</span></h3>
+  <button class='increment'> + 1 </button>
+</div>`,
   onClickNewCounter: function(event){
-    // Your Code Here
+    // Stupid code goes here.
   },
   onClickIncrement: function(event){
-    // Your Code Here
+    var clickIncrement = document.querySelector(':.counter > h3 > span').innerHTML = 3;
   },
   onClickDelete: function(event){                           // REACH
     // Your Code Here
+  },
+  helpWriteThis: function(event){
+    console.log("you clicked a button")
+    document.querySelector('.counter h3 span').innerHTML = AppController.counterNumber;
+    AppController.counterNumber++;
+  },
+  deleteThis: function(event){
+    document.getElementsByClassName('counter')[0].remove();
   }
 };
 
 window.onload = function(){
-  document.getElementById('new-counter').onclick = AppController.onClickNewCounter;
+  // var counterNumber = 1;
+  var addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.helpWriteThis);
+  var deleteButton = document.getElementById('delete').addEventListener('click', AppController.deleteThis);
+  
 };
