@@ -72,6 +72,7 @@ const AppController = {
   onClickNewCounter: function(event){
     console.log("You asked for a new counter!");
     var newDiv = document.createElement("div");
+    var newDivName = newDiv.className = "counter";
     newDiv.setAttribute('data-index', AppController.i);
     var node = document.createTextNode('');
     newDiv.appendChild(node);
@@ -104,8 +105,7 @@ window.onload = function(){
   var newCounterButton = document.getElementById('new-counter').addEventListener('click', AppController.onClickNewCounter);
 }
 };
-  var htmlMarkup = `<div class='counter'>
+  var htmlMarkup = `
   <h3>Count: <span>0</span></h3>
   <button class='increment'> + 1 </button>
-  <button class='delete'>Delete</button>
-</div>`;
+  <button class='delete'>Delete</button>`;
