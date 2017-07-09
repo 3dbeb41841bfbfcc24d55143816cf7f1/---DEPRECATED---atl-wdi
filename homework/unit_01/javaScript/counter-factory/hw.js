@@ -65,11 +65,14 @@ const Presenter = {
 // Top-Level Application Control //
 const AppController = {
   counterNumber: 1,
+  addOne: null,
 
   onClickNewCounter: function(event){
     console.log("You asked for a new counter!");
     document.getElementById('counter-list').innerHTML = htmlMarkup;
-    addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.helpWriteThis);
+    AppController.addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.helpWriteThis);
+    // AppController.counterNumber = 1;
+    // AppController.counterNumber = 1;
   },
   onClickIncrement: function(event){
     // var clickIncrement = document.querySelector(':.counter > h3 > span').innerHTML = 3;
@@ -80,6 +83,7 @@ const AppController = {
   helpWriteThis: function(event){
     console.log("you clicked a button")
     document.querySelector('.counter h3 span').innerHTML = AppController.counterNumber;
+    console.log(AppController.counterNumber);
     AppController.counterNumber++;
   },
   deleteThis: function(event){
@@ -89,11 +93,16 @@ const AppController = {
 
 window.onload = function(){
   // var counterNumber = 1;
-  var addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.helpWriteThis);
-  var deleteButton = document.getElementById('delete').addEventListener('click', AppController.deleteThis);
+  if (!document.getElementsByClassName('increment')[0] === undefined){
+    var addOne = document.getElementsByClassName('increment')[0].addEventListener('click', AppController.helpWriteThis);
+    var deleteButton = document.getElementById('delete').addEventListener('click', AppController.deleteThis);
+    var newCounterButton = document.getElementById('new-counter').addEventListener('click', AppController.onClickNewCounter);
+} else {
   var newCounterButton = document.getElementById('new-counter').addEventListener('click', AppController.onClickNewCounter);
+}
 };
   var htmlMarkup = `<div class='counter' data-index='2'>
   <h3>Count: <span>0</span></h3>
   <button class='increment'> + 1 </button>
+  <button class='delete'>Delete</button>
 </div>`;
