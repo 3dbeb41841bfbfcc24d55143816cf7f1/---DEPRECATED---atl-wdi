@@ -65,10 +65,7 @@ const Presenter = {
 // Top-Level Application Control //
 const AppController = {
   counterNumber: 1,
-  htmlMarkup: `<div class='counter' data-index='2'>
-  <h3>Count: <span>0</span></h3>
-  <button class='increment'> + 1 </button>
-</div>`,
+
   onClickNewCounter: function(event){
     // Stupid code goes here.
   },
@@ -94,3 +91,7 @@ window.onload = function(){
   var deleteButton = document.getElementById('delete').addEventListener('click', AppController.deleteThis);
   
 };
+  var htmlMarkup = `<div class='counter' data-index='2'>
+  <h3>Count: <span>0</span></h3>
+  <button class='increment'> + 1 </button>
+</div>`;
