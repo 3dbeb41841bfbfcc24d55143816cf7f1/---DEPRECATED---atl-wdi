@@ -1,4 +1,4 @@
-###Javascript Jedi
+### Javascript Jedi
 
 Practice the things you learned today by modifying the Jedi Academy document in the console! Please do the following:
 
