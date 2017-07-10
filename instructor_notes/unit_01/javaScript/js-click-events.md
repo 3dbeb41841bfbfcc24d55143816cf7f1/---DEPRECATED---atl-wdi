@@ -209,7 +209,7 @@ What is the difference?
 
 **Exercise: (20m)** 
 
-Look at the starter code <a href="https://github.com/ATL-WDI-Curriculum/atl-wdi-10/tree/master/labs/unit_01/javaScript/in-class-click-events">here</a>. There are three buttons. Add event listeners to all of three buttons.
+Look at the starter code <a href="https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/unit_01/javaScript/in-class-click-events">here</a>. There are three buttons. Add event listeners to all of three buttons.
 
 1. Button one, when clicked, should trigger an alert saying `"you have clicked button one"`
 2. Button two, when clicked, should trigger a function that creates a `<p>` with the following string:
@@ -227,8 +227,8 @@ Look at the starter code <a href="https://github.com/ATL-WDI-Curriculum/atl-wdi-
 
 #### Exercise #1 - Independent Click Events
 
-[Independent Click Events](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/tree/master/labs/unit_01/javaScript/independent-click-events)
+[Independent Click Events](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/unit_01/javaScript/independent-click-events)
 
 #### Exercise #2 - Wendy Bite
 
-[Wendy Bite](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/tree/master/labs/unit_01/javaScript/wendy-bite)
+[Wendy Bite](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/unit_01/javaScript/wendy-bite)
