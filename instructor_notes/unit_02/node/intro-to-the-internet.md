@@ -4,7 +4,7 @@ type: lesson
 duration: '2:00' 
 creator: 
     name: Colin Hart 
-    adapted by: Maren Woodruff
+    adapted by: Jamie King
     class: ATL-WDI-9
 ---
 
@@ -189,12 +189,12 @@ Node's Core Strengths are:
 - **Debugging**: Node doesn't have many robust debugging tools out of the box.  The developer is responsible for making error logs.
 
 ## Our first Node app
-While it is possible to build web applications and APIs only using Node, we will actually be using a framework on top of Node, called Express. 
+We installed `node` a few weeks ago, so we should be able to easily get up and going.  Let's create a file called `helloWorld.js` and log "Hello World" to the terminal.
 
-## Routes / Paths / API
+```js
+console.log("Hello World!)
+```
 
-Anything in a URL that comes after the domain extension is called a route, path, or an api, including the path `/` i.e. `.com/`
+Run the program in the command line by using `node helloWorld.js`. That's it! You've created your first Node app.  It's not very useful though.  Let's try and build out a web server to actually say Hello to the whole world.
 
-We want to tell our server to listen for certain _routes_ and send some kind of response back.
-
-Let's open up the [node_lab](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/blob/master/labs/unit_02/node/node-lab/node-lab.md) at this link.
+Let's open up the [node_lab](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/unit_02/node/node-lab/node-lab.md) and create a web app using only node (we'll learn how to do the same thing with Express.js later today).
