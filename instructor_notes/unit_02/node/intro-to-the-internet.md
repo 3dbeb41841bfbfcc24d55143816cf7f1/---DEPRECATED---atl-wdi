@@ -192,7 +192,7 @@ Node's Core Strengths are:
 We installed `node` a few weeks ago, so we should be able to easily get up and going.  Let's create a file called `helloWorld.js` and log "Hello World" to the terminal.
 
 ```js
-console.log("Hello World!)
+console.log("Hello World!")
 ```
 
 Run the program in the command line by using `node helloWorld.js`. That's it! You've created your first Node app.  It's not very useful though.  Let's try and build out a web server to actually say Hello to the whole world.
