@@ -55,16 +55,19 @@ const AppController = {
     // Your Code Here
   },
   handleClickStart: function() {
-    // Your Code Here
+    console.log('Start the clock');
   },
   handleClickStopReset: function(){
-    // Your Code Here
+    console.log('Stop/reset the clock');
   },
   handleClickLap: function(){
-    // Your Code Here
+    console.log('Lap the clock');
   }
 };
 
 window.onload = function(){
   // Attach AppController methods to the DOM as event handlers here.
+  $('#start').on('click', AppController.handleClickStart);
+  $('#lap').on('click', AppController.handleClickLap);
+  $('#stop').on('click', AppController.handleClickStopReset);
 };
