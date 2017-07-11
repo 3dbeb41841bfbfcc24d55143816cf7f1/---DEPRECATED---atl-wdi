@@ -152,7 +152,7 @@ Webpack allows us to easily manage large client-side applications. Let's take a 
 * Inside of our `/src/App.js` file, we should see some pretty familiar-looking `import` tags. This is because Webpack allows us to start using Node-y `import` statements in our client-side code!
 * Webpack also gives us an easy to way to use Babel with our application. Babel converts all of our modern (ES6 and later) JavaScript code into older-looking code that will run in any browser. This allows us to safely move forward using all of the nice, new language features of JavaScript as they roll out.
 * In this class, we have seen examples of `minifiied` code. `Minification` is a way of processing our code before loading it into the browser to remove unnecessary spaces, tabs, and other non-functional characters. This allows us to reduce file sizes, speed up loading times, and leave our functionality completely untouched. How do we include this in our application? We don't have to! We get it for free with our React Webpack set-up.
-* Finally, Webpack provides for us a server that will run our code for us automatically. Why do we need a server if this code runs in the browser?
+* Finally, Webpack provides for us a server that will run our code for us automatically. Why do we need a server if this code runs in the browser? Because we don't want to reload our page every time we make a change. The Webpack dev server that React gives us for free will `hot-reload` our changes in the browser, as we make them in our code.
 
 ## Creating Custom Components
 
