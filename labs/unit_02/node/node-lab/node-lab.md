@@ -14,8 +14,8 @@ server.on('request', function(request, response) {
 
   response.writeHead(200, {'Content-Type': 'text/html'});
 
-  response.write('<html>Good story, friend.');
-  response.write('<script>console.log(\'Sooooooo\');</script>');
+  response.write('<html>Hello World!');
+  response.write('<script>console.log(\'I\'m client-side JavaScript being sent via server-side JavaScript\');</script>');
   response.write('</html>');
   response.end();
 });
@@ -30,6 +30,10 @@ server.on('request', function(request, response) {
 <br />
 
 ## What's Actually Happening Here?
+
+We've created a web server that is now accessible by anyone in the world.  You can all connect to my webserver by entering my ip address and port number in your browser.
+
+Let's dive into this code.
 
 I am going to go line-by-line, and walk you through what is happening here.
 

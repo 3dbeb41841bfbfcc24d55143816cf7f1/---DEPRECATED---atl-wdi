@@ -4,7 +4,7 @@ type: lesson
 duration: '2:00' 
 creator: 
     name: Colin Hart 
-    adapted by: Maren Woodruff
+    adapted by: Jamie King
     class: ATL-WDI-9
 ---
 
@@ -13,24 +13,18 @@ creator:
 ## Objectives
 *After this lesson, students will be able to:*
 
-- Describe how information is sent from point A to point B over the internet
-- Discuss how the request response cycle works from a conceptual perspective
-  - nodes
-  - clients/servers
-- Discuss how the request response cycle works from a technical perspective
-  - HTTP verbs
-  - Status Codes
-- Articulate what Node is and why it's popular
-
-- Create a simple server using http module
-- Send responses to the client on receiving any request
-- Send responses to the client based on specific routes using control flow and the url module
+- Understand how information is stored and transmitted accross the internet.
+- Describe how a server is able to receive and respond to clients.
+- Define the 5 HTTP verbs and have an understanding of HTTP Status codes
+-	Understand what Node.js is and why it’s exploded in popularity.
+-	Create a simple server using the HTTP module
+-	Send different responses to the client based on specific routes.
 
 ## How does the internet work? (20 min)
 
-Take five minutes to answer the following question:
+Think about how the internet works.  There are 4 high level terms that describe how the entire internet works. Take a few minutes and discuss what these terms mean with the person beside you.
 
-In your own words, as well as using what you've learned about html/css/js, describe how the internet works?
+![](http://i.imgur.com/vh2LsEz.jpg)
 
 I'm going to call on a couple of you, but would also like you all to type your own answer into Slack as we discuss!
 
@@ -38,46 +32,36 @@ I'm going to call on a couple of you, but would also like you all to type your o
 
 ### The Conceptual
 
-The internet as a concept, ignoring all of the layers and layers of technical knowledge, is actually pretty straight forward, and we can approach it from three different angles to demystify it.
+Trying to define just what the internet is can be difficult.  At it's highest level, the internet is just an open network of computers (aka servers) that are able to serve and consume information from other computers.  While this is true, it oversimplifies what the internet actually DOES.  Ever since the first version of 'the internet' was created in 1969, it has revolutionized communication, culture, politics, and more. Take a look at these major world events that have taken place just since Tim Berners-Lee proposed the World Wide Web in 1989.
 
-**ONE:** We can think of it as clients and servers, i.e. the web:
+- **1990**: The World Wide Web comes online.
+- **1995**: Craig Newmark creates Craigslist.
+- **1995**: Amazon, an online bookstore, opens for business.
+- **1998**: Google get's its start as an online search engine.
+- **2001**: Wikipedia creates an online, user maintained encyclopedia.
+- **2003**: Friendster creates the first online social network.
+- **2006**: YouTube debuts it's platform to make it easy to share online videos.
+- **2009**: Hundreds of thousands of Iranians use social networks like Twitter to communicate and organize a revolution.
 
-![](https://upload.wikimedia.org/wikipedia/commons/c/c9/Client-server-model.svg)
+This is just the tip of the iceberg of the iceberg concerning how the internet has change society as we know it. Despite this impact, the technical concepts can be boiled down to pretty simple terms.
 
-A **client**, your browser, makes a **request** through the internet to a **server** for a webpage, a song, an image, or some sort of **resource**.
+![](http://imgur.com/KelmRFQ.jpg)
 
-**What makes up a web page?**
+1. The client (aka the computer the user is using) sends a **request** out in the form of a URL.
 
-**TWO:** We can think of it as a network of nodes. When your client makes a request, it knows the address but not exactly how to get there. The request literally propagates across the network, asking each server if it holds the webpage in question or if it knows where it is. A request will always try to find the fastest route of access and therefore, will not take the exact same path twice.
+2. The **request** is sent to a DNS server (Domain Name Server) which translates the URL written in English into an IP address.  An IP Address is a unique set of numbers attached to the server that the user is trying to reach. Think of it like a phone number.
 
-> In the early days of the internet, a server had a bug that caused it to think it could relay http requests in negative time. What this meant was that eventually this information propagated across the network where more and more traffic was getting sent through this one node, slowing it down more and more.
+3. Once the **request** has made it's way to the **server**, the **server** parses information sent by the **request** and executes code to deliver a **response**.  The **response** can be anything from html/css/js files to images/movies/games/etc.  This step is what we're going to be focusing on during most of this unit.
 
-**SIDE NOTE**: Ethics — The Web is built on trust. And you, as new developers, are entering that world. So, be careful.  Trust is easily given, but also easily lost.
+4. Whenever the **server** is ready to send a **response**, it delivers the data to be served by the client.
 
-> Before we move forward, let's discuss one other example of network propagation.
+5. The **client** receives the **response** and their browser is updated with the files delivered from the **server**.
 
-> Back in 2008, the Pakistani government, in response to a video posted on YouTube, asked their ISP's (Internet Service Provider) to block YouTube. They accomplished this by changing the IP (Internet Protocol) address in their local DNS (Domain Name Server) so that any traffic initiating in Pakistan would see the wrong IP address, and instead, serve a page with the message that YouTube was not available and redirect traffic from that IP address to a Pakistani website.
+Let's look at one more example of this: 
 
-> YouTube, like many large websites, has a number of IP addresses and spread the traffic between them. Requests get directed to whichever one is the least burdened — in essence, it tells people to go to Madison Square Garden. Once your nodes get there, they are then told which entrance to the Garden is the least crowded extrance.
+![](http://imgur.com/AdJA3h4.jpg)
 
-> But the Pakistani announcement said that YouTube was located at 123 Censorship Row, Suite 305, Lahore, Pakistan — which looks to be far more specific and therefore looks like more useful information than “Madison Square Garden.”  Since the internet’s architecture still relies on trust, most networks — especially big ones — trust each other’s info without testing it. - From Wired
-
-
-**THREE:** Finally, when thinking about requests and responses, the really mind-bending thing is recognizing and accepting that it is all simply text. Nothing more mystical or magical than plain ol' characters.
-
-<br />
-
-### How People Think the Internet Works:
-![](http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/images/sec3_magic.jpg)
-**PHOTOGRAPHER**: ASGER CARLSEN FOR BLOOMBERG BUSINESSWEEK; 
-<br />
-**SET DESIGN**: DAVE BRYANT
-
-Think back to what programming felt like on day one, or when you were deciding to take WDI. That was not that long ago.  The concepts of string manipulation, looping, variables and so on likely seemed pretty magical. Ultimately, you are just making rules about the input that is received, and the appropriate output.
-
-<br />
-
-### What the Internet Actually Looks Like:
+### Seeing The Internet In Action
 
 *The image below comes from the Chrome developer tools. This is what an actual request looks like:*
 ![](https://i.imgur.com/TH3R9lv.png)
@@ -86,13 +70,13 @@ Open Chrome dev tools, go to the network tab, refresh the page, and you can see 
 
 <br />
 
-## The Technical
+## Sending and Recieving Data
 
 We are not in this class to _just_ demystify the internet.  We are here to learn how to send, receive, and interpret requests and responses to deliver something of value to our end users!
 
 ### HTTP verbs (10m)
 
-To do this, we will be learning to speak the language that the internet speaks, **HTTP** or **Hypertext Transfer Protocol**. Requests and responses, as we have been discussing them, are a part of HTTP and are actually very straight forward.
+The act of transmitting data across the internet is described using 7 HTTP verbs. **HTTP** or **Hypertext Transfer Protocol** refers to the way data is sent and recieved. Requests and responses, as we have been discussing them, are a part of HTTP and are actually very straight forward.
 
 > **EXERCISE**: Take three minutes to think about interactions (hint: think of *verbs*) that you use to engage with the internet and that result in a [persisted change](https://en.wikipedia.org/wiki/Persistence_(computer_science)). Meaning that when you do something on a website, turn your computer off, and then come back to that website the following day, you expect to see that your changes will still exist on the site.
 
@@ -101,7 +85,7 @@ To do this, we will be learning to speak the language that the internet speaks, 
 HTTP is made up of seven **HTTP verbs**, though we will just focus on four and today we will only work with one.
 
 - GET, POST, PUT, DELETE are the basic HTTP verbs for CRUD
-    - Can anyone tell me what CRUD means? 
+- Can anyone tell me what CRUD means? 
 - Create(POST), Read(GET), Update(PUT), Delete(DELETE) — (CRUD)
 
 If we think about this in terms of a blog: we can ask to see a blog post (Read/GET), we can create blog post and save it (Create/POST), we can then go and edit that blog post (Update/PUT), and if the content becomes out of date, we can delete it (Delete/DELETE).
@@ -114,7 +98,7 @@ During Unit One, you likely inadvertently used the GET verb. Can you guess in wh
 
 So, let's get our hands dirty: what is the easiest way you can come up with to make a **GET** request?
 
-EXERCISE: For the next 15 minutes, look at this [link](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/blob/master/labs/unit_02/node/node-lab/curl-lab.md), read through the explanation of cURL and work through the exercises.
+EXERCISE: For the next 10 minutes, complete this [mini-lab](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/blob/master/labs/unit_02/node/node-lab/curl-lab.md) with a partner. Read through the explanation of cURL and work through the exercises.
 
 EXERCISE: 5 minute breakout session! With your partner, work together to come up with an explanation, in your own words, of how the internet works, HTTP verbs, and the request-response cycle.
 
@@ -161,26 +145,24 @@ _"Hey, there friend.  Please respond with the information located at the web add
 <br />
 
 # Framing
+For our introduction to programming servers, we are going to be using Node.js. 
 
 ## What is Node?
 
-Node is a low-level, non-blocking, event-driven platform which allows you to write JavaScript on the server.
+Node was created in 2009 by Ryan Dahl. Dahl was critical of the limitations of the Apache HTTP Server when a lot of connections at once.  He created Node.js using the C++ language and Google's V8 engine to interpret JavaScript code into C++.
 
-While it is possible to build web applications and APIs only using Node, we will actually be using a framework on top of Node, called Express. 
+Visit the [Node.js homepage](https://nodejs.org/en) and take a look at Node's one-liner.
 
-<br />
+>Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
 
-## Why do people love Node!?
+Let's break this down...
+>Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 
-Node is new and hot in the industry. And as you will discover, programmers love new to the point of insanity...
+All of the JavaScript that we write when writing Node is actually interpreted through several C++ libraries when we run the `node` command.  This is done via the Chrome V8 Engine. V8 powers some of the most widely used tools related to software development including the Chrome and Opera Web Browser, the Couchbase and MongoDB databases, and Electron (the platform used to create apps like Visual Studio Code)
 
-Developers and companies are excited about Node, because it allows fast, scalable APIs and websites written purely in JavaScript. Okay... so what?
+>Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.
 
-There are really **two big takeaways** here: We are _familiar_ with JS and being able to use JS on the back end gives us the option to use a single programming language throughout an entire full-stack application. How cool is that?  So, when we get to Rails, you will use ruby on the back end and html, css and js on the front end.  And when you actually work on a full code base, Rails back ends are frequently optimized with [Lua](https://www.lua.org/) which is a db scripting language, or [Rust](https://www.rust-lang.org/en-US/). So now you have two to three back end languages. Not including your front end languages, and maybe you would like to run a framework too.  Now, your front end is not only JS, in actuality, it is a flavor of JS.
-
-### Async
-
-We won't dive too far into this and will talk about this in much more detail next week. However, the other big difference is that Node.js is designed to be _event-driven_ and _asynchronous_. The opposite of this are servers that can only run one thing at a time. Node purposefully sends nearly everything to the background and in the meantime, allows the browser to keep going until all of thes processes are completed.
+You'll commonly hear people mention that Node is asynchronous.  What they mean by this is that Node is able to take many requests at once and respond to each in it's own time.  The alternative to this is known as a blocking model.  In a language that uses blocking, the server can only handle one request at a time.  If any of these requests are taking a long time, the program will be blocked and not continue.
 
 In layman's terms:
 
@@ -188,24 +170,31 @@ Imagine a paper delivery boy riding on his bike, delivering papers every morning
 
 Now, imagine the paperboy throwing the newspaper on your porch, but never stopping his bicycle.  He never stops.  He just keeps throwing papers on porches, so that by the time you pick it up he will be at least 3 to 4 houses down. That would be considered _non-blocking input/output (I/O)_, otherwise known as _asynchronous_. This is an extremely awesome feature of node since I/O tends to be very "expensive" as it takes many steps/time to retrieve data from memory.  And each step adds its own amount of delay time.
 
-<br />
+> Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
 
-## Packages — What is NPM?
+Finally, the package ecosystem is another killer feature for Node.  Through using a package manager like `npm` or `yarn`, we are able to easily import external libraries and frameworks like jQuery, React, and Express.
 
-**npm** is Node's package manager. It is used to manage dependencies.
+## What is Node great at? 
+Node's Core Strengths are:
+- **Familiarity**: We already know how to write JavaScript.
+- **Full Stack JavaScript**: We can write JavaScript throughout the entire app. No need to switch back and forth between multiple languages. 
+- **Fast**: Node outperforms similar options due to it's non-blocking nature.
+- **NPM**: The package manager in Node is the largest package manager in the world.
+- **Rapid Growth**: The number of monthly downloads of Node has increased 500% since 2014. That number is continuing to expand, and with that growth comes the demand for more jobs.
 
-Node is made up of packages that exist inside and outside of the Node standard library.
+![](https://nodesource.com/assets/node-by-numbers/charts/downloads-per-month-2016.png)
 
-Does anyone know what standard library refers to? You have interacted with standard library content and non-standard library content already.
+## What are Node's weaknesses
+- **Maturity**: Since Node is such a new language, there are still some coding standards that aren't completely clear.  This is becoming less of a problem as the development community continues to grow and tools like ESLint become available.  
+- **Debugging**: Node doesn't have many robust debugging tools out of the box.  The developer is responsible for making error logs.
 
-This morning, we are just going to stick with the standard library, but during the rest of this unit we will be installing many different packages to build our front end and back end in Node.
+## Our first Node app
+We installed `node` a few weeks ago, so we should be able to easily get up and going.  Let's create a file called `helloWorld.js` and log "Hello World" to the terminal.
 
-<br />
+```js
+console.log("Hello World!")
+```
 
-## Routes / Paths / API
+Run the program in the command line by using `node helloWorld.js`. That's it! You've created your first Node app.  It's not very useful though.  Let's try and build out a web server to actually say Hello to the whole world.
 
-Anything in a URL that comes after the domain extension is called a route, path, or an api, including the path `/` i.e. `.com/`
-
-We want to tell our server to listen for certain _routes_ and send some kind of response back.
-
-Let's open up the [node_lab](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/blob/master/labs/unit_02/node/node-lab/node-lab.md) at this link.
+Let's open up the [node_lab](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/unit_02/node/node-lab/node-lab.md) and create a web app using only node (we'll learn how to do the same thing with Express.js later today).
