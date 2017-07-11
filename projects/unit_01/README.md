@@ -16,28 +16,25 @@ The objectives of this project are to:
 
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
 ​
-## Project due date
-Your project is due at 2 pm on Friday, May, 12th.
-
-**Friday, March 12th**<br>
-Submit a link to your repo AND a link to your live site if you were able to deploy it, to Schoology. You will be presenting your projects in front of the class on Friday!
-
-## Make a new repo
-Before you begin, make a new github repo for your project. **Do not** begin your project within the class repo.
 
 ## Project Ideas
 
-### Connect 4
+### Jeopardy
 
-![Connect 4](images/connect-4-game.jpg)
+![Jeopardy Game](images/jeopardy-game.jpg)
 
-Write a _Connect 4_ game that allows two players to compete. The players are sharing the same computer but the game detects when a player has won the game. A scoreboard keeps track of how many times Player 1 has won and how many times Player 2 has won.
+Write a _Jeopardy_ game that allows the user to play the game of _Jeopardy_. This is a quiz game where the user gets to choose the next question by choosing from a category and then choosing a point amount (100 to 500). The questions are phrased as answers and the user chooses from a list of 4 questions that match the answer. For instance:
 
-#### Bonuses:
+The User sees this: `A programming construct for easily looping through the elements in an array`
+The User chooses this: `What is a for loop`
 
-* Alternate the first player to move: Player 1 moves first in game 1, Player 2 moves first in game 2, etc.
-* Allow players to enter their name and display their name instead of "Player 1" and "Player 2".
-* Provide a way to play against the computer (using a simple A.I. algorithm)
+#### Bonus Ideas:
+
+* Have a "Round 1" and a "Round 2" where the questions in Round 2 are more difficult but also score higher points.
+* Have different themes for the questions, such as:
+  - Web Development Topics
+  - Arts and Entertainment
+  - Science and Science Fiction
 
 ---
 
@@ -47,7 +44,7 @@ Write a _Connect 4_ game that allows two players to compete. The players are sha
 
 Write a _Hangman_ game that displays a secret word as a list of hidden letters. Also display an alphabet of letters that the user can guess while trying to guess the word. After a letter is used, disable that letter from the alphabet so the user will not try to guess the same letter twice. When a guess matches one or more letters in the secret word, reveal those letters to the user. Keep track of the number of incorrect guesses and end the game if the number of incorrect guesses reaches 6. If the user reveals all of the hidden letters before reaching 6 incorrect guesses, then the user wins.
 
-#### Bonuses:
+#### Bonus Ideas:
 
 * Display a _hangman_ as either ASCII art or images that represent the various stages of the _hangman_.
 * Display a scoreboard of how games won and lost.
@@ -55,21 +52,17 @@ Write a _Hangman_ game that displays a secret word as a list of hidden letters. 
 
 ---
 
-### Jeopardy
+### Connect 4
 
-![Jeopardy Game](images/jeopardy-game.jpg)
+![Connect 4](images/connect-4-game.jpg)
 
-Write a _Jepardy_ game that allows the user to play the game of _Jeopardy_. This is basically a quiz where the user gets to choose the next question by choosing from a category and then choosing a point amount (100 to 500). The questions are phrased as answers and the user chooses from a list of 4 questions that match the answer. For instance:
+Write a _Connect 4_ game that allows two players to compete. The players are sharing the same computer but the game detects when a player has won the game. A scoreboard keeps track of how many times Player 1 has won and how many times Player 2 has won.
 
-The User sees this: `A programming construct for easily looping through the elements in an array`
-The User chooses this: `What is a for loop`
+#### Bonus Ideas:
 
-#### Bonuses:
-* Have a "Round 1" and a "Round 2" where the questions in Round 2 are more difficult but also score higher points.
-* Have different themes for the questions, such as:
-  - Web Development Topics
-  - Arts and Entertainment
-  - Science and Science Fiction
+* Alternate the first player to move: Player 1 moves first in game 1, Player 2 moves first in game 2, etc.
+* Allow players to enter their name and display their name instead of "Player 1" and "Player 2".
+* Provide a way to play against the computer (using a simple A.I. algorithm)
 
 ---
 
@@ -77,7 +70,11 @@ The User chooses this: `What is a for loop`
 
 ![BlackJack Game](images/blackjack-game.png)
 
-Write a _BlackJack_ game to try to beat the dealer. Allow the user to place a bet (using chips, points, or dollars). Allocate a starting amount of chips and keep track of the user's chip count. If the user beats the dealer without busting, the user doubles their bet in chips. Otherwise the user loses their bet. Follow the common rules for _BlackJack_.
+Write a _BlackJack_ game to try to beat the dealer. Allow the user to "Hit" or "Stand" based on their current score. Follow the common rules for _BlackJack_.
+
+#### Bonus Ideas:
+* Allow the user to place a bet (using chips, points, or dollars). Allocate a starting amount of chips and keep track of the user's chip count. If the user beats the dealer without busting, the user doubles their bet in chips. Otherwise the user loses their bet. 
+* Allow the user to choose from different decks of cards (e.g. different styles)
 
 
 ## Bonuses for Any Game
@@ -96,8 +93,9 @@ Write a _BlackJack_ game to try to beat the dealer. Allow the user to place a be
 
 ---
 
-<!-- ### Up for a real challenge? Simon
-**You will need to figure out promises in order to make this work**
+### Up for a real challenge? Simon
+
+**You will need to figure out "asynchronous programming" in order to make this work**
 
 ![Simon Game](images/simon-game.jpg)
 
@@ -108,7 +106,7 @@ Have a unique sound for each colored button and play the sound both when the com
 #### Bonuses:
 
 * Display a scoreboard of the longest sequence successfully played to date.
-* Have a way for the user to choose the difficulty (`easy`, `medium`, or `hard`) where the `easy` mode plays the sequence slowly (one second per highlighted button) and the `hard` mode plays the sequence more quickly (1/4 second per highlight). -->
+* Have a way for the user to choose the difficulty (`easy`, `medium`, or `hard`) where the `easy` mode plays the sequence slowly (one second per highlighted button) and the `hard` mode plays the sequence more quickly (1/4 second per highlight).
 
 
 ## Planning and Deliverables
@@ -128,7 +126,7 @@ Have a unique sound for each colored button and play the sound both when the com
 * Wireframes or Mockups -- what does the app look like?
   - Simple: take a picture of a whiteboard drawing
   - Advanced: use a tool such as [Balsamiq](https://balsamiq.com/) or [Mockingbird](https://gomockingbird.com/home)
-* User Stories in [Trello](https://trello.com/)
+* User Stories in a PUBLIC [Trello](https://trello.com/) board
   - You should have a Trello board tracking your User Stories
   - Board lists should include:
     * Backlog
@@ -142,6 +140,9 @@ Have a unique sound for each colored button and play the sound both when the com
 
 * [Tic-Tac-Toe](https://github.com/iamsydsmith/tic-tac-toe)
 * [FootUp](https://github.com/wschaeferiii/footup)
+
+## Make a new repo!
+Before you begin, make a new github repo for your project. **Do not** begin your project within the class repo.
 
 ## Technical Requirements
 
