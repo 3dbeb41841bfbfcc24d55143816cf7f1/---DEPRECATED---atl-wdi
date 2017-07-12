@@ -61,7 +61,7 @@ The SDLC manages three important vectors:
 * **Scope**: Delivering the _correct_ product
 * **Cost**: Estimating and controlling cost
 
-## The Software Trianglet
+## The Software Triangle
 
 Pick two! You can't have all three.
 
