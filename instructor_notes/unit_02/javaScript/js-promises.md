@@ -157,7 +157,7 @@ Asynchronous code necessitates callbacks.
 But dealing with lots of callbacks can be tricky:
 
 -   Callbacks can be messy when they're nested: "callback hell".
-    - http://callbackhell.com/
+    - [http://callbackhell.com/](http://callbackhell.com/)
 -   Each callback will have to handle it's own errors if necessary.
 -   In complex programs, it will be hard to tell in what order callbacks fire.
 
