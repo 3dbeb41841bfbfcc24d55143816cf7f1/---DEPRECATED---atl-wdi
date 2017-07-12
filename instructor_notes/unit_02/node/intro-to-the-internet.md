@@ -5,7 +5,7 @@ duration: '2:00'
 creator: 
     name: Colin Hart 
     adapted by: Jamie King
-    class: ATL-WDI-9
+    class: ATL-WDI-11
 ---
 
 # Intro to the Internet and Node
@@ -43,11 +43,11 @@ Trying to define just what the internet is can be difficult.  At it's highest le
 - **2006**: YouTube debuts it's platform to make it easy to share online videos.
 - **2009**: Hundreds of thousands of Iranians use social networks like Twitter to communicate and organize a revolution.
 
-This is just the tip of the iceberg of the iceberg concerning how the internet has change society as we know it. Despite this impact, the technical concepts can be boiled down to pretty simple terms.
+This is just the tip of the iceberg concerning how the internet has changed society as we know it. Despite this impact, the technical concepts can be boiled down to pretty simple terms.
 
 ![](http://imgur.com/KelmRFQ.jpg)
 
-1. The client (aka the computer the user is using) sends a **request** out in the form of a URL.
+1. The **client** (aka the user's computer) sends a **request** out in the form of a URL.
 
 2. The **request** is sent to a DNS server (Domain Name Server) which translates the URL written in English into an IP address.  An IP Address is a unique set of numbers attached to the server that the user is trying to reach. Think of it like a phone number.
 
