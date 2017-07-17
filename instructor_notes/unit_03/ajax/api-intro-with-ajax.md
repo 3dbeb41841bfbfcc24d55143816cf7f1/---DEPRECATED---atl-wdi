@@ -5,8 +5,8 @@
 - Describe what an API is and why we might use one.
 - Understand the format of API data.
 - Explain the common role of JSON on the web.
-- Use jQuery's `$.ajax()` method to make GET requests for data.
-- Use jQuery's "promise-like" methods to handle AJAX responses.
+- Use Axios to make GET requests for data.
+- Use Axios' "promise" methods to handle AJAX responses.
 - Render new HTML content using data loaded from an AJAX request.
 - Perform POST, PUT and DELETE requests to an API to modify data.
 
@@ -17,9 +17,9 @@
 
 > Basically, an API is a service that provides raw data for public use.
 
-API stands for "Application Program Interface" and technically applies to all of software design. The DOM and jQuery are actually examples of APIs! Since the explosion of information technology, however, the term now commonly refers to web URLs that can be accessed for raw data.
+API stands for "Application Program Interface" and technically applies to all of software design. The DOM, jQuery, and React are actually examples of APIs! Since the explosion of information technology, however, the term now commonly refers to web URLs that can be accessed for raw data.
 
-APIs publish data for public use. As third-party software developers, we can access an organization's API and use their data within our own applications.
+Many APIs publish data for public use. As third-party software developers, we can access an organization's API and use their data within our own applications.
 
 <details>
   <summary><strong>Q: Why do we care?</strong></summary>
@@ -47,11 +47,11 @@ Form pairs and explore the API links in the below table. Record any observations
 
 | API | Sample URL |
 |-----|------------|
-| **[This for That](http://itsthisforthat.com/)** | http://itsthisforthat.com/api.php?json |
-| **[Giphy](https://github.com/Giphy/GiphyAPI)** | http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC |
-| **[OMDB API](http://www.omdbapi.com/)** | http://www.omdbapi.com/?t=Game%20of%20Thrones&Season=1 |
-| **[StarWars](http://swapi.co/)** | http://swapi.co/api/people/3 |
-| **[Stocks](http://dev.markitondemand.com/MODApis/)** | http://dev.markitondemand.com/Api/Quote/xml?symbol=AAPL |
+| **[This for That](http://itsthisforthat.com/)** | [http://itsthisforthat.com/api.php?json](http://itsthisforthat.com/api.php?json) |
+| **[Giphy](https://github.com/Giphy/GiphyAPI)** | [http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC](http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC) |
+| **[OMDB API](http://www.omdbapi.com/)** | [http://www.omdbapi.com/?t=Game%20of%20Thrones&Season=1](http://www.omdbapi.com/?t=Game%20of%20Thrones&Season=1) |
+| **[StarWars](http://swapi.co/)** | [http://swapi.co/api/people/3/?format=json](http://swapi.co/api/people/3/?format=json) |
+| **[Stocks](http://dev.markitondemand.com/MODApis/)** | [http://dev.markitondemand.com/Api/Quote/xml?symbol=AAPL](http://dev.markitondemand.com/Api/Quote/xml?symbol=AAPL) |
 
 
 ### Why Just Data?
@@ -80,7 +80,7 @@ There are **two** major serialized data formats...
 
 #### XML
 
-**XML** stands for "eXtensible Markup Language" and is the granddaddy of serialized data formats (itself based on HTML). XML is fat, ugly and cumbersome to parse. It remains a major format, however, due to its legacy usage across the web. You'll probably always favor using a JSON API, if available.
+**XML** stands for "eXtensible Markup Language" and is the granddaddy of serialized data formats (itself based on HTML). XML is fat, ugly and cumbersome to parse. Thankfully, JSON has mostly eliminated the need to ever use XML. You'll probably always favor using a JSON API, if available.
 
 ```
 <users>
@@ -108,7 +108,7 @@ Try the [Programmable Web API Directory](http://www.programmableweb.com/apis/dir
 
 ## What Is An API Key? (5 minutes / 0:25)
 
-While the majority of APIs are free to use, many of them require an API "key" that identifies the developer requesting data access. This is done to regulate usage and prevent abuse. Some APIs also rate-limit developers, meaning they have caps on the free data allowed during a given time period.
+While many APIs are free to use, many others require an API "key" that identifies the developer requesting data access. This is done to regulate usage and prevent abuse. Some APIs also rate-limit developers, meaning they have caps on the free data allowed during a given time period.
 
 **Try hitting the [Giphy](https://api.giphy.com/) API...**
 
@@ -158,37 +158,28 @@ Let's build a very simple app that posts a movie title and poster after searchin
 
 The starter code is linked above. It contains a basic HTML/CSS/JS setup. If you open up the HTML in the browser, you will notice that searching for something returns no results.
 
-Let's go ahead and add in the AJAX request...
+Let's go ahead and add in the AJAX request. There are many ways to write an AJAX request, but we will be using a library called `axios` during this class.  Axios is a Promise-based HTTP client that takes advantage of many new JavaScript features and uses JavaScript's built in Promise API.  Let's see it in action now.
 
 ```js
 // Get value from search input field.
-var keyword = $("input[name='keyword']").val();
-var url = "https://www.omdbapi.com/?t="+keyword
-$.ajax({
-  url: url,
-  type: "GET",
-  dataType: "json"
-})
+const keyword = document.getElementById("#keyword").value;
+const url = `https://www.omdbapi.com/?t=${keyword}`;
+axios.get(url).then(response => {
+  console.log(response);
+});
+
 ```
 
-`$.ajax` takes an object as an argument with at least three key-value pairs...
-  1. The URL endpoint for the JSON object.
-  2. Type of HTTP request.
-  3. Datatype. Usually JSON.
+Three important things to notice about `axios` here...
+  1. The method called is `.get()`.  We can also use `.post()`, `.put()`, `.delete()`, and more.
+  2. The `.get()` method only takes one argument. The url of the api we want to hit.
+  3. We can tell axios what to do with the data by calling `.then()`.
 
 <details>
 
   <summary><strong>Q: How did we know which URL to use?</strong></summary>
 
   > The [OMDB API documentation](http://www.omdbapi.com/)
-
-</details>
-
-<details>
-
-  <summary><strong>Q: What does it mean to set `type` to `GET`?</strong></summary>
-
-  > We are **reading** the response sent back to us. To `GET` means to "read."
 
 </details>
 
@@ -202,78 +193,53 @@ $.ajax({
 
 ### Promises
 
-Now we need to tell our AJAX method what to do next. We can do this by doing something with the its return value, which comes in the form of a **promise**. We can use **promise methods** to tell the `$.ajax` request what to do if the request is successful or not. In this case, we are going to add three...
+After making an API call, we need to let our program know what to do with the data when it comes back. We can do this by doing something with the its return value, which comes in the form of a **promise**. We can use **promise methods** to tell the `axios` request what to do if the request is successful or not. We will use two promise methods when working with Axios...
 
-#### `.done`
+#### `.then()`
 
-A promise method for when the AJAX call is successful...
+`.then()` is called whenever the previous method returns information.  In the case of AJAX calls, this typically means that `.then()` will be called once the information has been requested, processed, and sent back to our program.  We use `.then()` to tell our program what to do with this JSON data.   
 
 ```js
-.done(function(response){
-  console.log(response);
+axios.get(url).then(function(response){
+  var data = response.data
+  document.window.append(data);
 });
 ```
 
 <details>
-  <summary><strong>Q: What are we passing into the `.done` promise method? Does this remind you of anything we've done previously in class?</strong></summary>
+  <summary><strong>Q: What are we passing into the `.then` promise method? Does this remind you of anything we've done previously in class?</strong></summary>
 
-  > `.done` requires a callback that determines what we do after a successful AJAX call.
+  > `.then` requires a callback that determines what we do after a successful AJAX call. This is an example of a higher order function
 
 </details>
 
-#### `.fail`
+#### `.catch()`
 
-A promise method for when the AJAX call fails...
+A promise method for when the AJAX call fails.  These failures can occur for a variety of reasons. Internet went down, url is incomplete, the server you're hitting running into errors... it's important to know why things go wrong when they do.  That's why the catch method allows you to catch and interperate errors when they occur.
 
 ```js
-.fail(function (){
+.catch(function (error){
   console.log("fail");
+  console.log(error)
 });
 ```
 
-> `.fail` requires a callback that determines what we do after an unsuccessful AJAX call.
+## Making API Calls in a React Application.
 
-#### `.always`
+Using AJAX allows us to retreive and save information, update the DOM, and create a single experience without ever having to visit a new page.  This is known as Client Side Rendering and is the style of application that has allowed React, Vue, and Angular to grow as rapidly as they have.  We will be using Axios to handle our API calls.  
 
-A promise method that is executed regardless of whether the AJAX call succeeds or fails...
 
-```js
-.always(function(){
-  console.log("Something happens");
-});
-```
-> `.always` requires a callback that determines what we do regardless of a successful or unsuccessful call. While technically not necessary, it certainly doesn't hurt to include.
-
-### You Do: GET From OMDB (10 minutes / 1:10)
-
-Now it's your turn to do the same. Start by cloning down the starter code...
-
-`$ git clone git@github.com:ga-wdi-exercises/omdb-api.git`
-
-Then you may either walk through the specific steps outlined in the previous section or try to do it yourself using this pseudocode...
-
-```
-When the user clicks the search button.
-  Store the search term.
-  Create and store the URL.
-  Make an AJAX call, indicating the proper URL, type and data type.
-    Indicate what should be done after a successful API call.
-    Indicate what should be done after a failed API call.
-```
-
-#### Bonus I
-
-You'll notice we're only receiving one movie in the API response. Use the OMDB Documentation to figure out how to return **multiple** movies.
-
-#### Bonus II
-
-Instead of just logging the API response to the console, append it to the page!
 
 ## Another API: Tunr
 
 Now let's take a look at an API that resembles those that we'll be working with in class over the next few weeks: Tunr. In its full form, Tunr is an app that lists artists and songs. The link below will take you to the API for the app (i.e., JSON representations of said artists and songs).
 
 **[Check it out.](https://tunr-api.herokuapp.com)**
+
+------Talk about using Postman when learning a new API--------
+
+------Using in React------
+
 
 ### Set Up (5 minutes / 1:15)
 
