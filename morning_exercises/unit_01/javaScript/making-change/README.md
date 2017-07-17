@@ -7,7 +7,7 @@ amount paid.
 
 ## Setup
 
-Make sure that you are on the `master` branch of your `atl-wdi-...` repo.  Then run `git pull upstream master` to pull the latest materials from the instructors' repository. You shouldn't hit a merge conflict here, but if you do, flag down an instructor right away.
+Make sure that you are on the `master` branch of your class repo.  Then run `git pull upstream master` to pull the latest materials from the instructors' repository. You shouldn't hit a merge conflict here, but if you do, flag down an instructor right away.
 
 Next, navigate to the directory for today, go into the `morning_exercse` directory, and run `npm install` to install dependencies.
 

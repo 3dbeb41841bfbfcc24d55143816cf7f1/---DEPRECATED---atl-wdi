@@ -1,7 +1,7 @@
 # Create and Read some Pirates
 
 ## Setup
-1. Make sure that you are on the `master` branch of your `wdi-remote-...` repo.
+1. Make sure that you are on the `master` branch of your class repo.
 Then run `git pull upstream master` to pull the latest materials from the
 instructors' repository. You shouldn't hit a merge conflict here, but if you do, flag down an instructor right away.
 
@@ -14,7 +14,7 @@ instructors' repository. You shouldn't hit a merge conflict here, but if you do,
 - gain understanding linking files in different folders together with relative paths
 - gain more practice rendering views with Handlebars, including forms
 
-<details><summary>**CRUD & RESTful RECAP**</summary>
+<details><summary>CRUD & RESTful RECAP</summary>
 
 CRUD stands for Create, Read, Update, and Destroy-- these are the fundamental actions we perform on data.
 
@@ -75,7 +75,7 @@ The app will also be able to store new pirate entries. Clicking on "New Pirate" 
 
 ### Part 2: Set up Controllers with Express Router
 
-###server.js
+### server.js
 - Before creating routes, we have to hook up our controllers to our server. Previously, we were writing our routes directly in `server.js`. Instead, we will use [express routers](https://expressjs.com/en/guide/routing.html), which creates a route handler module. In `server.js`, we can add it at the end of middlewares, before the listener like this:
 
 ```
@@ -197,11 +197,4 @@ You can use Postman or cURL to send data to a server. Send data with Postman or 
   When you're ready to submit your work,
 
   1.  Add, commit, and push your code to your fork of the class repo.
-  2.  File an issue on the class repo titled "Your Name -- wXXdXX".
-
-  The issue should include:
-
-  -   A link that points back to your fork.
-
-  -   A 'comfort' score on how you feel about the material, from 1 (very
-      uncomfortable) to 5 (very comfortable)
+  2.  Post a link to your pirates app on Schoology.

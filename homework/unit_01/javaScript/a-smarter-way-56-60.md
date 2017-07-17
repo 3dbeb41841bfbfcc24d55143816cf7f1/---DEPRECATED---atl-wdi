@@ -1,5 +1,3 @@
-[counter factory](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/homework/unit_01/javaScript/counter-factory)
-
 ### A Smarter Way To Learn Javascript
 
 Work through Chapters 56-60 (don't worry, there are a lot of blank pages)

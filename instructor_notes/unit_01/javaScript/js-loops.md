@@ -19,11 +19,21 @@ competencies: Programming
 
 ## What does it mean to iterate or loop
 
-When I am trying to learn a new guitar song, I will play the song over and over again, repeatedly.  I want to get it right.  I want to not have to think about the chords or the lyrics when I am playing.  I want to feel it in my bones.
+Iterating in programming is a way of incrementally repeating a task. For example:
 
-Iterating in programming is a way of incrementally repeating a task.
+  <details>
+    <summary>If I wanted to console.log something 5 times, how would I do that without a loop?</summary>  
+    
+    I would have to write it out 5 times.
+  </details>
 
-If I wanted to console.log something 5 times, how would I do that without a loop?   I would have to write it out 5 times.  Loops are extremely helpful in programming.  We can use them to iterate over arrays or objects.  They allow us to keep our code more DRY- Don't Repeat Yourself.
+  <details>
+    <summary>If I wanted to uppercase every name in an array, how would I do that without a loop?</summary>  
+    
+    I would have to call array[index].toUpperCase() for every single index individually.
+  </details>
+  
+  Loops are extremely helpful in programming.  We can use them to iterate over arrays or objects.  They allow us to keep our code more DRY- Don't Repeat Yourself.
 
 **Exercise:** (2m) In your own words, define a loop and what a loop does. (It does not need to be technical).  Add your answers into slack.
 
@@ -53,7 +63,7 @@ A `for` loop starts with the `for` keyword, and takes three arguments- the ititi
 1. **initialExpression**:
   `var i = 0;` 
     - A loop traditionally starts at zero. 
-    - The `i` is the **counter**, a way to keep track of how many times we have looped, as well as how we keep track of where we are in the array.
+    - The `i` is the **counter**, a way to keep track of how many times we have looped, as well as how we keep track of where we are in the array. This value corresponds with an index in the array, and should not be higher than the last index of the array (`length - 1`).
 2. **condition**:
   `i < newArray.length;`
     - This is the expression that decides whether a loop is completed or if it should continue. In this case, we would say that if the variable `i` is less than the length of the array, keep on looping.

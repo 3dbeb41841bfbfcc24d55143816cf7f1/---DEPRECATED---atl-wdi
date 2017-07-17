@@ -158,9 +158,10 @@ EXPERIMENT
 
 * Can you invoke a function _before_ you have defined it? Try placing the invocation for one of your functions above the function definition. Try it out!
 
+--- 
+
 <br>
----
-<a name="codealong2"></a>
+ 
 ## Parameters (25 min)
 
 If a function did the same thing every time it was called, it wouldn't be a very powerful codebase. We would also have to write a new function for each new feature in order to enable additional behaviors in our application:
@@ -220,7 +221,6 @@ doSomething(argument);
 ```
 
 <br>
-![Imgur](http://i.imgur.com/ylb6WX9.gif)
 
 &#x1F535; **Activity (5 min)**
 
@@ -482,10 +482,10 @@ Work through as many as these exercises as you can within the next 15 mins - use
 1. Write a function `lengths` that accepts a single parameter as an argument, namely an array of strings. The function should return an array of numbers where each number is the length of the corresponding string.
 
     ```javascript
-var words = ["hello", "what", "is", "up", "dude"]
-lengths(words)  
-# => [5, 4, 2, 2, 4]
-```
+	var words = ["hello", "what", "is", "up", "dude"]
+	lengths(words)  
+	# => [5, 4, 2, 2, 4]
+	```
 
 2. Write a Javascript function called `transmogrifier`. This function should accept three arguments, which you can assume will be numbers. Your function should return the "transmogrified" result.
 
@@ -494,10 +494,10 @@ lengths(words)
     For example, the transmogrified result of 5, 3, and 2 is `(5 times 3) to the power of 2` is 225. Use your function to find the following answers.
 
     ```javascript
-transmogrifier(5, 4, 3)
-transmogrifier(13, 12, 5)
-transmogrifier(42, 13, 7)
-```
+	transmogrifier(5, 4, 3)
+	transmogrifier(13, 12, 5)
+	transmogrifier(42, 13, 7)
+	```
 
 
 3.  Write a function `wordReverse` that accepts a single argument, a string. The
@@ -505,11 +505,11 @@ method should return a string with the order of the words reversed. Don't worry
 about punctuation.
 
     ```javascript
-wordReverse("Now I know what a TV dinner feels like")
-# => "like feels dinner TV a what know I Now"
-wordReverse("Put Hans back on the line")
-# => "line the on back Hans Put"
-```
+	wordReverse("Now I know what a TV dinner feels like")
+	# => "like feels dinner TV a what know I Now"
+	wordReverse("Put Hans back on the line")
+	# => "line the on back Hans Put"
+	```
 
 <br>
 
@@ -524,7 +524,7 @@ I'll put you into groups. Each group will be responsible for sharing the solutio
 <a name="lab1"></a>
 ## BONUS Independent Practice #3 - Rolling Dice: Lab (40 min)
 
-For this lab, you'll be creating a page that displays a random update of two dice every time the user hits the "Roll Dice" button. To get started, open the [app.js file](../student_labs/starter-code/dice/js/app.js). Use the HTML and CSS code included in the starter code folder.
+For this lab, you'll be creating a page that displays a random update of two dice every time the user hits the "Roll Dice" button. To get started, open the [app.js file](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/unit_01/javaScript/js-dice/starter-code/js/app.js). Use the HTML and CSS code included in the starter code folder.
 
 ![](https://i.imgur.com/EEORrtk.png)
 

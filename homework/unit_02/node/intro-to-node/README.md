@@ -6,7 +6,7 @@
 
 ## Setup
 
-Make sure that you are on the `master` branch of your `atl-wdi-...` repo.
+Make sure that you are on the `master` branch of your class repo.
 Then run `git pull upstream master` to pull the latest materials from the
 instructors' repository. You shouldn't hit a merge conflict here, but if you do,
 flag down an instructor right away.
@@ -100,4 +100,4 @@ Starting tomorrow we will dive into [Express](http://expressjs.com/), which we w
   When you're ready to submit your work,
 
   1.  Add, commit, and push your code.
-  2.  Add a link to today's theme with "Your Name".
+  2.  Add your Github link to Schoology.

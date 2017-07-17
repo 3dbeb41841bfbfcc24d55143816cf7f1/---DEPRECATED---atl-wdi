@@ -4,7 +4,7 @@
 
 ## Setup
 
-Make sure that you are on the `master` branch of your `wdi-remote-...` repo.
+Make sure that you are on the `master` branch of your class repo.
 Then run `git pull upstream master` to pull the latest materials from the
 instructors' repository. You shouldn't hit a merge conflict here, but if you do,
 flag down an instructor right away.
@@ -89,11 +89,4 @@ Implement all features given in the spec, _including_ recording laps.
 When you're ready to submit your work,
 
 1.  Push your code to your fork of the class repo.
-2.  File an issue on the class repo titled "Your Name -- wXXdXX".
-
-The issue should include:
-
--   A link that points back to your fork.
-
--   A 'comfort' score on how you feel about the material, from 1 (very
-    uncomfortable) to 5 (very comfortable)
+2.  Submit the link to Schoology.

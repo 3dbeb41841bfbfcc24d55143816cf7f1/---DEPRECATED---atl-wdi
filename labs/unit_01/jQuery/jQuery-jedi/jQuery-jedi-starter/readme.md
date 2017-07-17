@@ -1,6 +1,6 @@
-###Javascript Jedi
+### Javascript Jedi
 
-Practice the things you learned today by modifying the Jedi Academy document in the console! Please do the following:
+Practice the things you learned today by modifying the Jedi Academy document in the Chrome console! Please do the following:
 
 1. Make the Luke and Obiwan lightsabers appear in the browser
 2. Change the text on the first 'p' tag to "Changing text!!"

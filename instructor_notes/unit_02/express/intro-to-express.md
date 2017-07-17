@@ -3,8 +3,8 @@ title: Intro to Express
 type: lesson
 duration: '2:00'
 creator:
-    name: Colin Hart, adapted by Maren Woodruff
-    class: ATL-WDI-9
+    name: Colin Hart, adapted by Jamie King
+    class: ATL-WDI-11
 ---
 
 
@@ -28,13 +28,13 @@ This afternoon, we are going to learn about how to set up and configure a server
 <br />
 
 ## Intro
-How many of you, prior to this course, had heard of the MEAN stack?  Today, we will be talking about [ExpressJS](https://expressjs.com/) the "E" in the MEAN stack. Which is super buzz wordy right now. Express is a "Fast, unopinionated, minimalist web framework for Node.js".
+How many of you, prior to this course, had heard of the MEAN or MERN stack?  Today, we will be talking about [ExpressJS](https://expressjs.com/) the "E" in the MEAN/MERN stack. It is one of the most heavily used libraries in the entire Node community.  According to the Express home page, Express is a "Fast, unopinionated, minimalist web framework for Node.js".
 
 > Node.js is not a framework. It is an application runtime environment that allows you to write server-side applications in javascript. Javascript that does not depend on a browser.
 
 Some frameworks, like Rails, are very opinionated frameworks- meaning that it follows convention over configuration.  A Rails developer can go into any other Rails app, and understand the basic layout, because all Rails applications are built in the same way, with the same file structure.  
 
-Express is much less opinionated. We have a lot of freedom in how we structure our application (folders and files, how to load different files, how to manage dependencies, etc).
+Express is much less opinionated. We have a lot of freedom in how we structure our application (folders and files, how to load different files, how to manage dependencies, etc).  
 
 <br />
 
@@ -58,11 +58,9 @@ With you buddy, discuss the following questions:
 
 <br />
 
-## Hello World - Express
+## Codealong: Hello World - Express
 
-I am going to move through three steps over the next ten minutes. I will share my screen first and then I will give you some time to do the steps on your own. Don't overthink it, it is just configuration and setup. You are going to need to become very familiar with this process.
-
-I **HIGHLY** recommend that you take notes on this process, and write the commands down, as well as try to remember that these steps are also listed in the instructor folder:
+I **HIGHLY** recommend that you pay attention, write the commands down, and refer back to this lesson plan as you become more familiar with Express and Node.js:
 
 <br />
 
@@ -81,7 +79,7 @@ $ npm init
 that to 'server.js'.
 // if you make a mistake, you can always type 'no' when it asks
 you whether this is 'ok' at the end of the questions/set up
-$ subl .
+$ code .
 ```
 
 - `npm init` will initialize a new Node.js application. Upon initialization, it will prompt you for your input in order to update the `package.json`.
@@ -165,12 +163,6 @@ With express invoked and running, we now have access to various functions and pr
 
 <br />
 
-&#x1F535; **YOU DO:**
-
-1. Walk through STEP 3 above and create a `server.js` with the code above.
-
-<br />
-
 ## Let's Run our App
 
 If we run the application (`$ node server.js`) we can see our console.log in the terminal `hello-express is listening on port 3000`. This means that our server is running on port 3000. Let's try going to the localhost of that port number. What happens?
@@ -192,12 +184,6 @@ app.get("/", function(req, res){
 With the script above, we are telling the app that when a user goes to our home route at localhost:3000 (their request), that we will send back a response of 'Hello World!'    
     
 1. Let's restart the server (`$ node server.js`) and reload the browser. You should now see `Hello World!`.
-
-<br />
-
-&#x1F535; **YOU DO: 2 minutes**
-
-1. Walk through the section above to make "Hello World!" render in the browser.
 
 <br />
 
@@ -229,12 +215,6 @@ Pretty easy, eh?
 
 <br />
 
-&#x1F535; **YOU DO: 1 minute**
-
-1. Install Nodemon globally and restart your server with the new nodemon command.
-
-<br />
-
 ## RECAP - What have we done so far?
 
 We just built the foundation for our server and for your first web application!
@@ -253,7 +233,7 @@ Get together with your buddy. Remember: We are here and you can still ask questi
 
 http://expressjs.com/en/starter/basic-routing.html
 
-1. Write a second route underneath the first that listens for `/greeting` and responds with `'Hey, WDI 10!'`
+1. Write a second route underneath the first that listens for `/greeting` and responds with `'Hey, WDI 11!'`
 
 1. Write a third route underneath the that one that listens for `/rihanna` and responds with `"Work work work work work"`
 
@@ -342,7 +322,7 @@ Then, we can send a request like this:
 
 <br />
 
-&#x1F535; **YOU DO: 2 minutes** 
+&#x1F535; **YOU DO: 5 minutes** 
 
 1. Create a route that uses 'food' as a parameter
 2. The route should return a string that includes the food (e.g.- "I really love pizza").
@@ -368,7 +348,7 @@ A `console.log()` of our query parameters would look something like this:
 
 ```javascript
 {
-    q:   "foo",
+    q: "foo",
     a: "bar"
 }
 ```
@@ -385,7 +365,7 @@ app.get("/:name", function(req, res){
 });
 ```
 
-**Try this example:** `http://localhost:3000/schmitty?first_name=maren`
+**Try this example:** `http://localhost:3000/schmitty?first_name=jamie`
 
 If we wanted to be formal, we could add a 2nd query parameter of 'last_name':
 
@@ -398,15 +378,15 @@ app.get("/:name", function(req, res){
 });
 ```
 
-**Try this example:** `http://localhost:3000/schmitty?first_name=maren&last_name=woodruff`
+**Try this example:** `http://localhost:3000/schmitty?first_name=jamie&last_name=king`
 
 <br />
 
 #### Again we ask, why are these important?
 
-You actually use query parameters all the time on Amazon, Ebay, Airbnb, etc. - anytime you search or 'query' an app. For example, the query to search for Rihanna tickets on Atlanta's Craigslist looks like this:
+You actually use query parameters all the time on Amazon, Ebay, Airbnb, etc. - anytime you search or 'query' an app. For example, the query to search for Drake tickets on Atlanta's Craigslist looks like this:
 
-`http://atlanta.craigslist.org/search/tia?query=rihanna`
+`http://atlanta.craigslist.org/search/tia?query=drake`
 
 <br />
 
@@ -420,7 +400,7 @@ You actually use query parameters all the time on Amazon, Ebay, Airbnb, etc. - a
         sights: `<how many ufo sightings you think there are in that state>`
 }
 ```
-Also, send a response that asks 'How many ufo sightings do you think there are in `the state`? `the answer`.'
+Also, send a response that asks 'How many ufo sightings do you think there are in `the state`?   `the answer`.'
 
 2. Write a `/bigfoot` route that takes a query paramater of `blurry` and...
    - If blurry is true, send the response: `"It's not the photographer's fault. Bigfoot is blurry, and that's extra scary to me. There's a large, out-of-focus monster roaming the countryside. Run! He's fuzzy! Get out of there!"` 
