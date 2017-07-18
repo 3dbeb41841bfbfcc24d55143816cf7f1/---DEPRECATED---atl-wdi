@@ -23,6 +23,7 @@ competencies: Front-end frameworks
 - Make HTTP requests using AJAX, preferably with the Axios Library
 
 <br>
+
 ### React Component Lifecycle
 
 When building a React application, EVERYTHING is a component.  A component has several methods that get executed everytime it is mounted, updated, or unmounted.  This is important because we need to overwrite one of these methods to make our API call.
@@ -90,20 +91,9 @@ In an ideal world, we wouldn’t use lifecycle methods. All our rendering issues
 But it’s not an ideal world, and sometimes you need to exact a little more control over how and when your component is updating.  Even when you don't use these methods, it's helpful to demystify what's going on behind the scenes of React.
 
 Use these methods sparingly, and use them with care. 
-
-## Independent Practice
-
-Using the example above, refactor the `$http` `GiphyController` functions into the `GiphyService`. 
-
-- `saveGif()`
-- `updateGif(gif)`
-- `getSavedGifs()`
-- `deleteGif()`
-
-
 <br>
 
-## For Further Reading:
+## Further Reading:
 
 * [React Component Lifecycle by A. Sharif](http://busypeoples.github.io/post/react-component-lifecycle/)
 * [Facebook React Docs](https://facebook.github.io/react/docs/react-component.html)
