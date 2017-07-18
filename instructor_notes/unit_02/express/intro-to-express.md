@@ -3,7 +3,7 @@ title: Intro to Express
 type: lesson
 duration: '2:00'
 creator:
-    name: Colin Hart, adapted by Jamie King
+    name: Colin Hart, adapted by Maren Woodruff, Jamie King
     class: ATL-WDI-11
 ---
 
@@ -21,7 +21,7 @@ creator:
 
 <br />
 
-## What are we Learning This afternoon?
+## What Are We Learning This Afternoon?
 
 This afternoon, we are going to learn about how to set up and configure a server that will listen for HTTP requests from the browser.
 
@@ -163,7 +163,7 @@ With express invoked and running, we now have access to various functions and pr
 
 <br />
 
-## Let's Run our App
+## Let's Run Our App
 
 If we run the application (`$ node server.js`) we can see our console.log in the terminal `hello-express is listening on port 3000`. This means that our server is running on port 3000. Let's try going to the localhost of that port number. What happens?
 
@@ -402,7 +402,7 @@ You actually use query parameters all the time on Amazon, Ebay, Airbnb, etc. - a
 ```
 Also, send a response that asks 'How many ufo sightings do you think there are in `the state`?   `the answer`.'
 
-2. Write a `/bigfoot` route that takes a query paramater of `blurry` and...
+2. Write a `/bigfoot` route that takes a query parameter of `blurry` and...
    - If blurry is true, send the response: `"It's not the photographer's fault. Bigfoot is blurry, and that's extra scary to me. There's a large, out-of-focus monster roaming the countryside. Run! He's fuzzy! Get out of there!"` 
    - If blurry is false, respond with:  `"A group of researchers have amassed evidence that the legendary Bigfoot is real, ABC News reported, with the scientists presenting reams of evidence."`
 
@@ -477,7 +477,7 @@ app.get('/favorite/:noun', function(req, res) {
 
 ## Order Matters
 
-Keep in mind that when Express recieves a request, it checks each route in order until it finds a pattern match. 
+Keep in mind that when Express receives a request, it checks each route in order until it finds a pattern match. 
 
 For example, if you order your routes like this:
 
