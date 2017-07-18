@@ -149,7 +149,7 @@ For our introduction to programming servers, we are going to be using Node.js.
 
 ## What is Node?
 
-Node was created in 2009 by Ryan Dahl. Dahl was critical of the limitations of the Apache HTTP Server when a lot of connections at once.  He created Node.js using the C++ language and Google's V8 engine to interpret JavaScript code into C++.
+Node was created in 2009 by Ryan Dahl. Dahl was critical of the limitations of the Apache HTTP Server when a lot of connections at once.  He created Node.js using the C++ language and Google's V8 engine to run JavaScript code in C++.
 
 Visit the [Node.js homepage](https://nodejs.org/en) and take a look at Node's one-liner.
 
