@@ -5,32 +5,22 @@
 
 ### Note: NPM Now features "most depended-upon packages" not most starred.
 
-Colons can be used to align columns.
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-There must be at least 3 dashes separating each header cell.
-The outer pipes (|) are optional, and you don't need to make the 
-raw Markdown line up prettily. You can also use inline Markdown.
-
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
-
-### The 6 highest-starred npm packages are:
+### The 7 highest-starred npm packages are:
 
 | Name        | Description           | Total Downloads  |
 | ------------- |:-------------:| -----:|
+| debug | A tiny node.js debugging utility modelled after node core's debugging technique.      |    52,669,662 |
+| async | Async is a utility module which provides straight-forward, powerful functions for working with asynchronous JavaScript.      |    45,047,894 |
 | lodash      | The Lodash library exported as Node.js modules. | 42,048376 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| commander | The complete solution for node.js command-line interfaces, inspired by Ruby's commander. |    32,233,646 |
+| mkdirp | Like mkdir -p, but in node.js!     |    26,476,538 |
+| chalk | Chalk is a clean and focused alternative to colors.js     |    25,598,095 |
+| request     | Request is designed to be the simplest way possible to make http calls. It supports HTTPS and follows redirects by default.      |   23,986,721 |
 
-# Library 1 Name
+
+
+
+<!-- # Library 1 Name
 
 ### Description:
 brief brief description here
@@ -63,4 +53,4 @@ brief description here
 ### Description:
 brief description here
 
-### Total Downloads last month:
+### Total Downloads last month: -->
