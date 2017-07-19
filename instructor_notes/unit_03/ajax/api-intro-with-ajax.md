@@ -56,7 +56,7 @@ Form pairs and explore the API links in the below table. Record any observations
 
 ### Why Just Data?
 
-Sometimes thats's all we need. All this information, from all these browsers and all these servers, has to travel through the network. That's almost certainly the slowest part of the request cycle. We want to minimize the bits. There are times when we just need the data. For those times, we want a concise format.   
+Sometimes that's all we need. All this information, from all these browsers and all these servers, has to travel through the network. That's almost certainly the slowest part of the request cycle. We want to minimize the bits. There are times when we just need the data. For those times, we want a concise format.   
 
 ### What is Serialized Data? (10 minutes / 0:20)
 
@@ -68,6 +68,14 @@ There are **two** major serialized data formats...
 
 **JSON** stands for "JavaScript Object Notation" and has become a universal standard for serializing native data structures for transmission. It is light-weight, easy to read and quick to parse.
 
+> Remember, JSON is a serialized format. While it may look like an object, it needs to be parsed so we can interact with it as a true Javascript object. 
+
+_Unparsed_
+```text
+{"users":[{"name": "Bob", "id": 23},{"name": "Tim", "id": 72}]}
+```
+
+_Parsed_
 ```json
 {
   "users": [
@@ -76,7 +84,7 @@ There are **two** major serialized data formats...
   ]
 }
 ```
-> Remember, JSON is a serialized format. While it may look like an object, it needs to be parsed so we can interact with it as a true Javascript object.
+
 
 #### XML
 
@@ -97,6 +105,8 @@ There are **two** major serialized data formats...
 
 * [http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL](http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL)
 * [http://dev.markitondemand.com/Api/Quote/xml?symbol=AAPL](http://dev.markitondemand.com/Api/Quote/xml?symbol=AAPL)
+
+**AGAIN, ALWAYS CHOOSE JSON WHEN YOU CAN**
 
 ## Where Do We Find APIs? (5 mins)
 
@@ -143,14 +153,13 @@ How can we use an API to dynamically manipulate the DOM with the given data? **A
 
 </details>
 
-
 ## Break (10 minutes / 0:45)
 
 ## GET Data From an API Using AJAX
 
 ### I Do: GET From OMDB (15 minutes / 1:00)
 
-> **Do not follow along for this portion of the lesson.** You will have the opportunity to do it yourself afterwards.
+> **Do not follow along for this portion of the lesson.** You will have the opportunity to do it yourself later.
 
 Let's build a very simple app that posts a movie title and poster after searching for it. We'll do this using the [OMDB API](http://www.omdbapi.com/).
 
@@ -167,7 +176,6 @@ const url = `https://www.omdbapi.com/?t=${keyword}`;
 axios.get(url).then(response => {
   console.log(response);
 });
-
 ```
 
 Three important things to notice about `axios` here...
@@ -180,14 +188,6 @@ Three important things to notice about `axios` here...
   <summary><strong>Q: How did we know which URL to use?</strong></summary>
 
   > The [OMDB API documentation](http://www.omdbapi.com/)
-
-</details>
-
-<details>
-
-  <summary><strong>Q: So our application can make an AJAX call. Why aren't we seeing anything after clicking "Search"?</strong></summary>
-
-  > We haven't told our application what to do once it receives a response.
 
 </details>
 
@@ -215,7 +215,7 @@ axios.get(url).then(function(response){
 
 #### `.catch()`
 
-A promise method for when the AJAX call fails.  These failures can occur for a variety of reasons. Internet went down, url is incomplete, the server you're hitting running into errors... it's important to know why things go wrong when they do.  That's why the catch method allows you to catch and interperate errors when they occur.
+A promise method for when the AJAX call fails.  These failures can occur for a variety of reasons. Internet went down, url is incomplete, the server you're hitting running into errors... it's important to know why things go wrong when they do.  That's why the catch method allows you to catch and interpret errors when they occur.
 
 ```js
 .catch(function (error){
@@ -226,148 +226,262 @@ A promise method for when the AJAX call fails.  These failures can occur for a v
 
 ## Making API Calls in a React Application.
 
-Using AJAX allows us to retreive and save information, update the DOM, and create a single experience without ever having to visit a new page.  This is known as Client Side Rendering and is the style of application that has allowed React, Vue, and Angular to grow as rapidly as they have.  We will be using Axios to handle our API calls.  
+Through the use of AJAX and axios, we allow our React app to communicate with servers to retrieve and insert information.  Since we are using AJAX, we can update our database and get information back from the server without ever having to refresh the browser.  Let's build an application that communicates both with the Giphy API and with an Express API deployed on Heroku.
 
+### Strange Things
+Giphy is home to some weird stuff... we're going to create a React app that allows users to save and rank the strangest gifs that Giphy has to offer as well as explore random gifs being sent by their API
 
+#### APIS
+We're going to using 2 APIs for this app:
+**[GIPHY](https://developers.giphy.com/)**
+**[Strange-Things-API](https://strange-thing-api.herokuapp.com/api)**
 
-## Another API: Tunr
+#### Set Up
+Let's start out by cloning some starter code. The starter code is generated from `create-react-app` but has some additional styling, fonts, and includes axios.
 
-Now let's take a look at an API that resembles those that we'll be working with in class over the next few weeks: Tunr. In its full form, Tunr is an app that lists artists and songs. The link below will take you to the API for the app (i.e., JSON representations of said artists and songs).
-
-**[Check it out.](https://tunr-api.herokuapp.com)**
-
-------Talk about using Postman when learning a new API--------
-
-------Using in React------
-
-
-### Set Up (5 minutes / 1:15)
-
-We will create a small app that will allow us to interact with the Tunr API. Start out by cloning down the starter code...
-
-`$ git clone git@github.com:ga-wdi-exercises/tunr-ajax.git`
-
-Change into that directory and open its files in Atom. We will only be adding code to `script.js`. Also take a look at the interface we'll be using by opening `index.html` in Chrome.
-
-### You Do: GET (10 minutes / 1:25)
-
-Start by creating an AJAX `GET` request to Tunr that returns **all artists**.
-* It should be triggered when the user clicks on the big "GET" button.
-* If the AJAX call is successful, it should print the response to the console.
-* If the AJAX call is failure, it should print the word "FAIL" as well as the response to the console.
-
-> Think about what we need to make this `GET` request. What might we not need that we did making an AJAX call to OMDB (or vice versa)?
-
-#### Bonus
-
-Render the response on the page. You can modify `index.html` to do this.
-
-> If we access the response object, we can see all of the artists that were seeded in the database. Inside the done promise, we can interact with and display all the contents of the response.
-
-### I Do: POST (15 minutes / 1:40)
-
-> **Do not follow along for this portion of the lesson.** You will have the opportunity to do it yourself afterwards.
-
-Let's try and create an artist using AJAX. In `script.js`...
-
-```js
-$("#post").on("click", function(){
-  $.ajax({
-    type: 'POST',
-    data: {
-      artist: {
-        name: "Limp Bizkit",
-        photo_url: "http://sessionsx-magazine.itibitiventuresi.netdna-cdn.com/wp-content/uploads/2016/01/Featured-What-Happened-To-Limp-Bizkit-.jpg",
-        nationality: "USA"
-      }
-    },
-    dataType: 'json',
-    url: "https://tunr-api.herokuapp.com/artists"
-  }).done(function(response) {
-    console.log(response);
-  }).fail(function(response){
-    console.log("Ajax get request failed");
-  });
-});
+```bash
+  git clone https://github.com/ATL-WDI-Exercises/react-ajax
+  cd react-ajax
+  yarn #Or npm install 
+  yarn start #Or npm start
 ```
 
-As you can see, every time we click on this button another artist is generated. We can now `POST` things to our database on the client side. But there's a problem here: we've hardcoded the attributes.
+If everything installed correctly, you should see a `Hello World!` page.
 
-<details>
-  <summary><strong>Q: How might we be able to dynamically acquire data on the client side instead of hardcoding values?</strong></summary>
+#### Designing our Component Structure
+Before we start writing components, let's think about what our app is doing and how we should properly design it.  Here is a basic wireframe of our app.
 
-  > By using the values the user enters into the input fields.
+![](http://imgur.com/GxpiM6o.png)
 
-</details>
+#### You Do: (5 min)
+Work with the students around you to and discuss how many different React components we need for this application.  What would you name each of these components?
 
-Let's try that out...
+#### Getting gifs from our Heroku API
+Let's start out by building the React component that will retrieve and render information about the gifs that are available on our API that is already deployed on Heroku.
+
+```jsx
+// ./components/SavedGifts.jsx
+import React, { Component } from 'react';
+
+class SavedGifs extends Component{
+
+  render(){
+    return(
+      <h1>Hello From SavedGifs!</h1>
+    )
+  }
+}
+
+export default SavedGifs;
+
+// ./components/App.js
+// Remember to import your new component in App.js
+import React, {Component} from "react";
+import SavedGifs from './SavedGifs';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <img className="backgroundImg" src="http://i.imgur.com/DysM91b.png"/>
+        <h1>Hello World</h1>
+        <SavedGifs />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+We should now see `Hello From SavedGifs` in our UI.  Now we are ready to use axios to give us data from the server.  
+
+#### Retrieving Data on Load
+
+We want axios to make an API call whenever React is ready to mount the `SavedGifs` component.  Think back to our previous lesson on the React Component Lifecycle, what special method would be able to do this for us? 
+
+`componentWillMount` will allow us to initiate an API call and `setState` whenever the data gets back. Let's add that to our `SavedGifs` component.  We'll walk through this process step-by-step.
 
 ```js
-$("#post").on("click", function(){
-    var name = $("#artist-name").val();
-    var photoUrl = $("#artist-photo-url").val();
-    var nationality = $("#artist-nationality").val();
-    $.ajax({
-      type: 'POST',
-      data: {
-        artist: {
-          photo_url: photoUrl,
-          name: name,
-          nationality: nationality
-        }
-      },
-      dataType: 'json',
-      url: "https://tunr-api.herokuapp.com/artists"
-    }).done(function(response) {
-      console.log(response)
-      $("ul").append("<li><a href='/artists/" + response.id + "'>" + response.name + "</a></li>")
-    }).fail(function(response){
-      console.log("ajax post request failed")
+import React, { Component } from 'react';
+// Step 1: Import axios
+import axios from 'axios';
+
+class SavedGifs extends Component{
+  // Step 2: Set your state to contain a property called 'savedGifs'
+  state = {
+    savedGifs: []
+  };
+
+  // Step 3: Call 'componentWillMount' for making your API call
+  componentWillMount(){
+    // Step 4: Use axios.get to retrieve all saved gifs from our API
+    axios.get("https://strange-thing-api.herokuapp.com/api")
+         // Step 5: Save the response array to this.state.savedGifs
+         .then((response) => {
+           const savedGifs = response.data.strangeThings;
+           this.setState({savedGifs: savedGifs});
+         })
+         .catch((error) => {
+           console.error("Error: ", error);
+         });
+  }
+
+  render(){
+    // Step 6: Use '.map' to loop through this.state.savedGifs and save a variable with the jsx for all of your gifs.  Finally, refer to this variable within the return statement.
+    const savedGifs = this.state.savedGifs.map((gif, i) => (
+      <div className="gif" key={i}>
+        <img src={gif.url} />
+        <div>Score: +{gif.strangeness}</div>
+      </div>
+    ));
+
+    return(
+      <div className="savedGifsContainer">
+        <h3>Previously Saved Gifs</h3>
+        <div className="savedGifsFlexContainer">
+          {savedGifs}
+        </div>
+      </div>
+    )
+  }
+}
+
+export default SavedGifs;
+
+```
+
+Let's hop back into our browser and we can see that we successfully retrieved and rendered all of the gifs and the scores associated with them.
+
+#### You Do: (30 min)
+Create another component called `RandomGif.jsx` and build a component that will retrieve and display a random gif generated from the Giphy api.
+  * Look at the wireframe above to determine where to put the component in the UI
+  * The URL you will be calling is `http://api.giphy.com/v1/gifs/random`
+    * Use the [GIPHY Documentation](https://developers.giphy.com/docs/#random-endpoint) to figure out what request parameters you are required to send.
+    * Use the [axios Docs](https://github.com/mzabriskie/axios) to figure out how to send request params when making a `.get()` call.
+  * Remember you are only going to show one gif (hint: you don't need to do a `.map()` with the info you get back)
+  * If the request fails, log "FAIL" in the JavaScript console.
+
+### POST and PATCH
+
+The next thing we want to build for our app is a thumbs up and thumbs down button within `RandomGif` that will save a gif if we click thumbs up and will generate a new gif after we click.
+
+First, let's create the events whenever a user if a user clicks thumbs up or down
+```js
+// ./components/RandomGif.jsx
+...
+
+  componentWillMount() {
+    this._getRandomGif();
+  }
+
+  // Event to be attached to thumbs down.
+  _disapprove = () => {
+    this._getRandomGif();
+  }
+
+  // Event to be attached to thumbs up.
+  _approve = () => {
+    // Prepare the response that you are posting to the API
+    const payload = {
+      url: this.state.gifUrl,
+      strangeness: 1
+    };
+
+    // Use axios.post() and target the Heroku API and send the payload defined earlier
+    axios.post(this.props.url + "/api", payload).then((res) => {
+      // Get a new gif once the post is successful
+      this._getRandomGif();
     });
-  });
+  }
+
+  // Move the axios.get to it's own function to DRY up the code.
+  _getRandomGif = () => {
+    return axios.get("http://api.giphy.com/v1/gifs/random", {
+      params: {
+        api_key: "SECRET_API_KEY",
+      }
+    }).then(res => {
+        this.setState({
+          gifUrl: res.data.data.image_original_url
+        });
+    });
+  }
+
+...
 ```
-### You Do: POST (10 minutes / 1:50)
 
-Now you try it. Again, feel free to reference the code above or give it a shot only using the pseudocode below.
+Now that we have our actions defined, let's create elements in our jsx that can trigger the events.
 
+```js
+...
+
+render(){
+  return(
+    <div>
+      <img className="randomGif" src={this.state.gifUrl}/>
+      <br />
+      <div className="thumbs">
+          <i onClick={this._disapprove} className="fa fa-3x fa-thumbs-down"></i>
+          <i onClick={this._approve} className="fa fa-3x fa-thumbs-up"></i>
+      </div>
+    </div>
+  )
+}
+
+...
 ```
-When the user clicks the POST button.
-  Store the name, photo URL and nationality.
-  Make an AJAX call, indicating the proper URL, type and data type.
-    Indicate what should be done after a successful API call.
-    Indicate what should be done after a failed API call.
+
+**HOLD ON** Let's go back and look at the wireframes.  It looks like the thumbs up/down are also used in the saved gifs part of the app.  This is a great opportunity to refactor the thumbs up/down into their own Component.
+
+```js
+// ./components/Thumbs.jsx
+const Thumbs = (props) => {
+  const { disapprove, approve } = props;
+
+  return (
+    <div className="thumbs">
+      <i onClick={disapprove} className="fa fa-3x fa-thumbs-down"></i>
+      <i onClick={approve} className="fa fa-3x fa-thumbs-up"></i>
+    </div>
+  )
+}
+export default Thumbs;
+
+// ./components/RandomGif.jsx
+...
+render() {
+  return (
+    <div>
+      <img className="randomGif" src={this.state.gifUrl}/>
+      <br />
+        <Thumbs approve={this._approve} disapprove={this._disapprove} /> 
+    </div>
+  );
+}
+...
 ```
-
-## Break (10 minutes / 2:05)
-
-### You Do: PUT and DELETE (Rest of the Lesson)
-
-You now know enough to tackle sending `PUT` (updating an artist) and `DELETE` (deleting an artist) AJAX requests on your own! One thing to keep in mind as you're working on these...
 
 <details>
+  <summary><strong>Q: What are some other ways to acquire data in the client?</strong></summary>
 
-  <summary><strong>Q: How can we identify which artist we want to update or delete in an AJAX call? (Hint: take a look at the HTTP request table earlier in this lesson)</strong></summary>
-
-  > By adding an id (or unique numerical identifier) to the end of the URL.
+  > Adding input fields and forms.
 
 </details>
 
-Since you will all be modifying the same API, **please only update or delete artists that you yourself have created!**
+### You Do: PATCH (30 min)
 
-Some additional notes...
-* You can hardcode an artist id into your AJAX request. Don't worry about taking that in as a user input.
-* You do not have to render the results of a `PUT` or `DELETE` request on the page. That's a bonus.
+Now that you've seen me POST new gifs to the API, you will now write a PATCH that will increase or decrease the strangeness score by 1 every time the user clicks thumbs up/down.
+  * Use the `Thumbs` component we used before
+  * Create an `approve` and `disapprove` method within the `StoredGifs` class.
+  * Make an Axios request that will trigger a `patch` to `https://strange-thing-api.herokuapp.com/api/:id`
+
+
+Since you will all be modifying the same API, **please only update gifs that you yourself have created!**
 
 #### Bonuses
 
-* If you haven't already, make it so that a successful `GET` request renders artist names in the browser.
-* After a successful `POST` `PUT` or `DELETE` request, update the list of artists in the browser to reflect the changes made to the API.
-
-#### Solutions
-
-For reference in case you feel stuck. Don't copy and paste! Take a look and then try to implement yourself from memory.
-* [`PUT`](https://github.com/ga-wdi-exercises/tunr-ajax/commit/8cf4b74603c065e5d6a417315ebeba82bcdaa900)
-* [`DELETE`](https://github.com/ga-wdi-exercises/tunr-ajax/commit/6706d2bed4aaca253f9a58c55e4b136e232537cf)
+* If you haven't already, make it so that a successful `GET`, `POST`, or `PATCH` request re-renders the all gifs' score in the browser to reflect the API.
 
 ## Conclusion (5 mins)
 

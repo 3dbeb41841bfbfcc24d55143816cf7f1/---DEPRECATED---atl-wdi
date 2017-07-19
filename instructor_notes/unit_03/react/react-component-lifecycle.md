@@ -26,7 +26,7 @@ competencies: Front-end frameworks
 
 ### React Component Lifecycle
 
-When building a React application, EVERYTHING is a component.  A component has several methods that get executed everytime it is mounted, updated, or unmounted.  This is important because we need to overwrite one of these methods to make our API call.
+When building a React application, EVERYTHING is a component.  A component has several methods that get executed every time it is mounted, updated, or unmounted.  This is important because we need to overwrite one of these methods to make our API call.
 
 <div style="width: 100vw; height: 40vh;">
   <img style="float: left; width: 40vw; padding: 0px 15px;" src="http://imgur.com/BrWR7kt.jpg" />
@@ -67,7 +67,7 @@ When a component is rendered on screen for the first time, there are 5 methods t
 > **Warning**: This is an easy way too accidentally end up in a infinite loop. Be careful when updating information within componentDidMount.
 
 #### Updating State and Props
-The mounting lifecycle only takes place when the component is initially being rendered.  Any modifications that happen afterward go through the update lifcycle methods.  Let's quickly go over these.
+The mounting lifecycle only takes place when the component is initially being rendered.  Any modifications that happen afterward go through the update lifecycle methods.  Let's quickly go over these.
 
 **`componentWillReceiveProps()`**: This method will be called whenever React detects the props of a component has been modified.  This method allows the developer to have access to both the current props and the new set of props that are coming in. Developers sometimes use this method to `setState` before the other update methods are executed.
 
@@ -86,7 +86,7 @@ The mounting lifecycle only takes place when the component is initially being re
 
 ## Summary
 
-In an ideal world, we wouldn’t use lifecycle methods. All our rendering issues would be controlled via state and props.
+In an ideal world, we wouldn't use lifecycle methods. All our rendering issues would be controlled via state and props.
 
 But it’s not an ideal world, and sometimes you need to exact a little more control over how and when your component is updating.  Even when you don't use these methods, it's helpful to demystify what's going on behind the scenes of React.
 
