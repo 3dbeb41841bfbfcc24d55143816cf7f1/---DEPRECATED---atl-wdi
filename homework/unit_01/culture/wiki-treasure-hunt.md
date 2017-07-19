@@ -5,7 +5,10 @@
 In this assignment, you will read through the class wiki and answer the
 questions given below.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6c4ef36ff26775194e19876323876c1bd75873b4
 ## Questions
 
 Please do not use any resource other than the class wiki

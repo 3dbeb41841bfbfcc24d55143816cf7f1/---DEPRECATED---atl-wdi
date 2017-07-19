@@ -51,7 +51,7 @@ The ultimate goal of this lesson is to make our own form that will give the user
 
 First, in following with the principles of SoC, we are going to take our 'todos' route and logic and put it in it's own separate controller.  We are creating our first modular application.
 
-So in your `/unit_02/w06d04/student_labs` folder, you should see a starter application named `starter-code-hbs` with a bunch of work done already to get us going.
+So in your `/labs/unit_02/express` folder, you should see a starter application named `starter-code-hbs` with a bunch of work done already to get us going.
 
 <br>
 
@@ -71,11 +71,11 @@ app.get('/todos', function(req,res) {
       var seededTodos = [
         {
           description: "get beer",
-            urgent: true
-          }, {
-            description: "dry cleaning",
-            urgent: false
-          }
+          urgent: true
+        }, {
+          description: "dry cleaning",
+          urgent: false
+        }
       ];
 
       res.render('/todos/index', {
@@ -196,7 +196,7 @@ router.get('/', function(req,res) {
 
 In `server.js`, we have a `var seededTodos` which is an array of 2 seeded todos.
 
-As our app grows in size and complexity, we'll want to move logic out of our `server.js` file. One method for doing so is by using an object called `module.exports`. This allows us to clean up and share code throughout our app.
+As our app grows in size and complexity, we'll want to move logic out of our `server.js` file. One method for doing so is by using an object called `module.exports`. This allows us to clean up and share code throughout our app through breaking our code into separate files.
 
 `module.exports` allows us to separate our js files by exposing their contents
 as one global variable. The global variable isn't assigned until we require the
@@ -223,7 +223,7 @@ Now our `module.exports` will have a property of `seededTodos` which is an Array
 2. In `controllers/todos.js`, instantiate a variable to grant access to module we've created:
 
 ```javascript
-var data = require('../data.js');
+  var data = require('../data.js');
 ```
 
 3. Now, our variable `data` is our `module.exports` object. We can access our `seededTodos` via our `controllers/todos.js` file like so:
@@ -383,8 +383,8 @@ For example:
 
 &#x1F535; **CFU**
 
-- How is the line ```js var todo = data.seededTodos[req.params.id];``` grabbing a single todo?
-- What does this line allow us to do in our show.hbs view? ```js todo: todo ```
+- How is the line ` var todo = data.seededTodos[req.params.id];` grabbing a single todo?
+- What does this line allow us to do in our show.hbs view? `todo: todo `
 
 <details>
     <summary>**SOLUTION**</summary>

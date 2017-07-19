@@ -119,7 +119,7 @@ Several reasons:
 
 3. These workarounds are now so ubiquitous (often included by default in frameworks) that providing a solution in HTML has become redundant.
 
-You can read the conversation about adding PUT and DELETE form functionality to HTML5 here https://www.w3.org/Bugs/Public/show_bug.cgi?id=10671
+You can read the conversation about adding PUT and DELETE form functionality to HTML5 [here](https://www.w3.org/Bugs/Public/show_bug.cgi?id=10671)
 
 4. A more technical reason does exist, if it gives you any solace.
   - A PUT request wouldn't look any different than a post, the data still needs to be sent in the body vs. the header. Therefore, the server would still need some kind of flag to differentiate between a PUT and POST request, otherwise the requests look the same and provide a similar output.
