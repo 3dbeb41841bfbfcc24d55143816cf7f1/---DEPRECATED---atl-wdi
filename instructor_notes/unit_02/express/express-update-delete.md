@@ -115,7 +115,7 @@ Several reasons:
 
 1. When HTML and HTTP were first specked out there wasn't a real user story around Updating and Deleting, or even Posting content. Updates and deletions were made by the authors of the content, not by external users. Initially, HTTP was simply a GET method.
 
-2. As the internet developed into something closer to what we understand it to be now now, HTTP added PUT and DELETE methods in 1997 (HTTP/1.1). HTML was not updated to handle them, so developers created work arounds to allow web users to still make PUT and DELETE requests using POST as the thoroughfare.
+2. As the internet developed into something closer to what we understand it to be now, HTTP added PUT and DELETE methods in 1997 (HTTP/1.1). HTML was not updated to handle them, so developers created workarounds to allow web users to still make PUT and DELETE requests using POST as the thoroughfare.
 
 3. These workarounds are now so ubiquitous (often included by default in frameworks) that providing a solution in HTML has become redundant.
 
