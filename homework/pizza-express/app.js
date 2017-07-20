@@ -1,10 +1,19 @@
 const express = require('express');
+const hbs = require('hbs');
+const fs = require('fs');
 const app = express();
 const port = 3000;
 
 app.set("view engine", "hbs");
 
 app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/views/partials'));
+// hbs.registerPartial('header', '/views/partials/header.hbs');
+
+// hbs.registerPartial('header', '{{ header }}');
+hbs.registerPartial('header', fs.readFileSync(__dirname + '/views/partials/header.hbs', 'utf8'));
+hbs.registerPartials(__dirname + '/views/partials');
+
 
 app.get('/', (req, res) => {
     // res.send(`Welcome to Pizza Express!`);
@@ -35,10 +44,7 @@ app.get('/*', (req, res) => {
     res.status(404);
     // res.send(`404`);
     res.render('404');
-})
-
-
-// Handlebars.registerPartial("header", '{{ header }}')
+});
 
 app.listen(port, () => {
     console.log("=================================")
