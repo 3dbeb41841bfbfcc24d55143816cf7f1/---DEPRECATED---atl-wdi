@@ -1,8 +1,10 @@
-var express = require('express');
-var app = express();
-var port = 3000;
+const express = require('express');
+const app = express();
+const port = 3000;
 
 app.set("view engine", "hbs");
+
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     // res.send(`Welcome to Pizza Express!`);
@@ -28,6 +30,15 @@ app.get('/order/:number/:size', (req, res, next) => {
         size: size
     })
 })
+
+app.get('/*', (req, res) => {
+    res.status(404);
+    // res.send(`404`);
+    res.render('404');
+})
+
+
+// Handlebars.registerPartial("header", '{{ header }}')
 
 app.listen(port, () => {
     console.log("=================================")
