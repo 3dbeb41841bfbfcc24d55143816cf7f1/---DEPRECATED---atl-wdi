@@ -156,39 +156,7 @@ export default App;
 
 **GOTCHA**: We always capitalize React components.  If we use lower case, JSX will interpret it as a regular html tag.
 
-**GOTCHA AGAIN**: Notice the self closing tag on the React component (`/>`).  Another big difference between HTML and JSX is that JSX is very picky about opening and closing tags.  Every tag you make in JSX has to be closed (i.e `<h1></h1>` or `<span>`)
-
-Once we properly import our `Profile` component, we should see a big "Hello world" on the page.
-
-#### Adding onto the Profile component
-
-Let's beef up our Profile component with a picture and our name. 
-
-```js
-import React, { Component } from 'react';
-
-class Profile extends Component {
-  render(){
-    return (
-      <img src="http://www.fillmurray.com/100/100" />
-      <h1>Jamie King</h1>
-      <h3>Full Stack Developer</h3>
-    );
-  }
-}
-
-export default Profile;
-```
-
-**OH NO**: Something broke! `Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag (7:6)`
-
-**GOTCHA**: When rendering JSX, there can only be one top-level element. Having multiple elements without a container element will always throw an error.  We generally fix that by wrapping the JSX with a `<div></div>` tag.
-
-After wrapping the tags in a div, we should see the first bit of our profile page. Hooray! 
-
-**YOU DO:** (10 min)
-Add some css to the Profile component. 
-  * 
+**GOTCHA AGAIN**: Notice the self closing tag on the React component (`/>`).  Another big difference between HTML and JSX is that JSX is very 
 
 In reality, JSX is just a shorthand for the `React.createElement` method.  
 
