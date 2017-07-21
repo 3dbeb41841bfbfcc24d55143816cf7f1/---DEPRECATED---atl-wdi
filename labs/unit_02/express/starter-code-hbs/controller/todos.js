@@ -22,7 +22,18 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  console.log(req.body);
+
+  const newTodo = {
+    description: req.body.description,
+    urgent: req.body.urgent,
+  }
+
+  data.seededTodos.push(newTodo);
+
   res.send('You made a post!');
+  
+
 })
 
 
