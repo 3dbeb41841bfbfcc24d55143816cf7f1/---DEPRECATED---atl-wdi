@@ -83,7 +83,7 @@ You will likely encounter many a developer who puts down Mongo. When we start le
 
 ## Let's Draw on The Board - We Do (20 mins)
 
-Our example is going to be Survey Monkey:
+Our example is going to be this [Survey Monkey Survey](https://www.surveymonkey.com/r/SX3BGZ3):
 
 - What pieces of data do we need to think about when constructing our survey monkey app?
 - What are the types of this data?
