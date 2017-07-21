@@ -1,11 +1,11 @@
 //===========================
 // REQUIREMENTS
 //===========================
-var express = require("express");
-var app = express();
-var logger = require("morgan");
-var bodyParser = require("body-parser");
-var hbs = require('hbs');
+const express = require("express");
+const app = express();
+const logger = require("morgan");
+const bodyParser = require("body-parser");
+const hbs = require('hbs');
 
 
 //===========================
