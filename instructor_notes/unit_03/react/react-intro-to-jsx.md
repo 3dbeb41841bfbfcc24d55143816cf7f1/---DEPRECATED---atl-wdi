@@ -266,26 +266,51 @@ class Tacos extends Component{
 #### You Do:
 Try refactoring the `Specializations` component to break up the code into smaller components, and use a `.map` to loop through an array of objects to display your info.
 
+#### JSX Conditionals
+The ability to mix JSX and JavaScript at will makes it fantastic for templating a UI.  Let's combine ternary equations with the JSX syntax.
 
+```js
+class Taco extends Component{
+  const opinion = this.props.flavor === 'Guacamole' ? 'REALLY love' : 'love'
+  render(){
+    return <h1>I {opinion} {this.props.flavor} tacos!</h1>
+  }
+}
+```
+
+You can also use ternary equations inline while you're writing JSX
+
+```js
+render() {
+  const isLoggedIn = this.state.isLoggedIn;
+  return (
+    <div>
+      The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
+    </div>
+  );
+}
+```
 
 Now that we know how to 
 
-- Give example of React.createElement
-- Mention containers for div
-- Focus on the () that wraps jsx
-- Common Gotchas
-- Closing Tags
-- Using JavaScript in JSX
+- Give example of React.createElement - DONE `line 41`
+- Mention containers for div - DONE `line 183`
+- Focus on the () that wraps jsx - DONE `line 91`
+- Common Gotchas - DONE ``
+- Closing Tags - Done `line 185`
+- Using JavaScript in JSX - Need more detail
 - Conditionals
-- Nesting
+- Nesting - Done.  Maybe mention more about unidirectional data flow
 - Map
 - Filter
 - Sort
 - If Else
+- Events
 
 
 ## Further Reading:
 
-* [React Component Lifecycle by A. Sharif](http://busypeoples.github.io/post/react-component-lifecycle/)
-* [Facebook React Docs](https://facebook.github.io/react/docs/react-component.html)
-* [State and Lifecycles](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* [Introducing JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
+* [Lists and Keys](https://facebook.github.io/react/docs/lists-and-keys.html)
+* [JSX in Depth](https://facebook.github.io/react/docs/jsx-in-depth.html)
+* [Different Ways to Add If/Else in JSX](http://devnacho.com/2016/02/15/different-ways-to-add-if-else-statements-in-JSX/)
