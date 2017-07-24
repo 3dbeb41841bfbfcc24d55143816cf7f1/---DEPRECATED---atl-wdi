@@ -258,6 +258,7 @@ The sum is 25
 ## Resources
 
 - [Fun Fun Function Series on Functional Programming](https://www.youtube.com/playlist?list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84)
+- [Functional Programming Workshop](https://nodeschool.io/)
 - [Don't Be Scared of Functional Programming](https://www.smashingmagazine.com/2014/07/dont-be-scared-of-functional-programming/)
 - [Eloquent Javascript](http://eloquentjavascript.net/05_higher_order.html)
 - [Master the Javascript Interview](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0#.9u4dyrpyc)
