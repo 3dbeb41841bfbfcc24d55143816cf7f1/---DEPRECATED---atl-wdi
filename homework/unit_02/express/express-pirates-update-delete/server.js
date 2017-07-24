@@ -7,7 +7,9 @@ const express = require("express");
 const hbs = require('hbs');
 const bodyParser = require("body-parser");
 const methodOverride = require('method-override');
+
 const app = express();
+const port = process.env.PORT || 3000;
 
 
 
@@ -20,11 +22,17 @@ const app = express();
 app.use(logger("dev"));
 //these are for bodyParser
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(methodOverride('_method'));
+
+// app.use(bodyParser.json());
 //set handlebars as view engine
 app.set("view engine", "hbs");
 app.set('views', './views');
 
+
+app.get('/', (req, res) => {
+	res.send('This is the Home Page');
+})
 //===========================
 // CONTROLLERS
 //===========================
@@ -38,5 +46,5 @@ app.use("/pirates", pirateController);
 // LISTENERS
 //===========================
 app.listen(3000, function(req, res){
-	console.log("listening");
+	console.log("Server Up on Port 3000");
 });
