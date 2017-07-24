@@ -1,7 +1,7 @@
 {
   "name": "pirates_crud_part_one_solution",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Setup 1. Make sure that you are on the `master` branch of your class repo. Then run `git pull upstream master` to pull the latest materials from the instructors' repository. You shouldn't hit a merge conflict here, but if you do, flag down an instructor right away.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,10 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.13.4",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
     "hbs": "^2.9.0",
     "method-override": "^2.3.9",
-    "morgan": "^1.6.1"
-  }
+    "morgan": "^1.8.2"
+  },
+  "devDependencies": {}
 }
