@@ -6,6 +6,13 @@ var Item = require("../models/item");
 
 // USERS INDEX ROUTE
 
+router.get('/', (req, res) => {
+    
+    console.log("Root is working");
+    res.send("Root is working");
+
+})
+
 // USER SHOW ROUTE
 
 // USER CREATE ROUTE
