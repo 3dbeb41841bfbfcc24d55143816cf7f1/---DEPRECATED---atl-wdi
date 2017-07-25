@@ -160,7 +160,7 @@ var celica = makeCar("Toy-Yoda Celica", "limegreen");
 
 This is the basic idea behind OOP: we define a **blueprint** for an object and use it to generate multiple instances of it!
 
-##Classes
+## Classes
 
 ### Overview(10 minutes / 0: 35)
 
