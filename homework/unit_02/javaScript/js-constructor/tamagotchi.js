@@ -1,9 +1,24 @@
 console.log('tamagotchi file is loaded');
 
-//your class declaration here
+class Tamagotchi{
+  constructor(){
+    this.foodInTummy = 10;
+    this.restedness = 10;
+    this.health = 10;
+  }
 
+  cry(){
+    this.foodInTummy--;
+    console.log("The Tamagotchi is crying!!! WAAAH!!!!!!");
+    console.log('current food in tummy: ' + this.foodInTummy);
+  }
+}
 
-//create new Tamagotchis
+var constructedObject1 = new Tamagotchi();
+var constructedObject2 = new Tamagotchi();
 
+console.log(constructedObject1);
+console.log(constructedObject2);
 
-//test out your Tamagotchies below via console.logs
+constructedObject1.cry();
+constructedObject2.cry();
