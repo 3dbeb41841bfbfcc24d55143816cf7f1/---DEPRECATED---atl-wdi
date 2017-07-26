@@ -1,11 +1,17 @@
 // Standard stuff
 const express = require('express');
 const bodyParser = require('body-parser');
+const hbs = require('hbs');
+const methodOverride = require('method-override');
+
 const app = express();
 
+app.use(methodOverride('_method'))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set('view engine', 'hbs');
 
 var usersController = require("./controllers/usersController.js");
 app.use('/users', usersController);

@@ -53,3 +53,5 @@ diesel.save(function(err) {
   
   console.log('diesel created!');
 });
+
+mongoose.connection.close();
