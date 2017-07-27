@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 mongoose.Promise = global.Promise;
 //create your donut schema:
-var donutSchema = new Schema({
+var DonutSchema = new Schema({
     name: String,
     descriptio: String,
     img: String,
@@ -14,8 +14,7 @@ var donutSchema = new Schema({
 
 //export your donut with module.exports()
 
-var DonutModel = mongoose.model("Donut", donutSchema);
+var 
+Donut = mongoose.model("Donut", DonutSchema);
 
-module.exports = {
-    Donut: DonutModel
-}
+module.exports = Donut
