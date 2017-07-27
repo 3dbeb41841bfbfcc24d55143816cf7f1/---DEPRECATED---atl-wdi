@@ -6,9 +6,9 @@ This second project is your first foray into **building a full-stack server appl
 
 **This is exciting!** It is a lot, but we have given you the tools over the last few weeks to build what you need; you get to be creative in choosing what sort of application you want to build!
 
-**You will be working individually for this project**, and you will be designing the app yourself. We hope you will exercise creativity on this project, sketch some wireframes before you start, and write user stories to define what your users will want to do with the app.
+**You will be working with a group for this project**, and you will be designing the app with your group. We hope you will exercise creativity on this project, sketch some wireframes before you start, and write user stories to define what your users will want to do with the app.
 
-You will need to run your user stories, wireframes, and database design by your instructors to get their feedback and approval before you begin coding! Remember to keep things small and focus on mastering the fundamentals – scope creep/feature creep is the biggest pitfall for any project!
+Your group will need to run your user stories, wireframes, and database design by your instructors to get their feedback and approval before you begin coding! Remember to keep things small and focus on mastering the fundamentals – scope creep/feature creep is the biggest pitfall for any project!
 
 Identify what you need to build and accomplish to meet project expectations and identify everything else as stretch goals. If you meet your MVP (Minimum Viable Product) ahead of schedule, you can decide which reach goals to focus on for the remainder of your time.
 
@@ -42,9 +42,7 @@ Your app must:
 
 ---
 
-### To Submit
-
-* **Create a GitHub issue on the class repo** with a link your Project Repo, and a link to Heroku where your project's deployed.
+### Submit your project to Schoology by 2:00 PM on the presentation day!
 
 ---
 
@@ -72,11 +70,11 @@ You will create an application where users can bookmark links they want to keep.
 
 But what if users could trade bookmarks for other bookmarks? Or sell bookmarks for points? Or send bookmarks to your friends. Or something even crazier.
 
-##### Closet/Bookshelf Organizer
+##### Closet/Bookshelf/Pantry Organizer
 
-An application that helps users keep track of items in their closet or bookshelf.
+An application that helps users keep track of items in their closet.
 
-Maybe users could loan books/clothes to friends and keep track of it in their database.
+Maybe users could loan books/clothes/pantry items to friends and keep track of it in their database.
 
 ---
 
