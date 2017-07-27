@@ -1,0 +1,5 @@
+<h1>Update {{userName}}'s Item</h1>
+<form action="/users/{{userId}}/items/{{itemId}}?_method=PUT" method="POST">
+    <input type="text" name="name" value="{{itemName}}" style="width:300px">
+    <input type="submit" value="Update"> 
+</form>
