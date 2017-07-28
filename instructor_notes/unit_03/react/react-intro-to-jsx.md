@@ -15,6 +15,7 @@ competencies: Front-End Frameworks
 
 - Understand what JSX is and why it is different than HTML.
 - Catch differences in syntax between HTML and JSX.
+- Loop through arrays of data and apply it to JSX rendering.
 - Insert data from `props` to JSX
 
 ### Preparation
@@ -25,27 +26,27 @@ competencies: Front-End Frameworks
 
 <br>
 
-### JSX
+If you've ever written HTML within JavaScript, you know that the experience can be a huge pain.  Developers are required to write and concatenate strings that get converted to HTML after being appended to the DOM. Many times this looks really messy (i.e. `"<h1>" + firstName + " " + lastName + "</h1> `) even with ES6 string templates!  For this reason, we use a tool called JSX to easily and cleanly write expressive statements that sends HTML to the DOM.
 
-One of the first things many people think when seeing React for the first time is something along the lines of "WTF?! Why is there HTML in my JavaScript code??". When building React applications, it is common to see code that looks like this.
+## JSX
 
-```js
-const Element = <h1>Hello World</h1>;
-```
-
-This might be off putting at first, but it allows us to take advantage of the power of JavaScript to build UIs. 
-
-I know the question you are all asking... "How is this valid JavaScript? This would cause errors in other JavaScript apps!"  And you're right!  JSX is actually a language extension to JavaScript that will convert this 'HTML in JS' into pure JavaScript.  This occurs via Webpack.  Every time we bring run our Webpack, it has the tools that allows it to transpile the JSX code above to this:
+JSX was created by Facebook to provide a descriptive and clean way to write the HTML that React sends into the DOM.  JSX is actually not the only way to send HTML to the DOM in React.  Before JSX, developers would render HTML through the `React.createElement()` method.
 
 ```js
-const Element = React.createElement({
+const HelloWorld = React.createElement({
   "h1", // Container Element
   null, // Attributes within the container element
   "Hello World" // HTML String
 });
 ```
 
-Imagine how unruly that object would be to maintain over time.  By using JSX, we get an easily readable and easily editable way to build out the HTML that gets sent to the DOM.
+While this rendered HTML extremely effectively, it can be difficult to parse and understand.  Because of this, JSX created to provide developers a more expressive and familiar way to write elements to be rendered to the DOM.  JSX is written out as a mark-up language, just like HTML.
+
+```js
+const Element = <h1>Hello World</h1>;
+```
+
+I know the question you are all asking... "How is this valid JavaScript? This would cause errors in other JavaScript apps!"  And you're right!  JSX is actually a language extension to JavaScript that will convert this 'HTML in JS' into pure JavaScript.  When Webpack is bundling your React code, it converts the JSX syntax into the `React.createElement()` method seen above.
 
 ### CodeAlong: React Portfolio Page
 Let's jump in head first and learn JSX by doing.  Today we will build a simple portfolio page using just React and JSX. 
@@ -86,13 +87,13 @@ class App extends Component {
 export default App;
 ```
 
-**render()**: Every time you create a React Component, you will have a `render` function that will define the output of the component whenever it is mounted and when it is updated.  Within the render function you will always return JSX. 
+**render()**: Every time you create a React Component class, you will use the `render` function.  This function tells React what the output of your component will be upon it's initial creation and every time it updates.  We will write our JSX within the `render` function.
 
-**return ()**: The parenthesis after the return statement looks a little foreign.  These parenthesis tell the Webpack compiler that everything in between is JSX that needs to be converted before being sent to the client.
+**return ()**: Since render is just a regular method call, we have to `return` something.  The JSX return is often more than 1 line.  When we have more than 1 line, we wrap the entire JSX statement in `()`.
 
-**className**: One of the most noticeable differences between HTML and JSX is the use of `className` rather than `class`. Since we write JSX within JavaScript files, we cannot use keywords within the JavaScript language.  Since `class` has a different definition in JS, Facebook was forced to change the word that JSX uses to detect an HTML class.  Facebook also was forced to change the `for` attribute commonly found in forms and change it to `htmlFor`. Most other HTML attributes will be exactly the same in JSX.  See React Docs on [Tags and Attributes](https://zhenyong.github.io/react/docs/tags-and-attributes.html)
+**className**: One of the most noticeable differences between HTML and JSX is the use of `className` rather than `class`. Since we write JSX within JavaScript files, we cannot use keywords within the JavaScript language.  This means we can't use names like `class` and `for` when using JSX.  Instead, JSX provides `className` and `htmlFor` as replacements.  Most other HTML attributes will be exactly the same in JSX.  You can see all of the available attributes here: [Tags and Attributes](https://zhenyong.github.io/react/docs/tags-and-attributes.html)
 
-**src={logo}**: Another big difference between HTML and JSX is the ability to switch between JSX and JS on the fly.  By wrapping an expression in `{}` we are able to refer to variables and objects.  In the case of `src={logo}`, there is an SVG that is being imported at the top of the file and is then being inserted into the `src` attribute for the `img` tag.  When our app gets compiled through Webpack, the path of the svg is inserted into the HTML that gets rendered into the DOM.
+**src={logo}**: Another big difference between HTML and JSX is the ability to switch between JSX and JavaScript on the fly.  By wrapping an expression in `{}`, we are able to refer to variables and objects.  In the code above, you use `src={logo}` to import the SVG file that was defined earlier in the component.  When our app gets bundled through Webpack, the path of the SVG is inserted into the HTML that gets rendered into the DOM.  We can also use `{}` to use functions like `.map`, `.filter`, and `.reduce` to manipulate our data.
 
 #### We Do: Profile Page
 Now that we've seen an example of some valid JSX, let's create a few components to build out our Portfolio. The first thing we should do is focus on keeping our file directory clean.  Before we create any new files, lets create a `components` directory inside of `src`.  This will hold all of the components we will be building during the codealong.  Within the components directory, let's create a file called `Profile.jsx`.  Your directory should look something like this.
@@ -126,7 +127,7 @@ class Profile extends Component {
 export default Profile;
 ```
 
-Why do we have to import `React` here?  Since we don't reference it in the rest of the file, we should be fine skipping it, right?  Let's see what happens if we remove `React` as an import.
+**GOTCHA** Why do we have to import `React` here?  Since we don't reference it in the rest of the file, we should be fine skipping it, right?  Let's see what happens if we remove `React` as an import.
 
 ```
 ERROR: 'React' must be in scope when using JSX  react/react-in-jsx-scope
@@ -139,13 +140,13 @@ Now that we have a component, let's import it into our App.js.
 ```js
 import React, { Component } from 'react';
 import './App.css';
-import Profile from './components/Profile.jsx'
+import profile from './components/Profile.jsx'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Profile />
+        <profile />
       </div>
     );
   }
@@ -186,13 +187,8 @@ export default Profile;
 
 After wrapping the tags in a div, we should see the first bit of our profile page. Hooray! 
 
-**YOU DO:** (10 min)
-Add some css to the Profile component. 
-  * 
-
-
 #### Building out a Specializations component
-Now that we have built out a pretty solid splash image, let's add some more content to the page.  Next up, we want to build a section of the portfolio page that will show of what technologies we know.  Let's look at the wire-frame of what we want to build.
+Now that we have built out a all the info we need for a splash page, let's add some more content to the page.  Next up, we want to build a section of the portfolio page that will show of what technologies we know.  Let's look at the wire-frame of what we want to build.
 
 ![](http://i.imgur.com/oQTKHBh.png)
 
@@ -307,6 +303,8 @@ Now that we know how to
 - If Else
 - Events
 
+
+- unidirectional
 
 ## Further Reading:
 
