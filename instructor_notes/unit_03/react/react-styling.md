@@ -129,45 +129,198 @@ class Button extends Component{
   }
 }
 export default Button;
-```  
+``` 
+
+### YOU DO: 
+Add an event that will add the following styles when the user clicks the button: 
+```css
+  { 
+    transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
+  }
+```
+Check out the [React docs](https://facebook.github.io/react/docs/handling-events.html) if you need help with setting up a click event.
+
+--- 
 
 At this point, you might observe the extra code, additional method calls, and state addition. While it's neat that we're using JS to style everything, that's a lot of additional logic to add to each and every component. There has to be a better way.
 
-### 💅 styled-components
+## 💅 styled-components
 There are plenty of libraries available on Github that attempt to make it as easy as possible to style React components.  Some common options are [Aphrodite](https://github.com/Khan/aphrodite), [Radium](https://github.com/FormidableLabs/radium), and [JSS](https://github.com/cssinjs/react-jss).  While these are all decent libraries, they all have a lot of library specific rules.  
 
 Thats why a group of developers got together around January of last year and committed to making the easiest and most stress free way of styling React components.  The result is a library called [💅 styled-components](https://github.com/styled-components/styled-components).  In the year that the library has been out, it has widely become the go-to option for styling in React.  
 
-Styled components uses a feature of ES6 known as tagged template literals to allow you to write actual CSS code that gets converted into a component.  Let's take a look at an example.
+Styled components uses a feature of ES6 known as tagged template literals to allow you to write actual CSS code that gets converted into a component.  Let's take a look at our button component re-written with `styled-components`.
+
+```js
+import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const Button = styled.a`
+  border-radius: 5px;
+  padding: 15px 25px;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 20px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  background-color: #55acee;
+  box-shadow: 0px 5px 0px 0px #3C93D5;
+  &:hover{
+    background-color: #6FC6FF
+  }
+`;
+
+class ClickMe extends Component{
+  render(){
+    return (
+      <Button>
+        Click Me
+      </Button>
+    )
+  }
+}
+export default ClickMe;
+```
+
+`styled-components` combines some of the best facets of CSS/SCSS and JavaScript in a readable and concise manner.  The library does this by creating an `a` tag with the CSS outlined within the template string. You can then reference the `styled-component` the same way that you refer to a regular React component.
+
+### Extending Component Styles
+Many times, you may run into a scenario where you want to use a component but change it slightly to fit a single use case.  When this happens, `styled-component` offers the ability to extend the styles from another component.  This harkens back to the idea of inheritance in OOP.  Let's extend the Button from before to make an Error, Success, and Info button.
+
+```js
+import React, {Component} from 'react';
+import styled from 'styled-components';
+
+const Button = styled.a`
+  border-radius: 5px;
+  padding: 15px 25px;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 20px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  background-color: #55acee;
+  box-shadow: 0px 5px 0px 0px #3C93D5;
+  &:hover{
+    background-color: #6FC6FF
+  }
+  &:active{
+    transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
+  }
+`;
+
+const ErrorButton = Button.extend`
+  background-color: #e74c3c;
+  box-shadow: 0px 5px 0px 0px #CE3323;
+  &:hover{
+    background-color: #FF6656;
+  }
+`;
+
+const SuccessButton = Button.extend`
+  background-color: #2ecc71;
+  box-shadow: 0px 5px 0px 0px #15B358;
+  &:hover{
+    background-color: #48E68B;
+  }
+`;
+
+const InfoButton = Button.extend`
+  background-color: #f1c40f;
+  box-shadow: 0px 5px 0px 0px #D8AB00;
+  &:hover{
+    background-color: #FFDE29;
+  }
+`
+
+class ClickMe extends Component {
+  render() {
+    return (
+      <div>
+        <Button>
+          Normal
+        </Button>
+        <ErrorButton>
+          Error
+        </ErrorButton>
+        <SuccessButton>
+          Success
+        </SuccessButton>
+        <InfoButton>
+          Info
+        </InfoButton>
+      </div>
+    )
+  }
+}
+export default ClickMe;
+```
+
+### Animations in React 
+If you remember back when we talked about animation and transitions in CSS, there are two ways to animate using CSS, Transitions and Keyframes.
+
+Transitions in React are still really simple. Through `styled-components` we can add the `transition` CSS property and use it in the same exact way as you would in CSS. 
+Keyframes require a couple more steps, but are made much simpler through our style library.  In order to build a keyframe, you must first define the keyframe using `styled.keyframe`
+
+```js
+import styled, { keyframes } from 'styled-components';
+
+...
+
+const rotate360 = keyframes`
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+`;
+
+const RotatingDiv = styled.div`
+  animation: ${rotate360} 2s infinite;
+`;
+```
+
+This can be made even easier through another library called `react-animations`.  `react-animations` is simply the React version of [Animate.css](https://daneden.github.io/animate.css/). Here's an example of both libraries working together to create an animation.
+
+```js
+import styled, { keyframes } from 'styled-components';
+import { pulse } from 'react-animations';
+
+const pulseAnimation = keyframes`${pulse}`;
+
+const PulsingDiv = styled.div`
+  animation: ${pulseAnimation} 2s infinite;
+`;
+```
+
+### Styling Frameworks
+With the immense popularity of React, many of the large styling frameworks have been ported over to React.
+
+Here are a few of the most common:  
+ * [Material UI](http://www.material-ui.com/)
+ * [React Bootstrap](https://react-bootstrap.github.io/)
+ * [React Foundation](https://react.foundation/)
+
+ Many of these styling frameworks come with their own unique steps to set-up their framework.  If you decide to integrate a styling framework, make sure to take the time to follow their documentation to get it set up.
 
 
+## YOU DO
 
-
-### Creating component-centric styles
-There are several different methodologies available to make it easier to 
-
--- Instagram clone
--- Why do we want to avoid separate css files?
-  -- Everything is a global variable. Or add processors
-  -- CSS logic (!importants, cascading, complicated naming) allows many unnecessary side effects.
--- But the Separation of Concerns!
--- CSS Modules
--- Styled-components? 
-  -- Show nesting and pseudoselectors
-  --
--- React-Animations
--- Frameworks
-  -- Material UI
-  -- React-Bootstrap
-  -- React-Foundation
--- What’s the point? If you’re writing React, you have access to a more powerful styling construct than CSS class names. You have components.
-
-
-
+For the remainder of the first half of class, you will be working on styling an Instagram clone.  
+  1. Clone this repo: [React InstaClone](https://github.com/ATL-WDI-Curriculum/React-InstaClone )
+  2. Checkout the `starter-code` branch.
+  3. This application has all of the structure and logic to build a basic clone of the [Instagram Desktop page](https://www.instagram.com/).  Your mission is to use `styled-components` to recreate the styles seen on the Instagram site.
+  4. If you get stuck along the way, you can check out a deployed version of the app [here](https://wdi11-instaclone.herokuapp.com/) or check out the `solution-code` branch for hints.
 
 ## Further Reading:
 
-* [Introducing JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
-* [Lists and Keys](https://facebook.github.io/react/docs/lists-and-keys.html)
-* [JSX in Depth](https://facebook.github.io/react/docs/jsx-in-depth.html)
-* [Different Ways to Add If/Else in JSX](http://devnacho.com/2016/02/15/different-ways-to-add-if-else-statements-in-JSX/)
+* [Styled-Components](https://www.styled-components.com/)
+* [Styling React](https://survivejs.com/react/advanced-techniques/styling-react/)
+* [How to Style React Components](https://www.sitepoint.com/style-react-components-styled-components/)
+* [5 Minute Intro to Styled-Components](https://medium.freecodecamp.org/a-5-minute-intro-to-styled-components-41f40eb7cd55)
