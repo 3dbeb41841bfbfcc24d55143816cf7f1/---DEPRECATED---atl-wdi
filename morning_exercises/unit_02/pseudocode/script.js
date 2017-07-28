@@ -3,10 +3,6 @@
 // Barrels O' RUM
 
 var barrels = function(small, large, total){
-  var smallBarrel = 60;
-  var largeBarrel = (total - (small * smallBarrel)) / large;
-
-return largeBarrel;
 };
 
 //*************************

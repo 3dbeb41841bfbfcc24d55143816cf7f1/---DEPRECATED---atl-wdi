@@ -2,19 +2,19 @@
 
 ![image](http://old.computerra.ru/pubimages/78659.gif)![image](http://old.computerra.ru/pubimages/78659.gif)
 
-In this assignment, you will be constructing interactive Tamagotchis from your very own Tamagotchi Constructor Function!
+In this assignment, you will be constructing interactive Tamagotchis from your very own Tamagotchi Class!
 
 Unless you make the reach goal happen, this will be a console-based exercise, so make sure you have your developers console open and test frequently.
 
 ## Exercise Objectives
-- gain deeper experience with writing Constructor functions
-- gain practice creating new objects with the `new` keyword
+- Gain deeper experience with writing JavaScript Classes
+- Gain practice creating new objects with the `new` keyword
 - Use `this` and pass arguments to a constructor function
-- gain deeper insight into object-oriented programming
+- Gain deeper insight into object-oriented programming
 
 
 ## Setup
-1. Make sure that you are on the `master` branch of your `atl-wdi...` repo.
+1. Make sure that you are on the `master` branch of your class repo.
 Then run `git pull upstream master` to pull the latest materials from the
 instructors' repository. You shouldn't hit a merge conflict here, but if you do, flag down an instructor right away.
 - Note that the `tamagotchi` and `player` objects are in their own files so they can be more manageable.
@@ -54,18 +54,19 @@ We refer to the properties that will exist within that generated object by using
 <details><summary>.. Stuck? </summary>
 
   ```
-  var Tamagotchi = function() {
+  class Tamagotchi{
+    constructor(){
+      this.foodInTummy = 10;
+      this.restedness = 10;
+      this.health = 10;
+    }
 
-    this.foodInTummy = 10;
-    this.restedness = 10;
-    this.health = 10;
-
-    this.cry = function() {
-        this.foodInTummy--;
-        console.log("The Tamagotchi is crying!!! WAAAH!!!!!!");
-        console.log('current food in tummy: ' + this.foodInTummy);
-    };
-  };
+    cry(){
+      this.foodInTummy--;
+      console.log("The Tamagotchi is crying!!! WAAAH!!!!!!");
+      console.log('current food in tummy: ' + this.foodInTummy);
+    }
+  }
 
   //create a new Tamagotchi with `new`
   var constructedObject1 = new Tamagotchi();
@@ -125,7 +126,7 @@ Add in the `start` and `stop` methods to your Tamagotchi constructor:
    - `yawnTimer` invokes the Tamagotchi's yawn method every 10 seconds
    - `sickTimer` invokes the `puke` method every 20 seconds
 
-Hint: use  [setInterval](http://www.w3schools.com/jsref/met_win_setinterval.asp)
+Hint: use [setInterval](http://www.w3schools.com/jsref/met_win_setinterval.asp)
 
 - The method `stop` will stop the `hungerTimer`, `yawnTimer`, and `sickTimer`.
 - :dart: Git add, git commit -m "part 4 added new methods"
@@ -154,7 +155,7 @@ We want it so that our player can just click buttons on the page rather than typ
   When you're ready to submit your work,
 
   1. Add, commit and push your code
-  2. Add a link that points to your repo in the hmwork slack channel/theme. Including the name and date.
+  2. Submit the homework on Schoology.
   3. Add a comfort score for the material
 
   <!-- 1.  Add, commit, and push your code to your fork of the class repo.

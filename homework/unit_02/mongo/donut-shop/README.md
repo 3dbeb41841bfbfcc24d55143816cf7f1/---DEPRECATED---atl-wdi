@@ -227,9 +227,9 @@ For example:
   When you're ready to submit your work,
 
   1.  Add, commit, and push your code to your fork of the class repo.
-  2.  File an issue on the class repo titled "Your Name -- wXXdXX".
+  2.  Submit your Github link to Schoology
 
-  The issue should include:
+  The submission should include:
 
   -   A link that points back to your fork.
 

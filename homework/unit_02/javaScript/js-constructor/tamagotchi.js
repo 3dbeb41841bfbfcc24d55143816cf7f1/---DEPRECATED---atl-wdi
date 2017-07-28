@@ -1,6 +1,6 @@
 console.log('tamagotchi file is loaded');
 
-//your constructor function here
+//your class declaration here
 
 
 //create new Tamagotchis

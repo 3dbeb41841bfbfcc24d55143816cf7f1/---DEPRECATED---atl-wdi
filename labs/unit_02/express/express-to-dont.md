@@ -42,11 +42,12 @@ module.exports = {
 
 3. Routes!
 
-  All four CRUD actions, 6 routes in total!
+  All four CRUD actions, 7 routes in total!
 
   - 3a. Create or finish configuring your router file
   - 3b. index route and view
   - 3c. show route and view
-  - 3d. create route and view
+  - 3d. create route, view, and post route
   - 3e. edit route, view, and put route
   - 3f. delete route
+

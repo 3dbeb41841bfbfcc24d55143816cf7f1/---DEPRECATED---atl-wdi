@@ -10,4 +10,4 @@ the entire thing this weekend.
     - Links to projects that you have completed
     - Links to your Github, LinkedIn, Twitter, etc.
     
-- Post a link to a GitHub Pages or Bitballoon link to the Slack thread in #atl-wdi9-hmwork
+- Post a link to a GitHub Pages or Bitballoon link to Schoology
