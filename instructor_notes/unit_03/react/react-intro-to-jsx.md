@@ -14,7 +14,7 @@ competencies: Front-End Frameworks
 *After this lesson, students will be able to:*
 
 - Understand what JSX is and why it is different than HTML.
-- Catch differences in syntax between HTML and JSX.
+- Identify differences in syntax between HTML and JSX.
 - Loop through arrays of data and apply it to JSX rendering.
 - Insert data from `props` to JSX
 
@@ -48,7 +48,7 @@ const Element = <h1>Hello World</h1>;
 
 I know the question you are all asking... "How is this valid JavaScript? This would cause errors in other JavaScript apps!"  And you're right!  JSX is actually a language extension to JavaScript that will convert this 'HTML in JS' into pure JavaScript.  When Webpack is bundling your React code, it converts the JSX syntax into the `React.createElement()` method seen above.
 
-### CodeAlong: React Portfolio Page
+### CodeAlong: React Pets Page
 Let's jump in head first and learn JSX by doing.  Today we will build a simple portfolio page using just React and JSX. 
 
 #### Getting Started
@@ -94,6 +94,18 @@ export default App;
 **className**: One of the most noticeable differences between HTML and JSX is the use of `className` rather than `class`. Since we write JSX within JavaScript files, we cannot use keywords within the JavaScript language.  This means we can't use names like `class` and `for` when using JSX.  Instead, JSX provides `className` and `htmlFor` as replacements.  Most other HTML attributes will be exactly the same in JSX.  You can see all of the available attributes here: [Tags and Attributes](https://zhenyong.github.io/react/docs/tags-and-attributes.html)
 
 **src={logo}**: Another big difference between HTML and JSX is the ability to switch between JSX and JavaScript on the fly.  By wrapping an expression in `{}`, we are able to refer to variables and objects.  In the code above, you use `src={logo}` to import the SVG file that was defined earlier in the component.  When our app gets bundled through Webpack, the path of the SVG is inserted into the HTML that gets rendered into the DOM.  We can also use `{}` to use functions like `.map`, `.filter`, and `.reduce` to manipulate our data.
+
+### Import/Export
+We already know that you can import and export JavaScript methods through the new ES6 module system. You can also import static objects like photos and CSS very easily.
+```js
+import logo from './logo.svg';
+import './App.css';
+```
+In this example, we can see that we can import static files two different ways. 
+  * Import it as a named variable that can be later referenced in JSX. 
+  * Import the file without a name, which just signals to Webpack to load the content and make it available at runtime.
+
+In addition to making this a clean and easy way to refer to your static assets, this also allows Webpack to convert your images into a data URI.  This allows your page to load quicker and make less requests to the server.
 
 #### We Do: Profile Page
 Now that we've seen an example of some valid JSX, let's create a few components to build out our Portfolio. The first thing we should do is focus on keeping our file directory clean.  Before we create any new files, lets create a `components` directory inside of `src`.  This will hold all of the components we will be building during the codealong.  Within the components directory, let's create a file called `Profile.jsx`.  Your directory should look something like this.
@@ -171,7 +183,7 @@ import React, { Component } from 'react';
 class Profile extends Component {
   render(){
     return (
-      <img src="http://www.fillmurray.com/100/100" />
+      <img src="http://www.fillmurray.com/200/200" />
       <h1>Jamie King</h1>
       <h3>Full Stack Developer</h3>
     );
@@ -192,21 +204,41 @@ Now that we have built out a all the info we need for a splash page, let's add s
 
 ![](http://i.imgur.com/oQTKHBh.png)
 
-**YOU DO** 
+**WE DO** 
 * Create a component called `Specialties.jsx` and insert it into `App.js`.
 
 * Use JSX to add a `h2` tag that says "I specialize in..."
 
 * Follow along with the wire-frame to create 3 specialization cards. Use a service like [Placehold.it](https://placeholder.com) for temporary pictures.
 
+* Specialty data:
+```
+Specialty 1
+  JavaScript
+  Image Url: https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2000px-Unofficial_JavaScript_logo_2.svg.png
+  Description: JavaScript is a programming language commonly used in web development. It was originally developed by Netscape as a means to add dynamic and interactive elements to websites. While JavaScript is influenced by Java, the syntax is more similar to C and is based on ECMAScript, a scripting language developed by Sun Microsystems.
+
+Specialty 2
+  Ruby
+  Image Url: https://blog.joefallon.net/wp-content/uploads/2014/07/rubylang.png
+  Description: Ruby is a dynamic, reflective, object-oriented, general-purpose programming language. It was designed and developed in the mid-1990s by Yukihiro "Matz" Matsumoto in Japan. According to its creator, Ruby was influenced by Perl, Smalltalk, Eiffel, Ada, and Lisp.[11] It supports multiple programming paradigms, including functional, object-oriented, and imperative. It also has a dynamic type system and automatic memory management.
+
+Specialty 3
+  Node.js
+  Image Url: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png
+  Description: Node.js is an open-source, cross-platform JavaScript run-time environment for executing JavaScript code server-side. Historically, JavaScript was used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML, to be run client-side by a JavaScript engine in the user's web browser. Node.js enables JavaScript to be used for server-side scripting, and runs scripts server-side to produce dynamic web page content before the page is sent to the user's web browser. 
+```
 
 #### DRYing up your code with loops and props (I Do)
 You may have noticed that we've repeated a lot of JSX within the Specialties component.  This is a bad practice.  The React philosophy is to make your components very small and ideally reusable.  We have 3 component's here that all look pretty similar, so lets extract them into their own smaller component.
 
-Let's create a `Specialization` component that will contain a single specialization.  For every part of the component that is specific to the specialization, we are going to replace that value with `{this.props.something}`
+Let's create a `Specialization` component that will contain a single specialization.  We will then pass data into this generic component using React's unidirectional data flow.
+
+### Unidirectional Data Flow
+Data flow in React works in one direction to make the logic of your application simpler.  Because of this philosophy, we can only pass data from Parent element to Child element.  We are able to pass this data in JSX by adding attributes to the child elements. This data then is sent to a special object called `this.props`.
 
 #### this.props
-`this.props` is a way of passing data from a parent to a child component.  Essentially this means that we can write generic properties in our child component and then outline the data that should be filled in in the parent component. 
+`this.props` is how we are able to retrieve data that is passed down from Parent to Child element.  `this.props` allows us to write out reusable and dynamic JSX code. We can create multiple of the same element, and have it render different HTML in the DOM based on what elements we pass through the parent component.
 
 Let's look at this example of a Parent/Child relationship.
 ```js
@@ -237,7 +269,7 @@ Will output
   </div>
 ```
 
-**NOTE** Props can only ever be passed down from parent to child element.  You cannot pass data from child to parent component
+**AGAIN** Props can only be passed down from parent to child element.  You cannot pass data from child to parent component
 
 #### Looping in JSX
 This example can still be cleaned up even further. In the `Tacos` example component, we call `Taco` three times.  What if we had 100 favorite tacos? That would be a huge pain to type out by hand.  Thankfully, we can use JavaScript to loop in JSX.  In order to do this, we use the array methods available to us in JavaScript. (i.e. Map, Filter, etc.)  
@@ -259,26 +291,20 @@ class Tacos extends Component{
 
 **Whats the deal with `key={i}`?**: Whenever we use loops in JSX, we need to make sure that we add a key with a unique id for each looped element.  This is so React is able to keep track of which looped element is which.  
 
-#### You Do:
+#### We Do:
 Try refactoring the `Specializations` component to break up the code into smaller components, and use a `.map` to loop through an array of objects to display your info.
 
-#### JSX Conditionals
-The ability to mix JSX and JavaScript at will makes it fantastic for templating a UI.  Let's combine ternary equations with the JSX syntax.
+**React Dev Tools** An easy way to keep track of props is through utilizing the React Dev Tools
 
-```js
-class Taco extends Component{
-  const opinion = this.props.flavor === 'Guacamole' ? 'REALLY love' : 'love'
-  render(){
-    return <h1>I {opinion} {this.props.flavor} tacos!</h1>
-  }
-}
-```
+#### JSX Conditionals
+Since we are creating templates that output HTML within JavaScript, we can easily utilize if/else, switch, and ternary statements.  This is a luxury that wasn't available when we were using handlebars, nor is it available in other popular front-end libraries like Angular and Vue. 
+The ability to mix JSX and JavaScript at will makes it fantastic for templating a UI.  Let's combine ternary equations with the JSX syntax.
 
 You can also use ternary equations inline while you're writing JSX
 
 ```js
 render() {
-  const isLoggedIn = this.state.isLoggedIn;
+  const isLoggedIn = this.props.isLoggedIn;
   return (
     <div>
       The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
@@ -287,24 +313,40 @@ render() {
 }
 ```
 
-Now that we know how to 
+---OR---
 
-- Give example of React.createElement - DONE `line 41`
-- Mention containers for div - DONE `line 183`
-- Focus on the () that wraps jsx - DONE `line 91`
-- Common Gotchas - DONE ``
-- Closing Tags - Done `line 185`
-- Using JavaScript in JSX - Need more detail
-- Conditionals
-- Nesting - Done.  Maybe mention more about unidirectional data flow
-- Map
-- Filter
-- Sort
-- If Else
-- Events
+```js
+class Taco extends Component{
+  let opinion;
+  if (this.props.flavor === 'Guacamole'){
+    opinion = "love"
+  } else {
+    opinion = "like"
+  }
+  render(){
+    return <h1>I {opinion} {this.props.flavor} tacos!</h1>
+  }
+}
+```
 
-
-- unidirectional
+### You Do: 
+Add a `Projects` and `Project` component to your React Portfolio page. 
+  * Create an array of objects to represent all of the projects you will be working on during WDI.:
+    ```
+    [{
+      project: 1,
+      title: "Project name",
+      description: "Description here",
+      deployedLink: "link here",
+      githubLink: "github link",
+      complete: true
+    },{
+      project: 2,
+      ...
+    }]
+    ```
+  * Place the array of objects in the `Projects` component, and pass them down to the `this.props` of the `Project` component.
+  * Create an if-else statement that will show a project as "Coming Soon" if `complete` is equal to false.
 
 ## Further Reading:
 
