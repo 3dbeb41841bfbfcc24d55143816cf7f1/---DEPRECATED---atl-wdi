@@ -120,7 +120,7 @@ React requires us to think about our web applications in a very specific way. No
 
 * What are all of the components that make up your page?
 * Are there any components that might be rendered multiple times on the same page?
-* Draw a diagram of the page with boxes around each component. Alongside your diagram, list the components and their 
+* Draw a diagram of the page with boxes around each component. Alongside your diagram, list the components and the data that each component might require.
 
 
 
