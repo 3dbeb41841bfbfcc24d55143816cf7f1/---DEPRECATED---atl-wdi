@@ -37,7 +37,7 @@ These are just two of the many examples of problems for which React provides ele
 * Get with a partner and write down three examples of `DOM manipulations` that you have to manually add to your page more than once per project.
 * Then write down three websites that would have terrible UX if the page reloaded on every click. (You can't use the examples I gave though.)
 
-## What is React? Why Should I Learn it? (20 mins)
+## What is React? Why Should I Learn it?
 
 React is a client-side framework created by Facebook that is quickly taking over the development world. React builds on the progress made by previous front-end frameworks, such as EmberJS and AngularJS, but has its own set of goals and priorities.
 
