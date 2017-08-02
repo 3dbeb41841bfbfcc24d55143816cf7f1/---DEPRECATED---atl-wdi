@@ -30,7 +30,7 @@ If you've ever written HTML within JavaScript, you know that the experience can 
 
 ## JSX
 
-JSX was created by Facebook to provide a descriptive and clean way to write the HTML that React sends into the DOM.  JSX is actually not the only way to send HTML to the DOM in React.  Before JSX, developers would render HTML through the `React.createElement()` method.
+JSX was created by Facebook to provide a descriptive and clean way to structure the HTML that React sends to the DOM. Before JSX, developers would render HTML through the `React.createElement()` method.
 
 ```js
 const HelloWorld = React.createElement({
@@ -39,20 +39,42 @@ const HelloWorld = React.createElement({
   "Hello World" // HTML String
 });
 ```
+---
+```js
+const User = React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "p",
+      null,
+      "Bob"
+    ),
+    React.createElement(Button, null, "add friend")
+  )
+}
+```
 
 While this rendered HTML extremely effectively, it can be difficult to parse and understand.  Because of this, JSX created to provide developers a more expressive and familiar way to write elements to be rendered to the DOM.  JSX is written out as a mark-up language, just like HTML.
 
 ```js
 const Element = <h1>Hello World</h1>;
 ```
-
+---
+```js
+const User = (
+  <div>
+    <p>Bob</p>
+    <button>add friend</button>
+  </div>
+)
+```
 I know the question you are all asking... "How is this valid JavaScript? This would cause errors in other JavaScript apps!"  And you're right!  JSX is actually a language extension to JavaScript that will convert this 'HTML in JS' into pure JavaScript.  When Webpack is bundling your React code, it converts the JSX syntax into the `React.createElement()` method seen above.
 
-### CodeAlong: React Pets Page
+### CodeAlong: React Portfolio Page
 Let's jump in head first and learn JSX by doing.  Today we will build a simple portfolio page using just React and JSX. 
 
 #### Getting Started
-Navigate to your in-class directory and run `create-react-app`
+Navigate to your in-class directory and run `create-react-app react-portfolio`
 
 ```bash
 create-react-app react-portfolio
@@ -87,13 +109,13 @@ class App extends Component {
 export default App;
 ```
 
-**render()**: Every time you create a React Component class, you will use the `render` function.  This function tells React what the output of your component will be upon it's initial creation and every time it updates.  We will write our JSX within the `render` function.
+**render(){}**: Every time you create a React Component class, you will use the `render` function. Render is one of several **lifecycle methods** built into React.  We'll go in-depth on what that means later in class. This function tells React what the output of your component will be upon it's initial creation and every time it updates.  We will **always** return JSX code in this function.
 
 **return ()**: Since render is just a regular method call, we have to `return` something.  The JSX return is often more than 1 line.  When we have more than 1 line, we wrap the entire JSX statement in `()`.
 
-**className**: One of the most noticeable differences between HTML and JSX is the use of `className` rather than `class`. Since we write JSX within JavaScript files, we cannot use keywords within the JavaScript language.  This means we can't use names like `class` and `for` when using JSX.  Instead, JSX provides `className` and `htmlFor` as replacements.  Most other HTML attributes will be exactly the same in JSX.  You can see all of the available attributes here: [Tags and Attributes](https://zhenyong.github.io/react/docs/tags-and-attributes.html)
+**className**: One of the most noticeable differences between HTML and JSX is the use of `className` rather than `class`. Since we write JSX within JavaScript files, we cannot use keywords within the JavaScript language.  This means we shouldn't use names like `class` and `for` when using JSX.  Instead, JSX provides `className` and `htmlFor` as replacements.  Most other HTML attributes will be exactly the same in JSX.  You can see all of the available attributes here: [Tags and Attributes](https://zhenyong.github.io/react/docs/tags-and-attributes.html)
 
-**src={logo}**: Another big difference between HTML and JSX is the ability to switch between JSX and JavaScript on the fly.  By wrapping an expression in `{}`, we are able to refer to variables and objects.  In the code above, you use `src={logo}` to import the SVG file that was defined earlier in the component.  When our app gets bundled through Webpack, the path of the SVG is inserted into the HTML that gets rendered into the DOM.  We can also use `{}` to use functions like `.map`, `.filter`, and `.reduce` to manipulate our data.
+**src={logo}**: Another major feature of JSX is the ability to switch between JSX and JavaScript on the fly.  By wrapping an expression in `{}`, we are able to refer to variables and objects.  In the code above, you use `src={logo}` to import the SVG file that was defined earlier in the component.  When our app gets bundled through Webpack, the path of the SVG is inserted into the HTML that gets rendered into the DOM.  We can also use `{}` to use functions like `.map`, `.filter`, and `.reduce` to manipulate our data.
 
 ### Import/Export
 We already know that you can import and export JavaScript methods through the new ES6 module system. You can also import static objects like photos and CSS very easily.
@@ -167,11 +189,11 @@ class App extends Component {
 export default App;
 ```
 
-**GOTCHA**: We always capitalize React components.  If we use lower case, JSX will interpret it as a regular html tag.
+**GOTCHA**: We always capitalize React components.  If we use lower case, JSX will interpret it as a regular HTML tag.
 
-**GOTCHA AGAIN**: Notice the self closing tag on the React component (`/>`).  Another big difference between HTML and JSX is that JSX is very picky about opening and closing tags.  Every tag you make in JSX has to be closed (i.e `<h1></h1>` or `<span>`)
+**GOTCHA AGAIN**: Notice the closing tag on the React component (`/>`).  Another big difference between HTML and JSX is that JSX is very picky about opening and closing tags.  Every tag you make in JSX has to be closed (i.e `<h1></h1>` or `<span />`)
 
-Once we properly import our `Profile` component, we should see a big "Hello world" on the page.
+Once we properly import our `Profile` component, we should see a big "Hello World!" on the page.
 
 #### Adding onto the Profile component
 
@@ -183,8 +205,8 @@ import React, { Component } from 'react';
 class Profile extends Component {
   render(){
     return (
-      <img src="http://www.fillmurray.com/200/200" />
-      <h1>Jamie King</h1>
+      <img src="http://www.placecage.com/200/300" />
+      <h1>Nic Cage</h1>
       <h3>Full Stack Developer</h3>
     );
   }
@@ -200,7 +222,7 @@ export default Profile;
 After wrapping the tags in a div, we should see the first bit of our profile page. Hooray! 
 
 #### Building out a Specializations component
-Now that we have built out a all the info we need for a splash page, let's add some more content to the page.  Next up, we want to build a section of the portfolio page that will show of what technologies we know.  Let's look at the wire-frame of what we want to build.
+Now that we have built out all the info we need for a splash page, let's add some more content to the page.  Next up, we want to build a section of the portfolio page that will show of what technologies we know.  Let's look at the wire-frame of what we want to build.
 
 ![](http://i.imgur.com/oQTKHBh.png)
 
@@ -229,7 +251,7 @@ Specialty 3
   Description: Node.js is an open-source, cross-platform JavaScript run-time environment for executing JavaScript code server-side. Historically, JavaScript was used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML, to be run client-side by a JavaScript engine in the user's web browser. Node.js enables JavaScript to be used for server-side scripting, and runs scripts server-side to produce dynamic web page content before the page is sent to the user's web browser. 
 ```
 
-#### DRYing up your code with loops and props (I Do)
+#### DRYing up your code with loops and props
 You may have noticed that we've repeated a lot of JSX within the Specialties component.  This is a bad practice.  The React philosophy is to make your components very small and ideally reusable.  We have 3 component's here that all look pretty similar, so lets extract them into their own smaller component.
 
 Let's create a `Specialization` component that will contain a single specialization.  We will then pass data into this generic component using React's unidirectional data flow.
@@ -269,7 +291,7 @@ Will output
   </div>
 ```
 
-**AGAIN** Props can only be passed down from parent to child element.  You cannot pass data from child to parent component
+**AGAIN** Props can only be passed down from parent to child element.  You cannot pass props from child to parent component
 
 #### Looping in JSX
 This example can still be cleaned up even further. In the `Tacos` example component, we call `Taco` three times.  What if we had 100 favorite tacos? That would be a huge pain to type out by hand.  Thankfully, we can use JavaScript to loop in JSX.  In order to do this, we use the array methods available to us in JavaScript. (i.e. Map, Filter, etc.)  
@@ -297,7 +319,7 @@ Try refactoring the `Specializations` component to break up the code into smalle
 **React Dev Tools** An easy way to keep track of props is through utilizing the React Dev Tools
 
 #### JSX Conditionals
-Since we are creating templates that output HTML within JavaScript, we can easily utilize if/else, switch, and ternary statements.  This is a luxury that wasn't available when we were using handlebars, nor is it available in other popular front-end libraries like Angular and Vue. 
+Since we are creating templates that output HTML within JavaScript, we can easily utilize Javascript's if/else, switch, and ternary statements.  This is a luxury that wasn't available when we were using handlebars, nor is it available in other popular front-end libraries like Angular and Vue. 
 The ability to mix JSX and JavaScript at will makes it fantastic for templating a UI.  Let's combine ternary equations with the JSX syntax.
 
 You can also use ternary equations inline while you're writing JSX
