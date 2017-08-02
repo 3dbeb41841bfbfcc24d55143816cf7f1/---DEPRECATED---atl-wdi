@@ -1,5 +1,7 @@
 # React Documentation Scavenger Hunt
 
+[React Docs](https://facebook.github.io/react/docs/hello-world.html)
+
 ### Post answers (and links to where you found them) for each of the questions below:
 
 1. Can we use `npm` with React or do we have to use `yarn`?
