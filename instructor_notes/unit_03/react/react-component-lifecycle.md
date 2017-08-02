@@ -26,7 +26,7 @@ competencies: Front-end frameworks
 
 ### React Component Lifecycle
 
-When building a React application, EVERYTHING is a component.  A component has several methods that get executed every time it is mounted, updated, or unmounted.  This is important because we need to overwrite one of these methods to make our API call.
+When building a React application, EVERYTHING is a component.  In React, we create a component by extending the `React.Component` method.  When we extend the `Component` class, we gain the methods that allow us to build a stateful component.  So far, we've only been  A component has several methods that get executed every time it is mounted, updated, or unmounted.  This is important because we need to overwrite one of these methods to make our API call.
 
 <div style="width: 100vw; height: 40vh;">
   <img style="float: left; width: 40vw; padding: 0px 15px;" src="http://imgur.com/BrWR7kt.jpg" />
