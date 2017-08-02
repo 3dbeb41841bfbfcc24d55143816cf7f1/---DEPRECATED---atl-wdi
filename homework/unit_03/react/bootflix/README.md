@@ -13,8 +13,7 @@ It is the year 2017. You've just been hired by a startup called **Bootflix** tha
 Hi! I wanted to let you know that I've created our beta page and you'll be working with that today. I used React start a UI but I don't really know how to code because I'm a designer... Anyways, you're smart and all that so could you actually write the code that gets movies? The forms work. That's it, though.
 
 ### Requirements
-- You need to create methods in `App.js` to search by id and by title.
-  - Create the methods.
+- You need to add logic to the existing methods in `App.js` to search by id and by title.
   - Pass the methods into the `Search` component.
   - Make an `axios` call to **omdb** with the id/title given by the user.
   - Update the `state` with new movie information
@@ -23,10 +22,9 @@ Hi! I wanted to let you know that I've created our beta page and you'll be worki
 
 **To get started:**
 
-1. You will need to add state and events to the `App.js` component. This will require adding an `axios` call to **omdb**.
+1. Review the existing components for hints on what you need to do in each Component to build a working search.
 2. Once your AJAX call is successful, you will need to update the state of `App.js` and make sure that the relevant info is being passed down to the relevant child components.
-4. Detailed notes are included in the source code.
-5. Jane has created the forms and CSS. You will need to add the logic to populate and send your API call.
+3. Jane has created the forms and CSS. You will need to add the logic to populate and send your API call.
 
 ### Notes
 
