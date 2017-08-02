@@ -22,7 +22,7 @@ competencies: Front-End Frameworks
 *Before this lesson, students should already be able to:*
 
 - Create a React application using `create-react-app`.
-- Write HTML and be familiar with the concepts behind injecting JavaScript into HTM
+- Write HTML and be familiar DOM manipulation in JavaScript
 
 <br>
 
