@@ -114,7 +114,7 @@ React requires us to think about our web applications in a very specific way. No
 
 ### Take 10 minutes and read this article from the excellent React docs: [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html)
 
-## You Do: Breaking applications down to components (15 minutes)
+## You Do: Breaking applications down to components
 
 ### With a partner, choose a site such as [eBay](http://www.ebay.com), [Pinterest](http://www.pinterest.com), or [Instagram](http://www.instagram.com) and list the following:
 
