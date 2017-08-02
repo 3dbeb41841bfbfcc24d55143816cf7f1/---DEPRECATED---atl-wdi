@@ -135,10 +135,10 @@ competencies: Front-end frameworks
 	  render() {
 	    return (
 	        <div>
-	          <h1>Breakin' 2: Electric Boogaloo</h1>
+	          <h1>Breakin 2: Electric Boogaloo</h1>
 	
 	          <div>Rating: PG</div>
-	          <p>Description: Breakin' 2: Electric Boogaloo is a 1984 film directed by Sam
+	          <p>Description: Breakin 2: Electric Boogaloo is a 1984 film directed by Sam
 	            Firstenberg. It is a sequel to the 1984 breakdancing film
 	            Breakin'. Electric Boogaloo was released nine months after its
 	            predecessor by TriStar Pictures and by Cannon Films a few months
