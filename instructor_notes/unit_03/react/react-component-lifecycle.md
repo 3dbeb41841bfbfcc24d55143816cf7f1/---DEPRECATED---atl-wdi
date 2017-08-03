@@ -26,7 +26,7 @@ competencies: Front-end frameworks
 
 ### React Component Lifecycle
 
-When building a React application, EVERYTHING is a component.  In React, we create a component by extending the `React.Component` method.  When we extend the `Component` class, we gain the methods that allow us to build a stateful component.  So far, we've only been  A component has several methods that get executed every time it is mounted, updated, or unmounted.  This is important because we need to overwrite one of these methods to make our API call.
+When building a React application, EVERYTHING is a component.  In React, we create a component by extending the `React.Component` method.  When we extend the `Component` class, we gain the methods that allow us to build a stateful component.  So far, we've only been working with the `render` method, but there are several other functions we have access to when building React apps.  These methods get executed every time a component is mounted, updated, or unmounted.
 
 <div style="width: 100vw; height: 40vh;">
   <img style="float: left; width: 40vw; padding: 0px 15px;" src="http://imgur.com/BrWR7kt.jpg" />
@@ -64,7 +64,7 @@ When a component is rendered on screen for the first time, there are 5 methods t
 
 
 **`componentDidMount()`**: This is invoked immediately after a component is mounted and available within the DOM.  This allows you to execute code once the component is available and visible on the client's screen.  If you use `setState` here, the method will trigger a re-render.  
-> **Warning**: This is an easy way too accidentally end up in a infinite loop. Be careful when updating information within componentDidMount.
+
 
 #### Updating State and Props
 The mounting lifecycle only takes place when the component is initially being rendered.  Any modifications that happen afterward go through the update lifecycle methods.  Let's quickly go over these.
