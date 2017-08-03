@@ -37,7 +37,7 @@ These are just two of the many examples of problems for which React provides ele
 * Get with a partner and write down three examples of `DOM manipulations` that you have to manually add to your page more than once per project.
 * Then write down three websites that would have terrible UX if the page reloaded on every click. (You can't use the examples I gave though.)
 
-## What is React? Why Should I Learn it? (20 mins)
+## What is React? Why Should I Learn it?
 
 React is a client-side framework created by Facebook that is quickly taking over the development world. React builds on the progress made by previous front-end frameworks, such as EmberJS and AngularJS, but has its own set of goals and priorities.
 
@@ -114,13 +114,13 @@ React requires us to think about our web applications in a very specific way. No
 
 ### Take 10 minutes and read this article from the excellent React docs: [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html)
 
-## You Do: Breaking applications down to components (15 minutes)
+## You Do: Breaking applications down to components
 
 ### With a partner, choose a site such as [eBay](http://www.ebay.com), [Pinterest](http://www.pinterest.com), or [Instagram](http://www.instagram.com) and list the following:
 
 * What are all of the components that make up your page?
 * Are there any components that might be rendered multiple times on the same page?
-* Draw a diagram of the page with boxes around each component. Alongside your diagram, list the components and their 
+* Draw a diagram of the page with boxes around each component. Alongside your diagram, list the components and the data that each component might require.
 
 
 
