@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
+import Navbar from './components/Navbar';
+import FullWidthImage from './components/FullWidthImage';
+import Description from './components/Description';
+import Menu from './components/Menu';
+import Locations from './components/Locations';
+import StoreHours from './components/StoreHours';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Place your components in here!</h1>
+        <Navbar />
+        <FullWidthImage />
+        <Description />
+        <Menu />
+        <Locations />
+        <StoreHours />
       </div>
     );
   }
