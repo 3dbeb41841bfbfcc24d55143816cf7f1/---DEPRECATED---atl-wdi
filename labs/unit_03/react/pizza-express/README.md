@@ -1,7 +1,6 @@
 ---
 title: React & JSX Lab
 type: Lab
-duration: 3:30
 creator:
     name: Jamie King
     city: ATL
@@ -31,8 +30,8 @@ Use the deployed version of the app to build your own version.  We've created a 
   * Contact
   * Description
   * Location  
-  * Locations
-  * Menu
+  * LocationList
+  * MenuList
   * MenuItem
   * Navbar
   * SplashImage
