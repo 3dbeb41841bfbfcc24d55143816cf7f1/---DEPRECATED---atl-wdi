@@ -1,5 +1,4 @@
 # Cheatsheet
-https://github.com/ga-students/wdi-remote-matey/wiki/Git-Cheatsheet
 
 1. $`git branch`
  - lists all available branches

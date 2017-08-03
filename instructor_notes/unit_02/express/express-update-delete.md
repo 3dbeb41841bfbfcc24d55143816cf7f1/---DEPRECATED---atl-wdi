@@ -28,7 +28,6 @@ MVC
 Acronyms galore. But let's quickly revisit what these are, and how we have applied them thus far.
 
 RESTful Routes:
-
 | **URL** | **HTTP Verb** |  **Action**|
 |------------|-------------|------------|
 | /photos/         | GET       | index  

@@ -6,9 +6,9 @@ This second project is your first foray into **building a full-stack server appl
 
 **This is exciting!** It is a lot, but we have given you the tools over the last few weeks to build what you need; you get to be creative in choosing what sort of application you want to build!
 
-**You will be working individually for this project**, and you will be designing the app yourself. We hope you will exercise creativity on this project, sketch some wireframes before you start, and write user stories to define what your users will want to do with the app.
+**You will be working with a group for this project**, and you will be designing the app with your group. We hope you will exercise creativity on this project, sketch some wireframes before you start, and write user stories to define what your users will want to do with the app.
 
-You will need to run your user stories, wireframes, and database design by your instructors to get their feedback and approval before you begin coding! Remember to keep things small and focus on mastering the fundamentals – scope creep/feature creep is the biggest pitfall for any project!
+Your group will need to run your user stories, wireframes, and database design by your instructors to get their feedback and approval before you begin coding! Remember to keep things small and focus on mastering the fundamentals – scope creep/feature creep is the biggest pitfall for any project!
 
 Identify what you need to build and accomplish to meet project expectations and identify everything else as stretch goals. If you meet your MVP (Minimum Viable Product) ahead of schedule, you can decide which reach goals to focus on for the remainder of your time.
 
@@ -18,7 +18,7 @@ Identify what you need to build and accomplish to meet project expectations and 
 
 Your app must:
 
-* **Have at _least_ 2 models** (more if they make sense) – one representing someone using your application (a user), and one that represents the main functional idea for your app
+* **Have at _least_ 3 models** (more if they make sense) – one representing someone using your application (a user), and two others that represent the main functional idea for your app
 <!-- * **Include sign up/log in functionality**, with encrypted passwords & an authorization flow. The boilerplate is here: https://github.com/ATL-WDI-Curriculum/atl-wdi-9/tree/master/projects/unit_02/project2_boilerplate -->
 * **Have complete RESTful routes** for at least one of your resources with GET, POST, PUT, and DELETE
 * **Write Mongo queries using the Mongoose module** and interact with your document database. Promises will likely make your life easier as you start to build complex queries!
@@ -42,9 +42,7 @@ Your app must:
 
 ---
 
-### To Submit
-
-* **Create a GitHub issue on the class repo** with a link your Project Repo, and a link to Heroku where your project's deployed.
+### Submit your project to Schoology by 2:00 PM on the presentation day!
 
 ---
 
@@ -72,11 +70,11 @@ You will create an application where users can bookmark links they want to keep.
 
 But what if users could trade bookmarks for other bookmarks? Or sell bookmarks for points? Or send bookmarks to your friends. Or something even crazier.
 
-##### Closet/Bookshelf Organizer
+##### Closet/Bookshelf/Pantry Organizer
 
-An application that helps users keep track of items in their closet or bookshelf.
+An application that helps users keep track of items in their closet.
 
-Maybe users could loan books/clothes to friends and keep track of it in their database.
+Maybe users could loan books/clothes/pantry items to friends and keep track of it in their database.
 
 ---
 
@@ -153,22 +151,9 @@ This meeting should take no longer than 15 minutes.
 If you have ideas on how you can help a fellow-student with work that they are stuck on, please follow-up with information AFTER the stand up.
 
 ## Meetings with instructors
-_Your instructor will contact you to setup a meeting time_
 
-**Friday, May 26th**<br>
-Work on your [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) and an initial wireframe in the morning. You will have a 15 minute meeting to get your project approved.
+_Your instructor will contact you around the mid-point of your project to set up a meeting time for your group._
 
-**Saturday, March 27th**<br>
-Work on your project.
-
-**Sunday, March 28th**<br>
-Work on your project.
-
-**Monday, May 29th**<br>
-Work on your project.
-
-**Tuesday, May 30th**<br>
-Submit your project to schoology by 2 pm EDT and present your project. Make sure to also send us a new link to your portfolio site!
 
 ## Where to go for help during project week
 1. Seek out help online

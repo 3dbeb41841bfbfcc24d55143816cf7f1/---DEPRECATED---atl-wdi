@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Roboto');
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #313E50;
+}
+
+/* App Styles  */
+.App {
+  text-align: center;
+}
+
+/* Navbar Styles */
+
+.navbar{
+  display: flex;
+  width: 100vw;
+  justify-content: space-around;
+  align-items: center;
+  background: rgb(15,12,1);
+  color: rgb(184, 169, 130);
+  box-shadow: -4px 1px 5px #000;
+}
+
+a{
+  color: rgb(184, 169, 130);
+}
+
+a:visited{
+  color: rgb(184, 169, 130);
+}
+
+/* SplashImage styles  */
+.splash-image{
+  background: url('./images/splashpizza.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 75vh;
+  font-size: 4rem;
+  color: white;
+  font-family: 'Permanent Marker', cursive;
+  text-shadow: 1px 2px 2px #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Description styles  */
+.description{
+  width: 100vw;
+  height: 350px;
+  background-color: #313E50;
+  color: rgba(255,255,255,.85);
+  display:flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+}
+.description p{
+  margin-left: 150px;
+  width: 50%;
+  max-height: 300px; 
+  min-width: 500px;
+  font-size: 1.15rem;
+  line-height: 25px;
+  overflow: hidden;
+}
+
+.description img{
+  width: 500px;
+  max-height: 400px;
+}
+
+/* Menu & MenuItem styles  */
+.menu{
+  background: rgb(118,86,56);
+  width: 100vw;
+}
+
+.menu h1{
+  margin: 0;
+  font-family: 'Permanent Marker', cursive;
+  color: white;
+  text-shadow: 1px 2px 2px #000;
+  font-size: 2.5rem;
+}
+
+.menu-container{
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  color: rgba(10,10,10,.85);
+}
+
+.menu-item{
+  box-sizing: border-box;
+  background: rgba(255,255,255, .35);
+  display: flex;
+  align-items: center;
+  width: 40%;
+  min-width: 500px;
+  max-height: 210px;
+  margin: 10px 5%;
+  border: 1px solid rgba(0,0,0,.25); 
+}
+
+.menu-description {
+  padding-left: 10px;
+  width: 55%;
+  text-align: left;
+}
+
+.menu-item-name{
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+.menu-item img {
+  width: 200px;
+  height: 200px;
+  padding: 5px;
+}
+
+/* Locations styles  */
+#locations h1{
+  font-family: 'Permanent Marker', cursive;
+  color: white;
+  text-shadow: 1px 2px 2px #000;
+  font-size: 2.5rem;
+}
+
+.locations{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  color: rgba(255,255,255,.85);
+}
+
+.location{
+  margin: 10px;
+  width: 30%;
+  padding: 10px;
+  border: 2px solid rgba(255,255,255,.85);
+} 
+
+ /* Contact Styles  */
+.contact h1{
+  font-family: 'Permanent Marker', cursive;
+  color: white;
+  text-shadow: 1px 2px 2px #000;
+  font-size: 2.5rem;
+}
+
+.contact{
+  color: rgba(255,255,255,.85);
+}

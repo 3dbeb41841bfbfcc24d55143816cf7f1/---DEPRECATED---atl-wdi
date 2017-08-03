@@ -1,0 +1,38 @@
+/* custom CSS values should go here! */
+body {
+  background-color: rgba(69, 94, 140, 0.33);
+  margin: 0px auto;
+  font-family: "Calibri", "Lucida", "Arial", sans-serif;
+}
+header {
+  background: linear-gradient(
+    to bottom,
+    rgba(61, 96, 172, 0.9) 0%,
+    rgba(61, 96, 252, 0.6) 100%
+  );
+  color: white;
+  padding: 8px;
+  height: 88px;
+  box-shadow: 2px 0px 2px 2px navy;
+}
+header h2 {
+  text-shadow: 2px 2px 2px navy;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+header a {
+  color: aliceblue;
+  font-style: italic;
+}
+section {
+  padding: 8px;
+}
+section:first-of-type {
+  margin-top: 20px;
+}
+.movie {
+  margin: 8px;
+  color: black;
+  box-shadow: 0px 0px 1px 1px navy;
+  border-radius: 3px;
+}

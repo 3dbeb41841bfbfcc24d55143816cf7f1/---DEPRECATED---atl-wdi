@@ -1,9 +1,11 @@
 ---
-title: Collaborating with git: branches, merging, and pull requests
+title: Collaborating with git
 type: lesson
 duration: "2:00"
 creator:
     name: Colin Hart
+adapted by:
+    name: Jamie King
 competencies: Deployment
 ---
 
@@ -26,7 +28,7 @@ Using git as we have in the past few months is perfectly fine when working alone
 
 *Exercise:* What problem does Git solve?
 
-## The problem
+## The Problem
 
 - How do you save your code in a reliable and trackable way?
 - How do you share code with collaborators
@@ -37,20 +39,22 @@ Up till now, git has only solved two big problems, how do we as teachers get the
 
 But git does _so_ much more.
 
+## You Do 
+Take a few minutes to read over [Understanding the Github Flow](https://guides.github.com/introduction/flow/)
 
-## setup
+## Setup
 
 Make sure you're *not* in your student repo in the terminal.
 
-1. Go to GitHub and create a repo called `testing-<your-name>``
+1. Go to GitHub and create a repo called `testing-<your-name>`. Make sure to initialize with a README.
 2. `clone` that repo down locally, again making sure you're *NOT* in the student repo.
 3. `cd` into that new repo.
 
-# processes and branching
+# Processes and Branching
 
 From now on you will have at least two branches if not more in your projects.
 
-  run $`git branch`
+  Run $`git branch`
 
   You should see in green something like this `* master`
 
@@ -61,7 +65,7 @@ From now on you will have at least two branches if not more in your projects.
      git     | pull/push |  origin  |    master
   ```
 
-## master branch
+## Master Branch
 
 It holds _working_ code
 
@@ -73,7 +77,7 @@ This is the code that users see and use. Not code that you are developing in or 
 
 It is a source of truth. This is the most final version of your application. If anything ever happens to your code, you know you can always just return to this version.
 
-## dev branch
+## Dev Branch
 
 Create a new branch; there are two commands you can use
 
@@ -112,7 +116,7 @@ Say you have a feature you're just stuck on, and someone else is going to take i
 
 Same process as above, and just making sure that you're not merging it to master ever.  
 
-## feature branches
+## Feature Branches
 
 You might take this one step farther.
 
@@ -142,9 +146,9 @@ m d f
 
 Naming conventions of feature branches would often follow the GitHub Issue # or the Trello Ticket and the name of the feature
 
-$`git checkout -b 12-auth-logout`
+$`git checkout -b 12-item-controller`
 
-And then you can work on the code for auth logout on that branch, make your commits there. And if you want to/or need to work on some other feature before log out is finished you can commit all your work to 12-auth-logoout, checkout to dev, and create a new feature branch
+And then you can work on the code for auth logout on that branch, make your commits there. And if you want to/or need to work on some other feature before log out is finished you can commit all your work to `12-item-controller`, checkout to dev, and create a new feature branch
 
 $`git checkout -b 15-todos-post`
 
@@ -154,7 +158,7 @@ master
 |\ dev
 | \
 | |
-| |\ 12-auth-logout
+| |\ 12-item-controller
 | | \
 | |  \
 | |\  15-todos-post
@@ -191,10 +195,10 @@ We're currently in `master` if we run `git merge dev` git will merge the code in
 
 It's possible you'd use it in your feature branch before pushing to GitHub
 
-Imagine you've finished your logout feature on the `12-auth-logout` branch
+Imagine you've finished your logout feature on the `12-item-controller` branch
 
 But in the time you've been working your other teammate has pushed some code relating to authentication to dev. Before you push your code to Github, starting the process of merging it into master, you should probably test that your logout feature works with the new dev code
 
-If you're really unsure, you could merge `dev` into your `12-auth-logout` branch. But assuming everyone is following all of these processes well, it's probably safe to merge it to dev and test it there.
+If you're really unsure, you could merge `dev` into your `12-item-controller` branch. But assuming everyone is following all of these processes well, it's probably safe to merge it to dev and test it there.
 
 After merging you can test your logout feature and the other features you're worried about conflicting in dev. When you've verified everything works or you fix whatever isn't you can add commit and push those change to your GitHub and then open a pull request from your fork to origin.
