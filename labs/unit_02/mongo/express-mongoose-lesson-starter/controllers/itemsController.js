@@ -1,130 +1,169 @@
 const express = require('express');
 
-const User = require("../models/user");
-const Item = require("../models/item");
+const User = require('../models/user');
+const Item = require('../models/item');
 
 const router = express.Router({mergeParams: true});
 
+// INDEX
+router.get('/', (request, response) => {
+  const userIdToFind = request.params.userId;
 
+  User.findById(userIdToFind).then((user) => {
+    response.render(
+        'items/index',
+        {
+          userId: user._id,
+          userName: user.first_name,
+          items: user.items,
+        },
+    );
+  });
+});
 
-router.get('/:itemId', (req, res) => {
-    const userId = req.params.userId;
-    const itemId = req.params.itemId;
+// RENDER THE NEW FORM
+router.get('/new', (request, response) => {
+  const userId = request.params.userId;
 
-    User.findById(userId)
-        .then((user) => {
-            const foundItem = user.items.find((item) => {
-            // const foundItems = user.items.filter((item) => {})
-                return item.id === itemId
-            });
+  response.render(
+      'items/new',
+      {userId},
+  );
+});
 
-            res.render('items/show', {
-                itemId,
-                itemName: foundItem.name,
-                userId,
-                userName: user.first_name
-            }); 
+// CREATE ROUTE
+router.post('/', (request, response) => {
+  const userId = request.params.userId;
+  const newItemInfo = request.body;
 
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-})
+  User.findById(userId).then((user) => {
+    const newItem = new Item(newItemInfo);
 
-//ROUTE THAT RENDERS 
+    user.items.push(newItem);
 
-router.get('/:itemId/edit', (req, res) => {
-    const userId = req.params.userId;
-    const itemId = req.params.itemId;
+    // RETURN the promise from user.save() so we can chain .then() blocks
+    // and only end up with one .catch() block at the very end
+    return user.save();
 
-    User.findById(userId)
-    .then((user) => {
-        const foundItem = user.items.find((item) => {
-            return item.id === itemId
-        })
-        res.render('items/edit', {
-            itemId,
-            userId,
-            itemName: foundItem.name,
-            userName: user.first_name
+  }).then((user) => {
+    console.log(`Saved new user with ID of ${user._id}`);
 
-        })
-    })
-})
+    response.render(
+        'items/show',
+        {
+          userId,
+          userName: user.first_name,
+          itemId: newItem._id,
+          itemName: newItem.name,
+        },
+    );
+  }).catch((error) => {
+    console.log(error);
+  });
+});
 
-router.put('/:itemId', (req, res) => {
-    const userId = req.params.userId;
-    const itemId = req.params.itemId;
+// SHOW
+router.get('/:itemId', (request, response) => {
+  const userId = request.params.userId;
+  const itemId = request.params.itemId;
 
-    User.findById(userId)
-    .then((user) => {
-        const foundItem = user.items.find((item) => {
-            return item.id === itemId;
-        })
-        foundItem.name = req.body.name;
+  User.findById(userId).then((user) => {
 
-        user.save()
-        .then((user) => {
-            console.log("updated user with ID of " + user._id)
+    const foundItem = user.items.find((item) => {
+      return item.id === itemId;
+    });
 
-            res.render(
-                'items/index',
-                {
-                    user,
-                    userId: user._id,
-                    userName: user.first_name,
-                    items: user.items
-                }
-            )
-        })
+    response.render(
+        'items/show',
+        {
+          userId,
+          userName: user.first_name,
+          itemId: foundItem._id,
+          itemName: foundItem.name,
+        },
+    );
+  }).catch((error) => {
+    console.log(`Failed to find user with ID of ${userId}`);
+    console.log(error);
+  });
+});
 
-        })
-    })
+// RENDER THE EDIT FORM
+router.get('/:itemId/edit', (request, response) => {
+  const userId = request.params.userId;
+  const itemId = request.params.itemId;
 
+  User.findById(userId).then((user) => {
+    const foundItem = user.items.find((item) => {
+      return item.id === itemId;
+    });
 
-router.get('/', (req, res) => {
-    const userIdToFind = req.params.userId;
+    response.render('items/edit', {
+      userId,
+      item: foundItem,
+    });
+  });
+});
 
-    User.findById(userIdToFind)
-    .then((user) => {
+// UPDATE AN ITEM
+router.put('/:itemId', (request, response) => {
+  const userId = request.params.userId;
+  const itemId = request.params.itemId;
 
-        const items = user.items;
+  User.findById(userId).then((user) => {
+    const foundItem = user.items.find((item) => {
+      return item.id === itemId;
+    });
 
-        res.render('items/index', {
-            items,
-            user,
-            userId: user._id
-        })
-    })
-})
+    foundItem.name = request.body.name;
 
+    // then save the user and return the promise so we can chain
+    // another .then() block and only use one .catch() block
+    return user.save();
 
-router.get('/:itemId/delete', (req, res) => {
-    const userId = req.params.userId;
-    const itemId = req.params.itemId;
+  }).then((user) => {
+    console.log(`updated user with ID of ${user._id}`);
 
-    User.findById(userId)
-    .then((user) => {
-        const arrayToDelete = user.items;
-        const itemToDelete = user.items.find((item) => {
-            return item.id === itemId;
-        })
-        const indexToDelete = user.items.indexOf(itemToDelete);
-        var newArray = arrayToDelete.splice(indexToDelete, 1);
+    response.render(
+        'items/index',
+        {
+          userId: user._id,
+          userName: user.first_name,
+          items: user.items,
+        },
+    );
+  }).catch((error) => {
+    console.log(`Failed to update item with ID of ${itemId}`);
+    console.log(error);
+  });
+});
 
-        user.save().then((user) => {
-            res.render('items/index', {
-            items: user.items,
-            user,
-            userId: user._id
-        })
-        })
-    
-        
-    })
-})
+// DELETE 
+router.get('/:itemId/delete', (request, response) => {
+  const userId = request.params.userId;
+  const itemId = request.params.itemId;
 
+  User.findById(userId).then((user) => {
+    //use Mongoose to remove the item from the user
+    user.items.id(itemId).remove();
 
+    // then save the user and return the promise so we can chain
+    // another .then() block and only use one .catch() block
+    return user.save();
 
+  }).then((user) => {
+    response.render(
+        'items/index',
+        {
+          userId: user._id,
+          userName: user.first_name,
+          items: user.items,
+        },
+    );
+  }).catch((error) => {
+    console.log(`Failed to delete user with ID of ${userId}`);
+    console.log(error);
+  });
+});
 
 module.exports = router;
