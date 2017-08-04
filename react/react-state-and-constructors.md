@@ -478,13 +478,197 @@ We want to build both an Admin View and a Store View that show the same exact da
 	<p>The product information should be stored in either our HomePage or App components, so that the data can _trickle down_ to any other components that might need it.</p>
 </details>
 
-### Building the Admin View
+## Building the Admin View
 
+Let's build an Admin view that will allow us to create some Products for our hardware store!
 
+### Creating the Component
 
+* Let's create our new AdminView component:
 
+	```bash
+	$ touch src/components/AdminView.js
+	```
+	
+	```javascript
+	import React, {Component} from 'react';
+	
+	class AdminView extends Component {
+	  render() {
+	    return (
+	        <div>
+	          <h1>Admin View</h1>
+	
+	          <h2>Products</h2>
+	          // show our list of products here
+	
+	          <h2>Create a New Product</h2>
+	          // create product form goes here
+	        </div>
+	    );
+	
+	  }
+	}
+	
+	export default AdminView;	
+	```
+	
+* ...and then we'll need to mount this component to our HomePage:
 
+	```javascript
+	...
+	import AdminView from './AdminView'
+	...
+	
+	...
+	{
+	  this.state.editSaleItem ?
+	      <div>
+	        <input
+	            onChange={this._handleItemCurrentlyOnSaleChange}
+	            value={this.state.itemCurrentlyOnSale}
+	            type="text"
+	        />
+	      </div>
+	      : null
+	}
+	
+	<AdminView/>
+	...
+	```	
 
+### Showing Our Products
+
+* Now that we've mounted our component, we'll want to add some functionality. The first thing we'll want to see in our AdminView is a list of products. 
+
+<details>
+	<summary>Which component's 'state' should contain this list of products?</summary>
+	<p>
+		If we only ever needed to view product information on our AdminView or its child components,
+		we could store the product list on our AdminView itself. However, we'll want to use this information across many components. If we want to respect React's "unidirectional data flow", we should store data in a top-level component. We'll put it in our HomePage.
+	</p>
+</details>
+
+* Let's create our `productList` on the `state` of our HomePage component. Remember, we'll set up our `state` inside of our `constructor()` function:
+
+	```javascript
+	...
+	constructor() {
+	super();
+	
+	this.state = {
+		itemCurrentlyOnSale: 'A Hammer',
+		editSaleItem: true,
+		productList: [
+			{
+			  productName: 'Hammer',
+			  description: 'Itsa hammer',
+			  price: 12.3,
+			},
+			{
+			  productName: 'Nail',
+			  description: 'Itsa nail',
+			  price: 0.12,
+			}
+		]
+	};
+	}
+	...
+	
+	```
+	
+* We don't need to show this information on our HomePage directly, so let's pass it on to the AdminView component using `props`.:
+	
+	```javascript
+	...
+	<AdminView productList={this.state.productList}/>
+	...
+	```	
+
+* As we are beginning to see, our `state` and `props` can work together to solve a lot of problems!
+
+* Now that we have created some initial data for our `productList` and passed it down to our `AdminView`, it's time to display our list of products! Let's create a `ProductList` component that we'll use to display a list of smaller Product components in our AdminView. 
+
+	This `ProductList` will need access to the same `productList` we passed into our `AdminView`. No problem! We can just pass `props` straight through our `AdminView` and down to a child component using more `props`.
+
+	```javascript
+	// src/components/ProductList.js
+	
+	import React, {Component} from 'react';
+	
+	import Product from './Product';
+	
+	class ProductList extends Component {
+	  render() {
+	    const productList = this.props.productList;
+	
+	    console.log(productList);
+	
+	    const productComponents = productList.map((product, index) => {
+	      return <Product
+	          productName={product.productName}
+	          description={product.description}
+	          price={product.price}
+	          key={index}/>;
+	    });
+	
+	    return (
+	        <div>
+	          { productComponents }
+	        </div>
+	    );
+	
+	  }
+	}
+	
+	export default ProductList;
+	```
+	---
+	
+	```javascript
+	// src/components/Product.js
+	
+	import React, {Component} from 'react';
+	
+	class Product extends Component {
+	  render() {
+	    const productName = this.props.productName;
+	    const description = this.props.description;
+	    const price = this.props.price;
+	
+	    return (
+	        <div>
+	          <h3>{productName}</h3>
+	          <div>{description}</div>
+	          <div>{price}</div>
+	        </div>
+	    );
+	
+	  }
+	}
+	
+	export default Product;
+	```
+
+## Adding Some Products
+
+* Now that we're able to view our product list, it's time to add some new products. As always, to update our existing information we'll need a form. Let's add a new form to our `AdminView`.
+
+```javascript
+<input name="productName" type="text" placeholder="Name"/>
+<input name="description" type="text" placeholder="Description"/>
+<input name="price" type="number" min="0.00" step="0.01"/>
+```
+
+- create a _createNewProduct function on HomePage 
+- pass the function down as a parameter to AdminView
+- create newProduct on AdminView state
+- form onSubmit calls the function and passes this.state.newProduct
+- reset newProduct to defaults
+
+### Validating Form Inputs
+
+- use proptypes to validate product inputs
 
 
 
@@ -502,9 +686,4 @@ We want to build both an Admin View and a Store View that show the same exact da
 - possibly unique ids? timestamps?
 - setState()
 
-## Changing State From Child Components
-
-
-
-## Sharing State Across React components
-- trickles down
+##You Do: Create a ShopView Component
