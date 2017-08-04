@@ -743,7 +743,7 @@ Let's build an Admin view that will allow us to create some Products for our har
   	...
 	<AdminView 
 		productList={this.state.productList} 
-		addNewProductToProductList={this.addNewProductToProductList}/>
+		addNewProductToProductList={this.)_addNewProductToProductList}/>
   	...
 	```
 	
@@ -787,7 +787,7 @@ Let's build an Admin view that will allow us to create some Products for our har
 
 * Add a button to each product in the Admin view that will allow us to delete the product.
 
-##You Do: Create a ShopView Component
+## You Do: Create a ShopView Component
 
 Let's create a ShopView to show our product info in a different way. 
 
