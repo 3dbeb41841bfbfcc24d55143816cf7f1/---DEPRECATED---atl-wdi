@@ -212,7 +212,68 @@ Next we run `node db/seeds.js` to populate our database.  Now we finally have en
 > COMMIT
 
 ## Building an API
-Now that we have data within our database, let's use Express to retrieve that info and serve it as JSON for our React app to consume.  In order to do that, we need to use Express Router to build routes for our API.
+Now that we have data within our database, let's use Express to retrieve that info and serve it as JSON for our React app to consume.  In order to do that, we need to use Express Router to build routes for our API. This is going to look similar to the server side rendered controllers we built in the past, but with one major difference.
+
+```js
+// ./server.js
+  app.use('/api/game', GamesController);
+// ./controllers/games
+const express = require('express');
+const Game = require('../models/game');
+const router = express.Router();
+
+router.get("/", (req,res) => {
+  Game.findOne({}).then((games) => {
+    res.json(games);
+  });
+});
+
+module.exports = router;
+```
+
+Now if we check our route at `localhost:3001/api/games` we should see that we get a JSON object back.  We are able to get this JSON object by using `res.json` instead of `.render` or `.send`.
+
+We can now retrieve a game with one category.  This gives us enough to get started on building a UI for the Jeopardy game.
+
+> COMMIT
+
+### Scaffolding out our Jeopardy UI.
+To get a MVP for our game, we need to create several components.  We will build the following components: 
+  * Game
+  * GameBoard
+  * Category
+  * Question
+
+Before we link our UI to our API, let's first build these components and provide some mock data to help us get an idea on how we want to style the app.
+
+### We Do
+Let's build each component, and provide it with dummy data for the moment.  At the end, we'll have a game with a gameboard that has 6 categories and each category has 5 questions.
+
+After we have the structure of our app, let's use `styled-components` to style the application.
+``` bash
+  # Inside the client folder
+  yarn add styled-components 
+  # or
+  npm i --save styled-components
+```
+
+### You Do
+Use `styled-components` to style the React components to look more like a Jeopardy board.
+![](https://larryfire.files.wordpress.com/2013/03/jeopardy-stephen-king_510x317.jpg)
+
+Use the Lato font with a font-weight of 700.
+  - Inject this link into index.html 
+  ```html
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+  ```
+Colors
+  - Yellow: #ffff5f
+  - Blue: #2a3698
+  - Black: #000
+
+> COMMIT
+
+
 
 ToDo:
 - Take time to design app. ERD/User Stories/etc
