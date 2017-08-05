@@ -478,33 +478,318 @@ We want to build both an Admin View and a Store View that show the same exact da
 	<p>The product information should be stored in either our HomePage or App components, so that the data can _trickle down_ to any other components that might need it.</p>
 </details>
 
-### Building the Admin View
+## Building the Admin View
 
+Let's build an Admin view that will allow us to create some Products for our hardware store!
 
+### Creating the Component
 
+* Let's create our new AdminView component:
 
+	```bash
+	$ touch src/components/AdminView.js
+	```
+	
+	```javascript
+	import React, {Component} from 'react';
+	
+	class AdminView extends Component {
+	  render() {
+	    return (
+	        <div>
+	          <h1>Admin View</h1>
+	
+	          <h2>Products</h2>
+	          // show our list of products here
+	
+	          <h2>Create a New Product</h2>
+	          // create product form goes here
+	        </div>
+	    );
+	
+	  }
+	}
+	
+	export default AdminView;	
+	```
+	
+* ...and then we'll need to mount this component to our HomePage:
 
+	```javascript
+	...
+	import AdminView from './AdminView'
+	...
+	
+	...
+	{
+	  this.state.editSaleItem ?
+	      <div>
+	        <input
+	            onChange={this._handleItemCurrentlyOnSaleChange}
+	            value={this.state.itemCurrentlyOnSale}
+	            type="text"
+	        />
+	      </div>
+	      : null
+	}
+	
+	<AdminView/>
+	...
+	```	
 
+### Showing Our Products
 
+* Now that we've mounted our component, we'll want to add some functionality. The first thing we'll want to see in our AdminView is a list of products. 
 
+<details>
+	<summary>Which component's 'state' should contain this list of products?</summary>
+	<p>
+		If we only ever needed to view product information on our AdminView or its child components,
+		we could store the product list on our AdminView itself. However, we'll want to use this information across many components. If we want to respect React's "unidirectional data flow", we should store data in a top-level component. We'll put it in our HomePage.
+	</p>
+</details>
 
+* Let's create our `productList` on the `state` of our HomePage component. Remember, we'll set up our `state` inside of our `constructor()` function:
 
+	```javascript
+	...
+	constructor() {
+	super();
+	
+	this.state = {
+		itemCurrentlyOnSale: 'A Hammer',
+		editSaleItem: true,
+		productList: [
+			{
+			  productName: 'Hammer',
+			  description: 'Itsa hammer',
+			  price: 12.3,
+			},
+			{
+			  productName: 'Nail',
+			  description: 'Itsa nail',
+			  price: 0.12,
+			}
+		]
+	};
+	}
+	...
+	
+	```
+	
+* We don't need to show this information on our HomePage directly, so let's pass it on to the AdminView component using `props`.:
+	
+	```javascript
+	...
+	<AdminView productList={this.state.productList}/>
+	...
+	```	
 
+* As we are beginning to see, our `state` and `props` can work together to solve a lot of problems!
 
+* Now that we have created some initial data for our `productList` and passed it down to our `AdminView`, it's time to display our list of products! Let's create a `ProductList` component that we'll use to display a list of smaller Product components in our AdminView. 
 
+	This `ProductList` will need access to the same `productList` we passed into our `AdminView`. No problem! We can just pass `props` straight through our `AdminView` and down to a child component using more `props`.
 
-- we want to store the overall state as high up in the component tree as we can ===> App.js
-- state can be modified by child components, only if we pass functions to allow it < reverses "scope" rules
+	```javascript
+	// src/components/ProductList.js
+	
+	import React, {Component} from 'react';
+	
+	import Product from './Product';
+	
+	class ProductList extends Component {
+	  render() {
+	    const productList = this.props.productList;
+	
+	    console.log(productList);
+	
+	    const productComponents = productList.map((product, index) => {
+	      return <Product
+	          productName={product.productName}
+	          description={product.description}
+	          price={product.price}
+	          key={index}/>;
+	    });
+	
+	    return (
+	        <div>
+	          { productComponents }
+	        </div>
+	    );
+	
+	  }
+	}
+	
+	export default ProductList;
+	```
+	---
+	
+	```javascript
+	// src/components/Product.js
+	
+	import React, {Component} from 'react';
+	
+	class Product extends Component {
+	  render() {
+	    const productName = this.props.productName;
+	    const description = this.props.description;
+	    const price = this.props.price;
+	
+	    return (
+	        <div>
+	          <h3>{productName}</h3>
+	          <div>{description}</div>
+	          <div>{price}</div>
+	        </div>
+	    );
+	
+	  }
+	}
+	
+	export default Product;
+	```
 
-## Changing State
+## Adding Some Products
 
-- spread operator to copy part of state being modified
-- possibly unique ids? timestamps?
-- setState()
+* Now that we're able to view our product list, it's time to add some new products. As always, to update our existing information we'll need a form. Let's add a new `ProuctForm` to our `AdminView`. Just as before, we'll need to use an `onChange()` function to update our Component's state. Let's create a `newProduct` on the state to keep track of the form's changes.
 
-## Changing State From Child Components
+	```jsx
+	// src/components/ProductForm.js
+	
+	import React, {Component} from 'react';
+	
+	class ProductForm extends Component {
+	
+	  constructor () {
+	    super();
+	
+	    this.state = {
+	      newProduct: {}
+	    }
+	  }
+	
+	  _handleNewProductChange = (event) => {
+	    const attributeName = event.target.name;
+	    const attributeValue = event.target.value;
+	
+	    const newProduct = {...this.state.newProduct};
+	    newProduct[attributeName] = attributeValue;
+	
+	    this.setState({newProduct})
+	  };
+	
+	  render() {
+	    return (
+	        <div>
+	          <form>
+	            <div><input name="productName" type="text" placeholder="Name" onChange={this._handleNewProductChange}/></div>
+	            <div><input name="description" type="text" placeholder="Description" onChange={this._handleNewProductChange}/></div>
+	            <div><input name="price" type="number" min="0.00" step="0.01" placeholder="Price" onChange={this._handleNewProductChange}/></div>
+	            <div><input type="submit" value="Create New Product"/></div>
+	          </form>
+	        </div>
+	    );
+	
+	  }
+	}
+	
+	export default ProductForm;
+	```
 
+	```jsx
+	// src/components/AdminView.js
+	...	
+	import ProductForm from './ProductForm';
+	...
+	
+	...
+  	<ProductForm/>
+	...
 
+	```
 
-## Sharing State Across React components
-- trickles down
+* If we take a look at this `_handleNewProductChange` function, we'll see some fancy new syntax. Just as we did with our toggle on the HomePage, we need to make a copy of the state value we are updating, instead of updating the state itself. the `{...this.state.newProduct}` block that you see is using a great new Javascript feature known as the `spread operator`. 
+
+	This `...` syntax tells Javascript to make a copy of our `this.state.newProduct` object. The copy will have all of the previous info that our `newProduct` contained, but we can now edit this object without updating our `state` directly. We'll use our event info to change the `newProduct` object and then `.setState()` to store it back to our `state` itself.
+	
+* Our `ProductForm` component will now successfully create a new product object for us. The big question we now have to answer is this: How do I get this object into the `productList` on my `HomePage` state?
+
+	<details> 
+		<summary>
+			Couldn't I just pass in the "productList" as a prop, and then use .push() to add my new item?
+		</summary>
+		<p>
+		While this would be a very simple approach, we must remember that props are _read only_. This means 		we won't have the ability to change props that are passed down.
+		</p>
+		<p>
+		Another problem is that we want to change the actual "productList" of the HomePage component, not just a copy inside of our current component. This change needs to be able to trickle down to all other components that deal with product information. We'll have to figure out how to change the "productList" on the HomePage component itself.
+		</p>
+	</details>	
+	
+* If we need to change the `productList` on the `HomePage` component itself, then the update function will also have to live on the `HomePage` component. Fortunately, we can pass this function down to our child components as a prop! Let's create the function and pass it down to our `AdminView`:
+
+	```jsx
+	// src/components/HomePage.js
+	
+	...
+	_addNewProductToProductList = (newProduct) => {
+	    const productList = [...this.state.productList];
+	    productList.push(newProduct);
+	    this.setState({productList});
+  	};
+  	...
+  	
+  	...
+	<AdminView 
+		productList={this.state.productList} 
+		addNewProductToProductList={this.)_addNewProductToProductList}/>
+  	...
+	```
+	
+* Since we'll actually want to use the function in our `ProductForm`, let's shuttle it down one more time from the `AdminView` to the `ProductForm` using `props`:
+
+	```jsx
+	...
+	<ProductForm addNewProductToProductList={this.props.addNewProductToProductList}/>
+	...
+	```	
+	
+	> NOTE: We can use the `spread operator` for arrays as well as objects!
+	
+* Now all we have to do is add an `onSubmit()` listener for our `ProductForm` and pass our `newProduct` into the function from our `props`:
+
+	```jsx
+	// src/components/ProductForm.js
+	...
+	 _addNewProduct = (event) => {
+		event.preventDefault();
+		
+		this.props.addNewProductToProductList(this.state.newProduct);
+	};
+	...
+	
+	...
+	<div>
+		<form onSubmit={this._addNewProduct}>
+			<div><input name="productName" type="text" placeholder="Name" onChange={this._handleNewProductChange}/></div>
+			<div><input name="description" type="text" placeholder="Description" onChange={this._handleNewProductChange}/></div>
+			<div><input name="price" type="number" min="0.00" step="0.01" placeholder="Price" onChange={this._handleNewProductChange}/></div>
+			<div><input type="submit" value="Create New Product"/></div>
+		</form>
+	</div>
+	...
+	```
+	
+* Now when we submit, we will see our new product reflected in any and all components that display our `productList`!	
+
+## You Do: Deleting Products
+
+* Add a button to each product in the Admin view that will allow us to delete the product.
+
+## You Do: Create a ShopView Component
+
+Let's create a ShopView to show our product info in a different way. 
+
+* Create your ShopView component and any necessary components to display the product info without any ability to edit.
+* Remember that Products are able to be deleted now, so we may need to create a different type of product component that does not have this ability.
