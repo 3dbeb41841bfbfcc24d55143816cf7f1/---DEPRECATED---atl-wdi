@@ -1,35 +1,36 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Product extends Component {
+const Product = (props) => {
+  const product = props.product;
 
-  _deleteProduct = () => {
-    this.props.deleteProductFromListById(this.props.id);
+  const _deleteProduct = () => {
+    props.deleteProductFromListById(props.id);
   };
 
-  _addToCart = () => {
-    this.props.addProductToCart(this.props.id);
+  const _addToCart = () => {
+    props.addProductToCart(props.id);
   };
 
-  _removeFromCart = () => {
-    this.props.removeProductFromCart(this.props.id);
+  const _removeFromCart = () => {
+    props.removeProductFromCart(props.id);
   };
 
-  _showOptions = () => {
-    const viewMode = this.props.viewMode;
+  const _showOptions = () => {
+    const viewMode = props.viewMode;
 
     const adminOptions =
         <div>
-          <button onClick={this._deleteProduct}>Delete</button>
+          <button onClick={_deleteProduct}>Delete</button>
         </div>;
 
     const shopOptions =
         <div>
-          <button onClick={this._addToCart}>Add To Cart</button>
+          <button onClick={_addToCart}>Add To Cart</button>
         </div>;
 
     const cartOptions =
         <div>
-          <button onClick={this._removeFromCart}>Remove From Cart</button>
+          <button onClick={_removeFromCart}>Remove From Cart</button>
         </div>;
 
     switch (viewMode) {
@@ -44,23 +45,24 @@ class Product extends Component {
     }
   };
 
-  render() {
-    const product = this.props.product;
+  const priceFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
+  const formattedPrice = priceFormatter.format(product.price);
 
-    return (
-        <div className="product-display">
-          <h3>{product.productName}</h3>
-          <div>Description: {product.description}</div>
-          <div>Price: ${product.price}</div>
-          {product.quantity ?
-              <div>Quantity: {product.quantity}</div>
-              : null}
+  return (
+      <div className="product-display">
+        <h3>{product.productName}</h3>
+        <div>Description: {product.description}</div>
+        <div>Price: {formattedPrice}</div>
+        {product.quantity ? <div>Quantity: {product.quantity}</div>
+            : null}
 
-          {this._showOptions()}
-        </div>
-    );
-
-  }
-}
+        {_showOptions()}
+      </div>
+  );
+};
 
 export default Product;

@@ -103,7 +103,6 @@ class HomePage extends Component {
       return product.id === idToDelete;
     });
     const indexToRemove = cartList.indexOf(productToDelete);
-    console.log("Index to remove:" + indexToRemove);
     cartList.splice(indexToRemove, 1);
 
     this.setState({cartList});

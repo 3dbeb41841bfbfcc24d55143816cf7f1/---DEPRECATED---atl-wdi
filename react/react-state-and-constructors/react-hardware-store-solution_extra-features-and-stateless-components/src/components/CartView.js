@@ -9,11 +9,18 @@ const CartView = (props) => {
     return totalPrice + (product.price * product.quantity);
   }, 0.00);
 
+  const priceFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
+  const formattedTotalPrice = priceFormatter.format(totalPrice);
+
   return (
       <div className="small-view-box">
         <h1>Cart</h1>
         <div>
-          <h3>Total Price: ${totalPrice}</h3>
+          <h3>Total Price: {formattedTotalPrice}</h3>
         </div>
         <ProductList
             productList={productList}
