@@ -48,7 +48,7 @@ class Product extends Component {
     const product = this.props.product;
 
     return (
-        <div>
+        <div className="product-display">
           <h3>{product.productName}</h3>
           <div>Description: {product.description}</div>
           <div>Price: ${product.price}</div>

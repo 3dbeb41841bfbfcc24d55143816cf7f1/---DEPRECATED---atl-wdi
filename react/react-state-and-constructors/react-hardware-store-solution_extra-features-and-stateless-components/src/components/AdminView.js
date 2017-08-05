@@ -1,32 +1,26 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import ProductList from './ProductList';
 import ProductForm from './ProductForm';
 
-class AdminView extends Component {
+const AdminView = (props) => {
+  return (
+      <div className="large-view-box">
+        <h1>Admin</h1>
 
-  render() {
-    const productList = this.props.productList;
+        <h2>Products</h2>
+        <ProductList
+            productList={props.productList}
+            viewMode={'ADMIN'}
+            deleteProductFromListById={props.deleteProductFromListById}
+            showAdminOptions={true}/>
 
-    return (
-        <div className="large-view-box">
-          <h1>Admin</h1>
+        <h2>Create a New Product</h2>
+        <ProductForm
+            addNewProductToProductList={props.addNewProductToProductList}/>
 
-          <h2>Products</h2>
-          <ProductList
-              productList={productList}
-              viewMode={'ADMIN'}
-              deleteProductFromListById={this.props.deleteProductFromListById}
-              showAdminOptions={true}/>
+      </div>
+  );
+};
 
-          <h2>Create a New Product</h2>
-          <ProductForm
-              addNewProductToProductList={this.props.addNewProductToProductList}/>
-
-        </div>
-    );
-
-  }
-}
-
-export default AdminView;	
+export default AdminView;

@@ -58,9 +58,10 @@ class HomePage extends Component {
   _deleteProductFromListById = (productIdToDelete) => {
     const productList = [...this.state.productList];
 
-    const indexToDelete = productList.indexOf((product) => {
+    const productToDelete = productList.find((product) => {
       return product.id === productIdToDelete;
     });
+    const indexToDelete = productList.indexOf(productToDelete);
     productList.splice(indexToDelete, 1);
 
     this.setState({productList});
@@ -98,9 +99,11 @@ class HomePage extends Component {
   _removeProductFromCart = (idToDelete) => {
     const cartList = [...this.state.cartList];
 
-    const indexToRemove = cartList.indexOf((product) => {
+    const productToDelete = cartList.find((product) => {
       return product.id === idToDelete;
     });
+    const indexToRemove = cartList.indexOf(productToDelete);
+    console.log("Index to remove:" + indexToRemove);
     cartList.splice(indexToRemove, 1);
 
     this.setState({cartList});
