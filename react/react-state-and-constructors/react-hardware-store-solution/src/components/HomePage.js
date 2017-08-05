@@ -12,17 +12,18 @@ class HomePage extends Component {
     this.state = {
       itemCurrentlyOnSale: 'A Hammer',
       editSaleItem: false,
+      showAdminView: false,
       productList: [
         {
           productName: 'Hammer',
-          description: 'Itsa hammer',
+          description: 'Itsa hammer!',
           price: 12.3,
         },
         {
           productName: 'Nail',
-          description: 'Itsa nail',
+          description: 'Itsa nail!',
           price: 0.12,
-        },
+        }
       ],
       cartList: [],
     };
@@ -31,6 +32,11 @@ class HomePage extends Component {
   _toggleEditSaleItem = () => {
     const editSaleItem = !this.state.editSaleItem;
     this.setState({editSaleItem});
+  };
+
+  _toggleAdminView = () => {
+    const showAdminView = !this.state.showAdminView;
+    this.setState({showAdminView});
   };
 
   _handleItemCurrentlyOnSaleChange = (event) => {
@@ -69,42 +75,54 @@ class HomePage extends Component {
   };
 
   render() {
+
+    const adminView = <AdminView
+        productList={this.state.productList}
+        addNewProductToProductList={this._addNewProductToProductList}
+        deleteProductFromListByIndex={this._deleteProductFromListByIndex}/>;
+
+    const shopView = <ShopView
+        productList={this.state.productList}
+        addProductToCart={this._addProductToCart}/>;
+
     return (
         <div>
           <div>
             <div id="home-page-nav">
               <h1>Hardware Store</h1>
               <span>Currently On Sale: {this.state.itemCurrentlyOnSale}!</span>
-              {
-                this.state.editSaleItem ? <span>
-                      <input
-                          onChange={this._handleItemCurrentlyOnSaleChange}
-                          value={this.state.itemCurrentlyOnSale}
-                          type="text"
-                      />
-                    </span>
-                    : null
-              }
-              <span>
-                        <button onClick={this._toggleEditSaleItem}>
-                            {this.state.editSaleItem
-                                ? 'Hide'
-                                : 'Edit Sale Item'}
-                        </button>
-                    </span>
-            </div>
 
+              <div>
+                {
+                  this.state.editSaleItem ? <div>
+                        <input
+                            onChange={this._handleItemCurrentlyOnSaleChange}
+                            value={this.state.itemCurrentlyOnSale}
+                            type="text"
+                        />
+                      </div>
+                      : null
+                }
+              </div>
+              <div>
+                <button onClick={this._toggleEditSaleItem}>
+                  {this.state.editSaleItem
+                      ? 'Hide'
+                      : 'Edit Sale Item'}
+                </button>
+              </div>
+              <div>
+                <button onClick={this._toggleAdminView}>
+                  {this.state.showAdminView
+                      ? 'Show Shop View'
+                      : 'Show Admin View'}
+                </button>
+              </div>
+            </div>
           </div>
 
           <div id="view-container">
-            <AdminView
-                productList={this.state.productList}
-                addNewProductToProductList={this._addNewProductToProductList}
-                deleteProductFromListByIndex={this._deleteProductFromListByIndex}/>
-
-            <ShopView
-                productList={this.state.productList}
-                addProductToCart={this._addProductToCart}/>
+            {this.state.showAdminView ? adminView : shopView}
 
             <CartView
                 productList={this.state.cartList}

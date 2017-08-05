@@ -12,7 +12,7 @@ body {
 }
 
 #view-container {
-  padding-top: 20px;
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -24,7 +24,7 @@ body {
   -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-  width: 50%;
+  width: 65%;
   height: 100%;
   padding: 10px;
 }
