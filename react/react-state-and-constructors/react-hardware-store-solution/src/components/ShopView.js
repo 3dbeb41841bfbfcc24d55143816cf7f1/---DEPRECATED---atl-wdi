@@ -5,7 +5,7 @@ import ProductList from './ProductList';
 class ShopView extends Component {
     render() {
         return (
-            <div>
+            <div className="large-view-box">
                 <h1>Shop</h1>
 
                 <ProductList

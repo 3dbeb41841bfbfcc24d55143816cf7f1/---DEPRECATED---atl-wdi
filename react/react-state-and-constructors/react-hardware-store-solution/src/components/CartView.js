@@ -5,7 +5,7 @@ import ProductList from './ProductList';
 class CartView extends Component {
     render() {
         return (
-            <div>
+            <div className="small-view-box">
                 <h1>Cart</h1>
 
                 <ProductList 
