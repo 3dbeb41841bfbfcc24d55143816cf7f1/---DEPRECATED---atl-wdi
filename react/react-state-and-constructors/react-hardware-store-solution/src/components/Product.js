@@ -40,7 +40,7 @@ class Product extends Component {
       case 'CART':
         return cartOptions;
       default:
-        null;
+        return null;
     }
   };
 
