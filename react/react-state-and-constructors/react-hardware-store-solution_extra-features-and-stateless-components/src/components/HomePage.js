@@ -15,13 +15,13 @@ class HomePage extends Component {
       showAdminView: false,
       productList: [
         {
-          id: '1234',
+          id: 0,
           productName: 'Hammer',
           description: 'Itsa hammer!',
           price: 12.3,
         },
         {
-          id: '2345',
+          id: 1,
           productName: 'Nail',
           description: 'Itsa nail!',
           price: 0.12,
@@ -49,6 +49,8 @@ class HomePage extends Component {
 
   _addNewProductToProductList = (newProduct) => {
     const productList = [...this.state.productList];
+
+    newProduct.id = productList.length;
     productList.push(newProduct);
     this.setState({productList});
   };
