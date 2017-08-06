@@ -139,7 +139,7 @@ Create a new directory called `db` and create a `schema.js` within there. Create
 
 * Game has a user, points, and categories.
 * Category has a name and questions
-* Question has a value, question, and answer
+* Question has a value, question, answer, and a boolean value for whether a question is answered or not.
 
 After the schema is created, create a `models` directory and add a file for each model in our DB. 
 
@@ -273,6 +273,96 @@ Colors
 
 > COMMIT
 
+### Connect the UI to the API
+Now we have a basic static UI that looks sorta like Jeopardy.  Let's now connect our UI to the API. To do this, we will need to install the `axios` library.  Let's set up our API call in the Game component on the `componentWillMount` lifecycle method.
+
+```js
+ constructor(){
+    super();
+    this.state = {
+      game: {}
+    }
+  }
+
+  componentWillMount(){
+    axios.get('localhost:3001/api/game').then(res => {
+      this.setState({game: res.data});
+    });
+  }
+```
+Unfortunately, when we load our UI we get an error! 
+
+```
+XMLHttpRequest cannot load localhost:3001/api/game. Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https.
+```
+
+This is an example of what's commonly referred to as a CORS error (Cross-Origin Resource Sharing)
+
+## CORS
+CORS is a mechanism that restricts API calls from domains that are outside of the domain from which the resource was initially served.  Basically this is a layer of protection for servers, because it prevents unwanted use of your API.
+
+There are several ways that we can handle CORS requests, but for our app we are going to take advantage of the tooling provided by `create-react-app`.  We can add a "proxy" server to our React application, which will allow us to make requests that look they are coming from our current server but actually hit the server we define in the `package.json`
+
+```json
+...
+"proxy": "http://localhost:3001",
+...
+```
+```js
+  componentWillMount(){
+    axios.get('/api/game').then(res => {
+      this.setState({game: res.data});
+    });
+  }
+```
+**NOTE** When you add this proxy, you have to restart your server.  The auto-refresh will not pick up on the proxy addition.  
+
+### Applying API Call to the Game Board
+Now that we have set our `this.state` to the response from our server, we can start to pass this data down to the various layers of our application. When we grab our categories and try to map it on the `GameBoard` we'll find that our application breaks.
+
+```
+TypeError: Cannot read property 'categories' of undefined
+```  
+
+This is because when we initially create our components, the state in the `Game` component is still an empty object.  That means that we are trying to call `.map` on an undefined value.  
+
+### Default Props
+Another feature of React is the ability to set default values for any props that you may expect in your application. This will allow us to set a default value while we are waiting for our API call is still being made.
+```js
+GameBoard.defaultProps = {
+  categories: []
+}
+```
+
+### You Do
+Use `props` to pass the information all the way down to the `<Question />` component.  Use default props along the way to set initial values.
+
+### Adding Events
+Now that we have our information, we need to add events to make it dynamic.
+
+- First, off we need to add a way to toggle between the value and question for each individual question.
+- Second, we need to create an event that will take a user input and check it against the answer.
+- Third, we need to send an update to the server that updates the points and flags answered questions.
+
+### Adding onto the API
+In order to save the user's score, we will need to add a PUT route to the Games controller. Since 
+we have saved the React state in a way that is very similar to the Game controller, we can send over the entire new state to our Game controller.  Then we can use the Mongoose `findOneAndUpdate` method in order to update the state of our game.
+```jsx
+router.put("/:id", (req,res) => {
+  Game.findOneAndUpdate(req.body.game).then((game) => {
+    res.json(game);
+  })
+});
+```
+
+After we verify that our API call updates successfully, we can test to make sure that our points persists despite leaving the browser.
+
+### Adding React Router and Additional Routes
+We now have a basic game, but we currently only have one category of questions.  It would be useful to have a route with a form that allows users to push a new category of questions into our database.
+
+```bash
+yarn add react-router;
+```
 
 
 ToDo:
