@@ -15,15 +15,17 @@ class HomePage extends Component {
       showAdminView: false,
       productList: [
         {
+          id: 0,
           productName: 'Hammer',
           description: 'Itsa hammer!',
           price: 12.3,
         },
         {
+          id: 1,
           productName: 'Nail',
           description: 'Itsa nail!',
           price: 0.12,
-        }
+        },
       ],
       cartList: [],
     };
@@ -47,29 +49,61 @@ class HomePage extends Component {
 
   _addNewProductToProductList = (newProduct) => {
     const productList = [...this.state.productList];
+
+    newProduct.id = productList.length;
     productList.push(newProduct);
     this.setState({productList});
   };
 
-  _deleteProductFromListByIndex = (productToDelete) => {
+  _deleteProductFromListById = (productIdToDelete) => {
     const productList = [...this.state.productList];
-    productList.splice(productToDelete, 1);
+
+    const productToDelete = productList.find((product) => {
+      return product.id === productIdToDelete;
+    });
+    const indexToDelete = productList.indexOf(productToDelete);
+    productList.splice(indexToDelete, 1);
+
     this.setState({productList});
   };
 
-  _addProductToCart = (index) => {
-    const product = {...this.state.productList[index]};
+  _addProductToCart = (idToAddToCart) => {
+    // First, check to see if a product with the given ID is already in the cart
     const cartList = [...this.state.cartList];
+    const productAlreadyInCart = cartList.find((product) => {
+      return product.id === idToAddToCart;
+    });
 
-    cartList.push(product);
+    // If the product is not in the cart, add it to the cart with a quantity of zero
+    // Otherwise, increment the quantity of the one from the cart
+
+    if (!productAlreadyInCart) {
+      // first find the product from the product list
+      const productFromProductList = this.state.productList.find((product) => {
+        return product.id === idToAddToCart;
+      });
+      // then copy that product object
+      const product = {...productFromProductList};
+
+      // finally, give the new product a quantity of zero
+      product.quantity = 1;
+      cartList.push(product);
+    } else {
+      // if the product is already in the cart, increment its quantity by one
+      productAlreadyInCart.quantity += 1;
+    }
 
     this.setState({cartList});
   };
 
-  _removeProductFromCart = (index) => {
+  _removeProductFromCart = (idToDelete) => {
     const cartList = [...this.state.cartList];
 
-    cartList.splice(index, 1);
+    const productToDelete = cartList.find((product) => {
+      return product.id === idToDelete;
+    });
+    const indexToRemove = cartList.indexOf(productToDelete);
+    cartList.splice(indexToRemove, 1);
 
     this.setState({cartList});
   };
@@ -79,7 +113,7 @@ class HomePage extends Component {
     const adminView = <AdminView
         productList={this.state.productList}
         addNewProductToProductList={this._addNewProductToProductList}
-        deleteProductFromListByIndex={this._deleteProductFromListByIndex}/>;
+        deleteProductFromListById={this._deleteProductFromListById}/>;
 
     const shopView = <ShopView
         productList={this.state.productList}
