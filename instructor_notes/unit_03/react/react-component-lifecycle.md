@@ -14,13 +14,7 @@ competencies: Front-end frameworks
 *After this lesson, students will be able to:*
 
 - Have a deeper understanding of mounting, unmounting, and updating React components.
-- Properly add AJAX calls to a React component class.
-
-### Preparation
-*Before this lesson, students should already be able to:*
-
-- Understand and build basic React applications.
-- Make HTTP requests using AJAX, preferably with the Axios Library
+- Understand where to place async calls during the React lifecycle.
 
 <br>
 
