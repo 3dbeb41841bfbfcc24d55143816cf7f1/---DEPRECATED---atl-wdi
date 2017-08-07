@@ -277,10 +277,10 @@ class SavedGifs extends Component{
 
 export default SavedGifs;
 
-// ./components/App.js
+// ./App.js
 // Remember to import your new component in App.js
 import React, {Component} from "react";
-import SavedGifs from './SavedGifs';
+import SavedGifs from './components/SavedGifs';
 
 class App extends Component {
   render() {
