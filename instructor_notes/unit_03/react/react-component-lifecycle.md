@@ -58,7 +58,7 @@ When a component is rendered on screen for the first time, there are 5 methods t
   }
 ```
 
-> In addition to default props, there is also a .propTypes object available in React.  The propTypes object will add a type checker to any prop that you define, and will guarantee that your data comes back in a form you expect
+> In addition to default props, there is also a .propTypes object available in React.  The propTypes object will add a type checker to any prop that you define, and will guarantee that your data comes back in a form you expect. For more info check out [Typechecking with Props](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
 
 **`getInitialState()`**: Like get default props, this is just setting up the default state object.  This is defined in your component's constructor function.  You will never need to overwrite this method.
 
