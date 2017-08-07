@@ -58,6 +58,8 @@ When a component is rendered on screen for the first time, there are 5 methods t
   }
 ```
 
+> In addition to default props, there is also a .propTypes object available in React.  The propTypes object will add a type checker to any prop that you define, and will guarantee that your data comes back in a form you expect
+
 **`getInitialState()`**: Like get default props, this is just setting up the default state object.  This is defined in your component's constructor function.  You will never need to overwrite this method.
 
 **`componentWillMount()`**: `componentWillMount` is the lifecycle method called immediately after the Component has set it's default state and props and directly before the component is rendered in the DOM.  In this method, we are able to handle configuration, update our state, and prepare for our first render. We can safely refer to our state and props within this method, and we can update our state.  This lifecycle method is where we make AJAX calls to update the state of a component. 
