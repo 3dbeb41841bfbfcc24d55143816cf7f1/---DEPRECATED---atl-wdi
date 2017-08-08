@@ -139,7 +139,7 @@ Add an event that will add the following styles when the user clicks the button:
     box-shadow: 0px 1px 0px 0px;
   }
 ```
-Check out the [React docs](https://facebook.github.io/react/docs/handling-events.html) if you need help with setting up a click event.
+Check out the [Synthetic Events docs](https://facebook.github.io/react/docs/events.html#mouse-events) if you need help with setting up a click event.
 
 --- 
 
