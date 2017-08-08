@@ -42,10 +42,28 @@ Your app must:
 
 ---
 
-### Submit your project to Schoology by 2:00 PM on the presentation day!
+### Submit your project to Schoology due date indicated on the class schedule!
 
 ---
 
+### Pair-programming Techniques:
+#### There are several ways to pair-program, but here are a few of the most popular:
+
+* **Ping-Pong** - One programmer implements a unit of code, and the other programmer 
+tests it. Then, the tester implements the next unit of code, and the first 
+programmer tests it. Rinse and repeat.
+* **Driver / Navigator** - Another popular pair-programming pattern, in which one 
+programmer "Drives" by writing the code while their pair "Navigates" by telling 
+the Driver what to write. The Driver does not write any code that the Navigator 
+does not tell them to write, but open discussion between the Driver and Navigator 
+is highly encouraged!
+* **Mob Programming** - When a problem is particularly difficult to solve, or it is 
+especially important that every developer on the team knows how a feature works, 
+mob programming can be very effective. Mob programming is essentially Driver/Navigator 
+programming, but with the entire team Navigating (by committee) while one programmer 
+writes the code. Switch drivers every 10 minutes.
+
+---
 
 ### Suggested Ways to Get Started
 
