@@ -55,11 +55,11 @@ Go ahead and create a repo on github called `fullstack-react-jeopardy`. Make sur
 After creating the repo, go ahead and clone it locally into your `exercises` folder.
 
 ## Express Set Up
-We're going to be building a lean Express app that will focus mainly on retrieving and serving API information. To start, we are only going to install `express`, `dotenv`, `bodyparser`, and `mongoose`
+We're going to be building a lean Express app that will focus mainly on retrieving and serving API information. To start, we are only going to install `express`, `dotenv`, `body-parser`, and `mongoose`
 
 ```
 npm init -y
-npm install --save express dotenv bodyparser mongoose
+npm install --save express dotenv body-parser mongoose express
 touch server.js
 ```
 
