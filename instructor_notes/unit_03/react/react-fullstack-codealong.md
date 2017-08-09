@@ -29,18 +29,22 @@ Before we get started writing our app.  Let's consider the user stories for what
 
 ### User Stories
 **Client-Side**
-- Given I am a User, When I load the app, Then I am presented an option to play the game and see a jeopardy board
-- Given I am a User, When I load the app, Then I am able to add new categories and questions
-- Given I am a User, When I click on a board value, Then I am given a Jeopardy question
+- Given I am a User, When I load the app, Then I am presented an option to play a new game and enter a username.
+- Given I am a User, When I load the app, Then I can select a previously created match to continue.
+- Given I am a User, When I load the app, Then I am able to add new categories and questions to the game.
+- Given I am a User, When I begin a game, Then am presented with a game that has a Jeopardy board, my points, and my name.
+- Given I am a User, When I click on a board value, Then I am given a Jeopardy question.
 - Given I am a User, When I answer a question correctly, Then the game updates the score and disables the question
 
 **Server Side**
-- Given I am a UI, When I make a GET API call, Then I am given an array of Objects to populate a game board
-- Given I am a UI, When I make a POST API call, Then I am able to post new information to the API.
+- Given I am a UI, When I make a GET API call for Game, Then I am given an array of Objects to populate a game board
+- Given I am a UI, When I make a POST API call for Game, Then I am able to generate a new Game and with randomly selected categories.
+- Given I am a UI, When I make a PUT API call for Game, Then I am able to update the score of a given game.
+- Given I am a UI, When I make a POST API call for Category, Then I am able to save a new Category of questions.
 
 
 ### You Do
-Work with the students around you for the next 15 minutes.
+Work with the students around you for the next 10 minutes.
 Given these user stories, wireframe what you think the UI will look like.  Document what Components you think we will need in order to build a Jeopardy game with a `Home` route, a `Game` route, and an `AddCategory` route.
 
 Additionally, think about the API routes that we will need.  What sorts of data do we need to save to a database? What routes do we need to make available to the React app?
@@ -143,13 +147,14 @@ npm install concurrently --save
 //Inside package.json
 ...
 "scripts": {
-  "start:dev": "concurrently \"nodemon server.js\" \"cd ./client  && yarn start \" ",
+  "start": "node server.js",
+  "dev": "concurrently \"nodemon server.js\" \"cd ./client  && yarn start \" ",
   "test": "echo \"Error: no test specified\" && exit 1"
 },
 ...
 ```
 
-Now we can run `npm run start:dev` and our application will start on both port 3000 and 3001! Let's verify both are working by visiting both ports in the browser.
+Now we can run `npm run dev` and our application will start on both port 3000 and 3001! Let's verify both are working by visiting both ports in the browser.
 
 > COMMIT
 
@@ -281,7 +286,7 @@ yarn add react-router-dom
 As we previously mentioned, our game will have 3 separate views:
   - `Home`
   - `Game`
-  - `Component`
+  - `AddCategory`
 
 Within our `components` folder, we will go ahead and create a basic component for each route.  Once these are created, we can add React Router to the `App.js` component.
 
@@ -318,17 +323,9 @@ export default App;
 ### Route Params in React Router
 We can add route params to our client side routes, much like what we've seen when working in Express.  The value defined will be passed in props.  For example, the above Route param will be available as `props.match.params.gameId`.
 
-To get a MVP for our game, we need to create several components.  We will build the following components: 
-  * Game
-  * GameBoard
-  * Category
-  * Question
-
-Before we link our UI to our API, let's first build these components and provide some mock data to help us get an idea on how we want to style the app.
-
 > COMMIT
 
-## Creating the Home Route.
+## Creating the Home Route
 The first thing we'll focus on in the UI is the page users will see when they first load the page. On this page, we want to allow a user to create a new game and enter their username.  The user should also be able to select from a list of existing games to resume a match.  This is going to be the first part of our UI that will be interacting with our server. 
 
 In order to make API calls, we'll install Axios into our client directory.
