@@ -845,7 +845,8 @@ Let's update the `package.json` to help Heroku understand more about our app.
   },
 ...
   "scripts": {
-    "start:dev": "concurrently \"nodemon server.js\" \"cd ./client  && yarn start \" ",
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd ./client  && yarn start \" ",
     "test": "echo \"Error: no test specified\" && exit 1",
     //Will install the client packages and build the minified UI in Heroku.
     "postinstall": "cd client && yarn install && yarn build"
