@@ -754,7 +754,71 @@ We can test our new route by calling a GET request on `/api/category` in Postman
 > COMMIT
 
 ## Generate a New Game 
-TODO: FINISH THIS PART
+The last feature we are going to worry about today is the ability to generate a new game when a user clicks the `New Game` button on the homepage.  We already have most of the front end figured out.  All we need to do here is add an `axios` call to post the username the User provides. After we get a response back from our API, we will need to redirect to the `Game` view with the new Mongo ID that has been generated. 
+```js
+  _changeEvent = e => {
+    this.setState({ user: e.target.value });
+  };
+  _createNewGame = () => {
+    axios.post("/api/game/new", { user: this.state.user }).then(res => {
+      console.log(res.data);
+      this.setState({ gameId: res.data._id, redirect: true });
+    });
+  };
+  render() {
+    return this.state.redirect
+      ? <Redirect to={{ pathname: "/game/" + this.state.gameId }} />
+      : (<div>
+          <h1>What is your username?</h1>
+          <input onChange={this._changeEvent} type="text" name="user" />
+          <button onClick={this._createNewGame}>New Game</button>
+          {this.state.games.map(game =>
+            <div>
+              <Link to={`/game/${game._id}`}>
+                {game.user}'s Game
+              </Link>
+            </div>
+          )}
+        </div>);
+  }
+
+```
+
+One important detail to notice here is `this.state.redirect`.  This state value controls a ternary statement that hold our normal render, but now also has a Redirect component coming from `react-router-dom`.  The redirect component will transfer us to the Game view once we have a valid Game ID from the server.
+
+Now that our UI is wired up, lets move to the back end.
+
+```js
+router.post("/new", (req,res) => {
+  //Return all categories in our database
+  Category.find().then((categories) => {
+    //Initialize a new Game
+    const newGame = new Game();
+
+    //Loops through an empty array 6 times. and returns a random category
+    const randomCategories = [...Array(6)].map((i) => {
+      const randomVal = Math.floor(Math.random() * categories.length);
+      return categories[randomVal];
+    });
+
+    //Set values for the new Game
+    newGame.user = req.body.user;
+    newGame.points = 0;
+    newGame.categories = randomCategories;
+    
+    //Save to database and return the Game object
+    newGame.save().then(game => {
+      res.json(game);
+    });
+  });
+});
+```
+
+Now there are definitely some improvements we can make here, for example we can randomly get the same category when creating a game.  See if you can work on this logic and make it more reliable.
+
+We now have a fully feature rich Jeopardy game with multiple routes and a persistent database.  Let's wrap up today by deploying the application on Heroku.
+
+> COMMIT
 
 ## Deploying The App
 In order to deploy the app we need to follow several of the same steps that did previously when deploying MEN apps, but with a couple additional steps.
