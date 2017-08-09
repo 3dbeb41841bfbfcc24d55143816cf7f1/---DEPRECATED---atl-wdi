@@ -232,7 +232,7 @@ const game = new Game({
   categories: [popMusic]
 })
 
-category.save().then(() => console.log("Category Saved!"));
+popMusic.save().then(() => console.log("Category Saved!"));
 game.save().then(() => console.log("Game Saved!"))
 
 mongoose.connection.close();
