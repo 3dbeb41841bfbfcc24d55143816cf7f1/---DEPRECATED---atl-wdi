@@ -99,6 +99,7 @@ app.listen(PORT, () => {
 Let's start our app and test that it is working.
 
 > COMMIT!
+[Step 1](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-1)
 
 ## Integrating create-react-app
 Before we start working building out our models and controllers, let's first connect our Express app to React. Use `create-react-app` to get our UI up and running.
@@ -157,6 +158,7 @@ npm install concurrently --save
 Now we can run `npm run dev` and our application will start on both port 3000 and 3001! Let's verify both are working by visiting both ports in the browser.
 
 > COMMIT
+[Step 2](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-2)
 
 ## Setting up a Database
 Now that we've verified that we can run both apps at the same time, let's start building out the Schemas for our database.
@@ -241,6 +243,7 @@ mongoose.connection.close();
 Next we run `node db/seeds.js` to populate our database.  Now we finally have enough info to build out our API.
 
 > COMMIT
+[Step 3](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-3)
 
 ## Building an API
 Now that we have data within our database, let's use Express to retrieve that info and serve it as JSON for our React app to consume.  In order to do that, we need to use Express Router to build routes for our API. This is going to look similar to the server side rendered controllers we built in the past, but with one major difference.
@@ -276,6 +279,7 @@ We can now retrieve a game with one category.  This gives us enough to get start
 We will need to build more routes later in the app, but this will work for the moment.
 
 > COMMIT
+[Step 4](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-4)
 
 ### Scaffolding out our Jeopardy UI.
 For the UI of our game, lets get started by building out a client side router using `react-router`.
@@ -324,6 +328,7 @@ export default App;
 We can add route params to our client side routes, much like what we've seen when working in Express.  The value defined will be passed in props.  For example, the above Route param will be available as `props.match.params.gameId`.
 
 > COMMIT
+[Step 5](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-5)
 
 ## Creating the Home Route
 The first thing we'll focus on in the UI is the page users will see when they first load the page. On this page, we want to allow a user to create a new game and enter their username.  The user should also be able to select from a list of existing games to resume a match.  This is going to be the first part of our UI that will be interacting with our server. 
@@ -400,6 +405,7 @@ There are several ways that we can handle CORS requests, but for our app we are 
 **NOTE** When you add this proxy, you have to restart your server.  The auto-refresh will not pick up on the proxy addition.  
 
 > COMMIT
+[Step 6](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-6)
 
 ## Starting The Game
 
@@ -451,6 +457,7 @@ export default Game;
 ```
 
 > COMMIT
+[Step 7](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-7)
 
 ## You Do: Scaffold the Board, Categories, and Questions
 We now have the data we need to create the application. Create a few more components to craft out the rest of the game.  Your component hierarchy should look something like this:
@@ -480,6 +487,7 @@ Colors
   - Black: #000
 
 > COMMIT
+[Step 8](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-8)
 
 **NOTE** Are you getting and error that looks something similar to this when trying to call `.map()`?
 
@@ -592,6 +600,7 @@ The put route doesn't exist in our API yet, so we will need to add the route to 
 ```
 
 > COMMIT
+[Step 9](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-9)
 
 ## Adding Categories
 Now that we have a basic game, let's focus on building out the route that will allow users to add a new Category.  In order to do this, we will need to update both our server-side and client-side code.
@@ -865,6 +874,9 @@ git push heroku master
 ```
 
 SUCCESS! We've now build a full stack MERN app in just one day!
+>COMMIT 
+
+[Step 10](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-10)
 
 ## Next Steps:
 - Use the Game board array of booleans to prevent users from answering questions that have previously been answered.
