@@ -17,7 +17,7 @@ competencies: Full-Stack Applications
 - Connect API to React via `axios`
 - Deploy the full stack application to Heroku
 
-We've learned a lot about the modern tooling and practicing around the React ecosystem over the past couple of days.  Today we will be pulling in everything we've learned to build a full stack application using the MERN stack.
+We've learned a lot about the modern tooling and practicing around the React ecosystem over the past couple of days.  A lot of modern JavaScript is focused on knowing the right tools for the job.  Today we will be pulling in everything we've learned about Node and React to build a full stack application using the MERN stack.
 
 ## MERN Stack
 When you see MERN stack, this is typically just a shorthand way of saying that the application is a full-stack JavaScript app.  The tools that we use for MERN apps are: Mongo (Mongoose), Express, React, and Node.  While there are some boilerplate tools to build out a full MERN stack app, we are going to build our own using `create-react-app` and the Express and Mongo patterns we've used in the past.  This allows us to fully understand our application and prevents introducing a bunch of code that we haven't written and understand.
@@ -29,15 +29,25 @@ Before we get started writing our app.  Let's consider the user stories for what
 
 ### User Stories
 **Client-Side**
-- Given I am a User, When I load the app, Then I am presented an option to play the game and see a jeopardy board
-- Given I am a User, When I load the app, Then I am able to add new categories and questions
-- Given I am a User, When I click on a board value, Then I am given a Jeopardy question
+- Given I am a User, When I load the app, Then I am presented an option to play a new game and enter a username.
+- Given I am a User, When I load the app, Then I can select a previously created match to continue.
+- Given I am a User, When I load the app, Then I am able to add new categories and questions to the game.
+- Given I am a User, When I begin a game, Then am presented with a game that has a Jeopardy board, my points, and my name.
+- Given I am a User, When I click on a board value, Then I am given a Jeopardy question.
 - Given I am a User, When I answer a question correctly, Then the game updates the score and disables the question
 
 **Server Side**
-- Given I am a UI, When I make a GET API call, Then I am given an array of Objects to populate a game board
-- Given I am a UI, When I make a POST API call, Then I am able to post new information to the API.
+- Given I am a UI, When I make a GET API call for Game, Then I am given an array of Objects to populate a game board
+- Given I am a UI, When I make a POST API call for Game, Then I am able to generate a new Game and with randomly selected categories.
+- Given I am a UI, When I make a PUT API call for Game, Then I am able to update the score of a given game.
+- Given I am a UI, When I make a POST API call for Category, Then I am able to save a new Category of questions.
 
+
+### You Do
+Work with the students around you for the next 10 minutes.
+Given these user stories, wireframe what you think the UI will look like.  Document what Components you think we will need in order to build a Jeopardy game with a `Home` route, a `Game` route, and an `AddCategory` route.
+
+Additionally, think about the API routes that we will need.  What sorts of data do we need to save to a database? What routes do we need to make available to the React app?
 
 ## Getting Started
 Go ahead and create a repo on github called `fullstack-react-jeopardy`. Make sure to include the `.gitignore` for Node apps.
@@ -45,11 +55,11 @@ Go ahead and create a repo on github called `fullstack-react-jeopardy`. Make sur
 After creating the repo, go ahead and clone it locally into your `exercises` folder.
 
 ## Express Set Up
-We're going to be building a lean Express app that will focus mainly on retrieving and serving API information. To start, we are only going to install `express` and `mongoose`
+We're going to be building a lean Express app that will focus mainly on retrieving and serving API information. To start, we are only going to install `express`, `dotenv`, `body-parser`, and `mongoose`
 
 ```
 npm init -y
-npm install --save express mongoose
+npm install --save express dotenv body-parser mongoose
 touch server.js
 ```
 
@@ -57,11 +67,13 @@ touch server.js
 In our `server.js` file, we are going to create the most basic server possible.  As our needs grow, we will refactor and build onto the file.
 
 ```js
+require("dotenv").config();
 const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/fullstack-jeopardy');
+mongoose.connect(process.env.MONGODB_URI); //mongodb://localhost/fullstack-jeopardy
 
 const connection = mongoose.connection;
 connection.on('connected', () => {
@@ -73,6 +85,7 @@ connection.on('error', (err) => {
   console.log('Mongoose default connection error: ' + err);
 }); 
 
+app.use(bodyParser.json());
 app.get('/', (req,res) => {
   res.send('Hello world!')
 })
@@ -88,12 +101,27 @@ Let's start our app and test that it is working.
 > COMMIT!
 
 ## Integrating create-react-app
-Before we start working building out our models and controllers, let's first use `create-react-app` to get our UI up and running.
+Before we start working building out our models and controllers, let's first connect our Express app to React. Use `create-react-app` to get our UI up and running.
 ```bash
 # Inside of Fullstack-React-Jeopardy
 create-react-app client
 ```
-This will create a new React application for us to begin building our game.  Let's try and start our application.
+
+Your folder structure should now look something like this.
+```
+|- client
+  |- node_modules
+  |- public
+  |- src
+  |- package.json
+  |- ...
+|- node_modules
+|- server.js
+|- package.json
+...
+```
+
+This will create a new React application for us to begin building our game.  Let's try to start our application.
 
 **OH NO**
 You may have gotten an error that looks something like this:
@@ -119,13 +147,14 @@ npm install concurrently --save
 //Inside package.json
 ...
 "scripts": {
-  "start:dev": "concurrently \"nodemon server.js\" \"cd ./client  && yarn start \" ",
+  "start": "node server.js",
+  "dev": "concurrently \"nodemon server.js\" \"cd ./client  && yarn start \" ",
   "test": "echo \"Error: no test specified\" && exit 1"
 },
 ...
 ```
 
-Now we can run `npm run start:dev` and our application will start on both port 3000 and 3001! Let's verify both are working by visiting both ports in the browser.
+Now we can run `npm run dev` and our application will start on both port 3000 and 3001! Let's verify both are working by visiting both ports in the browser.
 
 > COMMIT
 
@@ -134,12 +163,12 @@ Now that we've verified that we can run both apps at the same time, let's start 
 
 Today's example app is going to have 3 Models. Game, Category, and Question
 
-### You do
+### You Do
 Create a new directory called `db` and create a `schema.js` within there. Create a Mongoose model for each model.
 
-* Game has a user, points, and categories.
+* Game has a user, points, board(an array of booleans to signal if a question is answered or not), and categories.
 * Category has a name and questions
-* Question has a value, question, answer, and a boolean value for whether a question is answered or not.
+* Question has a value, question, and answer.
 
 After the schema is created, create a `models` directory and add a file for each model in our DB. 
 
@@ -151,8 +180,9 @@ After the schema is created, create a `models` directory and add a file for each
 Now that we have 3 models, let's go ahead and supply some seed data.  Let's populate a seeds file with one Jeopardy column.
 
 ```js
+require("dotenv").config();
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fullstack-jeopardy');
+mongoose.connect(process.env.MONGODB_URI);
 
 var Game = require('../models/game');
 var Category = require('../models/category');
@@ -202,6 +232,7 @@ const game = new Game({
   categories: [popMusic]
 })
 
+popMusic.save().then(() => console.log("Category Saved!"));
 game.save().then(() => console.log("Game Saved!"))
 
 mongoose.connection.close();
@@ -223,10 +254,18 @@ const Game = require('../models/game');
 const router = express.Router();
 
 router.get("/", (req,res) => {
-  Game.findOne({}).then((games) => {
+  Game.find().then(games => {
+    res.json(games);
+  })
+});
+
+router.get("/:id", (req,res) => {
+  Game.findById(req.params.id).then((games) => {
     res.json(games);
   });
 });
+
+...
 
 module.exports = router;
 ```
@@ -234,31 +273,200 @@ module.exports = router;
 Now if we check our route at `localhost:3001/api/games` we should see that we get a JSON object back.  We are able to get this JSON object by using `res.json` instead of `.render` or `.send`.
 
 We can now retrieve a game with one category.  This gives us enough to get started on building a UI for the Jeopardy game.
+We will need to build more routes later in the app, but this will work for the moment.
 
 > COMMIT
 
 ### Scaffolding out our Jeopardy UI.
-To get a MVP for our game, we need to create several components.  We will build the following components: 
-  * Game
-  * GameBoard
-  * Category
-  * Question
+For the UI of our game, lets get started by building out a client side router using `react-router`.
+```bash
+# inside of client directory
+yarn add react-router-dom
+```
+As we previously mentioned, our game will have 3 separate views:
+  - `Home`
+  - `Game`
+  - `AddCategory`
 
-Before we link our UI to our API, let's first build these components and provide some mock data to help us get an idea on how we want to style the app.
+Within our `components` folder, we will go ahead and create a basic component for each route.  Once these are created, we can add React Router to the `App.js` component.
 
-### We Do
-Let's build each component, and provide it with dummy data for the moment.  At the end, we'll have a game with a gameboard that has 6 categories and each category has 5 questions.
+```jsx
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Home from "./components/Home";
+import Game from "./components/Game";
+import AddCategory from "./components/AddCategory";
 
-After we have the structure of our app, let's use `styled-components` to style the application.
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div>
+          <div>
+            <Link to="/">Home</Link>
+            <Link to="/add-category">Add Category</Link>
+          </div>
+          <div>
+            <Route exact path="/" component={Home} />
+            <Route path="/game/:gameId" component={Game} />
+            <Route path="/add-category" component={AddCategory} />
+          </div>
+        </div>
+      </Router>
+    );
+  }
+}
+
+export default App;
+```
+
+### Route Params in React Router
+We can add route params to our client side routes, much like what we've seen when working in Express.  The value defined will be passed in props.  For example, the above Route param will be available as `props.match.params.gameId`.
+
+> COMMIT
+
+## Creating the Home Route
+The first thing we'll focus on in the UI is the page users will see when they first load the page. On this page, we want to allow a user to create a new game and enter their username.  The user should also be able to select from a list of existing games to resume a match.  This is going to be the first part of our UI that will be interacting with our server. 
+
+In order to make API calls, we'll install Axios into our client directory.
+```bash
+yarn add axios
+```
+
+```jsx
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+class Home extends Component {
+  constructor(){
+    super();
+    this.state = {
+      user: "",
+      redirect: false,
+      games: []
+    }
+  }
+
+  componentWillMount(){
+    axios.get('localhost:3001/api/game').then(res => {
+      console.log(res.data);
+      this.setState({games: res.data})
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <div>
+          <h1>What is your username?</h1>
+          <input type="text" name="user" />
+          <button>New Game</button>
+        </div>
+        {this.state.games.map((game, i) => (
+          <div key={i}>
+            <Link to={`/game/${game._id}`}>
+              {game.user}'s Game
+            </Link>
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
+
+export default Home;
+```
+
+Unfortunately, when we load our UI we get an error! 
+
+```
+XMLHttpRequest cannot load localhost:3001/api/game. Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https.
+```
+
+This is an example of what's commonly referred to as a CORS error (Cross-Origin Resource Sharing)
+
+### CORS
+CORS is a mechanism that restricts API calls from domains that are outside of the domain from which the resource was initially served.  Basically this is a layer of protection for servers, because it prevents unwanted use of your API.
+
+There are several ways that we can handle CORS requests, but for our app we are going to take advantage of the tooling provided by `create-react-app`.  We can add a "proxy" server to our React application, which will allow us to make requests that look they are coming from our current server but actually hit the server we define in the `package.json`
+
+```json
+...
+"proxy": "http://localhost:3001",
+...
+```
+
+**NOTE** When you add this proxy, you have to restart your server.  The auto-refresh will not pick up on the proxy addition.  
+
+> COMMIT
+
+## Starting The Game
+
+This should now give us the ability to click through to the game we created in the seeds file.  We'll work on creating new games a little later this afternoon.  For now, let's focus on the core logic of our game.  Our `Game` component currently doesn't have anything more than a "Hello World".  However, we now have the Mongo id of a game that is saved in our database.  This means that we can use `axios` and the Show route that we created earlier to fetch data to place in the state of our app.
+
+```jsx
+import React, { Component } from 'react';
+import axios from 'axios';
+import GameBoard from './components/GameBoard';
+
+class Game extends Component {
+  constructor(){
+    super();
+    this.state = {
+      id: "",
+      user: "",
+      points: 0,
+      categories: [],
+      board: []
+    }
+  }
+
+  componentWillMount(){
+    const id = this.props.match.params.gameId;
+    axios.get(`/api/game/${id}`).then(res => {
+      this.setState({
+        id: res.data._id,
+        user: res.data.user,
+        points: res.data.points,
+        categories: res.data.categories,
+        board: res.data.board
+      });
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>This Is Jeopardy!</h1>
+        <h3>Welcome {this.state.user}</h3>
+        <h3>Points: {this.state.points}</h3>
+        <GameBoard board={this.state.board} categories={this.state.categories} /> 
+      </div>
+    );
+  }
+}
+
+export default Game;
+```
+
+> COMMIT
+
+## You Do: Scaffold the Board, Categories, and Questions
+We now have the data we need to create the application. Create a few more components to craft out the rest of the game.  Your component hierarchy should look something like this:
+```
+|- Game
+    |- GameBoard
+        |- 6 Categories
+            |- 5 Questions
+```
+
+After you build these components and loop through them as outlined above, use `styled-components` to style the board to look like a Jeopardy board.
 ``` bash
   # Inside the client folder
   yarn add styled-components 
-  # or
-  npm i --save styled-components
 ```
 
-### You Do
-Use `styled-components` to style the React components to look more like a Jeopardy board.
 ![](https://larryfire.files.wordpress.com/2013/03/jeopardy-stephen-king_510x317.jpg)
 
 Use the Lato font with a font-weight of 700.
@@ -273,60 +481,15 @@ Colors
 
 > COMMIT
 
-### Connect the UI to the API
-Now we have a basic static UI that looks sorta like Jeopardy.  Let's now connect our UI to the API. To do this, we will need to install the `axios` library.  Let's set up our API call in the Game component on the `componentWillMount` lifecycle method.
-
-```js
- constructor(){
-    super();
-    this.state = {
-      game: {}
-    }
-  }
-
-  componentWillMount(){
-    axios.get('localhost:3001/api/game').then(res => {
-      this.setState({game: res.data});
-    });
-  }
-```
-Unfortunately, when we load our UI we get an error! 
-
-```
-XMLHttpRequest cannot load localhost:3001/api/game. Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https.
-```
-
-This is an example of what's commonly referred to as a CORS error (Cross-Origin Resource Sharing)
-
-## CORS
-CORS is a mechanism that restricts API calls from domains that are outside of the domain from which the resource was initially served.  Basically this is a layer of protection for servers, because it prevents unwanted use of your API.
-
-There are several ways that we can handle CORS requests, but for our app we are going to take advantage of the tooling provided by `create-react-app`.  We can add a "proxy" server to our React application, which will allow us to make requests that look they are coming from our current server but actually hit the server we define in the `package.json`
-
-```json
-...
-"proxy": "http://localhost:3001",
-...
-```
-```js
-  componentWillMount(){
-    axios.get('/api/game').then(res => {
-      this.setState({game: res.data});
-    });
-  }
-```
-**NOTE** When you add this proxy, you have to restart your server.  The auto-refresh will not pick up on the proxy addition.  
-
-### Applying API Call to the Game Board
-Now that we have set our `this.state` to the response from our server, we can start to pass this data down to the various layers of our application. When we grab our categories and try to map it on the `GameBoard` we'll find that our application breaks.
+**NOTE** Are you getting and error that looks something similar to this when trying to call `.map()`?
 
 ```
 TypeError: Cannot read property 'categories' of undefined
 ```  
 
-This is because when we initially create our components, the state in the `Game` component is still an empty object.  That means that we are trying to call `.map` on an undefined value.  
+This is because when we initially create our components, the state in the `Game` component is still an empty object.  That means that we are trying to call `.map` on an undefined value in `Game`'s child components.  
 
-### Default Props
+#### Default Props
 Another feature of React is the ability to set default values for any props that you may expect in your application. This will allow us to set a default value while we are waiting for our API call is still being made.
 ```js
 GameBoard.defaultProps = {
@@ -334,50 +497,379 @@ GameBoard.defaultProps = {
 }
 ```
 
-### You Do
-Use `props` to pass the information all the way down to the `<Question />` component.  Use default props along the way to set initial values.
+## Adding Click Events to Question
+Once we have something that resembles a Jeopardy board, we need to add an event that allows users to click a question board and switch from the number value to the question.
+```js
+import React, { Component } from "react";
+import styled from "styled-components";
+
+const QuestionStyles = styled.div`
+  background: ${props => props.answered ? "grey" : "#2a3698"};
+  color: #ffff5f;
+  border: 3px solid black;
+  height: 125px;
+`;
+
+const ActiveQuestion = (props) => (
+  <QuestionStyles answered={props.answered}>
+    <div>{props.question}</div>
+    <form onSubmit={props.submitAnswer}>
+      <input type="text" name="answer"/>
+      <button>Submit</button>
+    </form>
+  </QuestionStyles>
+);
+
+class Question extends Component {
+  constructor(){
+    super();
+    this.state = {
+      active: false,
+    };
+  }
+  _toggleActive = () => {
+    this.setState({active: !this.state.active});
+  }
+  render() {
+    if (this.state.active){
+      return <ActiveQuestion answered={this.state.answered} question={this.props.question.question}/>;
+    } else {
+      return <QuestionStyles answered={this.state.answered} onClick={this._toggleActive}>{this.props.question.value}</QuestionStyles>;
+    }
+  }
+}
+
+export default Question;
+```
+
+> COMMIT 
 
 ### Adding Events
-Now that we have our information, we need to add events to make it dynamic.
+Now it's time for us to create an event that will check a question's answer against user input and update the score as necessary. In the `Game` component, we will create an event called `this._submitAnswer` and pass it down to the form value in the `Question` component.
+```js
+...
+// Notice we pass 3 arguments to the function
+  _submitAnswer = (e, question, id) => {
+    //Prevents page refresh
+    e.preventDefault();
+    //Grabs the user input value
+    const answerGiven = e.target.answer.value;
 
-- First, off we need to add a way to toggle between the value and question for each individual question.
-- Second, we need to create an event that will take a user input and check it against the answer.
-- Third, we need to send an update to the server that updates the points and flags answered questions.
+    //Creates a new copy of the state.
+    const newState = {...this.state}
 
-### Adding onto the API
-In order to save the user's score, we will need to add a PUT route to the Games controller. Since 
-we have saved the React state in a way that is very similar to the Game controller, we can send over the entire new state to our Game controller.  Then we can use the Mongoose `findOneAndUpdate` method in order to update the state of our game.
-```jsx
-router.put("/:id", (req,res) => {
-  Game.findOneAndUpdate(req.body.game).then((game) => {
-    res.json(game);
-  })
+    //Update the points based on whether or not the answer is correct.
+    if (answerGiven === question.answer){
+      newState.points += question.value;
+    } else {
+      newState.points -= question.value;
+    }
+    //Change the flag that tracks which questions have been answered
+    //Making this show up in the UI is a stretch goal.
+    newState.board[id] = true;
+
+    //Update our state in the client
+    this.setState(newState);
+    //Update our Game in the DB
+    axios.put('/api/game/' + this.state.id, newState).then((res) => {
+      console.log("Successful update");
+    });
+  }
+...
+```
+
+The put route doesn't exist in our API yet, so we will need to add the route to our `/controllers/game.js` file.
+```js
+...
+  router.put("/:id", (req,res) => {
+    const { board, points } = req.body;
+    Game.findOneAndUpdate({_id: req.params.id}, {board, points}).then((game) => {
+      res.json(game);
+    })
+    .catch(err => console.log(err));
+  });
+...
+```
+
+> COMMIT
+
+## Adding Categories
+Now that we have a basic game, let's focus on building out the route that will allow users to add a new Category.  In order to do this, we will need to update both our server-side and client-side code.
+
+If we review our Category model, we will see that a category has 2 properties, a name and an array of questions.  That means that we will need to create a form that has about 13 different input tags.  After the user passes these values, the server will create a new Category model and save it to the database.  Let's start this out by building the new server-side code.
+
+```js
+// ./controllers/categories
+const express = require('express');
+const Question = require('../models/question');
+const Category = require('../models/category');
+const router = express.Router();
+
+router.get("/", (req,res) => {
+  Category.find({}).then((categories) => {
+    res.json(categories);
+  });
+});
+
+router.post("/", (req, res) => {
+  const questions = req.body.questions.map(question => {
+    return new Question(question);
+  });
+  const category = new Category({
+    name: req.body.name,
+    questions
+  });
+  category.save().then((category) => {
+    console.log("Success!");
+    res.json(category);
+  });
+})
+
+module.exports = router;
+```
+
+```js
+// ./component/AddCategory 
+import React, { Component } from "react";
+import axios from "axios";
+import QuestionInput from "./QuestionInput";
+
+class AddCategory extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      questions: [
+        {
+          value: 200,
+          question: "",
+          answer: ""
+        },
+        {
+          value: 400,
+          question: "",
+          answer: ""
+        },
+        {
+          value: 600,
+          question: "",
+          answer: ""
+        },
+        {
+          value: 800,
+          question: "",
+          answer: ""
+        },
+        {
+          value: 1000,
+          question: "",
+          answer: ""
+        }
+      ]
+    };
+  }
+
+  _changeCategory = e => {
+    this.setState({name: e.target.value});
+  }
+  
+  _changeEvent = e => {
+    const newState = { ...this.state };
+    const pointValue = e.target.attributes.points.value;
+    const typeValue = e.target.attributes.type.value;
+    const changedQuestion = newState.questions.find(v => {
+      return v.value === parseInt(pointValue);
+    });
+
+    if (typeValue === "question") {
+      changedQuestion.question = e.target.value;
+    } else if( typeValue === "answer" ) {
+      changedQuestion.answer = e.target.value;
+    }
+
+    this.setState(newState);
+  };
+
+  _addNewCategory = e => {
+    e.preventDefault();
+    axios.post("/api/category", this.state).then(res => {
+      console.log(res.data);
+    })
+  };
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this._addNewCategory}>
+          <label htmlFor="category">Category: </label>
+          <input onChange={this._changeCategory} type="text" value={this.state.category} />
+          <br />
+          {this.state.questions.map((q, i) => {
+            return (
+              <QuestionInput key={i} question={q} _changeEvent={this._changeEvent}
+              />
+            );
+          })}
+          <button>Save Category</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default AddCategory;
+```
+
+```js
+// ./components/QuestionInput
+import React from "react";
+
+const QuestionInput = props => {
+  return (
+    <div>
+      <label htmlFor={`${props.question.value}question`}> {props.question.value} Question: </label>
+      <input onChange={props._changeEvent} type="text"
+        name={`${props.question.value}question`} points={props.question.value}
+        type="question" value={props.question.question}
+      />
+      <br />
+      <label htmlFor={`${props.question.value}answer`}> {props.question.value} Answer: </label>
+      <input onChange={props._changeEvent} type="text"
+        name={`${props.question.value}answer`} points={props.question.value}
+        type="answer" value={props.question.answer}
+      />
+      <hr />
+    </div>
+  );
+};
+
+export default QuestionInput;
+```
+
+We can test our new route by calling a GET request on `/api/category` in Postman. We should see multiple Categories in the response.
+
+> COMMIT
+
+## Generate a New Game 
+The last feature we are going to worry about today is the ability to generate a new game when a user clicks the `New Game` button on the homepage.  We already have most of the front end figured out.  All we need to do here is add an `axios` call to post the username the User provides. After we get a response back from our API, we will need to redirect to the `Game` view with the new Mongo ID that has been generated. 
+```js
+  _changeEvent = e => {
+    this.setState({ user: e.target.value });
+  };
+  _createNewGame = () => {
+    axios.post("/api/game/new", { user: this.state.user }).then(res => {
+      console.log(res.data);
+      this.setState({ gameId: res.data._id, redirect: true });
+    });
+  };
+  render() {
+    return this.state.redirect
+      ? <Redirect to={{ pathname: "/game/" + this.state.gameId }} />
+      : (<div>
+          <h1>What is your username?</h1>
+          <input onChange={this._changeEvent} type="text" name="user" />
+          <button onClick={this._createNewGame}>New Game</button>
+          {this.state.games.map(game =>
+            <div>
+              <Link to={`/game/${game._id}`}>
+                {game.user}'s Game
+              </Link>
+            </div>
+          )}
+        </div>);
+  }
+
+```
+
+One important detail to notice here is `this.state.redirect`.  This state value controls a ternary statement that hold our normal render, but now also has a Redirect component coming from `react-router-dom`.  The redirect component will transfer us to the Game view once we have a valid Game ID from the server.
+
+Now that our UI is wired up, lets move to the back end.
+
+```js
+router.post("/new", (req,res) => {
+  //Return all categories in our database
+  Category.find().then((categories) => {
+    //Initialize a new Game
+    const newGame = new Game();
+
+    //Loops through an empty array 6 times. and returns a random category
+    const randomCategories = [...Array(6)].map((i) => {
+      const randomVal = Math.floor(Math.random() * categories.length);
+      return categories[randomVal];
+    });
+
+    //Set values for the new Game
+    newGame.user = req.body.user;
+    newGame.points = 0;
+    newGame.categories = randomCategories;
+    
+    //Save to database and return the Game object
+    newGame.save().then(game => {
+      res.json(game);
+    });
+  });
 });
 ```
 
-After we verify that our API call updates successfully, we can test to make sure that our points persists despite leaving the browser.
+Now there are definitely some improvements we can make here, for example we can randomly get the same category when creating a game.  See if you can work on this logic and make it more reliable.
 
-### Adding React Router and Additional Routes
-We now have a basic game, but we currently only have one category of questions.  It would be useful to have a route with a form that allows users to push a new category of questions into our database.
+We now have a fully feature rich Jeopardy game with multiple routes and a persistent database.  Let's wrap up today by deploying the application on Heroku.
 
-```bash
-yarn add react-router;
+> COMMIT
+
+## Deploying The App
+In order to deploy the app we need to follow several of the same steps that did previously when deploying MEN apps, but with a couple additional steps.
+
+### Building a Production React App
+Within our client folder, we can run a command through `npm` or `yarn` called build.  This will take all of the code that we've been running through webpack and bundle it all into a minified build ready for production deployment.  That will live inside a `build` directory.  
+
+After we build the app, we need to let Express know that it needs to be aware of the new static files. Afterwards, we need to make a get route at the index that will serve the `index.html` of the built production React app.
+
+```js
+...
+  app.use(express.static(__dirname + '/client/build/'));
+...
+  app.get('/', (req,res) => {
+    res.sendFile(__dirname + '/client/build/index.html')
+  })
+...
+```
+We can test the production app now, by running `node server.js`.  If our app looks like what we intend, then we can proceed with deploying our app. 
+
+Let's update the `package.json` to help Heroku understand more about our app.
+```js
+...
+  //Set the Heroku version of Node to the most recent available.
+  "engines": {
+    "node": "8.1.2"
+  },
+...
+  "scripts": {
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd ./client  && yarn start \" ",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    //Will install the client packages and build the minified UI in Heroku.
+    "postinstall": "cd client && yarn install && yarn build"
+  },
+...
 ```
 
+Now we can proceed our Heroku deployment like normal.
 
-ToDo:
-- Take time to design app. ERD/User Stories/etc
-- Build Mongoose app w/ seed data for jeopardy
-- Create Express API to generate game, and to add new column
-- Create React App, 2 views... Game view and question add view
-- 
--
+```bash
+heroku create inclass-wdi-jeopardy
+heroku addons:create mongolab:sandbox
+git add -A
+git commit -m "commit message"
+git push heroku master
+```
 
-#### We Do:
+SUCCESS! We've now build a full stack MERN app in just one day!
 
-#### JSX Conditionals
-
-### You Do: 
+## Next Steps:
+- Use the Game board array of booleans to prevent users from answering questions that have previously been answered.
+- Add logic that detects when a user has answered all questions and post the user's score to a leaderboard.
+- Refine the new Game route to prevent categories from being included multiple times in one game.
 
 ## Further Reading:
 
