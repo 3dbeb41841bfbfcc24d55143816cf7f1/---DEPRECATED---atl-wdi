@@ -142,7 +142,7 @@ If you have ideas on how you can help a fellow-student with work that they are s
 3. Seek out help with Jesse (TA)
 4. Submit a Github issue **on the wdi-remote** class Github account to receive help from an instructor
 
-## Formatting your GitHub Issue for wdi-remote to ask for help
+## Formatting your GitHub Issue to ask for help
 
 *PUSH OFTEN! Your code on GitHub should be up to date. Submiting an issue and linking us to old, out-of-date code will hinder the process.*
 
