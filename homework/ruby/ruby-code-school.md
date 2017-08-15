@@ -1,4 +1,4 @@
-### Go through these code school tutorials
+# Work through these tutorials:
 
-try ruby- code school- https://www.codeschool.com/courses/try-ruby
-ruby- code academy- https://www.codecademy.com/learn/ruby
+* Try Ruby - CodeSchool- https://www.codeschool.com/courses/try-ruby
+* Ruby - Codecademy - https://www.codecademy.com/learn/ruby
