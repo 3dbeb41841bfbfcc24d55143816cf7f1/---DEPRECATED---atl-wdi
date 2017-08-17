@@ -562,7 +562,7 @@ A Ruby hash is an unordered, dictionary-like collection organized by key-value p
 
 ```ruby
 wdi_class = {
-  teacher: "Jamie",  
+  teacher: "John",  
   students: ["Yacko", "Wacko", "Dot"],  
   classroom: 2,  
   in_session: true,  
