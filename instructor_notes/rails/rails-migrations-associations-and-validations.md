@@ -34,13 +34,13 @@ to:
 * Validate models before they get persisted to the database
 * Perform database operations in an object-oriented fashion.
 
-###ORM
+### ORM
 **ORM** stands for object relational mapping. ORM describes a software system that maps SQL queries and results into objects. **Active Record** is the ORM system that is used in Rails.
 
 Object-Relational Mapping is
 a technique that connects the rich objects of an application to tables in a relational database management system. Using ORM, the properties and relationships of the objects in an application can be easily stored and retrieved from a database without writing SQL statements directly and with less overall database access code.
 
-###Models
+### Models
 **Models** are Ruby classes. They talk to the database, store and validate data, perform the business logic and otherwise do the heavy lifting.
 
 ### Naming Conventions
@@ -68,7 +68,7 @@ by underscores. Examples:
 | `Person`      | `people`       |
 
 
-###Migrations
+### Migrations
 A **migration** is a set of database instructions. Those
 instructions are Ruby code, which migrates our database from one state
 to another. Essentially they describe database changes.
@@ -79,12 +79,12 @@ Each migration is a seperate file, which Rails runs for us when we instruct it. 
 
 We describe the DB changes using Ruby, and it doesn't matter which DB engine we use - Rails has connectors for each different DB engine we might use, which translates the ruby structure into the appropriate DB commands.
 
-###Validations
+### Validations
 **Validations** are used to ensure that only valid data is saved into your database. For example, it may be important to your application to ensure that every user provides a valid email address and mailing address.
 
 <br>
 
-##Let's get started!
+## Let's get started!
 
 Please type all this by hand so you're not blindly copying & pasting and you remember it better.
 
@@ -168,7 +168,7 @@ Exit the console.
 
 <br>
 
-##Modify the existing DB with another Migration
+## Modify the existing DB with another Migration
 
 
 - Rails gives us some help to generate migration files - we can list the fields and their types in the generate command, and if we name the migration appropriately, Rails even guesses the name of the table.
@@ -221,7 +221,7 @@ The schema is the snapshot of your current database tables and fields.
 <br>
 
 
-#CRUD the users in the Console
+# CRUD the users in the Console
 
 #### Create
 ```ruby
