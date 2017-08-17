@@ -18,19 +18,18 @@
 - After hours: 5:00pm - 10:00pm EDT
 
 
-### Tentative Weekly Schedule
+### Tentative Daily Schedule
 
-|  | Monday | Tuesday | Wednesday |Thursday |  Friday
-| :----- |:----- |:-----   |:----- |:----- |:-----
-| 8:45-9:00 | Welcome | Welcome | Welcome | Welcome | Welcome |
-| 9:00-9:50 | Morning Exercise | Morning Exercise | Morning Exercise | Morning Exercise| Morning Exercise |
-| 9:50-10:00 | Standup | Standup | Standup | Standup | Standup
-| 10:00-12:30 | Lesson  | Lesson | Lesson | Lesson | Lesson |
-| 12:30-2:00 | Lunch | Lunch | Lunch | Lunch | Lunch |
-| 2:00-3:30 | Lesson | Lesson | Lesson | Lesson | Lesson |
-| 3:45-4:45| Lab | Lab | Lab | Lab | Lab |
-| 4:45-5:00 | HW | HW | HW | HW | HW |
-
+|               |                   |
+| ---           | ---               |
+| 8:45-9:00     | Welcome           |
+| 9:00-9:50     | Morning Exercise  |
+| 9:50-10:00    | Standup           |
+| 10:00-12:30   | Lesson            |
+| 12:30-2:00    | Lunch             |
+| 2:00-3:30     | Lesson            |
+| 3:30-4:45     | Lab               |
+| 4:45-5:00     | Intro to Homework |
 
 ### Attendance
 - Attendance is taken twice daily at 9:00AM and 2:30PM
