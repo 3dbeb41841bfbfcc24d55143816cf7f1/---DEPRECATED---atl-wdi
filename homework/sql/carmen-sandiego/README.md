@@ -2,7 +2,7 @@
 
 # SQL: Where In The World Is Carmen Sandiego?
 
-We're going to use what we've learned already about searching with SQL commands, and apply it to chase down and capture an elusive and world-reknowned thief, Carmen Sandiego. Follow the clues, use the interweb - write down both the SQL commands /queries you used and your answers to the clues (in the [find_carmen.sql](find_carmen.sql) file)- and figure out where Carmen's headed, so we can catch her and bring her in.
+We're going to use what we've learned already about searching with SQL commands, and apply it to chase down and capture an elusive and world-reknowned thief, Carmen Sandiego. Follow the clues, use the interweb - write down both the SQL commands /queries you used and your answers to the clues (in the [find_carmen.sql](/starter_code/find_carmen.sql) file)- and figure out where Carmen's headed, so we can catch her and bring her in.
 
 ## Exercise Objectives
 
@@ -13,7 +13,7 @@ We're going to use what we've learned already about searching with SQL commands,
 ## Setup
 
 - Make sure you're in the `carmen-sandiego` directory in the homework folder.
-- Record your answers (SQL queries) in [find_carmen.sql](starter_code/find_carmen.sql)
+- Record your answers (SQL queries) in [find_carmen.sql](/starter_code/find_carmen.sql)
 - From the command line, let's create a new database called ```carmen``` and populate it with the SQL found in ```world.sql```
 
 
