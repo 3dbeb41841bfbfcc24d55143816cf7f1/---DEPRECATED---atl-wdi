@@ -17,7 +17,7 @@
 
 ## Intro   (10/10)
 
-Ruby is a server-side scripting language written on top of C.
+Ruby is a server-side, Object Oriented, scripting language written on top of C.
 
 It was written by Yukihiro "Matz" Matsumoto, in 1995, who now works as the lead Ruby architect at Heroku.
 
