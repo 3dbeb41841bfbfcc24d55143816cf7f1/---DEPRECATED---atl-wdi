@@ -16,13 +16,9 @@
 
   - Follow the [readme.md](3_More_Ruby/readme.md) and start sharpening those advanced programmer skillz!
 
-### Part 4: Codewars!
+### Part 4: Questions
 
-  - Follow the [readme.md](4_Codewars/readme.md) and test your technical skills with ruby challenges.
-
-### Part 5: 5 Questions
-
-What are 5 questions you still have or that came up?
+Write down any questions you still have about Ruby:
 
   1. Your Question Here
   2. Your Question Here
