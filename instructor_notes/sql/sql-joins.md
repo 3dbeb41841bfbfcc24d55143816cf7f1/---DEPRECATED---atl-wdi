@@ -329,13 +329,11 @@ you're really curious, check out this article:
 
 ## You Do: Books and Authors
 
-See advanced_queries.sql in the [library_sql](https://github.com/ga-dc/library_sql)
-exercise.
+See advanced_queries.sql in the `library_sql` lab.
 
 ## Advanced SQL
 
 If you DON'T have the libary database - SET UP YOUR LIBRARY DB
-- Access this directory: https://github.com/ATL-WDI-Curriculum/atl-wdi-9/tree/master/unit_04/w11d04/student_labs/library_sql
 
 - `psql` {{ in terminal }}
 
@@ -351,5 +349,3 @@ If you DO have the library database
 - `psql -d library`       {{ in terminal }}
 
 - `psql`                  {{ in terminal }}
-
-- Do this exercise: https://github.com/ATL-WDI-Curriculum/atl-wdi-9/edit/master/unit_04/w11d05/instructor_notes/sql_advanced_sol.sql
