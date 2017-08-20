@@ -96,7 +96,7 @@ Ruby is hyper readable the lack of `;`, `()`, `{}`, keywords like `var`, `return
 
 #### Frameworks
 
-We're going to learn Ruby on Rails early next week. It's a application framework for Ruby similar to Express but 10x more robust.
+We're going to spend most of our time with Ruby learning Ruby on Rails. It's a application framework for Ruby similar to Express but 10x more robust.
 
 Ruby has a smaller framework called Sinatra, which syntactically is _very_ similar to Express, which you could easily learn on your own.
  
