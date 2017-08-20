@@ -199,7 +199,7 @@ Spend 15 minutes reading through everything up until the bang method.
 Everything in Ruby is an **object**.
 * By "object" we mean that everything has its own set of properties and methods
 * Not a new concept. Some data types in Javascript had their own properties and methods (e.g., `string.length`)
-* You will learn more about this when you dive into Ruby OOP next week
+* You will learn more about this when you dive into Ruby OOP
 
 ### Numbers
 
