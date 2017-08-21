@@ -233,8 +233,6 @@ Ruby uses same arithmetic operators as Javascript
 # => 9
 ```
 
-> Notice the use of `**` to perform exponential operations in Ruby. We don't have this shortcut [in Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow).
-
 ### Strings
 
 Words, just like in Javascript.
