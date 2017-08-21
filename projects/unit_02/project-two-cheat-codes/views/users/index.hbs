@@ -1,0 +1,14 @@
+<h1>Users</h1>
+
+{{#each users}}
+    <div>
+        <div>Name: {{this.first_name}}</div>
+        <div>Email: {{this.email}}</div>
+        
+        <a href="/users/{{this._id}}">Show {{this.first_name}}</a>
+        <a href="/users/{{this._id}}/delete">Delete {{this.first_name}}</a>
+        <a href="/users/{{this._id}}/edit">Edit {{this.first_name}}</a>
+    </div>
+{{/each}}
+
+<div><a href="/users/new">Create a new User</a></div>
