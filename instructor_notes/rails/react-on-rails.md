@@ -91,17 +91,19 @@ api: PORT=3001 && bundle exec rails s
 
 With that, we can now start building React-On-Rails!
 
+**COMMIT**
+
 ## Back-End: Ruby on Rails
 
 ### Model Set-Up and Seed
-Now that we have our project properly set up, lets work on creating and seeding our data and serving it as an API for our Angular project to consume.
+Now that we have our project properly set up, lets work on creating and seeding our data and serving it as an API for our React UI to consume.
 
 ```bash
   rails g model Artist name photo_url nationality
   rails g model Song title album preview_url artist:references
 ```
 
-Let's seed our database with our old tunr data. Copy the code for our seeds from this gist. [Tunr Seed Data](https://gist.github.com/king0120/a465fe25558c63bcb6d2a8091da1cea4)
+Let's seed our database with our old Tunr data. Copy the code for our seeds from this gist. [Tunr Seed Data](https://gist.github.com/king0120/a465fe25558c63bcb6d2a8091da1cea4)
 
 Now let's create, migrate, and seed our database.  Then we can test and make sure that ActiveRecord can fetch the data we need
 
@@ -117,36 +119,52 @@ class Artist < ApplicationRecord
 end
 ```
 
-### Create Routes
+Lets hop into the Rails console using `rails c` and validate that our information exists.
+**COMMIT**
+
+### Create API Routes
+Since we are going to be using both React Router and Rails, we need to create an easy way to differentiate between our routes.  To do this, we will take advantage of Rails Namespaces.
+
+Namespaces allow us to group together routes without needing an additional controller.  The tradeoff here is that our controllers will also need to be named in a way that signals it is part of a namespace.
+
 Let's use the resources command to generate nested routes for our two models
 ```ruby
 # config/routes.rb
 Rails.application.routes.draw do
-  resources :artists do
-    resources :songs
+  namespace :api do
+    resources :artists do
+      resources :songs, only: [:index, :show]
+    end
   end
 end
 ```
 
+Let's see all of the routes we now have available by running `rails c`
+
+**COMMIT**
+
 ### Generate Controllers
-We now need to create controllers that can serve information from Postgres to our Angular front-end through an API call.  In order to do that, we need to make a minor change to the actions that we've been creating up to this point.
+We now need to create controllers that can serve JSON information from Postgres to our app using ActiveRecord. In order to do that, we need to make a minor change to the actions that we've been creating up to this point.
+
+**Important** Pay attention to the slightly different naming convention for this controller
 
 ```bash
-    rails g controller artists
+    rails g controller api::artists
 ```
 
 ```ruby
-  def index
-    @artists = Artist.all
-    render json: @artists  
-    #Overwrites the assumption to render an index.html.erb
+  class Api::ArtistsController < ApplicationController
+    def index
+      @artists = Artist.all
+      render json: @artists
+    end
   end
 ```
 
-We have to use this `render json:` method throughout our RESTful routes.  By the end we will have something that looks like the following.
+We have to use this `render json:` method throughout our RESTful routes.  This will convert our Ruby hashes into a JSON object
 
 ```ruby
-class ArtistsController < ApplicationController
+class Api::ArtistsController < ApplicationController
   def index
     @artists = Artist.all
     render json: @artists
@@ -186,21 +204,33 @@ Notice the lack of a `new` and `edit` action.  We don't need these actions, beca
 
 We should now have a working API.  Let's use Postman to test our actions.
 
-![Invalid Auth](../images/invalid.png)
-
-Oh no! Rails is not allowing any requests that don't match localhost:3000. This is because of the Authorization Token that is normally sent over when a request is made.  For the sake of this demonstration, let's loosen the requirements for the Auth Token.
-
-```ruby
-class ApplicationController < ActionController::Base
-  protect_from_forgery unless: -> { request.format.json? }
-end
+```
+localhost:3001/api/artists
 ```
 
 If we go back into Postman, we can now validate that our JSON API is working as intended.
 
-## Front End: AngularJS
+**COMMIT**
 
-Now we have a working API. Let's use webpack to bundle our JS code and use Angular components to drive our UI.
+### YOU DO (20 mins)
+Now that we've created an Artist controller, create a Songs controller with all 5 RESTful routes.  Remember to check out `rails routes` to determent your route params.
+
+**COMMIT**
+
+## Front End: React
+
+Now we have a working API. Let hone in on building our React UI. 
+
+```bash
+  yarn add styled-components axios react-router-dom
+```
+
+### You Do
+Look at these 3 wireframes for the Tunr UI and determine what types of React components we will need for this app.
+
+![](../images/TunrIndex.png)
+![](../images/TunrArtists.png)
+![](../images/TunrLogin.png)
 
 ### Angular Hello World
 
