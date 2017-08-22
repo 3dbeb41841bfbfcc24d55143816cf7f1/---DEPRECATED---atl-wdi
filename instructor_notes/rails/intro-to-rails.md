@@ -68,7 +68,12 @@ The specs for this app are as follows:
 -   Create new recipes and edit existing recipes
 -   Delete recipes
 
-To begin, we can just run the following command.
+First and foremost, we must install the Rails gem:
+```
+  gem install rails
+```
+
+To begin the app, we can just run the following command.
 
 ```bash
   rails new cookbook -d postgresql
