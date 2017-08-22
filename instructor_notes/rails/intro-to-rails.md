@@ -24,7 +24,7 @@
 *You should already be able to:*
 
 -   Execute ruby code in `irb` or `pry`
--   Explain the difference between HTTP request/request
+-   Explain the difference between HTTP request/response
 -   Explain MVC
 -   Describe SQL
 

@@ -34,7 +34,7 @@ Performing everyday tasks, while intricate and complex, come to you naturally.
 > "Ruby is simple in appearance, but is very complex inside, just like our human body." — Yukihiro "Matz" Matsumoto
 
 ### You Do: Ruby vs. JavaScript
-Think back to the [homework you started yesterday](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/tree/master/homework/unit_04/ruby/ruby-intro/1_Learn_Ruby_the_Hard_Way).
+Think back to [Learn Ruby The Hard Way](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/homework/ruby/ruby-intro/1_Learn_Ruby_the_Hard_Way).
 
 With a partner, discuss and write down the following:
 * 3 differences between JavaScript and Ruby.  
@@ -96,7 +96,7 @@ Ruby is hyper readable the lack of `;`, `()`, `{}`, keywords like `var`, `return
 
 #### Frameworks
 
-We're going to learn Ruby on Rails early next week. It's a application framework for Ruby similar to Express but 10x more robust.
+We're going to spend most of our time with Ruby learning Ruby on Rails. It's a application framework for Ruby similar to Express but 10x more robust.
 
 Ruby has a smaller framework called Sinatra, which syntactically is _very_ similar to Express, which you could easily learn on your own.
  
@@ -199,7 +199,7 @@ Spend 15 minutes reading through everything up until the bang method.
 Everything in Ruby is an **object**.
 * By "object" we mean that everything has its own set of properties and methods
 * Not a new concept. Some data types in Javascript had their own properties and methods (e.g., `string.length`)
-* You will learn more about this when you dive into Ruby OOP next week
+* You will learn more about this when you dive into Ruby OOP
 
 ### Numbers
 
@@ -232,8 +232,6 @@ Ruby uses same arithmetic operators as Javascript
 3 ** 2 # Exponentiation
 # => 9
 ```
-
-> Notice the use of `**` to perform exponential operations in Ruby. We don't have this shortcut [in Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow).
 
 ### Strings
 

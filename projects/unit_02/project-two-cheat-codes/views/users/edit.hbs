@@ -1,0 +1,7 @@
+<h1>Edit User</h1>
+
+<form action="/users/{{user._id}}?_method=PUT" method="POST">
+    <input type="email" placeholder="email" name="email" value="{{user.email}}" required >
+    <input type="text" name="first_name" placeholder="first name" value="{{user.first_name}}">
+    <input type="submit" value="Update User">
+</form>

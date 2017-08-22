@@ -12,18 +12,18 @@ Also note that if you are writing out the exercises, there is an error on page 1
 ### Extra
 
 #### Node Tutorials
-Tutsplus- https://code.tutsplus.com/tutorials/nodejs-for-beginners--net-26314
-Tutorialspoint- https://www.tutorialspoint.com/nodejs/
-Node School- https://nodeschool.io/#workshoppers
+* Tutsplus - https://code.tutsplus.com/tutorials/nodejs-for-beginners--net-26314
+* Tutorialspoint - https://www.tutorialspoint.com/nodejs/
+* Node School - https://nodeschool.io/#workshoppers
 
 #### Express Tutorials
-Tutsplus- https://code.tutsplus.com/tutorials/introduction-to-express--net-33367
-Tutorialspoint- https://www.tutorialspoint.com/nodejs/nodejs_express_framework.htm
-Node + Express Scotch.io- https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
+* Tutsplus - https://code.tutsplus.com/tutorials/introduction-to-express--net-33367
+* Tutorialspoint - https://www.tutorialspoint.com/nodejs/nodejs_express_framework.htm
+* Node + Express Scotch.io - https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
 
 #### Mongo Tutorials 
 Tutorialspoint- https://www.tutorialspoint.com/mongodb/
 Scotch.io- https://scotch.io/tutorials/an-introduction-to-mongodb
 
-#### Practive Node and Express
-https://github.com/ATL-WDI-Curriculum/atl-wdi-10/tree/master/homework/unit_02/express/practice-node-and-express-with-nodeschool
+#### Practice Node and Express
+https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/homework/express/practice-node-and-express-with-nodeschool

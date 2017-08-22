@@ -1,0 +1,14 @@
+<h1>{{userName}}'s Items</h1>
+
+{{#each items}}
+    <div>Item Name: {{this.name}}</div>
+
+    <div>
+        <a href="/users/{{../userId}}/items/{{this._id}}">Show Item</a>
+        <a href="/users/{{../userId}}/items/{{this._id}}/delete">Delete Item</a>
+    </div>
+
+    <div>
+        <a href="/users/{{../userId}}">Back to {{../userName}}</a>
+    </div>
+{{/each}}

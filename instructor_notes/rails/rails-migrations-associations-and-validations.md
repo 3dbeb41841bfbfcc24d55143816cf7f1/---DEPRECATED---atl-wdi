@@ -98,9 +98,9 @@ Please type all this by hand so you're not blindly copying & pasting and you rem
 
 `cd models_example/`
 
-- Create our database using a `rake` command.
+- Create our database using a `rails` command.
 
-`rake db:create`
+`rails db:create`
 
 <br>
 
@@ -119,7 +119,7 @@ rails g model User first_name:string last_name
 - **Note**... if we don't specify a data type Rails will assume `String` by default
 - **Also**... if we made a mistake we can press the up arrow and run `rails d model User first_name:string last_name` to 'delete' the last migration.
 
-- Next, we run `rake db:migrate` 
+- Next, we run `rails db:migrate` 
     - This command will run all the migration files in the migrations folder. It will migrate our database to create the **users** table and populate our `db/schema.rb`. The schema represents the current state of the database.
     - Migration files are timestamped
 
@@ -205,11 +205,11 @@ Exit the console.
 
 Run the migration so that the column is added to the table.
 
-`rake db:migrate`
+`rails db:migrate`
 
 We can check that the migration ran successfully.
 
-`rake db:migrate:status`
+`rails db:migrate:status`
 
 <br>
 ## Schema.rb
@@ -300,7 +300,7 @@ As we saw earlier, Rails gives us some help to generate migration files - we can
 rails g migration AddHometownToUsers hometown
 
 # Migrate the new columns to our Schema/Database
-rake db:migrate
+rails db:migrate
 ```
 - by putting `Add...To...` Rails knows we are adding these columns to which table, and the migration can be written automatically. We'll also take a look at `Remove...From...`
 
@@ -317,7 +317,7 @@ Add a new column to your `Users` table using a migration (`fav_food`, `nickname`
 
 We can undo the previous migration with:
 
-`rake db:rollback`
+`rails db:rollback`
 
   - Beware:
     - don't rollback migrations which have been run on other machines (essentially, if they're in source code control)
@@ -325,9 +325,9 @@ We can undo the previous migration with:
 
 - We can rollback to a specific migration like so:
  
-`rake db:migrate VERSION=20150213144026`
+`rails db:migrate VERSION=20150213144026`
 
-- Run `rake db:migrate` to get back to the current version of your schema. This command will run all the migrations on the migration folder.
+- Run `rails db:migrate` to get back to the current version of your schema. This command will run all the migrations on the migration folder.
 
 **Why not just delete the migration file directly?**
 
@@ -363,7 +363,7 @@ def change
 end
 ```
 
-Run `rake db:migrate`
+Run `rails db:migrate`
 
 <br>
 
@@ -442,10 +442,10 @@ validates :age, numericality: true
 
 <br>
 
-##Migrations/Validations Exercise
+## Migrations/Validations Exercise
 [Can be found here](https://github.com/ATL-WDI-Exercises/rails-active-record-migrations)
 
-##Further Reading
+## Further Reading
 
 * [Active Record Overview](http://guides.rubyonrails.org/active_record_basics.html)
 * [Migrations](http://edgeguides.rubyonrails.org/active_record_migrations.html)
