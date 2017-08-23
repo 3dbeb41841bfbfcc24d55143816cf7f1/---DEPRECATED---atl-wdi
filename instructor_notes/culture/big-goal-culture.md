@@ -1,12 +1,8 @@
 # Introduction to GA
 
 ## Instructor Introduction
-- Danny Hurley - Instructional Lead
-- Jamie King - Instructional Lead
-- Larissa Boyce - Outcomes
-- TAs
 
-## Roles (Danny)
+## Roles
 1. Instructional Lead
   - Lesson Blocks
   - Code-alongs
