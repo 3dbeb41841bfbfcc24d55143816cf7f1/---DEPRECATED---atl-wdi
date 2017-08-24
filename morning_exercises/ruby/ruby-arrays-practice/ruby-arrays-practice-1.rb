@@ -4,6 +4,8 @@ require 'ostruct'
 
 #  1. Return an array of each Person's full name, upper-cased
 
+require 'ostruct'
+#
 people = [
     OpenStruct.new(
         first_name: 'Jamie',
@@ -18,8 +20,10 @@ people = [
         last_name: 'Woodruff',
     )
 ]
-
-upper_case_full_names = []
+upper_case_full_names = people.map do |person|
+  person.first_name.upcase + " " + person.last_name.upcase
+end
+puts upper_case_full_names
 
 
 #   2. Find the first order for each user
@@ -63,7 +67,12 @@ users = [
     )
 ]
 
-first_order_for_each_user = []
+first_order_for_each_user = users.map do |user|
+  user.orders[0].description
+end
+puts first_order_for_each_user
+
+
 
 
 #   3. Find the average amount spent on coffee, per transaction, for each person

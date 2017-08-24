@@ -38,11 +38,11 @@ There are six channels we'll use (X is the number of your class):
 - `atl-wdiX-resources`
 
 1. We'll run our lessons in the `atl-wdi10-classroom` channel. After class, the TA will come online in this channel.
-2. The `atl-wdi10-debugging` channel is probably the most important channel of the four. Throughout this course, whether it's during class, during homework, late-late at night, on the weekends, whenever, you're going to run into errors in your code.
-3. `atl-wdi10-outcomes` will be where your outcomes lessons happen with  Larissa.
-4. The `atl-wdi10-partytime` channel is for all non-class related conversations to occur.
-5. The `atl-wdi10-parkinglot` channel is for class-related conversations that are more in-depth than class time allows for.
-6. The `atl-wdi10-resources` channel is for any resources that you find.  You can add any resources that you find into this channel, and they will all be exported for you at the end of the class.  This will be the only public channel.
+2. The `atl-wdiX-debugging` channel is probably the most important channel of the four. Throughout this course, whether it's during class, during homework, late-late at night, on the weekends, whenever, you're going to run into errors in your code.
+3. `atl-wdiX-outcomes` will be where your outcomes lessons happen with  Larissa.
+4. The `atl-wdiX-partytime` channel is for all non-class related conversations to occur.
+5. The `atl-wdiX-parkinglot` channel is for class-related conversations that are more in-depth than class time allows for.
+6. The `atl-wdiX-resources` channel is for any resources that you find.  You can add any resources that you find into this channel, and they will all be exported for you at the end of the class.  This will be the only public channel.
 
 #### `atl-wdiX-debugging` channel
 

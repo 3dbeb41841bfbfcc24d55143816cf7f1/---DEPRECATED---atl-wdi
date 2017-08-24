@@ -62,11 +62,32 @@ keep them organized.
 
 > Answer here
 
+var task = {
+  taskName: 'Clean out fridge',
+  creatorName: 'Jonathan Watson',
+  dateCreated: '20170705',
+  dateDue: '20170706',
+  timeToComplete: '2 hours',
+  projectGroup: 'Household chores'
+}
+
+People need a name to remember what they are supposed to do. Additionally, if group sharing is a feature, you want to see who created the task. Seeing how long ago the task was created helps, as well as having a due date. Time to complete was suggested in the directions, as was project groups. 
+
 ### 2. Photo Sharing App
 
 In this app, users can upload photos to their accounts and share them with others. These photos can be grouped into albums.
 
 > Answer here
+
+var photo = {
+  photoFileName: 'IMG_60912.png',
+  creatorName: 'Jonathan Watson',
+  dateCreated: '20170705',
+  photoAlbumName: 'Hawaiian Cruise'
+  sharePublicly: true,
+}
+
+There will be additional metadata that we may want to scrape from the photo itself, but knowing the title, the uploader, and the date created provide standard search features. Additionally, if you can group into albums, you need an album name. And we can add a boolean value to make sure that users actually want their photos shared online. 
 
 ### 3. Home Automation Manager
 
@@ -77,6 +98,23 @@ and down.
 
 > Answer here
 
+var house = {
+  rooms: ['bedroomOne', 'bedroomTwo', 'livingRoom', 'kitchen', 'hallway', 'bathroomOne', 'bathroomTwo'],
+  thermostatTemperature = 72;
+  outdoorTemperature = 89;
+}
+var devices = {
+  lightBulbOne: 'LKJ098761',
+  lightBulbTwo: 'LKJ123942',
+  lightSwitchOne: 'BWM573829',
+  lightSwitchTwo: 'BWM1234098',
+  motionDetectorOne: 'PH1234790',
+  motionDetextorTwo: 'PH09747638'
+}
+
+With these two objects, you can assign various devices to individual rooms. Then, if the internal temperature rises above the set temperature, you can turn off appropriate lights. Then, schedule various lights to turn on when someone arrives, as well as lower the thermostat. Finally, by checking the outdoor temperature, you could watch for a heat wave and adjust temperature accordingly, or, in winter months, switch over to the heater.
+
+
 ### 4. Sneaker Store
 
 This app will allow customers to browse a list of products (sneakers, in this
@@ -84,6 +122,18 @@ case), add those products to a cart, and save that cart as a past order once the
 purchase is complete.
 
 > Answer here
+
+var shoe = {
+  shoeType: ['sneaker', 'loafer', 'slip-on', 'sandal']
+  size: 12,
+  brand: nike,
+  quantityAvailable: 50,
+  inCart = true,
+  pastOrder = true
+}
+
+I feel like this would be better served with multiple objects. One for the customer for his/her order history, shoe size, preferences, etc. and a second object for the shoes themselves. But this should hold all the necessary data for the app. 
+
 
 ## Representing Abstractions in Code
 
@@ -93,7 +143,7 @@ abstraction can often be represented in multiple different ways, and there may
 be trade-offs in speed and simplicity that come from using one representation
 vs another.
 
-### 5. Subway System
+### 5. Subway System  
 
 Suppose that you're building an app that tells travelers how many stops they
 need to travel to get from one station to another. Two abstractions that you
@@ -140,6 +190,8 @@ var exampleLine = {
 What are some advantages and disadvantages of choosing these representations? Please give at least one example of each.
 
 > Answer here
+
+It's nice and concise to keep the stations as a subset of the lines and to store all that data in the same object. However, a problem arises if, for example, the haymarket station is used by both the green and the orange lines. In this data model, you would have to duplicate the content again. Instead, I would recommend a single object for all the lines, and a second object for the lines themselves, which would then reference the station object. 
 
 ### 6. Doctor Appointment App
 
@@ -244,6 +296,10 @@ the better choice?
 
 > Answer here
 
+The first option would be frustrating because while some patients are tied to a specific doctor, what happens if they need a consult with a separate physician? The second option is much better, since these appointments can be assigned and re-assigned much more easily. Additionally, having a separate appointment object makes it easier to create a patient record. 
+
+The first option's biggest benefit is that it would be easy to see/print a doctor's schedule for the day, with all his/her appointments listed cleanly. 
+
 ## Tying It Together
 
 ### 7. Tic-Tac-Toe
@@ -254,12 +310,22 @@ a.  What are some possible entities that your application might use to model its
     data? Please pick at least two, with at least two properties apiece.
 
   > Answer here
+  playerOne would need to be X's, playerTwo would need to be O's. There would need to be some way to track wins over time. And something to track how many marks in a row equals a win. 
 
 b.  How might those entities be represented in JavaScript code?
 
   > Answer here
 
+  var player {
+    playerMark: 'X',
+    playerOne: true,
+    playerName: 'Jonathan',
+    playerWins: 10
+  }
+
 c.  Justify your choices in a) and b). Why these entities? Why these
     representations?
 
   > Answer here
+
+Tic Tac Toe relies on one player moving first. It is alternating game play. Therefore, the first player inherently has the advantage. If this is a true two-player game (not person against computer), the individuals would want to see how they fare against each other over time. Finally, I'm sure the player name would need to be displayed on the screen somewhere to know when it was your turn.

@@ -1,0 +1,8 @@
+<h1>{{user.first_name}}'s Items:</h1>
+
+{{#each items }}
+<p>{{this.id}}</p>
+<p>{{this.name}}</p>
+<a href="/users/{{ ../userId }}/items/{{ this.id }}">Show</a>
+<a href="/users/{{ ../userId }}/items/{{ this.id }}/delete"><button>Delete</button></a> 
+{{/each}}

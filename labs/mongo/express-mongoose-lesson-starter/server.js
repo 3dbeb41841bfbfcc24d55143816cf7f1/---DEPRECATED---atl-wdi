@@ -1,14 +1,23 @@
 // Standard stuff
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const hbs = require('hbs');
+const methodOverride = require('method-override');
 
+const app = express();
+
+app.use(methodOverride('_method'))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var usersController = require("./controllers/usersController.js");
+app.set('view engine', 'hbs');
+
+const usersController = require("./controllers/usersController.js");
 app.use('/users', usersController);
+
+const itemsController = require("./controllers/itemsController.js");
+app.use('/users/:userId/items', itemsController);
 
 // Mongoose stuff
 var mongoose = require('mongoose');

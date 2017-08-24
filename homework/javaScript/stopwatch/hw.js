@@ -18,53 +18,105 @@ const Stopwatch = {
   laps: [],
   // DO NOT EDIT ABOVE THIS LINE
   advanceTenMillisecs: function(){
-    // Your Code Here
+    this.millisecs += 10;
+    if (this.millisecs >= 1000) {
+      this.millisecs -= 1000;
+      this.secs++;
+    }
+    if (this.secs >= 60) {
+      this.secs -= 60;
+      this.mins++;
+    }
   },
   reset: function(){
-    // Your Code Here
+    this.mins = 0;
+    this.secs = 0;
+    this.millisecs = 0;
+    this.laps = [];
   },
   start: function(){
-    // Your Code Here
+    if (!this.isRunning) {
+      this.isRunning = true;
+      this.tickClock();
+    }
   },
   stop: function(){
-    // Your Code Here
+    this.isRunning = false;
   },
-  lap: function(){
-    // Your Code Here
+lap: function(){
+    if (this.isRunning) {
+      this.laps.push({
+        mins: this.mins,
+        secs: this.secs,
+        millisecs: this.millisecs
+      });
+    }
   }
 };
 
 /// User Interface ///
 const ViewEngine = {
   updateTimeDisplay: function(mins, secs, millisecs){
-    // Your Code Here
+    $('#mins').html(ViewHelpers.zeroFill(mins, 2));
+    $('#secs').html(ViewHelpers.zeroFill(secs, 2));
+    $('#millisecs').html(ViewHelpers.zeroFill(millisecs / 10, 2));
   },
-  updateLapListDisplay: function(laps){
-    // Your Code Here
+  updateLapListDisplay: function(){
+    var laps = Stopwatch.laps;
+    var lapList = $('#lap-list');
+    lapList.html('');
+    for (var i = 0; i < laps.length; i++) {
+      lapList.innerHTML += "\
+      <li>" +
+        ViewHelpers.zeroFill(laps[i].mins, 2) + ":" +
+        ViewHelpers.zeroFill(laps[i].secs, 2) + ":" +
+        ViewHelpers.zeroFill(laps[i].millisecs/10, 2) +
+      "</li>";
+    }
   },
 };
 const ViewHelpers = {
   zeroFill: function(number, length){
-    // Your Code Here
+    var str = number.toString();
+    let numZeroes = Math.max(length - str.length, 0);
+    for( var i = 0; i < (length - str.length); i++){
+      str = '0' + str;
+    }
+    return str;
   },
 };
 
 /// Top-Level Application Code ///
 const AppController = {
   handleClockTick: function(){
-    // Your Code Here
+    ViewEngine.updateTimeDisplay(Stopwatch.mins, Stopwatch.secs, Stopwatch.millisecs);
   },
   handleClickStart: function() {
-    // Your Code Here
-  },
-  handleClickStopReset: function(){
-    // Your Code Here
+    console.log("Start the clock");
+    if (!Stopwatch.isRunning) { Stopwatch.start(); }
   },
   handleClickLap: function(){
-    // Your Code Here
+    console.log("lap the clock");
+    if (Stopwatch.isRunning) {
+      Stopwatch.lap();
+      ViewEngine.updateLapListDisplay(Stopwatch.laps);
+    }
+  },
+  handleClickStopReset: function(){
+    console.log('reset the clock');
+    if (Stopwatch.isRunning) {
+      Stopwatch.stop();
+    } else {
+      Stopwatch.reset();
+      ViewEngine.updateTimeDisplay(0, 0, 0);
+      ViewEngine.updateLapListDisplay(Stopwatch.laps);
+    }
   }
 };
 
 window.onload = function(){
   // Attach AppController methods to the DOM as event handlers here.
+  $('#start').on('click', AppController.handleClickStart);
+  $('#lap').on('click', AppController.handleClickLap);
+  $('#stop').on('click', AppController.handleClickStopReset);
 };

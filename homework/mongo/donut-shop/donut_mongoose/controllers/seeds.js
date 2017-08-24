@@ -6,6 +6,9 @@ var express = require("express");
 var router = express.Router();
 var mongoose = require("mongoose");
 var Donut = require("../models/donuts.js");
+mongoose.connect('mongodb://localhost/donut-shop');
+
+mongoose.Promise = global.Promise;
 
 
 router.get('/donuts', function(req, res) {
@@ -38,8 +41,11 @@ router.get('/donuts', function(req, res) {
 		}
 	];
 
-
+console.log("Everything works until now");
   Donut.create(newDonuts, function(err) {
+	  if (err) {
+		  console.log(err);
+	  }
         console.log("SEED: NEW PRODUCTS CREATED!");
         res.redirect('/');
   });
