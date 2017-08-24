@@ -117,8 +117,8 @@ Cool, like before, let me give you some song data to seed your database with son
 
 1. Add this above your Artist seeds in db/seeds.rb:
 
-    ```ruby
-    Artist.destroy_all
+```ruby
+Artist.destroy_all
 ```
 
 1. Add this below your Artist seeds in db/seeds.rb:
@@ -164,6 +164,7 @@ rihanna = Artist.first
 diamonds = rihanna.songs.new
 diamonds.title = "Diamonds"
 ```
+
 To save our instance to the database we use `.save`:
 
 ```ruby
