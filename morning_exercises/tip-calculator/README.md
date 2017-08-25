@@ -1,4 +1,4 @@
-# Day 1: Tip Calculator
+# Tip Calculator
 ___
 We all know the struggles that come at the end of a delicious meal when dining out. Splitting the bill. Luckily for you and your possé, you're a brilliant developer that has finished Learning Ruby the Hard Way over the weekend and can create an application that allows you to split the bill, WITH TAX && TIP!
 
