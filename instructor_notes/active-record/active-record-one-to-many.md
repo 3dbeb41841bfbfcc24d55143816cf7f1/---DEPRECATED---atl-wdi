@@ -78,6 +78,7 @@ columns on the command line, Rails will automatically generate the correct migra
 
 
 <br>
+
 ### Adding the Active Record Relationships (5 min)
 
 We need to update our models to indicate the associations between them. For Muse, our models should look like so:
@@ -116,30 +117,32 @@ Cool, like before, let me give you some song data to seed your database with son
 
 1. Add this above your Artist seeds in db/seeds.rb:
 
-    ```ruby
-    Artist.destroy_all
+```ruby
+Artist.destroy_all
 ```
 
 1. Add this below your Artist seeds in db/seeds.rb:
 
-    ```ruby
-    Song.create(artist_id: 1, title: "Umbrella", genre: "Pop")
+```ruby
+Song.create(artist_id: 1, title: "Umbrella", genre: "Pop")
 Song.create(artist_id: 2, title: "Shake It Off", genre: "Pop")
 Song.create(artist_id: 3, title: "Pressure", genre: "Rock")
 Song.create(artist_id: 4, title: "Hotline Bling", genre: "Rap")
 Song.create(artist_id: 5, title: "Lemonade", genre: "R&B")
 ```
+    
 3. `rails db:seed`
 
 4. Cool, let's go into `rails c` and make sure that our database has our Songs:
 
-    ```ruby
-    Song.all
+```ruby
+Song.all
 
-    # Let's checkout  all of Rihanna's songs
-    rihanna = Artist.first
-    rihanna.songs
-    ```
+# Let's checkout  all of Rihanna's songs
+rihanna = Artist.first
+rihanna.songs
+```
+
 5. get add and `git commit -m "added has_many songs to artists and seeded the songs"`
 
 <br>
@@ -161,13 +164,13 @@ rihanna = Artist.first
 diamonds = rihanna.songs.new
 diamonds.title = "Diamonds"
 ```
+
 To save our instance to the database we use `.save`:
 
 ```ruby
 diamonds.save
 rihanna.songs
 ```
-
 
 <br>
 
@@ -268,12 +271,14 @@ Remember the code `dependent: :destroy` that we added to the `Artist` model? Tha
 
 Let's see it in action. When we delete Rihanna all of her songs are deleted also.
 
-```ruby
-Artist.find_by_name("Rihanna").destroy
+    ```ruby
+    
+    Artist.find_by_name("Rihanna").destroy
 
-Artist.count
-Song.count
-```
+    Artist.count
+    Song.count
+    
+    ```
 
 Check out your `rails c` and note that Active Record is deleting both the Artist and her Songs.
 <br>
