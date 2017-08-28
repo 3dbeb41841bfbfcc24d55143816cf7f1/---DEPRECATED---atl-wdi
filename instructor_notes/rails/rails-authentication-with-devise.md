@@ -1,4 +1,4 @@
-# Authorization for Rails
+# Authentication/Authorization for Rails
 
 |Objectives|
 |-----------|
