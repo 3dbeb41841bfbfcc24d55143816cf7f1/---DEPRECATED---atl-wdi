@@ -5,7 +5,7 @@
 |Explain how authorization differs from authentication|
 |Use CanCanCan to implement authorization helpers in a Rails application|
 
-Authorization is an important aspect to most any application. As a system, it is put in place to determine whether the current user has the permission to perform the requested action. Based on this, it typically happens after a user is authenticated, but before a request is processed.
+Authorization and Authentication is an important aspect to most any application. As a system, it is put in place to determine whether the current user has the permission to perform the requested action. Based on this, it typically happens after a user is authenticated, but before a request is processed.
 
 Today we will be generating a separate project in order to fully understand the different aspects of the authentication and authorization process.  We will add devise that gives us a user model, connect the user model with posts, and finally use a gem called CanCanCan in order to fully complete the authorization process.
 
