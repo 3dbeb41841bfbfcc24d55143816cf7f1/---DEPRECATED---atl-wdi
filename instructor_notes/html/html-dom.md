@@ -331,7 +331,7 @@ If your script tags are placed in the head of your document, your html will wait
     - `subl .`
     - Create the basic html structure
 2. Add the meta tags for external `css` and `javascript` files.
-    - `<link rel="stylehseet" type="text/css" href="style.css" />`
+    - `<link rel="stylesheet" type="text/css" href="style.css" />`
     - `<script src="main.js"></script>`
 
 **Make sure that you add them in the right place!**
