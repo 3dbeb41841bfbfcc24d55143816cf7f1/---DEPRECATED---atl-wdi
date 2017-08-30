@@ -61,6 +61,8 @@ This sets up our Ruby on Rails API and generates our file structure.  At this po
 ```
 > This package.json will be used to build the create-react-app and serve the static build file in production.  This is similar to the postinstall script we used when dealing with express in the past.
 
+> Some magic is happening here.  Since we tell heroku to install the build in the public folder, heroku will open the index.html page that is in public when we hit the index route for our app
+
 4. Set up a proxy for our dev server within the `client` level `package.json
 ```json
 {
@@ -221,10 +223,6 @@ Now that we've created an Artist controller, create a Songs controller with all 
 
 Now we have a working API. Let hone in on building our React UI. 
 
-```bash
-  yarn add styled-components axios react-router-dom
-```
-
 ### You Do
 Look at these 3 wireframes for the Tunr UI and determine what types of React components we will need for this app.
 
@@ -232,11 +230,170 @@ Look at these 3 wireframes for the Tunr UI and determine what types of React com
 ![](../images/TunrArtists.png)
 ![](../images/TunrLogin.png)
 
-### Angular Hello World
+### React Router Set Up
 
-We installed Angular during an earlier step, but we still have a couple steps to go through in order for the application to work.
+We set up our React app during an earlier step, but we still have a couple steps to go in order to set up the to.
+
+Let's go into our client directory and install a few libraries to use in out React project.
+
+```bash
+  yarn add styled-components axios react-router-dom
+```
+
+Next we need to add React Router to our project and make a few client-side routes to control the flow of our app.
+
+```jsx
+// App.js
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ArtistList from "./components/ArtistList";
+import Artist from "./components/Artist";
+import "./App.css";
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <div>
+            <h1>Tunr</h1>
+            <div>
+              <Link to="/">Artists</Link>
+              <Link to="/artist/1">Single Artist</Link>
+            </div>
+          </div>
+          <Route exact path="/" component={ArtistList} />
+          <Route path="/artist/:id" component={Artist} />
+        </div>
+      </Router>
+    );
+  }
+}
+
+export default App;
+```
+
+This requires us to create several components.  Let's make basic components for ArtistList, Artist.
+
+After creating those components, we should be able to test the links and validate that they are both valid.
+
+**COMMIT**
+
+### React Artists List
+Let's first focus on building a list of Artists that link to their own individual Artist pages.
+
+```jsx
+// client/components/ArtistList.js
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+class ArtistList extends Component {
+  constructor(){
+    super();
+    this.state = {
+      error: '',
+      artists: []
+    }
+  }
+
+  componentWillMount(){
+    this._fetchArtists();
+  }
+
+  _fetchArtists = async () => {
+    try {
+      const res = await axios.get('/api/artists');
+      await this.setState({artists: res.data});
+      return res.data;
+    }
+    catch (err) {
+      console.log(err)
+      await this.setState({error: err.message})
+      return err.message
+    }
+    
+  }
+
+  render() {
+    if (this.state.error){
+      return <div>{this.state.error}</div>
+    }
+    return (
+      <div>
+        <h1>All Artists</h1>
+        {this.state.artists.map(artist => (
+          <div>
+            <Link to={`/artist/${artist.id}`} >{artist.name}</Link> 
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
+
+export default ArtistList;
+```
+
+### Show Individual Artist
+Let's also go ahead and create a view that allows us to see info about a specific Artist
+
+```jsx
+// client/components/Artist.js
+import React, { Component } from 'react';
+import axios from 'axios';
+
+class Artist extends Component {
+  constructor() {
+    super();
+    this.state = {
+      artist: {},
+      songs: [],
+    };
+  }
+
+  componentWillMount() {
+    const artistId = this.props.match.params.id;
+    this._fetchArtists(artistId)
+  }
+
+  _fetchArtists = async (artistId) => {
+    try {
+      const response = await axios.get(`/api/artists/${artistId}/songs`)
+      await this.setState({artist: response.data.artist, songs: response.data.songs});
+      return response.data;
+    }
+    catch (err) {
+      await this.setState({error: err.message})
+      return err.message
+    }
+  } 
+
+  render() {
+    return (
+      <div>
+        <img height="200" width="200" src={this.state.artist.photo_url} alt="" />
+        <h1>{this.state.artist.name}</h1>
+        {this.state.songs.map(song => (
+          <div key={song.id}>
+            <h4>{song.title}</h4>
+            <audio controls src={song.preview_url}></audio>
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
+
+export default Artist;  
+
+```
+
+
+
 
 First, let's create a Welcome controller to serve as the root of the page.  We won't need to add any thing to the erb file, but we do need something other than the 'Welcome to Rails' page.
+
 
 ```bash
     rails g controller Welcome index
