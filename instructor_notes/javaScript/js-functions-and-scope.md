@@ -524,7 +524,7 @@ I'll put you into groups. Each group will be responsible for sharing the solutio
 <a name="lab1"></a>
 ## BONUS Independent Practice #3 - Rolling Dice: Lab (40 min)
 
-For this lab, you'll be creating a page that displays a random update of two dice every time the user hits the "Roll Dice" button. To get started, open the [app.js file](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/unit_01/javaScript/js-dice/starter-code/js/app.js). Use the HTML and CSS code included in the starter code folder.
+For this lab, you'll be creating a page that displays a random update of two dice every time the user hits the "Roll Dice" button. To get started, open the [app.js file](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/javaScript/js-dice/starter-code/js/app.js). Use the HTML and CSS code included in the starter code folder.
 
 ![](https://i.imgur.com/EEORrtk.png)
 
