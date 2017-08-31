@@ -338,6 +338,41 @@ class ArtistList extends Component {
 export default ArtistList;
 ```
 
+#### async/await
+You probably noticed above that we didn't use a `.then` & `.catch` block in the above code.  Instead we used some keywords you many not be familiar with, `async` and `await`.  This is a new feature of ES7, can be used with `create-react-app`, and was introduced in Node 8.  Basically, this new syntax makes asynchronous code look a little cleaner.  It achieves the same purpose as traditional promises.
+
+```jsx
+  _fetchArtists = () => {
+    axios.get('/api/artists').then(res => {
+      return this.setState({artists: res.data});
+    }).catch(err => {
+      this.setState({error: err.message})
+    })
+  }
+```
+
+vs
+
+```jsx
+  _fetchArtists = async () => {
+    try {
+      const res = await axios.get('/api/artists');
+      await this.setState({artists: res.data});
+      return res.data;
+    }
+    catch (err) {
+      console.log(err)
+      await this.setState({error: err.message})
+      return err.message
+    }
+    
+  }
+```
+
+For more info about async/await check out these links: 
+[Async/Await in 10 minutes](https://tutorialzine.com/2017/07/javascript-async-await-explained)
+[Async/Await - FunFunFunction ](https://www.youtube.com/watch?v=568g8hxJJp4)
+
 ### Show Individual Artist
 Let's also go ahead and create a view that allows us to see info about a specific Artist
 
