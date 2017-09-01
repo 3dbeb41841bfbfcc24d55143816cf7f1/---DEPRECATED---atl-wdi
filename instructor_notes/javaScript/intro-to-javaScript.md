@@ -497,31 +497,40 @@ JavaScript distinguishes between:
 
 Variables are used to store data types in the memory of the computer, so that they can be referenced later.
 
-### Always use var!
+### `var`, `const` and `let`
 
-New variables in JavaScript are declared using the [`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var '/en/JavaScript/Reference/Statements/var') keyword.
+New variables in JavaScript have traditionally been declared using the [`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var '/en/JavaScript/Reference/Statements/var') keyword.
 
-If you declare a variable without assigning any value to it, its type is `undefined`.
+With ES6, we now have two more options: `const` and `let`. `const` will declare a new variable whose value cannot be changed 
+after it is first assigned, while `let` will allow us to change the variable as many times as we want. We should always default to `const` unless we know that we will need to re-assign the variable later on.
+
+When declaring a `const`, we must assign a value up front:
 
 ```javascript
-var a;
-=> undefined
+const a = 'the letter a';
+```
+
+If we do not assign a variable, we will receive an error. 
+
+With `let`s however, you can declare a variable with no default value, and reassign the value later. 
+The initial value of this `let` will be `undefined`:
+
+```javascript
+let a;
+
+a = 'the letter a';
+
+console.log(a);
+=> the letter a
 ```
 
 So, let's try assigning a value to variable:
 
 ```javascript
-var name = 'Maren';
-=> undefined
+const name = 'Maren';
 
-name;
+console.log(name);
 => 'Maren'
-```
-
-Having created a few expressions, it becomes evident that we need to store these values.
-
-```javascript
-var myNumber = 1;
 ```
 
 **SIDENOTES: Always Use camelCase**
@@ -539,7 +548,7 @@ Values are assigned using `=`.
 Compound assignment statements are also available, such as `+=` and `-=`.  Compound operators make your code more concise and more dry:
 
 ```javascript
-var x = 1;
+let x = 1;
 => 1
 
 x += 5;
@@ -549,7 +558,7 @@ x += 5;
 The long way of writing this without the compound operator would be:
 
 ```javascript
-var z = 1;
+let z = 1;
 => 1
 
 z = z + 5;
@@ -559,10 +568,10 @@ z = z + 5;
 You can also use `++` and `--` to increment and decrement variables, respectively. These can be used as prefix or postfix operators.  The difference is this:
 
 ```javascript
-var a = 1;
+let a = 1;
 => 1
 
-var b = a++;
+let b = a++;
 => 1
 
 a;
@@ -575,10 +584,10 @@ b;
 OR
 
 ```javascript
-var c = 1;
+let c = 1;
 => 1
 
-var d = c--;
+let d = c--;
 => 1
 
 c;
@@ -591,10 +600,10 @@ d;
 If you add the increment/decrement after the assignment/postfix, it will only change the/increment first variable.  The assignment happens before the increment happens.  If you add the increment/decrement before the assignment, both variables will change.
 
 ```javascript
-var e = 1;
+let e = 1;
 => 1
 
-var f = ++e;
+let f = ++e;
 => 1
 
 e;
@@ -607,10 +616,10 @@ f;
 OR
 
 ```javascript
-var g = 1;
+let g = 1;
 => 1
 
-var h = --g;
+let h = --g;
 => 1
 
 g;
