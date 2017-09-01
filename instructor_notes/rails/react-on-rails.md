@@ -61,6 +61,8 @@ This sets up our Ruby on Rails API and generates our file structure.  At this po
 ```
 > This package.json will be used to build the create-react-app and serve the static build file in production.  This is similar to the postinstall script we used when dealing with express in the past.
 
+> Some magic is happening here.  Since we tell heroku to install the build in the public folder, heroku will open the index.html page that is in public when we hit the index route for our app
+
 4. Set up a proxy for our dev server within the `client` level `package.json
 ```json
 {
@@ -120,6 +122,7 @@ end
 ```
 
 Lets hop into the Rails console using `rails c` and validate that our information exists.
+
 **COMMIT**
 
 ### Create API Routes
@@ -211,19 +214,17 @@ localhost:3001/api/artists
 If we go back into Postman, we can now validate that our JSON API is working as intended.
 
 **COMMIT**
+**DEPLOY**
 
 ### YOU DO (20 mins)
 Now that we've created an Artist controller, create a Songs controller with all 5 RESTful routes.  Remember to check out `rails routes` to determent your route params.
 
 **COMMIT**
+**DEPLOY**
 
 ## Front End: React
 
 Now we have a working API. Let hone in on building our React UI. 
-
-```bash
-  yarn add styled-components axios react-router-dom
-```
 
 ### You Do
 Look at these 3 wireframes for the Tunr UI and determine what types of React components we will need for this app.
@@ -232,215 +233,495 @@ Look at these 3 wireframes for the Tunr UI and determine what types of React com
 ![](../images/TunrArtists.png)
 ![](../images/TunrLogin.png)
 
-### Angular Hello World
+### React Router Set Up
 
-We installed Angular during an earlier step, but we still have a couple steps to go through in order for the application to work.
+We set up our React app during an earlier step, but we still have a couple steps to go in order to set up the to.
 
-First, let's create a Welcome controller to serve as the root of the page.  We won't need to add any thing to the erb file, but we do need something other than the 'Welcome to Rails' page.
+Let's go into our client directory and install a few libraries to use in out React project.
 
 ```bash
-    rails g controller Welcome index
+  yarn add styled-components axios react-router-dom
 ```
+
+Next we need to add React Router to our project and make a few client-side routes to control the flow of our app.
+
+```jsx
+// App.js
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ArtistList from "./components/ArtistList";
+import Artist from "./components/Artist";
+import "./App.css";
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <div>
+            <h1>Tunr</h1>
+            <div>
+              <Link to="/">Artists</Link>
+              <Link to="/artist/1">Single Artist</Link>
+            </div>
+          </div>
+          <Route exact path="/" component={ArtistList} />
+          <Route path="/artist/:id" component={Artist} />
+        </div>
+      </Router>
+    );
+  }
+}
+
+export default App;
+```
+
+This requires us to create several components.  Let's make basic components for ArtistList, Artist.
+
+After creating those components, we should be able to test the links and validate that they are both valid.
+
+**COMMIT**
+
+### React Artists List
+Let's first focus on building a list of Artists that link to their own individual Artist pages.
+
+```jsx
+// client/components/ArtistList.js
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+class ArtistList extends Component {
+  constructor(){
+    super();
+    this.state = {
+      error: '',
+      artists: []
+    }
+  }
+
+  componentWillMount(){
+    this._fetchArtists();
+  }
+
+  _fetchArtists = async () => {
+    try {
+      const res = await axios.get('/api/artists');
+      await this.setState({artists: res.data});
+      return res.data;
+    }
+    catch (err) {
+      console.log(err)
+      await this.setState({error: err.message})
+      return err.message
+    }
+    
+  }
+
+  render() {
+    if (this.state.error){
+      return <div>{this.state.error}</div>
+    }
+    return (
+      <div>
+        <h1>All Artists</h1>
+        {this.state.artists.map(artist => (
+          <div>
+            <Link to={`/artist/${artist.id}`} >{artist.name}</Link> 
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
+
+export default ArtistList;
+```
+
+#### async/await
+You probably noticed above that we didn't use a `.then` & `.catch` block in the above code.  Instead we used some keywords you many not be familiar with, `async` and `await`.  This is a new feature of ES7, can be used with `create-react-app`, and was introduced in Node 8.  Basically, this new syntax makes asynchronous code look a little cleaner.  It achieves the same purpose as traditional promises.
+
+```jsx
+  _fetchArtists = () => {
+    axios.get('/api/artists').then(res => {
+      return this.setState({artists: res.data});
+    }).catch(err => {
+      this.setState({error: err.message})
+    })
+  }
+```
+
+vs
+
+```jsx
+  _fetchArtists = async () => {
+    try {
+      const res = await axios.get('/api/artists');
+      await this.setState({artists: res.data});
+      return res.data;
+    }
+    catch (err) {
+      console.log(err)
+      await this.setState({error: err.message})
+      return err.message
+    }
+    
+  }
+```
+
+For more info about async/await check out these links: 
+[Async/Await in 10 minutes](https://tutorialzine.com/2017/07/javascript-async-await-explained)
+[Async/Await - FunFunFunction ](https://www.youtube.com/watch?v=568g8hxJJp4)
+
+### Show Individual Artist
+Let's also go ahead and create a view that allows us to see info about a specific Artist
+
+```jsx
+// client/components/Artist.js
+import React, { Component } from 'react';
+import axios from 'axios';
+
+class Artist extends Component {
+  constructor() {
+    super();
+    this.state = {
+      artist: {},
+      songs: [],
+    };
+  }
+
+  componentWillMount() {
+    const artistId = this.props.match.params.id;
+    this._fetchArtists(artistId)
+  }
+
+  _fetchArtists = async (artistId) => {
+    try {
+      const response = await axios.get(`/api/artists/${artistId}/songs`)
+      await this.setState({artist: response.data.artist, songs: response.data.songs});
+      return response.data;
+    }
+    catch (err) {
+      await this.setState({error: err.message})
+      return err.message
+    }
+  } 
+
+  render() {
+    return (
+      <div>
+        <img src={this.state.artist.photo_url} alt="" />
+        <h1>{this.state.artist.name}</h1>
+        {this.state.songs.map(song => (
+          <div key={song.id}>
+            <h4>{song.title}</h4>
+            <audio controls src={song.preview_url}></audio>
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
+
+export default Artist;  
+
+```
+
+With this component, we now have the ability to traverse between an all artists and individual artist view.  
+
+**COMMIT**
+
+### Styling With Styled Components
+
+**YOU DO** Spend ~30 minutes adding some styling polish to the app to make it look more similar to the wire frames above. 
+
+**COMMIT**
+**DEPLOY**
+
+### Setting up Auth using Devise Token Auth
+
+Now we have a basic React application that is consuming a Rails API.  The last major hurdle to overcome for this application is getting auth set up.  Since our Rails API and React App communicate via AJAX rather than client side rendering, we will need to use **Token Authentication** to secure our app.
+
+#### What is Token Auth? 
+
+Token authentication is a way for us to secure our application even when we make requests using AJAX calls.  A `token` is a piece of data that our Rails API is going to generate for us.  This is going to look like a long encrypted string, and a user will receive a token when he/she logs into the site.  This token will then be attached to all API calls we make in the header of the request.  Before our server delivers information, it will first validate the token that is sent.  Here are some more advantages to using token auth from [AuthO.com](https://auth0.com/blog/angularjs-authentication-with-cookies-vs-token/)
+
+ > Token-Based Authentication, relies on a signed token that is sent to the server on each request.
+>
+>What are the benefits of using a token-based approach?
+>
+> * Cross-domain / CORS: cookies + CORS don't play well across different domains. A token-based approach allows you to make AJAX calls to any server, on any domain because you use an HTTP header to transmit the user information.
+> * Stateless (a.k.a. Server side scalability): there is no need to keep a session store, the token is a self-contained entity that conveys all the user information. The rest of the state lives in cookies or local storage on the client side.
+> * CDN: you can serve all the assets of your app from a CDN (e.g. javascript, HTML, images, etc.), and your server side is just the API.
+> * Decoupling: you are not tied to any particular authentication scheme. The token might be generated anywhere, hence your API can be called from anywhere with a single way of authenticating those calls.
+> * Mobile ready: when you start working on a native platform (iOS, Android, Windows 8, etc.) cookies are not ideal when consuming a token-based approach simplifies this a lot.
+> * CSRF: since you are not relying on cookies, you don't need to protect against cross site requests (e.g. it would not be possible to sib your site, generate a POST request and re-use the existing authentication cookie because there will be none).
+>* Performance: we are not presenting any hard perf benchmarks here, but a network roundtrip (e.g. finding a session on database) is likely to take more time than calculating an HMACSHA256 to validate a token and parsing its contents.
+
+To set up token authentication, we are going to use a Ruby gem called `devise_token_auth`.
+
+### Setting Up Devise Token Auth
+
+In order to get started with Devise Token Auth, we will first need to install the necessary gems.
 
 ```ruby
-# routes.rb
-  get 'welcome/index'
-  root "welcome#index"
+  gem 'devise'
+  gem 'omniauth'
+  gem 'devise-token-auth'
 ```
 
-Now if we reload the page, we should get a blank screen.  Let's add the `ng-app` tag to the `application.html.erb`.
+As always, we run a `bundle install` to install the dependencies.
 
-```html
-<html ng-app="TunrApp">
-    ...
-</html>
-```
+If we open up the docs for `devise_token_auth` on Github, we will see the next steps for installing this new gem.
 
-Next up, let's create an Angular module named "TunrApp"
-
-```js
-const angular = require('angular');
-angular.module('TunrApp', []);
-```
-
-Finally, we need to make sure our application is updating the webpack bundler and the rails server at the same time.  To do this, we will take advantage of a gem called Foreman.  Foreman is a cli-tool which allows us to run multiple processes in one terminal window.  
-
+Use the generator to set up a User model and auth route.
 ```bash
-    gem install foreman
+rails g devise_token_auth:install User auth
 ```
 
-Let's create a file called `Procfile` (no file extension)
+After we run this command, you will notice several new additions to the app. We now have a User model, new routes corresponding to `/auth`, and a migration.  This should look pretty similar to how we have set up Devise in the past. 
 
+Run `rails db:migrate`. After we migrate, we should have the basic auth set up for our back end rails server.
+
+**COMMIT**
+
+### Devise Endpoints
+
+Let's take a minute to look at the endpoints that `devise_token_auth` has set up for us.  These are all explained in the docs.
+
+| path | method | purpose |
+|:-----|:-------|:--------|
+| /    | POST   | Email registration. Requires **`email`**, **`password`**, and **`password_confirmation`** params. A verification email will be sent to the email address provided. Accepted params can be customized using the [`devise_parameter_sanitizer`](https://github.com/plataformatec/devise#strong-parameters) system. |
+| / | DELETE | Account deletion. This route will destroy users identified by their **`uid`**, **`access_token`** and **`client`** headers. |
+| / | PUT | Account updates. This route will update an existing user's account settings. The default accepted params are **`password`** and **`password_confirmation`**, but this can be customized using the [`devise_parameter_sanitizer`](https://github.com/plataformatec/devise#strong-parameters) system. If **`config.check_current_password_before_update`** is set to `:attributes` the **`current_password`** param is checked before any update, if it is set to `:password` the **`current_password`** param is checked only if the request updates user password. |
+| /sign_in | POST | Email authentication. Requires **`email`** and **`password`** as params. This route will return a JSON representation of the `User` model on successful login along with the `access-token` and `client` in the header of the response. |
+| /sign_out | DELETE | Use this route to end the user's current session. This route will invalidate the user's authentication token. You must pass in **`uid`**, **`client`**, and **`access-token`** in the request headers. |
+| /:provider | GET | Set this route as the destination for client authentication. Ideally this will happen in an external window or popup. |
+| /:provider/callback | GET/POST | Destination for the oauth2 provider's callback uri. `postMessage` events containing the authenticated user's data will be sent back to the main client window from this page. |
+| /validate_token | GET | Use this route to validate tokens on return visits to the client. Requires **`uid`**, **`client`**, and **`access-token`** as params. These values should correspond to the columns in your `User` table of the same names. |
+| /password | POST | Use this route to send a password reset confirmation email to users that registered by email. Accepts **`email`** and **`redirect_url`** as params. The user matching the `email` param will be sent instructions on how to reset their password. `redirect_url` is the url to which the user will be redirected after visiting the link contained in the email. |
+| /password | PUT | Use this route to change users' passwords. Requires **`password`** and **`password_confirmation`** as params. This route is only valid for users that registered by email (OAuth2 users will receive an error). It also checks **`current_password`** if **`config.check_current_password_before_update`** is not set `false` (disabled by default). |
+| /password/edit | GET | Verify user by password reset token. This route is the destination URL for password reset confirmation. This route must contain **`reset_password_token`** and **`redirect_url`** params. These values will be set automatically by the confirmation email that is generated by the password reset request. |
+
+### Register a User
+Let's use our new Devise paths to create a user.  We can test this in Postman by posting to `localhost:3000/auth` with an email, password, and password_confirmation (Docs mention the required fields)
+
+A successful call should look something like this.
+```json
+{
+    "status": "success",
+    "data": {
+        "id": 17,
+        "email": "qwerty1@qwerty.com",
+        "provider": "email",
+        "uid": "qwerty1@qwerty.com",
+        "name": null,
+        "nickname": null,
+        "image": null,
+        "created_at": "2017-08-30T17:54:24.508Z",
+        "updated_at": "2017-08-30T17:54:24.650Z"
+    }
+}
 ```
-    web: rails s
-    webpack: webpack --watch 
-```
 
-```bash
-    foreman start
-```
+Here we can see the actual User object that is being saved to our Postgres database.  However, what we don't see here are the tokens necessary to show our server that we are a user that is signed in.  Those tokens are located in the Headers for the request.  Let's look at these in Postman
 
-Now webpack and our rails server are running at the same time. We can begin work on creating our single-page app.
+![](../images/headers.png)
 
-### Writing Cleaner Front-End Code w/ ESLint
-Eslint is a linting tool that allows you to write cleaner and easier to read code through providing error and warning messages when you write code that doesn't match up established best practices.  It's one of the big reasons I am a fan of VSCode (I believe there is also a plugin available for Sublime Text)
+There are 4 headers here that `devise_token_auth` gives us.
 
-To install ESLint, we'll first need to globally install it. Then we will navigate to the root of the project and run the CLI.
-```bash
-  npm i -g eslint
-  eslint --init
-```
+ * **client**: This header allows the use of simultaneous sessions on different clients (it can be open in more than one browser)
+ * **expiry**: The date when the current session will expire, this is set to 2 weeks by default.
+ * **uid**: A unique value that is used to identify the user. This is necessary because searching the DB for users by their access token will make the API susceptible to [timing attacks](https://codahale.com/a-lesson-in-timing-attacks/)
+ * **access-token**: The access token is the representation of the user for each request. The hashed access-token is saved to the database and Devise validates that the client sends the same access token. This value is changed on every request, meaning that when you make a request with one access-token, a new one will be generated.
 
-We'll then tell the CLI to answer questions about our style and after a few questions it will create an .eslintrc.js file.  If you're using VSCode, you will now automatically see error messages pop up with tips on how to clean up your code.
+ ### Integrating Devise Token Auth with React
+ Now that we've seen what a token request looks like using Postman, let's try and add a React component that will do a similar thing.  Let's start out by creating a Sign-Up & Log-In component. 
 
-### Creating an Artist Controller
-Let's create a component's folder, and an artists folder inside of that. We'll follow the web component standards that we learned during the Angular unit to create our controllers.
+ ```js
+// ./client/src/components/SignUpLogIn.js
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
-```js
-  import artistsController from "./artists.controller";
-  import artistsTemplate from "./artists.html";
-
-  const artistsComponent = {
-  	controller: artistsController,
-  	template: artistsTemplate
-  };
-
-  angular.module("TunrApp").component("tunrArtists",   artistComponent);
-```
-
-```js
-  ArtistsController.$inject = [];
-  function ArtistsController(){
-  	var vm = this;
-
-  	activate();
-
-  	function activate(){
-      vm.artists = [{
-        name: "Test artist",
-        photo_url: "http://www.fillmurray.com/200/200",
-        nationality: "USA"
-      }, {
-        name: "Test artist 2",
-        photo_url: "http://www.fillmurray.com/205/205",
-        nationality: "USA"
-      }]
-  	}
+class SignUpLogIn extends Component {
+  constructor(){
+    super();
+    this.state = {
+        email: '',
+        password: '',
+        password_confirmation: '',
+        redirect: false
+    }
   }
-  export default ArtistsController;
-```
 
-```html
-<h1>Artists</h1>
-<div class="btn btn-large" ui-sref="newArtist">+ New Artist</div>
-<div class="artist-container flex">
-    <div class="artist flex" ng-repeat="artist in $ctrl.artists" ui-sref="artist({id: artist.id})">
-        <img ng-src={{artist.photo_url}}></img>
-        <div class="info">
-            <h4>{{artist.name}}</h4>
-            <div>{{artist.genre}}</div>
-            <div>{{artist.origin}}</div>
+  _signUp = (e) => {
+    e.preventDefault();
+    this.setState({redirect: true})
+  }
+
+  _signIn = (e) => {
+    e.preventDefault();
+    this.setState({redirect: true})
+  }
+
+  _handleChange = (e) => {
+    const newState = {...this.state};
+    newState[e.target.name] = e.target.value;
+    this.setState(newState);
+  }
+
+  render() {
+    if (this.state.redirect){
+      return <Redirect to="/" />
+    }
+    return (
+      <div>
+        <form onSubmit={this._signUp}>
+          <div>
+            <label htmlFor="email">E-mail: </label>
+            <input onChange={this._handleChange} type="text" name="email" value={this.state.email} />
+          </div>
+          <div>
+            <label htmlFor="password">Password: </label>
+            <input onChange={this._handleChange} type="text" name="password" value={this.state.password} />
+          </div>
+          <div>
+            <label htmlFor="password">Confirm Password: </label>
+            <input onChange={this._handleChange} type="text" name="password_confirmation" value={this.state.password_confirmation} />
+          </div>
+          
+          <button>Sign Up</button>
+          <button onClick={this._signIn}>Log In</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default SignUpLogIn;
+ ```
+
+ We'll add more logic to this a little later, but this will allow us to get this component wired into the React Router and allow us to validate that the state is updated when the user inputs a value.
+
+ Let's go back to our App.js and add a `<Route>` for our SignUpLogIn component. Additionally let's add a link in our Navbar.  This is also a good opportunity to refactor the Navbar into it's own component, so we will do that as well.
+
+ ```jsx
+// ./client/src/App.js
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <GlobalNav />
+          <Route exact path="/" component={ArtistList} />
+          <Route path="/artist/:id" component={Artist} />
+          <Route exact path="/signUp" component={SignUpLogIn} />
         </div>
-    </div>
-</div>
+      </Router>
+    );
+  }
+ ```
+
+ ```jsx
+ const GlobalNav = () => (
+    <Nav>
+      <h1>Tunr</h1>
+      <Links>
+        <Link to="/">Artists</Link>
+        <Link to="/signUp">Sign Up</Link>
+      </Links>
+    </Nav>
+ )
 ```
 
-### Setting up Angular UI-Router
+**COMMIT**
+**DEPLOY**
 
-Let's use UI-router to controll the flow of our front-end app.
+### Adding AJAX call to handle Auth
 
-```bash
-npm i angular-ui-router --save
+Before continuing, let's lock down our controllers by adding `before_action :authenticate_user!` to the songs and artists controller. We should now get errors whenever we try to fetch artist data on the index page (422 error)
+
+We now need to focus on our SignUpLogIn component and set up the axios call that will handle the POST request for signing up and signing in.
+
+```jsx
+  _signUp = async (e) => {
+    e.preventDefault();
+    const payload = {
+      email: this.state.email,
+      password: this.state.password,
+      password_confirmation: this.state.password_confirmation
+    }
+    const response = await axios.post('/auth', payload)
+    
+    console.log(response);
+    this.setState({redirect: true})
+  }
 ```
+
+Now we can try to create a new user.  Validate if the new user is saved in our DB, then try to navigate around our site again.  You'll see that we still can't get any info about Artists or Songs.
+
+That's because we aren't sending the authentication data that tells our app that we are a logged in user.  That means that the `before_action :authenticate_user!` method is returning false.  In order to allow Devise to consume and understand your User info, we are required to send the auth tokens in the header of our request. We saw an example of these when we looked at Postman, but now we need to retrieve and send them via JavaScript.
+
+### Saving Headers to LocalStorage
+In order to persist the auth information, we are required to save our information in a way that can be saved to the client's browser.  For years, this info was saved in the browsers cookies.  Nowadays, most browsers have something called `LocalStorage` available.  Think about this as a very very very basic database that lives in the client's browser.  By using `LocalStorage`, we can set a key and a value and the retrieve it at a later time, even if the user closes your app!
+
+We will use `LocalStorage` to save the auth tokens being sent to use via our Rails server.  We will need to set these tokens each time we make a request to our server. Because of this, lets create a file called `./client/src/util.js` and put some code in here to grab the headers from a response and save them to localStorage.
 
 ```js
-const angular = require("angular");
-require("angular-ui-router");
+export function saveAuthTokens(headers){
+  // Set Axios Headers with Auth tokens for the next request.
+  axios.defaults.headers['access-token'] = headers['access-token'];
+  axios.defaults.headers.client = headers.client;
+  axios.defaults.headers.uid = headers.uid;
+  axios.defaults.headers.expiry = headers.expiry;
 
-angular.module("TunrApp", ["ui.router"]).config(router);
-
-router.$inject = ["$stateProvider", "$urlRouterProvider"];
-
-function router ($stateProvider, $urlRouterProvider) {
-	$stateProvider
-		.state("home", {
-			url: "/",
-			template: "<tunr-artists></tunr-artists>"
-		})
-		.state("artist", {
-			url: "/artist/:id",
-			template: "<tunr-artist></tunr-artist>"
-		})
-		.state("newArtist", {
-			url: "/artist/new",
-			template: "<tunr-new-artist></tunr-new-artist>"
-		});
-
-	$urlRouterProvider.otherwise("/");
+  // Save Auth tokens to localStorage to persist log-in if the window is closed
+  localStorage.setItem("access-token", headers['access-token']);
+  localStorage.setItem("client", headers.client);
+  localStorage.setItem("uid", headers.uid);
+  localStorage.setItem("expiry", headers.expiry);
 }
 ```
 
-### You Do: (45 min)
-Create a show, new, and edit page for artists using Angular.  Use test info for now.
-
-### Connecting to the Rails API
-So we now have a working front-end with multiple routes, and an API with data ready to serve. Let's connect them by using `$http`.
+Now we need to import this in our SignUpLogIn component and add the function after the response of your Axios post.
 
 ```js
-const angular = require("angular");
+  _signUp = async (e) => {
+    e.preventDefault();
+    const payload = {
+      email: this.state.email,
+      password: this.state.password,
+      password_confirmation: this.state.password_confirmation
+    }
+    const response = await axios.post('/auth', payload)
+    saveAuthTokens(response.headers)
+    this.setState({redirect: true})
+  }
+```
 
-artistService.$inject = ["$http"];
+We now should be able to see the Artist and Songs page! Hooray!! So let's close our window and reopen it to see if the log-in persists.
 
-function artistService ($http) {
-	const service = this;
+It doesn't! Boo!!
 
-	service.getAllArtists = function () {
-		return $http.get("/artist").then(res => {
-			return res.data;
-		});
-	};
+There is one final step that we need to take before the Auth setup is complete.  We need to create another util function that will check for our Auth headers when the React app first opens and set's them up if they exist.  Also, we need to have some code that will change our `access-token` header whenever the server changes it. 
 
-	service.getArtist = function (id) {
-		return $http.get("/artist/" + id).then(res => {
-			return res.data;
-		});
-	};
-
-	service.saveArtist = function (newArtist) {
-		return $http.post("/artist", newArtist).then(res => {
-			return res.data;
-		});
-	};
-
-	return service;
+```js
+export function setAxiosDefaults(){
+  axios.defaults.headers['access-token'] = localStorage.getItem("access-token"); 
+  axios.defaults.headers.client = localStorage.getItem("client"); 
+  axios.defaults.headers.uid = localStorage.getItem("uid"); 
+  axios.defaults.headers.expiry = localStorage.getItem("expiry"); 
+  axios.interceptors.response.use((res) => {
+    if (res.headers['access-token']){
+      localStorage.setItem("access-token", res.headers['access-token'])
+      axios.defaults.headers['access-token'] = res.headers['access-token']; 
+    }
+    return res
+  });
 }
-
-angular.module("TunrApp").service("artistService", artistService);
-
 ```
 
-Now we can inject the Artist service into our controllers to retrieve data from our Rails API.
+Place this function within the `componentWillMount` on `App.js` and we should now be able to persist a logged in state even when we close our browser!
 
-### You do: 20min
-Inject the Artist service into your controllers to retrieve info from the API
-
-CONGRATS!! You've just built an application using Angular On Rails. Let's deploy to Heroku.
-
-### Deployment
-Before deploying the app, let's make sure to run `webpack` one last time to make sure that everything is bundled into the production code.  After we feel comfortable with our project, we deploy using the following commands.
-
-```
-  heroku create
-  git push heroku master
-  heroku run rails db:migrate db:seed
-```
-
-Voila, if all goes well you should have your app up and running in production.
-
-## Closing
-
-Independently, take 3 minutes to jot down use-cases and reasons when you would:
-
- - Build an Angular app by itself
- - Build a Rails app by itself
- - Build an Angular and Rails app
+**COMMIT**
+**DEPLOY**
