@@ -59,8 +59,17 @@ areTheyBigger;
 // #4
 // Input: an array of words
 // Output: an array of all words from the first array with five or more letters
-var wordsWithAtLeastFiveLetters = function(words){
-  // Your Code Here
+var words = ["things", "stuff", "pandas", "blue", ""];
+var bigWords = [];
+function wordsWithAtLeastFiveLetters(words) {
+  for (var i = 0; i < words.length; i++) {
+    if (words[i].length >= 5) {
+      bigWords.push(words[i]);
+    }
+  }
+}
+wordsWithAtLeastFiveLetters(words);
+bigWords;
 };
 
 // #5
