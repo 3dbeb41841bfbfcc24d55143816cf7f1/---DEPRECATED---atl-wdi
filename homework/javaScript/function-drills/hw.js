@@ -43,8 +43,17 @@ greaterThanTen;
 // Output: `true` if ALL numbers passed in are strictly greater than 10;
 //         `false` otherwise
 // Edge Case: If the input array is empty, the function should return `true`.
-var allGreaterThanTen = function(numsArray){
-  // Your Code Here
+var areTheyBigger = true;
+numsArray = [19, 17];
+function allGreaterThanTen(numsArray) {
+  for (var i = 0; i < numsArray.length; i++) {
+    if (numsArray[i] < 10) {
+      areTheyBigger = false;
+    }
+  }
+}
+allGreaterThanTen(numsArray);
+areTheyBigger;
 };
 
 // #4
