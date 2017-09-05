@@ -3,9 +3,9 @@
 ## Learning objectives
 
 - Give an example of when and why one might choose to put an React app on Rails.
-- Explain whether a given file should be placed in `app/assets`, `lib/assets`, `vendor/assets`, or `public/`.
-- Describe the difference between putting a static file in the asset pipeline versus in the `public` folder.
-- Cause a certain Rails controller action to respond differently to both HTML and JSON requests.
+- Utilize node scripts to build and move a React UI.
+- Generate an API-only Rails application.
+- Generate and retrieve auth tokens using Devise and LocalStorage.
 
 ## Framing
 
@@ -17,11 +17,11 @@ Today we are going to be building an application takes advantage of the ease-of-
 
 ### Why?
 
-In a typical Rails app the user interacts with data through some combination of links, forms, and Javascript.
+In a typical Rails app the user interacts with data through some combination of links, forms, and JavaScript.
 
 ![Typical Rails](../images/request-normal.png)
 
-In an React-on-Rails app the user interacts with data just through Javascript.
+In a React-on-Rails app the user interacts with data just through JavaScript.
 
 ![React and Rails](../images/request-react.png)
 
@@ -61,7 +61,7 @@ This sets up our Ruby on Rails API and generates our file structure.  At this po
 ```
 > This package.json will be used to build the create-react-app and serve the static build file in production.  This is similar to the postinstall script we used when dealing with express in the past.
 
-> Some magic is happening here.  Since we tell heroku to install the build in the public folder, heroku will open the index.html page that is in public when we hit the index route for our app
+> Some magic is happening here.  Since we tell Heroku to install the build in the public folder, Heroku will open the index.html page that is in public when we hit the index route for our app
 
 4. Set up a proxy for our dev server within the `client` level `package.json
 ```json
@@ -725,3 +725,12 @@ Place this function within the `componentWillMount` on `App.js` and we should no
 
 **COMMIT**
 **DEPLOY**
+
+## Additional Features 
+### You Do:
+Add an additional page in the UI that allows a user to create a band.  
+  - Users can only navigate to this page if the user is signed-in.
+  - A User should be able to complete a form and send a POST request that creates a   band.
+  - Your server-side code should be able to validate whether a user is signed-in or not.
+  - Once a user creates a band, the band show page will mention the author 
+    - This means that you will need to refactor your Rails API
