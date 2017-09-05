@@ -11,23 +11,23 @@
 // 1. true || false 
 var resOne;
 // Replace This Comment With Your Code
-
+resOne = true;
 // 2. null || ''
 var resTwo;
 // Replace This Comment With Your Code
-
+resTwo = false;
 // 3. 'false' && true
 var resThree;
 // Replace This Comment With Your Code
-
+resThree = "false";
 // 4. !!0
 var resFour;
 // Replace This Comment With Your Code
-
+resFour = 1;
 // 5. !null && !undefined
 var resFive;
 // Replace This Comment With Your Code
-
+resFive = "a String";
 /// Flow Control ///
 
 // 6. Write a `while` loop that increases `resSix` by 23 until `resSix` is five
