@@ -4,8 +4,8 @@ type: Lesson
 duration: 1hr
 creator:
   name: Colin Hart
-  adapted for WDI ATL 9 by: Maren Woodruff
-  campus: WDI ATL 9
+  adapted by: Maren Woodruff, Danny Hurley
+  campus: ATL
 competencies: Programming
 ---
 
