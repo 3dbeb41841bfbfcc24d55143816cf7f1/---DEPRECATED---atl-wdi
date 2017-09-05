@@ -67,6 +67,7 @@ var tasks = {
   dateDue:
   projectType:
   duration:
+  completionStatus:
 }
 var projects = {
   projectName:
@@ -80,8 +81,24 @@ This would allow you to create detailed tasks with start/end dates as well as ti
 
 In this app, users can upload photos to their accounts and share them with others. These photos can be grouped into albums.
 
-> Answer here
+var users = {
+  username:
+  aboutMe:
+  pics: 
+  albums:
+}
 
+var photos = {
+  title: 
+  datePosted:
+  hostURL:
+}
+
+var albums = {
+  title:
+  photoSet:
+}
+Each user would have a profile page with all of their albums and photos. The albums can be customized to have particular photos grouped together. 
 ### 3. Home Automation Manager
 
 This app will be a tool for managing a home automation system; it will keep
@@ -89,15 +106,44 @@ track of the time and temperature of the house that it monitors, and use that
 information to turn on and off different lights and adjust the thermostat up
 and down.
 
-> Answer here
+const lights = {
+  timesToActivate:
+  timesToDeactivate:
+  lightLocations:
+  brightness:
+}
 
+const temp = {
+  defaultTemp:
+  tempAtCertainTimes: 
+  
+}
+Users can set a default temp, and set it to a different one at different parts of the day. Users can adjust the lights to turn on or dim at certain parts of the day as well.
 ### 4. Sneaker Store
 
 This app will allow customers to browse a list of products (sneakers, in this
 case), add those products to a cart, and save that cart as a past order once the
 purchase is complete.
 
-> Answer here
+var products = {
+  description:
+  price:
+  colors: 
+  brand:
+  search:
+}
+var users = {
+  email:
+  billingInfo:
+  mailingInfo:
+  cartsSaved:
+}
+var checkout = {
+  name: 
+  mailingAdd:
+  billingInfo:
+  orderDetails:
+}
 
 ## Representing Abstractions in Code
 
