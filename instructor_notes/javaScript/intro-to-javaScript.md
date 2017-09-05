@@ -1,5 +1,5 @@
 ---
-title: Data Types, Variables, and Arrays
+title: JS Data Types and Variables
 type: lesson
 duration: '1:25'
 creator:
@@ -34,8 +34,6 @@ creator:
 - Describe the concept of a 'data type' and how it relates to variables
 - Describe use cases of different 'data types'
 - Declare, assign to, and manipulate data stored in a variable
-- Describe how arrays are used to store data
-- Manipulate values in an array
 
 ### Pre-requisites
 *Before this lesson, students should already be able to:*
