@@ -60,7 +60,21 @@ track of whether tasks have been completed, it will also keep track of
 how long each task took to complete. Tasks can be grouped into 'projects' to
 keep them organized.
 
-> Answer here
+var tasks = {
+  title: 
+  description:
+  dateStart
+  dateDue:
+  projectType:
+  duration:
+}
+var projects = {
+  projectName:
+  tasksForProject:
+  projectStart
+  projectEnd:
+}
+This would allow you to create detailed tasks with start/end dates as well as time to complete them. They can be grouped into projects that can have their own start and end dates.
 
 ### 2. Photo Sharing App
 
