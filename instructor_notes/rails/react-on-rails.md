@@ -497,6 +497,14 @@ rails g devise_token_auth:install User auth
 
 After we run this command, you will notice several new additions to the app. We now have a User model, new routes corresponding to `/auth`, and a migration.  This should look pretty similar to how we have set up Devise in the past. 
 
+Before running a migration, lets configure some of the settings for `devise_token_auth`.  By default, this library will reset it's tokens on every request that is made.  While this is very secure, it also will introduce a lot of headaches for us.  Let's turn off this feature for now. We can switch this off by going into `./config/initializers/devise_token_auth.rb` and change it to this.
+
+```ruby
+DeviseTokenAuth.setup do |config|
+  config.change_headers_on_each_request = false
+end
+```
+
 Run `rails db:migrate`. After we migrate, we should have the basic auth set up for our back end rails server.
 
 **COMMIT**
@@ -719,7 +727,7 @@ We now should be able to see the Artist and Songs page! Hooray!! So let's close 
 
 It doesn't! Boo!!
 
-There is one final step that we need to take before the Auth setup is complete.  We need to create another util function that will check for our Auth headers when the React app first opens and set's them up if they exist.  Also, we need to have some code that will change our `access-token` header whenever the server changes it. 
+There is one final step that we need to take before the Auth setup is complete.  We need to create another util function that will check for our Auth headers when the React app first opens and set's them up if they exist. 
 
 ```js
 export function setAxiosDefaults(){
@@ -727,13 +735,6 @@ export function setAxiosDefaults(){
   axios.defaults.headers.client = localStorage.getItem("client"); 
   axios.defaults.headers.uid = localStorage.getItem("uid"); 
   axios.defaults.headers.expiry = localStorage.getItem("expiry"); 
-  axios.interceptors.response.use((res) => {
-    if (res.headers['access-token']){
-      localStorage.setItem("access-token", res.headers['access-token'])
-      axios.defaults.headers['access-token'] = res.headers['access-token']; 
-    }
-    return res
-  });
 }
 ```
 
