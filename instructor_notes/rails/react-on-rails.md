@@ -734,3 +734,5 @@ Add an additional page in the UI that allows a user to create a band.
   - Your server-side code should be able to validate whether a user is signed-in or not.
   - Once a user creates a band, the band show page will mention the author 
     - This means that you will need to refactor your Rails API
+**Stretch**
+  - Create a User Profile page
