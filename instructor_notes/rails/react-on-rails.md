@@ -214,13 +214,29 @@ localhost:3001/api/artists
 If we go back into Postman, we can now validate that our JSON API is working as intended.
 
 **COMMIT**
-**DEPLOY**
 
 ### YOU DO (20 mins)
 Now that we've created an Artist controller, create a Songs controller with all 5 RESTful routes.  Remember to check out `rails routes` to determent your route params.
 
 **COMMIT**
 **DEPLOY**
+
+## Deploying to Heroku for the first time.
+Now that we have a working API, let's get up and running on Heroku.
+1. Run `heroku create YOUR_APP_NAME` to generate a new Heroku app.
+2. Define custom buildpacks for Heroku. This will tell your application that we need both Ruby and Node in order to get our application to work.
+```
+heroku buildpacks:add --index 1 heroku/ruby
+heroku buildpacks:add --index 2 heroku/nodejs
+```
+3. Create a file at your root level called `Procfile` and add the following line of code.  This will tell Heroku the command necessary to run your application.
+```
+web: rails s
+```
+4. Push your Heroku app using `git push heroku master`
+5. Migrate and seed your DB using `heroku run rails db:migrate db:seed`
+
+> If you receive an error along the lines of DB not existing, run the following command and try your migrations again. <br/> `heroku addons:create heroku-postgresql:hobby-dev`
 
 ## Front End: React
 
