@@ -144,7 +144,7 @@ var checkout = {
   billingInfo:
   orderDetails:
 }
-
+Users can search through all the products by a particular brand or color. Users can save their info for repeat orders
 ## Representing Abstractions in Code
 
 Once you've chosen the abstractions that your app will use, the next step is to
@@ -199,7 +199,7 @@ var exampleLine = {
 
 What are some advantages and disadvantages of choosing these representations? Please give at least one example of each.
 
-> Answer here
+
 
 ### 6. Doctor Appointment App
 
