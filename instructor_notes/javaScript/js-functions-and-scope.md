@@ -65,6 +65,8 @@ var speak = function (words) {
 }
 ```
 
+
+
 While both methods share some similarities, only function declarations define functions that can be used anywhere in the scope where they're defined (using **hoisting**). In other words, you can call a function that is defined using function declaration before the part of the code where you actually define it:
 
 ```javascript

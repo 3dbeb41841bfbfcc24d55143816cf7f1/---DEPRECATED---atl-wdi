@@ -2,7 +2,7 @@
 
 https://medium.com/@kaelig/why-web-components-will-make-the-web-a-better-place-for-our-users-38dc3154fc1d
 
-In your own words, answer these questions and then we'll dsicuss:
+In your own words, answer these questions and then we'll discuss:
 
 1. Why do we need Web Components? What problems can be solved with Web Components?
 2. Have we seen similar problems in our own code? 
