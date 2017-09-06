@@ -61,6 +61,23 @@ how long each task took to complete. Tasks can be grouped into 'projects' to
 keep them organized.
 
 > Answer here
+var tasks {
+  name: 'build html boilerplate'
+  dateStarted: '02/12/2016'
+  dateCompleted: '02/12/2016'
+};
+
+var projects {
+  name: "Project 1";
+  description: 'random JS site'
+  tasksComplete ['build html boilerplate','make css sheet'
+];
+  tasksIncomplete ['link css stylesheet', 'make js page', 'link js to html'
+
+  ]
+};
+
+// the goal of the app is to track tasks and organize them into projects. define a variable task and give it properties that correlate with tracking time begin and end. define var projects to have a place to organize var tasks.
 
 ### 2. Photo Sharing App
 
@@ -68,6 +85,27 @@ In this app, users can upload photos to their accounts and share them with other
 
 > Answer here
 
+// users need to be able to share photos and organize the photos into albums. create var photo to define user content, create var albums to have a place to organize var photos, create var user to document user activity.
+
+var photos {
+  name: 'crazy dunk';
+  date: 'December 2015';
+  url: 'images/photo1.jpg';
+
+};
+
+var albums {
+  name: 'basketball tourney';
+  photoList: ['images/photo1.jpg', 'images/photo2.jpg', 'images/photo3.jpg', 'images/photo4.jpg']
+
+};
+
+var user {
+  username: 'hoopshead5';
+  uploadedImages: ['images/photo1.jpg', 'images/photo2.jpg', 'images/photo3.jpg'];
+  albumsCreated: ['basketball tourney', 'suncoast highlights', 'my family'];
+
+};
 ### 3. Home Automation Manager
 
 This app will be a tool for managing a home automation system; it will keep
@@ -76,6 +114,19 @@ information to turn on and off different lights and adjust the thermostat up
 and down.
 
 > Answer here
+// automated system (var autosystem) monitors properties time, temp and controls lights from those properties. use setOfLights to organize var lights. use var lights to describe light brightness and location. 
+
+var light {
+  name:'ceiling fan';
+  brightnessLevel: 'bright';
+  location: 'family Room';
+};
+
+var autoSystem {
+  temperature: '75 degrees'
+  time: '14:00'
+  setOfLights: ['kitchen', 'master Bathroom', 'master Bedroom', 'dining Room', 'family Room']
+};
 
 ### 4. Sneaker Store
 
@@ -85,6 +136,21 @@ purchase is complete.
 
 > Answer here
 
+var product {
+name: 'Air Jordan XII Flu Game';
+description: 'Black/Red Jordan signature sneaker worn in win over Utah Jazz in NBA Finals';
+price: '$400.00';
+}
+
+var ajxiiOrder {
+  product: 'Air Jordan XII Flu Game';
+  quantity: 1;
+
+}
+
+var pastOrders {
+  setOfOrderItems: [ajxiiOrder], status: 'in progress', date completed: 'incomplete'
+}
 ## Representing Abstractions in Code
 
 Once you've chosen the abstractions that your app will use, the next step is to
@@ -140,6 +206,7 @@ var exampleLine = {
 What are some advantages and disadvantages of choosing these representations? Please give at least one example of each.
 
 > Answer here
+// one disadvantage is you dont know how many stops you have between stations and that was one of the principle goals of the app. placing the stations on the line in an array could help.  creating an array would keep you from calling each station by its name. you would have to look up the position of a station inside the array.
 
 ### 6. Doctor Appointment App
 
@@ -243,6 +310,7 @@ other? Are there any circumstances in which the other representation might be
 the better choice?
 
 > Answer here
+// the first representation has all appointment information rooted in doctor information. Makes it easier to search for appointments by doctor but more difficult to search for appointment by patient's name. this option would better serve the hospital as an internal way to track doctors' schedules and possibly productivity. The second option is the opposite, making it easier to search appointments by patient's name rather than doctor's name. This particular approach could help users of the app who do not work at the doctor's office figure out what time and with whom their appointment is scheduled. 
 
 ## Tying It Together
 
@@ -253,13 +321,58 @@ You've been tasked with building an in-browser tic-tac-toe game.
 a.  What are some possible entities that your application might use to model its
     data? Please pick at least two, with at least two properties apiece.
 
-  > Answer here
+// Player [ 
+  username 
+  avatar img
+]
+
+game [
+  xPlayer
+  oPlayer
+  moves made by each player 
+]
+
+move [
+  player symbol (x or o)
+  position associated with the move
+]
 
 b.  How might those entities be represented in JavaScript code?
 
-  > Answer here
+var examplePlayer {
+  userName: 'clifford';
+  avatarUrl: 'photos/google_eyes.jpg';
+};
+
+var exampleMove{
+  playerSymbol: 'O';
+  position: 3;
+};
+
+var exampleGame {
+  xPlayer: {
+    userName: 'clifford';
+    avatarUrl: 'photos/google_eyes.jpg';
+}, 
+  oPlayer: {
+    userName: 'betty';
+    avatarUrl: 'http://imgur.com...';
+  },
+
+ moves: [
+   { playerSymbol: 'O';
+   potition: 4;
+},
+  {playerSymbol: 'X';
+  position: 3;
+  },
+  {playerSymbol: 'O';
+  psition: 8;
+  }
+ ] 
+};
 
 c.  Justify your choices in a) and b). Why these entities? Why these
     representations?
 
-  > Answer here
+// tic tac toe game needs two players with some sort of indicator to tell the players apart (avatar) and obviously some sort of way to play the game. listing moves in an array helps keep track of the order of the moves each player makes.
