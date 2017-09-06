@@ -199,7 +199,7 @@ var exampleLine = {
 
 What are some advantages and disadvantages of choosing these representations? Please give at least one example of each.
 
-
+It has descriptions of each station and where they're located, which is good. However, if the app is supposed to tell you where to get off, or how many stops are left to your destination, it doesn't appear to have a way to tell you that as currently written.
 
 ### 6. Doctor Appointment App
 
