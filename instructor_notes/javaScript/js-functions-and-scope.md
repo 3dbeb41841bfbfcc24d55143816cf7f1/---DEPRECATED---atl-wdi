@@ -308,13 +308,13 @@ function double (z) {
   return z * 2;
 }
 
-const num = sum(3, 4)
+let num = sum(3, 4)
 => 7
-const numDbl = double(num);
+let numDbl = double(num);
 => 14
 
 // This can also be written:
-const num = double(sum(3,4));
+let num = double(sum(3,4));
 => 14
 ```
 
