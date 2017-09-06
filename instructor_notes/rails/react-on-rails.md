@@ -83,7 +83,7 @@ This sets up our Ruby on Rails API and generates our file structure.  At this po
 6. After installing `foreman`, create a file titled `Procfile.dev` and paste the following code.
 ```
 web: cd client && PORT=3000 npm start
-api: PORT=3001 && bundle exec rails s
+api: rails s -p 3001
 ```
 
 7. You are now able to use `foreman` and the `Procfile.dev` to set up your development environment.  
