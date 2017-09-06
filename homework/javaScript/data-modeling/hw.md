@@ -302,7 +302,9 @@ Under what circumstances might one representation be a better choice than the
 other? Are there any circumstances in which the other representation might be
 the better choice?
 
-> Answer here
+In the first approach, it seems like it would be difficult to track the appointments of individual patients since they all branch off the individual doctors. If the app was solely for doctors tracking their own individual appts it might be a good choice.
+
+In the second approach, the patients and doctors are separate objects, so I would think that would be easier to keep track of both doctors and patients.
 
 ## Tying It Together
 
@@ -313,13 +315,48 @@ You've been tasked with building an in-browser tic-tac-toe game.
 a.  What are some possible entities that your application might use to model its
     data? Please pick at least two, with at least two properties apiece.
 
-  > Answer here
+GameBoard 
+  Declare a size
+  Make clickable squares
+  Define moves
+
+Players 
+  Define players 1 & 2
+  Player 1 = X, player 2 = O
+
+ScoreBoard //To keep track of games won and lost
+  wins:
+  losses:
+
+Moves 
+  //18 possible moves, x or o in each of the 9 squares
+}
 
 b.  How might those entities be represented in JavaScript code?
 
-  > Answer here
+ var gameBoard = { 
+  size:
+  //9 individual squares
+  clickableSquares: {
+    blank:
+    x:
+    o:
+  }
+  xsAndOs:
+}
+var players = {
+  playerOne: "X"
+  playerTwo: "O"
+}
+var scoreBoard { //To keep track of games won and lost
+  wins:
+  losses:
+}
+var moves = {
+  //18 possible moves, x or o in each of the 9 squares
+}
 
 c.  Justify your choices in a) and b). Why these entities? Why these
     representations?
 
-  > Answer here
+You obviously have to have 2 players for tic-tac-toe and you have to make it so players can effectively take turns. The app has to generate the board to start play, and there are 18 possible moves for the players to make: each square can be either an x or an O. It would make sense for each square to have a blank state, an x state, and an o state. I would then write some sort of conditional to execute when there are 3 x's or o's in a row.
