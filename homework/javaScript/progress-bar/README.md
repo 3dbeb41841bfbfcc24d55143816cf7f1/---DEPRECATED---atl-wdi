@@ -8,7 +8,7 @@ Make sure that you are on the `master` branch of your class repo.
 Then run `git pull upstream master` to pull the latest materials from the
 instructors' repository. You shouldn't hit a merge conflict here, but if you do, flag down an instructor right away.
 
-Next, navigate to the homework directory for today(`homework/unit_01/javaScript/progress-bar`), and run `npm install` -- this will download any assignment-specific JavaScript dependencies into to a directory called `node_modules`.
+Next, navigate to the homework directory for today(`homework/javaScript/progress-bar`), and run `npm install` -- this will download any assignment-specific JavaScript dependencies into to a directory called `node_modules`.
 
 As you work through this assignment, you should make commits regularly.
 In particular, since there are automated tests built into this assignment, we
