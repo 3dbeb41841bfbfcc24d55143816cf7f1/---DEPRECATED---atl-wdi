@@ -517,12 +517,12 @@ Work through as many as these exercises as you can within the next 15 mins - use
 method should return a string with the order of the words reversed. Don't worry
 about punctuation.
 
-    ```javascript
+```javascript
 	wordReverse("Now I know what a TV dinner feels like")
 	# => "like feels dinner TV a what know I Now"
 	wordReverse("Put Hans back on the line")
 	# => "line the on back Hans Put"
-	```
+```
 
 <br>
 
