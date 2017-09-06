@@ -528,7 +528,7 @@ about punctuation.
 
 ## Independent Practice #2 - JS Functions Lab (40 min)
 
-[js-functions-lab](../student_labs/js-functions-lab) in student labs folder
+[js-functions-lab](../../labs/javaScript/js-functions) in student labs folder
 
 I'll put you into groups. Each group will be responsible for sharing the solution to their assigned problem.
 
