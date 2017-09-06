@@ -4,8 +4,8 @@ type: Lesson
 duration: 1hr
 creator:
   name: Colin Hart
-  adapted for WDI ATL 9 by: Maren Woodruff
-  campus: WDI ATL 9
+  adapted by: Maren Woodruff, Danny Hurley
+  campus: ATL
 competencies: Programming
 ---
 
@@ -16,7 +16,6 @@ competencies: Programming
   - Declare array literals
   - Interact with and manipulate arrays
   - Loop over arrays using a `for` loop
-  - Declare object literals
 
 # Hook
 In 2009, the **BBC** and the **British Museum** collaborated on a hugely successful radio series and book called “A History of the World in 100 Objects.” In 2014, the **Smithsonian** followed up with its “History of the World in 1,000 Objects.”  You can learn more about them on their podcasts: http://www.bbc.co.uk/programmes/b00nrtd2/episodes/downloads
