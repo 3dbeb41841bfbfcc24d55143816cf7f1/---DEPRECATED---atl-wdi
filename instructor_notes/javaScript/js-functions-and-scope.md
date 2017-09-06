@@ -526,16 +526,15 @@ about punctuation.
 
 <br>
 
-## Independent Practice #2 - JS Functions Lab (40 min)
+## Independent Practice #2 - JS Functions Lab 
 
 [js-functions-lab](../../labs/javaScript/js-functions) in student labs folder
 
-I'll put you into groups. Each group will be responsible for sharing the solution to their assigned problem.
-
+<!-- I'll put you into groups. Each group will be responsible for sharing the solution to their assigned problem. -->
 <br>
 
 <a name="lab1"></a>
-## BONUS Independent Practice #3 - Rolling Dice: Lab (40 min)
+## BONUS Independent Practice #3 - Rolling Dice: Lab
 [JavaScript Dice](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/javaScript/js-dice)
 
 For this lab, you'll be creating a page that displays a random update of two dice every time the user hits the "Roll Dice" button. To get started, open the [app.js file](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/javaScript/js-dice/starter-code/js/app.js). Use the HTML and CSS code included in the starter code folder.
