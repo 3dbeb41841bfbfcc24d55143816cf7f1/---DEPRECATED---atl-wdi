@@ -65,6 +65,8 @@ var speak = function (words) {
 }
 ```
 
+
+
 While both methods share some similarities, only function declarations define functions that can be used anywhere in the scope where they're defined (using **hoisting**). In other words, you can call a function that is defined using function declaration before the part of the code where you actually define it:
 
 ```javascript
@@ -524,7 +526,7 @@ I'll put you into groups. Each group will be responsible for sharing the solutio
 <a name="lab1"></a>
 ## BONUS Independent Practice #3 - Rolling Dice: Lab (40 min)
 
-For this lab, you'll be creating a page that displays a random update of two dice every time the user hits the "Roll Dice" button. To get started, open the [app.js file](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/unit_01/javaScript/js-dice/starter-code/js/app.js). Use the HTML and CSS code included in the starter code folder.
+For this lab, you'll be creating a page that displays a random update of two dice every time the user hits the "Roll Dice" button. To get started, open the [app.js file](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/javaScript/js-dice/starter-code/js/app.js). Use the HTML and CSS code included in the starter code folder.
 
 ![](https://i.imgur.com/EEORrtk.png)
 

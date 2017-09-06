@@ -47,7 +47,7 @@
 ### Curriculum Overview
 - Unit 1: Fundamentals and Static Front End Applications
 - Unit 2: Full Stack Javascript, pt. 1: Server-Side Rendering with Node / Express / MongoDB
-- Unit 3: Full Stack Javascript, pt. 2: Client-Side Rendering with MEAN Stack (Mongo, Express, AngularJS, Node)
+- Unit 3: Full Stack Javascript, pt. 2: Client-Side Rendering with MERN Stack (Mongo, Express, React, Node)
 - Unit 4: Ruby on Rails: Server-Side Rendering and React on Rails
 - Unit 5: Interview Preparation and Final Project
 

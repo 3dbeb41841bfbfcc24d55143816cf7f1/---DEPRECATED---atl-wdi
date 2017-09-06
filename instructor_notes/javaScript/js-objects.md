@@ -14,6 +14,7 @@ competencies: Programming
 ### Objectives
 *After this lesson, students will be able to:*
 
+- Declare object literals
 - Compare objects and key-value stores to arrays as data structures
 - Explain the difference between object properties and methods
 - Create empty objects and objects with multiple properties and methods using object literal syntax
