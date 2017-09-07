@@ -80,13 +80,15 @@ var resNine;
 // Replace This Comment With Your Code
 for (var i = 0; i < 1000; i++) {
   if (resNine[i] % 7 === 0) {
-    resNine = 
+    resNine = resNine[i] + i;
   }
 }
 // 10. For numbers 1-10, calculate n^n and then store the sum of all of these values in the variable `resTen`.
 var resTen;
 // Replace This Comment With Your Code
-
+for (var i = 0; i < 10; i++) {
+  resTen = [i] ^ ([i] + 1);
+}
 /// DO NOT EDIT BELOW THIS LINE ///
 module.exports = {
   one: resOne,
