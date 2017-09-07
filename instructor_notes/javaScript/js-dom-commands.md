@@ -1,7 +1,7 @@
 ---
 title: The DOM and JS in the Browser
 type: lesson
-duration: "1:30"
+duration: "2:00"
 creator:
   name: Colin Hart
 edited: 
@@ -67,8 +67,8 @@ Let's create a web page and begin to inspect its structure.
 - `cd` into it and create a new file called `index.html`
   - `cd dom-intro-lesson`
   - `touch index.html` 
-- Open the file in Sublime
-  - `subl .`
+- Open the file in VS Code
+  - `code .`
 - Copy this code into the file then open it in Chrome:
   - to open in Chrome, right click on the html page and, click on 'Open in Browser'
 
@@ -117,7 +117,7 @@ We will then come back together as class. Each group will briefly demo and expla
   * document.getElementsByClassName
   * document.getElementsByName
 * **Creation** 
-  * document.querySelector
+  * document.querySelector (*technically a search method*)
   * node.style
   * node.setAttribute
 * **Traversal** 
