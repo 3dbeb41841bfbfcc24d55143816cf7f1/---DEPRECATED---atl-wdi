@@ -10,7 +10,7 @@ But open up the Chrome Developer tools and you will discover a swamp of esoteric
 
 So, what is your task? Utilizing your newfound knowledge of the DOM and Vanilla Javascript you are going to write a script to turn the Google homepage into a GA modded search page.
 
-Use this image: ![](https://i.imgur.com/4l2dtQj.png), and change the height to 95, and the width to 320.
+Use this image: ![](https://upload.wikimedia.org/wikipedia/en/1/1f/General_assembly_school_banner_logo_small_2014.png), and change the height to 95, and the width to 320.
 
 ![](https://i.imgur.com/o7lm7vq.png)
 
@@ -26,7 +26,7 @@ After some searching you will find that the header lives in a div with an id of 
 
 Is it gone? ... Nice work. Okay, so we know for sure that that's the div we want gone. So let's figure out how to do what we just did manually but in Javascript. Refresh the page and use one of the query selector functions to pull the div out of the tree and then delete it.
 
-![](https://i.imgur.com/hYwtexr.png)
+<!-- ![](https://i.imgur.com/hYwtexr.png) -->
 
 Nice job. Now we need to build a function to start documenting each of these scripts so we can ultimately write one complete function that will mod our google homepage in one go! We're gonna do this using a snippet. Here is the documentation: https://developers.google.com/web/tools/chrome-devtools/javascript/snippets
 
