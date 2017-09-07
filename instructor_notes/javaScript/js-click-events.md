@@ -203,6 +203,8 @@ button.addEventListener("click", function(event){
 
 - `.addEventListener` is a function we can call on nodes.
 - The **event listener** function takes two arguments, a string and an anonymous function.
+- The string is an HTML DOM event.  Most of the time we'll be using "click" but there are plenty of others available to you.
+  - [https://developer.mozilla.org/en-US/docs/Web/Events](https://developer.mozilla.org/en-US/docs/Web/Events)
 - the anonymous function takes an argument `event`... a what?!?
 
 An `event`, is another magical object!
