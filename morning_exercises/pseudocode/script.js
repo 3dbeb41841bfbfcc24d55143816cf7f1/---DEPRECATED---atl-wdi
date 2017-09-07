@@ -7,12 +7,11 @@ var barrels = function(small, large, total){
   var largeCost = total - smallCost;
   totalBarrels = small + large;
   largeRumPrice = largeCost / totalBarrels;
-  return "$" + parseInt(largeRumPrice);
+  return largeRumPrice;
   
 };
 
-
-barrels(2,4,825);
+barrels(2,3,825);
 
 //*************************
 // Problem 2:
@@ -22,7 +21,7 @@ var shipFuelCost = function(fuelPrice, milesPerGallon){
   var distance = 24901;
   totalGallons = fuelPrice / milesPerGallon;
   totalFuelCost = totalGallons * distance;
-  return "$" + totalFuelCost;
+  return totalFuelCost;
 };
 
 shipFuelCost(3, 12);
@@ -34,8 +33,8 @@ shipFuelCost(3, 12);
 var calcFruitJuice = function(a, b, c, d){
   var totalGallonsFruitJuice = (a * (b / 100)) + (c * (d / 100));
   var totalGallons = a + c;
-  var percentFruitJuice = (totalGallonsFruitJuice / totalGallons) * 100;
-  return "%" + percentFruitJuice;
+  var percentFruitJuice = totalGallonsFruitJuice / totalGallons;
+  return percentFruitJuice;
 };
 calcFruitJuice(3, 20, 2, 55);
 //DO NOT EDIT BELOW THIS LINE//
