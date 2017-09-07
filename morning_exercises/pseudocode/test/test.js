@@ -9,7 +9,7 @@ var calcFruitJuice = require("../script.js").calcFruitJuice;
 
 describe('Pseudocode to Code', function(){
     it('barrels(2,3,825) should return `141`', function(){
-      expect(barrels(2,5,825)).to.equal(141);
+      expect(barrels(2,3,825)).to.equal(141);
     });
     it('shipFuelCost(3, 12) should return `6225.25`', function(){
       expect(shipFuelCost(3, 12)).to.equal(6225.25);
