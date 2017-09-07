@@ -2,8 +2,8 @@
 
 Previously, we took word problems and managed to break them down into smaller chunks of pseudocode. Your mission this morning is to take the pseudocode and translate them into functioning code. Pseudocode is provided for you, but feel to reference yours or jump straight to the problem.
 
-<!-- ## Setup
-- Run `npm install` -- this will download any exercise-specific JavaScript dependencies into to a directory called `node_modules`. -->
+## Setup
+- Run `npm install` -- this will download any exercise-specific JavaScript dependencies into to a directory called `node_modules`.
 
 
 ## EXERCISES
@@ -19,7 +19,7 @@ Write a `barrel` function that calculates and returns the price of a large barre
 
 
 ```
-var barrel = function(small, large, total){
+const barrel = (small, large, total) => {
   //your code here
 };
 
@@ -50,7 +50,7 @@ barrels(2,3,825) => 141
 Write a `shipFuelCost` function that calculates and returns the total cost as a number. `shipFuelCost` takes in 2 arguments: the cost of fuel per gallon, miles per gallon. Unit of currency is negligible.
 
 ```
-var shipFuelCost = function(fuelPrice, milesPerGallon){
+const shipFuelCost = (fuelPrice, milesPerGallon) => {
   //your code here
 };
 
@@ -75,9 +75,10 @@ shipFuelCost(3, 12) => 6225.25
 Write a `calcFruitJuice` function that calculates and returns the total percentage of pure fruit juice as a decimal. `calcFruitJuice` takes in 4 arguments:
 > (# gallons Costco juice, % pure fruit juice Costco, # gallons Kirkland juice, % pure fruit juice Kirkland)
 
+> Hint: Feel free to rename the parameters, that may help your code become more readable
 
 ```
-var calcFruitJuice = function(a, b, c, d){
+const calcFruitJuice = (a, b, c, d) => {
   //your code here
 };
 
