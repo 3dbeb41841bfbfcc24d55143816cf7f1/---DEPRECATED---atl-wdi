@@ -56,6 +56,8 @@ With you buddy, discuss the following questions:
 
 > Summary: **npm** (node package manager), allows us to install dependencies for our Node.js application.
 
+You may also see tutorials refer to a package called `Yarn` for installing packages.  This is an alternative to NPM that is built by Facebook. Both packages pull from the NPM, so anything you see done in Yarn can also be done with NPM. 
+
 <br />
 
 ## Codealong: Hello World - Express
