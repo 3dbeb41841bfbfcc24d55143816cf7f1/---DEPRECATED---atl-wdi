@@ -59,6 +59,8 @@ This sets up our Ruby on Rails API and generates our file structure.  At this po
   }
 }
 ```
+> WARNING!!! Be sure to replace "YOUR PROJECT NAME" above with your real project name.
+
 > This package.json will be used to build the create-react-app and serve the static build file in production.  This is similar to the postinstall script we used when dealing with express in the past.
 
 > Some magic is happening here.  Since we tell Heroku to install the build in the public folder, Heroku will open the index.html page that is in public when we hit the index route for our app
@@ -224,6 +226,9 @@ Now that we've created an Artist controller, create a Songs controller with all 
 ## Deploying to Heroku for the first time.
 Now that we have a working API, let's get up and running on Heroku.
 1. Run `heroku create YOUR_APP_NAME` to generate a new Heroku app.
+
+> WARNING!!! Be sure to replace "YOUR_APP_NAME" above with the project name from your `package.json`.
+
 2. Define custom buildpacks for Heroku. This will tell your application that we need both Ruby and Node in order to get our application to work.
 ```
 heroku buildpacks:add --index 1 heroku/ruby
