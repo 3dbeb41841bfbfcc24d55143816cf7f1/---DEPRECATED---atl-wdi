@@ -653,13 +653,13 @@ export default SignUpLogIn;
 
  ```jsx
  const GlobalNav = () => (
-    <Nav>
+    <nav>
       <h1>Tunr</h1>
-      <Links>
+      <div>
         <Link to="/">Artists</Link>
         <Link to="/signUp">Sign Up</Link>
-      </Links>
-    </Nav>
+      </div>
+    </nav>
  )
 ```
 
