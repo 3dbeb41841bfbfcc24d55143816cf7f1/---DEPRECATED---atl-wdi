@@ -488,7 +488,7 @@ In order to get started with Devise Token Auth, we will first need to install th
 ```ruby
   gem 'devise'
   gem 'omniauth'
-  gem 'devise-token-auth'
+  gem 'devise_token_auth'
 ```
 
 As always, we run a `bundle install` to install the dependencies.
