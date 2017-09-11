@@ -52,7 +52,7 @@ With you buddy, discuss the following questions:
 
 ## What is npm?
 
-&#x1F535; **YOU DO:** Take 5 minutes to read and watch this [video] (https://docs.npmjs.com/getting-started/what-is-npm)
+&#x1F535; **YOU DO:** Take 5 minutes to read and watch this [video](https://docs.npmjs.com/getting-started/what-is-npm)
 
 > Summary: **npm** (node package manager), allows us to install dependencies for our Node.js application.
 
