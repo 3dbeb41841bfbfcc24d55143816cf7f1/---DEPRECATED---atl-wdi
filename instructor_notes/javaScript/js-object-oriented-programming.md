@@ -31,7 +31,7 @@ let savingsAccount = {
   amount: 0,
   withdraw: function(deduction){
     this.amount -= deduction;
-    balance.text(this.amount);
+    this.balance.text(this.amount);
   }
 };
 ```
