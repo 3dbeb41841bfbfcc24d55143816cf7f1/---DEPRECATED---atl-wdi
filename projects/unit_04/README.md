@@ -23,6 +23,8 @@ Your app must:
 * **Have at _least_ 3 models** (more if they make sense) – one representing someone
 using your application (a user), and two that represent the main functional ideas
 for your app
+  * **Devise/Passport is not a requirement**
+  * If you don't feel 100% confident that you understand how to work with auth and sessions, build out your user model without Devise.
 * **Have validations on any applicable fields on your models**
 * **Have complete RESTful routes** for at least one of your resources with GET, POST,
 PUT, and DELETE
