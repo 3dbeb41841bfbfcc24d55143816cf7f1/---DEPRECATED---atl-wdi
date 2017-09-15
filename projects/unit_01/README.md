@@ -11,7 +11,7 @@ The objectives of this project are to:
 * Demonstrate your ability to use `HTML` and `CSS` to build and style an intuitive web application
 * Demonstrate your competancy in _DOM manipulation_ using JavaScript
 * Publish your source code to _GitHub_ with a solid `README.md` describing the project
-* Deploy your application to a production environment such as [GitHub Pages](https://pages.github.com/) or [BitBalloon](https://www.bitballoon.com/)
+* Deploy your application to a production environment such [BitBalloon](https://www.bitballoon.com/)
 * Present your project in a presentation style format
 
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
