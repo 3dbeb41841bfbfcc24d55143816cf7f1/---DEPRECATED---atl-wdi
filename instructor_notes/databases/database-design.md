@@ -27,12 +27,11 @@ A database is a place where information gets stored in a hard drive - or distrib
 
 Inside a database, we do basic actions like create, read, update, and destroy data – hey look, CRUD!
 
-In modern web development, there are different categories of databases – SQL, NoSQL. We're focusing on NoSQL because it typically get's paired with Node and Express, but we will talk about SQL later in the course.
+In modern web development, there are different categories of databases – SQL, NoSQL. We're focusing on NoSQL because it typically gets paired with Node and Express, but we will talk about SQL later in the course.
 
 SQL stands for Structured Query Language, and it's a language used to manage and get information from what are considered "relational" databases.
 
 NoSQL means... No Structured Query Language.
-
 
 ## Why Mongo
 
@@ -52,8 +51,9 @@ Let's look at a ```book``` entity:
 
 ### MongoDB
 
-```
+```js
 {
+  _id: "2398dsf9fk347fdgd83",
   ISBN: 9780992461225,
   title: "JavaScript: Novice to Ninja",
   author: "Darren Jones",
@@ -75,9 +75,9 @@ Let's look at a ```book``` entity:
 |---------------|-----------------------------|--------------|--------|-------|
 | 9780992461225 | JavaScript: Novice to Ninja | Darren Jones | ebook  | 29.00 |
 
-<br>
+<br></br>
 
-In PostgreSQL, reviews would be a seperate entity with a ```book_id``` column. A review belongs to a book, a book has many reviews.
+In PostgreSQL, reviews would be a separate entity with a ```book_id``` column. A review belongs to a book, a book has many reviews.
 
 You will likely encounter many a developer who puts down Mongo. When we start learning SQL and relational databases toward the end of the program we can talk more about why and more about the pitfalls of flexibility.
 

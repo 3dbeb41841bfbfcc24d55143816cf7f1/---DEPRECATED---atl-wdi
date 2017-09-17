@@ -66,9 +66,7 @@ I **HIGHLY** recommend that you pay attention, write the commands down, and refe
 
 <br />
 
-
-
-### STEP 1 - Initialize a Simple Hello World Express Application.
+### STEP 1 - Initialize a Simple Hello World Express Application
 
 In the terminal:
 
