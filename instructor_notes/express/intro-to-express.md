@@ -52,9 +52,11 @@ With you buddy, discuss the following questions:
 
 ## What is npm?
 
-&#x1F535; **YOU DO:** Take 5 minutes to read and watch this [video] (https://docs.npmjs.com/getting-started/what-is-npm)
+&#x1F535; **YOU DO:** Take 5 minutes to read and watch this [video](https://docs.npmjs.com/getting-started/what-is-npm)
 
 > Summary: **npm** (node package manager), allows us to install dependencies for our Node.js application.
+
+You may also see tutorials refer to a package called `Yarn` for installing packages.  This is an alternative to NPM that is built by Facebook. Both packages pull from the NPM, so anything you see done in Yarn can also be done with NPM. 
 
 <br />
 
@@ -64,9 +66,7 @@ I **HIGHLY** recommend that you pay attention, write the commands down, and refe
 
 <br />
 
-
-
-### STEP 1 - Initialize a Simple Hello World Express Application.
+### STEP 1 - Initialize a Simple Hello World Express Application
 
 In the terminal:
 

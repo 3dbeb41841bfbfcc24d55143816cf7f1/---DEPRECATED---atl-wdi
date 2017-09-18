@@ -23,6 +23,8 @@ Your app must:
 * **Have at _least_ 3 models** (more if they make sense) – one representing someone
 using your application (a user), and two that represent the main functional ideas
 for your app
+  * **Devise/Passport is not a requirement**
+  * If you don't feel 100% confident that you understand how to work with auth and sessions, build out your user model without Devise.
 * **Have validations on any applicable fields on your models**
 * **Have complete RESTful routes** for at least one of your resources with GET, POST,
 PUT, and DELETE
@@ -111,17 +113,6 @@ something helps.
 * __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors as we have in class?
 
 * __Deployment and Functionality__: Is your application deployed and functional at a public URL? Is your application free of errors and incomplete functionality?
-
-* __Total__: Your instructors will give you a total score on your project between:
-
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectactions, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
-
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
 
 # Project Week
 

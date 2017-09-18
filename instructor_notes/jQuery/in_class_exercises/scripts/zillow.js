@@ -28,14 +28,20 @@ $(() => {
     cells.eq(4).css('color', 'green');
 
     $('#addHome').on('click',($event) => {
-        console.log($event);
-        for (var i = 0; i < 5 ; i++) {
-            $("<tr><tr/>")
+        const $newHome = $("<tr><tr/>")
             $('tbody').append(newHomes[i]);
-           
+            $newHome.append(`<td>${homeToAdd.address}</td>`)
+            $newHome.append(`<td>${homeToAdd.sf}</td>`)
+            $newHome.append(`<td>${homeToAdd.bedrooms}</td>`)
+            $newHome.append(`<td>${homeToAdd.baths}</td>`)
+            $newHome.append(`<td>${homeToAdd.price}</td>`)
+
+            $('#homes tbody').append($newHome);
+
+            
             
 
-        }    
+           
 
     });
     

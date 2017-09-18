@@ -35,7 +35,7 @@ As we have already seen, `res.send()`, can do a lot for us.  It allows us to eas
     - The fully baked onion blossom (HTML) is then delivered to your table via the waiter (response).
 - **Client Side** rendering is like a Hibachi restaurant. 
     - All of the ingredients (data) are delivered to your table (browser) already prepped and ready to go.
-    - Each dish (web page view) is assembled by the chef (AngularJS) in front of you/in real time as you request it.
+    - Each dish (web page view) is assembled by the chef (React) in front of you/in real time as you request it.
 
 <br />
 
