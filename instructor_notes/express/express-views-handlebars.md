@@ -3,9 +3,9 @@ title: Server Side Rendering in Express
 type: lesson
 duration: '2:00' 
 creator: 
-    name: Colin Hart,
-    adapted by Maren Woodruff
-    class: WDI-ATL-9
+  name: Colin Hart
+  adapted: by Maren Woodruff
+  class: WDI-ATL-9
 ---
 
 # Views in Express
@@ -29,17 +29,17 @@ As we have already seen, `res.send()`, can do a lot for us.  It allows us to eas
 
 ### What is server side rendering?
 
-- **Server Side** rendering is like a traditional restaurant (Tacos and tequillas!!). 
-    - You place an order (request) and the waiter delivers it to the kitchen for assembly.
-    - Ingredients (data) are combined and placed into an oven (Node/Express/Handlebars).
-    - The fully baked onion blossom (HTML) is then delivered to your table via the waiter (response).
-- **Client Side** rendering is like a Hibachi restaurant. 
-    - All of the ingredients (data) are delivered to your table (browser) already prepped and ready to go.
-    - Each dish (web page view) is assembled by the chef (React) in front of you/in real time as you request it.
+- **Server Side** rendering is like a traditional restaurant (Tacos and Tequilas!).
+  - You place an order (request) and the waiter delivers it to the kitchen for assembly.
+  - Ingredients (data) are combined and placed into an oven (Node/Express/Handlebars).
+  - After the ingredients have finished being prepared, the dish (HTML) is then delivered to your table via the waiter (response).
+- **Client Side** rendering is like a Hibachi restaurant.
+  - All of the ingredients (data) are delivered to your table (browser) already prepped and ready to go.
+  - Each dish (web page view) is assembled by the chef (React) in front of you/in real time as you request it.
 
 <br />
 
-### What are Handlebars?
+### What is Handlebars?
 
 ![](https://i.imgur.com/gMD515j.png)
 
@@ -47,22 +47,22 @@ http://handlebarsjs.com/
 
 **Handlebars** allow us to embed JS variables inside of our HTML and render it as text. Our server injects the variables into the HTML document **before** sending it to the client.
 
-The client/brower will never see the variables or the handlebars syntax, only the values. The HTML document is "fully baked" when the browser receives it.
+The client/browser will never see the variables or the handlebars syntax, only the values. The HTML document is "fully baked" when the browser receives it.
 
 A similar concept: remember ES6 template strings? If we use the `${}` syntax inside of our template string, it lets us run JS, e.g. call a function, input a variable, or add some numbers. For example:
 
 ```javascript
-var name = "Maren";
+var name = "Fred";
 
 console.log(`Hi, my name is ${name}`);
-// Hi, my name is Maren
+// Hi, my name is Fred
 ```
 
 Handlebars gives us similar functionality, but instead of injecting JS into a string, it allows us to inject js into our HTML page.
 
 There are certainly other template engine options out there such as Pug (https://pugjs.org/api/getting-started.html) or Embedded Javascript (http://www.embeddedjs.com/). 
 
-Handlebars is fun and is one of the easiest to use. It also closely resembles the syntax we will use for AngularJS which is another reason we are using it.
+Handlebars is fun and is one of the easiest to use. It also closely resembles the syntax we will use for React which is another reason we are using it.
 
 <br />
 
@@ -73,7 +73,7 @@ For this lesson, we are going to build on the `hello-express` app from yesterday
 1. To install handlebars into our node application enter the following in the terminal:
 
 ```bash
-$ npm install --save hbs
+ npm install --save hbs
 ```
 
 > What does `--save` do for us again?
@@ -102,9 +102,9 @@ app.set("view engine", "hbs"); //tells Express what to use for rendering templat
 4. Create a directory called `views` and let's make a view for our first `/greeting` route. We're also gonna create a layout file (more on that soon!). We'll do this in the root directory of our application. In the terminal:
 
 ```bash
-$ mkdir views
-$ touch views/greeting.hbs
-$ touch views/layout.hbs
+ mkdir views
+ touch views/greeting.hbs
+ touch views/layout.hbs
 ```
 
 The Handlebars extension is `.hbs`. This tells our server that this file contains Handlebars code, and that it should be converted to HTML.
@@ -119,7 +119,7 @@ Follow the 4 steps above and add Handlebars, a view folder and the two new views
 
 ## How do we use Handlebars?
 
-Everything that we have done sofar has prepared us to configure handlebars within our application. You will need to go through these steps every time you make a new Express application.
+Everything that we have done so far has prepared us to configure handlebars within our application. You will need to go through these steps every time you make a new Express application.
 
 1. Remember how we used query parameters yesterday? We can use those in the same way, but rather than sending them to a `res.send()` method, we can pass them to our view and render the params as HTML.
 
@@ -133,9 +133,9 @@ app.get('/greeting', function(req, res) {
 });
 ```
 
-Instead of sending a string directly to the response of a get request, we would like to render a view. The `.render` function takes two arguments. 
+Instead of sending a string directly to the response of a get request, we would like to render a view. The `.render` function takes two arguments.
 
-- The first argument is the view that we would like to render. 
+- The first argument is the view that we would like to render.
 - The second argument is an object. We can use the keys in this object inside of the view, to access the values in these key-value pairs.
 
 2. When we go to `http://localhost:3000/greeting?saying=hii!` our view is empty! Let's go ahead and change that now.  In the `views/layout.hbs`:
@@ -160,6 +160,8 @@ Instead of sending a string directly to the response of a get request, we would 
 The layout acts as a picture frame for all of our views. It's a way to DRY up our code. For example, if we want a nav bar or a footer on every page we would include it here.
     
 The `{{{ body }}}` is where each individual view (depending on the route) will be inserted into the HTML.
+
+> Take note that there are 3 braces around body instead of 2.  This signals to handlebars that this is a place holder where our main content should be rendered. 
 
 3. Then in `views/greeting.hbs` add:
 
@@ -195,7 +197,7 @@ touch views/favorite-foods.hbs
 
 ```javascript
 app.get('/favorite-foods', function(req, res) {
-    var favoriteFoods = ["Jeni's almond butter brittle ice cream", 'Tacos from Superica', 'a breakfast sandwich from Gjelina to go in Venice', 'Croissants from Bottega Louie in downtown Los Angeles', 'Pizza from Little Star in San Francisco'];
+    var favoriteFoods = ["Jeni's Almond Butter ice cream", 'Tacos from Superica', 'A Breakfast Sandwich from Gjelina to go in Venice', 'Croissants from Bottega Louie in Downtown Los Angeles', 'Pizza from Little Star in San Francisco'];
 
     res.render('favorite-foods', {
         data: ____
@@ -207,8 +209,8 @@ What would the value of data need to be in order to render the array in our `gre
 
 ```javascript
 app.get('/favorite-foods', function(req, res) {
-    var favoriteFoods = ["Jeni's almond butter brittle ice cream", 'Tacos from Superica', 'a breakfast sandwich from Gjelina to go in Venice', 'Croissants from Bottega Louie in downtown Los Angeles', 'Pizza from Little Star in San Francisco'];
-    
+    var favoriteFoods = ["Jeni's Almond Butter ice cream", 'Tacos from Superica', 'A Breakfast Sandwich from Gjelina to go in Venice', 'Croissants from Bottega Louie in Downtown Los Angeles', 'Pizza from Little Star in San Francisco'];
+
     res.render('favorite-foods', {
         data: favoriteFoods
     });
@@ -278,9 +280,9 @@ You can check out more at this link for [Handlebars Built In Helpers](http://han
 
 This is also a great time to note how we serve static assets. Notice that we linked a stylesheet in our layout file. Let's create a folder named `public` in our main `hello-express` directory. This allows our app to utilize CSS, JS, Fonts, Images, 3rd party library files, etc.
 
-Let's add an external stylesheet:
+Let's add an external style-sheet:
 
-1. In our `server.js`, let's add:  
+1. In our `server.js`, let's add:
 
 ```javascript
 app.use(express.static(__dirname + '/public')); // VERY IMPORTANT!! Make sure to add a '/'
@@ -293,13 +295,13 @@ app.use(express.static(__dirname + '/public')); // VERY IMPORTANT!! Make sure to
 4. `mkdir css`
 5. Create a `styles.css` file: `touch css/styles.css`
 6. Add a CSS rule to test it out:
-    
+
 ```css
 body {
   background-color: red;
   font-family: Georgia;
 }
-``` 
+```
 
 <br />
 
@@ -314,7 +316,7 @@ Walk through the previous steps and add static assets to your app.
 For lab time you are going to create a new Express app from scratch that will render your favorite TV shows. Essentially, you are going to walk back through the two lesson readme files from today and practice what you have learned.
 
 1. Create a new Express App. Here are a few steps to get you started. In your ga folder
-    
+
 ```bash
 $ cd ~/Desktop/ga/class-exercises
 $ mkdir shows_app
@@ -328,7 +330,7 @@ $ touch server.js
 1. Create the necessary variables and require the appropriate modules in the `server.js` file.
 2. Set up your server and port using `app.listen()`
 3. In the `server.js` file, create an `app.get()` route for `/shows`.  
-4. Create an array called `var faveShows` and add your favorite TV shows.
+4. Create an array called `const faveShows` and add your favorite TV shows.
 5. Test out your route using `res.send()` before creating your views.
 6. Update your route to render a view for `views/shows.hbs`. (Remember to create a `views` folder and include a `views/layout.hbs` file.)
 7. Add `{{}}` to your `shows.hbs` file that will render the shows inside of an `<ol></ol>` using `<li></li>` tags
