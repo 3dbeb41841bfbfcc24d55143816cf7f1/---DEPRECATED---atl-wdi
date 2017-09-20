@@ -1,21 +1,30 @@
 var express = require('express');
 //save an express module as 'app'
 var app     = express();
-// assigning 3000 as our port
-app.get("/", (req, res) => {
-    res.send("Welcome to Pizza Express")
-})
+var hbs = require('hbs');
+const indexController = require("./Controllers/index.js")
+const toppingController = require("./Controllers/toppings.js")
+// const orderController = require("./Controller/order.js")
+app.set("view engine", "hbs");
+app.set('views', './views');
+// app.get("/", (req, res) => {
+//     res.send("Welcome to Pizza Express")
+// })
+app.use("/", indexController)
+app.use("/topping", toppingController)
+// app.get("/topping/:type", (req, res, next) => {
+//     const type = req.params.type;
+//     res.send(`${type} pizza! Good choice.`)
+//     res.render("toppings", {
+//         toppings: req.params.toppings
+//     })
+// })
 
-app.get("/topping/:type", (req, res, next) => {
-    const type = req.params.type;
-    res.send(`${type} pizza! Good choice.`)
-})
-
-app.get("/order/:amount/:size", (req, res, next) => {
-    const amount = req.params.amount
-    const size = req.params.size
-    res.send(`Your order for ${amount} ${size} pizzas will be ready in 1 minute`)
-})
+// app.get("/order/:amount/:size", (req, res, next) => {
+//     const amount = req.params.amount
+//     const size = req.params.size
+//     res.send(`Your order for ${amount} ${size} pizzas will be ready in 1 minute`)
+// })
 var port = 3000;
 
 // tells the server to listen for requests on port 3000
