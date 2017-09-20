@@ -25,9 +25,9 @@ creator:
 
 A database is a place where information gets stored in a hard drive - or distributed across multiple hard drives - on a computer somewhere. Much like we've been creating and storing data in arrays or objects, a database represents a collection of individual pieces of data stored in a highly structured and searchable way; they represent a model of reality.
 
-Inside a database, we do basic actions like create, read, update, and destroy data – hey look, CRUD!
+Inside a database, we do basic actions like Create, Read, Update, and Destroy data – hey look, CRUD!
 
-In modern web development, there are different categories of databases – SQL, NoSQL. We're focusing on NoSQL because it typically gets paired with Node and Express, but we will talk about SQL later in the course.
+In modern web development, there are two different categories of databases – SQL, NoSQL. We're focusing on NoSQL because it typically gets paired with Node and Express, but we will talk about SQL later in the course.
 
 SQL stands for Structured Query Language, and it's a language used to manage and get information from what are considered "relational" databases.
 
