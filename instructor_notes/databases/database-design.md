@@ -89,6 +89,31 @@ Our example is going to be this [Survey Monkey Survey](https://www.surveymonkey.
 - What are the types of this data?
 - What are the relations between these pieces of data?
 
+## ERDs
+
+In order to plan our our data model, we will use something called an ERD (Entity Relationship Diagram).  ERDs are similar to wireframes but for your data model.  By building an ERD before starting a project, you can get a better understanding of how to architect your data and avoid pitfalls along the way.
+
+ERDs are written out by drawing a box to represent each data model in your application.  This box will also contain the names of various attributes for your model and the data types of those models.  Additionally, the ERD contains arrows that describe the relationship between each data model.
+
+![ERD Relationships](./../images/ERD-Relationships.png)
+
+There are multiple types of relationships available:
+* One to Many
+  * An Author Has Many Books
+  * A User Has Many Comments
+* One to One
+  * A State Has One Capital City
+  * A Building Has One Address
+* Many To Many
+  * A Teacher Has Many Students & A Student Has Many Teachers
+  * A Job Applicant Has Many Interviewers & An Interviewer Has Many Job Applicants
+
+Here is an example of an ERD for a hockey focused-app with plenty of models and different data types.
+
+![ERD Example](./../images/ERD-Example.svg)
+
+
+
 ## Pair Up & Draw on The Board - Y'all Do (20 mins)
 
 How do you feel about your understanding of data modeling after doing the Survey Monkey example? Raise 2 fingers for "really well!" or 1 finger for "still a little lost".  Pair up 1's and 2's.
