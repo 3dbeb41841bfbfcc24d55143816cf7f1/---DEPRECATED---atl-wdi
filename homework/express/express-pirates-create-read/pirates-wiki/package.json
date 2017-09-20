@@ -1,7 +1,6 @@
 {
   "name": "pirates_crud_part_one_solution",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,5 +13,6 @@
     "express": "^4.13.4",
     "hbs": "^2.9.0",
     "morgan": "^1.6.1"
-  }
+  },
+  "description": ""
 }
