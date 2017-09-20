@@ -98,15 +98,18 @@ ERDs are written out by drawing a box to represent each data model in your appli
 ![ERD Relationships](./../images/ERD-Relationships.png)
 
 There are multiple types of relationships available:
-* One to Many
-  * An Author Has Many Books
-  * A User Has Many Comments
-* One to One
-  * A State Has One Capital City
-  * A Building Has One Address
-* Many To Many
-  * A Teacher Has Many Students & A Student Has Many Teachers
-  * A Job Applicant Has Many Interviewers & An Interviewer Has Many Job Applicants
+
+- One to Many
+  - An Author Has Many Books
+  - A User Has Many Comments
+
+- One to One
+  - A State Has One Capital City
+  - A Building Has One Address
+
+- Many To Many
+  - A Teacher Has Many Students & A Student Has Many Teachers
+  - A Job Applicant Has Many Interviewers & An Interviewer Has Many Job Applicants
 
 Here is an example of an ERD for a hockey focused-app with plenty of models and different data types.
 
