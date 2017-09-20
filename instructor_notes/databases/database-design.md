@@ -89,7 +89,7 @@ Our example is going to be this [Survey Monkey Survey](https://www.surveymonkey.
 - What are the types of this data?
 - What are the relations between these pieces of data?
 
-## Pair Up & Draw on The Board - Y'all Do (20 mins)
+## Pair Up & Draw an ERD on The Board - Y'all Do (20 mins)
 
 How do you feel about your understanding of data modeling after doing the Survey Monkey example? Raise 2 fingers for "really well!" or 1 finger for "still a little lost".  Pair up 1's and 2's.
 
