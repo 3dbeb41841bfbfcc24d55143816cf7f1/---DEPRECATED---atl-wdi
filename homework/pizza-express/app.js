@@ -4,7 +4,7 @@ var app     = express();
 var hbs = require('hbs');
 const indexController = require("./Controllers/index.js")
 const toppingController = require("./Controllers/toppings.js")
-// const orderController = require("./Controller/order.js")
+const orderController = require("./Controllers/order.js")
 app.set("view engine", "hbs");
 app.set('views', './views');
 // app.get("/", (req, res) => {
@@ -12,6 +12,7 @@ app.set('views', './views');
 // })
 app.use("/", indexController)
 app.use("/topping", toppingController)
+app.use("/order", orderController)
 // app.get("/topping/:type", (req, res, next) => {
 //     const type = req.params.type;
 //     res.send(`${type} pizza! Good choice.`)
