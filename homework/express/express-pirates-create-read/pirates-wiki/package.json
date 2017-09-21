@@ -12,6 +12,7 @@
     "body-parser": "^1.18.1",
     "express": "^4.13.4",
     "hbs": "^2.9.0",
+    "method-override": "^2.3.9",
     "morgan": "^1.6.1"
   },
   "description": ""
