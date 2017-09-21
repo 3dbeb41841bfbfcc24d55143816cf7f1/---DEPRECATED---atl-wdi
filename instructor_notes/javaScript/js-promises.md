@@ -1,9 +1,5 @@
 # JavaScript Promises
 
-## Introduction
-
-Welcome to the Promise land! (sorry) You have been sneakily using promises this whole class, but today, we will illuminate what exactly a promise is, and shed light on best practices to use while playing with promises.
-
 ## Objectives
 
 * Describe the anatomy of a Promise
@@ -12,6 +8,10 @@ Welcome to the Promise land! (sorry) You have been sneakily using promises this 
 * Handle errors while working with Promises
 
 <br>
+
+## Introduction
+
+Welcome to the Promise land! (sorry) You have been sneakily using promises this whole class, but today, we will illuminate what exactly a promise is, and shed light on best practices to use while playing with promises.
 
 ## You Do
 
