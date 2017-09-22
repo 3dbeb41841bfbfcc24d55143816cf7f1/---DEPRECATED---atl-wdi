@@ -98,7 +98,7 @@ During Unit One, you likely inadvertently used the GET verb. Can you guess in wh
 
 So, let's get our hands dirty: what is the easiest way you can come up with to make a **GET** request?
 
-EXERCISE: For the next 10 minutes, complete this [mini-lab](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/unit_02/node/node-lab/curl-lab.md) with a partner. Read through the explanation of cURL and work through the exercises.
+EXERCISE: For the next 10 minutes, complete this [mini-lab](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/node/node-lab/curl-lab.md) with a partner. Read through the explanation of cURL and work through the exercises.
 
 EXERCISE: 5 minute breakout session! With your partner, work together to come up with an explanation, in your own words, of how the internet works, HTTP verbs, and the request-response cycle.
 
@@ -197,4 +197,4 @@ console.log("Hello World!")
 
 Run the program in the command line by using `node helloWorld.js`. That's it! You've created your first Node app.  It's not very useful though.  Let's try and build out a web server to actually say Hello to the whole world.
 
-Let's open up the [node_lab](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/unit_02/node/node-lab/node-lab.md) and create a web app using only node (we'll learn how to do the same thing with Express.js later today).
+Let's open up the [node_lab](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/node/node-lab/node-lab.md) and create a web app using only node (we'll learn how to do the same thing with Express.js later today).

@@ -25,14 +25,13 @@ creator:
 
 A database is a place where information gets stored in a hard drive - or distributed across multiple hard drives - on a computer somewhere. Much like we've been creating and storing data in arrays or objects, a database represents a collection of individual pieces of data stored in a highly structured and searchable way; they represent a model of reality.
 
-Inside a database, we do basic actions like create, read, update, and destroy data – hey look, CRUD!
+Inside a database, we do basic actions like Create, Read, Update, and Destroy data – hey look, CRUD!
 
-In modern web development, there are different categories of databases – SQL, NoSQL. We're focusing on NoSQL because it typically get's paired with Node and Express, but we will talk about SQL later in the course.
+In modern web development, there are two different categories of databases – SQL, NoSQL. We're focusing on NoSQL because it typically gets paired with Node and Express, but we will talk about SQL later in the course.
 
 SQL stands for Structured Query Language, and it's a language used to manage and get information from what are considered "relational" databases.
 
 NoSQL means... No Structured Query Language.
-
 
 ## Why Mongo
 
@@ -52,8 +51,9 @@ Let's look at a ```book``` entity:
 
 ### MongoDB
 
-```
+```js
 {
+  _id: "2398dsf9fk347fdgd83",
   ISBN: 9780992461225,
   title: "JavaScript: Novice to Ninja",
   author: "Darren Jones",
@@ -75,9 +75,9 @@ Let's look at a ```book``` entity:
 |---------------|-----------------------------|--------------|--------|-------|
 | 9780992461225 | JavaScript: Novice to Ninja | Darren Jones | ebook  | 29.00 |
 
-<br>
+<br></br>
 
-In PostgreSQL, reviews would be a seperate entity with a ```book_id``` column. A review belongs to a book, a book has many reviews.
+In PostgreSQL, reviews would be a separate entity with a ```book_id``` column. A review belongs to a book, a book has many reviews.
 
 You will likely encounter many a developer who puts down Mongo. When we start learning SQL and relational databases toward the end of the program we can talk more about why and more about the pitfalls of flexibility.
 
@@ -88,6 +88,34 @@ Our example is going to be this [Survey Monkey Survey](https://www.surveymonkey.
 - What pieces of data do we need to think about when constructing our survey monkey app?
 - What are the types of this data?
 - What are the relations between these pieces of data?
+
+## ERDs
+
+In order to plan our our data model, we will use something called an ERD (Entity Relationship Diagram).  ERDs are similar to wireframes but for your data model.  By building an ERD before starting a project, you can get a better understanding of how to architect your data and avoid pitfalls along the way.
+
+ERDs are written out by drawing a box to represent each data model in your application.  This box will also contain the names of various attributes for your model and the data types of those models.  Additionally, the ERD contains arrows that describe the relationship between each data model.
+
+![ERD Relationships](./../images/ERD-Relationships.png)
+
+There are multiple types of relationships available:
+
+- One to Many
+  - An Author Has Many Books
+  - A User Has Many Comments
+
+- One to One
+  - A State Has One Capital City
+  - A Building Has One Address
+
+- Many To Many
+  - A Teacher Has Many Students & A Student Has Many Teachers
+  - A Job Applicant Has Many Interviewers & An Interviewer Has Many Job Applicants
+
+Here is an example of an ERD for a hockey focused-app with plenty of models and different data types.
+
+![ERD Example](./../images/ERD-Example.svg)
+
+
 
 ## Pair Up & Draw on The Board - Y'all Do (20 mins)
 
