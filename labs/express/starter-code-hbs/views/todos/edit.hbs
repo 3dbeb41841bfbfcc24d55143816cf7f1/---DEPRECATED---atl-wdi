@@ -1,0 +1,21 @@
+<h1>Edit {{todo.description}}</h1>
+
+<div class="row">
+    <form action="/todos/{{todo.id}}?_method=PUT" method="POST" class="col-md-6 col-md-offset-3">
+    <div class="form-group">
+      <label for="description">description:</label>
+      <input type="text" name="description" class="form-control" value="{{todo.description}}">
+    </div>
+    <div class="form-group">
+      <label for="location">location:</label>
+      <input type="text" name="location" class="form-control" value="{{todo.location}}">
+    </div>
+    <div class="form-group">
+      <label for="urgent">location:</label>
+      <input type="text" name="urgent" class="form-control" value="{{todo.urgent}}" />
+    </div>
+    <div>
+      <input type="submit" value="Update Todo" class="btn btn-default">
+    </div>
+  </form>
+</div>

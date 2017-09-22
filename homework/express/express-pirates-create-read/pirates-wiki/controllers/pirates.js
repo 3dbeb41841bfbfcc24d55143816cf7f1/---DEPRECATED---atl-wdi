@@ -16,18 +16,53 @@ router.get('/new', (req, res) => {
 })
 // SHOW
 router.get('/:id', (req, res) => {
-    const id = parseInt(req.params.id)
-    const pirate = data.seededPirates[id];
+    const id = req.params.id
+    const pirate = pirates[id];
     console.log(pirates);
     if (!pirate) {
         res.render('pirates/show', {
             error: "no pirates found here"
         })
     } else {
-        res.render('pirates/show', {pirates})
+        res.render('pirates/show', { pirate })
     }
 }
 );
+//edit 
+router.get('/:id/edit', (req, res) => {
+    res.render('pirates/edit', {
+        pirate: {
+            id: req.params.id,
+            name: pirates[req.params.id].name,
+            birthplace: pirates[req.params.id].birthplace,
+            death_year: pirates[req.params.id].death_year,
+            base: pirates[req.params.id].base,
+            nickname: pirates[req.params.id].nickname,
+        }
+    })
+});
+
+//update 
+router.put('/:id', (req, res) => {
+    const pirateEdit = pirates[req.params.id];
+
+    pirateEdit.name = req.body.name;
+    pirateEdit.birthplace = req.body.birthplace;
+    pirateEdit.death_year = req.body.death_year;
+    pirateEdit.base = req.body.base;
+    pirateEdit.nickname = req.body.nickname;
+
+    res.redirect('/pirates');
+})
+
+
+//delete
+router.delete('/:id', (req, res) => {
+    pirates.splice(req.params.id, 1);
+
+    res.redirect('/pirates');
+});
+
 
 // POST
 router.post('/', (req, res) => {
