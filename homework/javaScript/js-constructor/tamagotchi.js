@@ -11,12 +11,19 @@ class Tamagotchis {
     }
     cry(){
         --this.foodInTummy
-        console.log(foodInTummy)
-        console.log(`${name} says WAHHHHH`)
+        console.log(this.foodInTummy)
+        console.log(`${this.name} says WAHHHHH`)
     }
-    // puke(){
-    //     --this.
-    // }
+    puke(){
+        --this.foodInTummy
+        console.log(this.foodInTummy)
+        console.log(`${this.name} says WAHHHHH`)
+    }
+    yawn(){
+        --this.restedness
+        console.log(this.restedness)
+        console.log(`${this.name} has current restedness of ${this.restedness}`)
+    }
 }
 
 //create new Tamagotchis
