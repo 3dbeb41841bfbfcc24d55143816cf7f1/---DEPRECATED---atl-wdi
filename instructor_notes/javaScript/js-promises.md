@@ -315,6 +315,7 @@ Notice that we only have one `.catch` block at the end.  This is another great f
 <br>
 ## For more info on how to build a Promise object (Only if you feel really cozy with consuming promises)
   [Promises In The Wild](https://davidwalsh.name/promises)
+  
   [Building Promises Lab](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/javaScript/promises/js-promises-lab-starter)
 
 
