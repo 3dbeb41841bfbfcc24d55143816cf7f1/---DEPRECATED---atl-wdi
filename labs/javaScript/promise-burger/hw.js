@@ -6,7 +6,8 @@ const kitchen = require('./kitchen');
 // 1. Kitchen has a method called `.readMenu`.  
 // Call this method and console.log the data that comes back when the Promise is resolved.
 
-//CODE FOR QUESTION 1 HERE
+// console.log(kitchen.readMenu())
+
 
 
 // Order Some Food
@@ -18,11 +19,12 @@ const kitchen = require('./kitchen');
 // CODE FOR QUESTION 2 HERE
 
 
+kitchen.order("REBEL OUTLAW").then(console.log).catch(console.log)
 // 3. Try and use the same method to order a `quesadilla`.  
 //  Since Promise Burger only serves burgers, this will throw an error.  
 //  Make sure that your Promise can be dealt with when it is rejected.
 
-// CODE FOR QUESTION 3 HERE
+kitchen.order("quesadilla").then(console.log).catch(console.log)
 
 
 // Add A Burger To The Menu
@@ -40,7 +42,7 @@ const newBurger = {
   "description": ` It becomes difficult to even describe this, the most preposterous of our Bypass Burgers. All you really need to know is that we use three burger patties, three fried eggs, fourteen slices of American cheese, and ten slices of bacon, all packed between two grilled cheese sandwiches. Figuring out how to add condiments is completely up to you. It’s served in a big bowl of french fries and tater tots covered, in lots of our Cheesy-Cheese Goo. Enjoy!`
 }
 
-// CODE FOR QUESTION 4 HERE
+kitchen.addToMenu(newBurger).then(console.log).catch(console.log).then(console.log(kitchen.readMenu()))
 
 // 5. Validate that the new item has been added to the menu by calling `readMenu` again.  
 // We only want to call `readMenu` after we get a response that is successful. 
@@ -73,4 +75,10 @@ const customers = [
   }
 ]
 
-// CODE FOR QUESTION 6 HERE
+
+kitchen.order("REBEL OUTLAW").then(console.log).catch(console.log)
+
+kitchen.order()
+customers.forEach(function(n, index, customers){
+  
+}
