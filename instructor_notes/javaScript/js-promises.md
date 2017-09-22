@@ -26,8 +26,6 @@ What are some examples of a Promise in the real world? What's a scenario in whic
 
 <br>
 
-## A World Without Promises
-
 ### Non-Blocking Code in JavaScript
 
   Pop quiz! In the code below, which word will get printed first?
