@@ -197,6 +197,11 @@ for(let i = 0; i < naysayers.length; i++) {
   }
 }
 ```
+
+#### YOU DO:
+Use `.filter` to solve this problem: 
+[Filter REPL](https://repl.it/L33j)
+
 ### map
 
 The `map` method creates a new array with the results of calling a provided function on every element in the array. You can think of `map` as _mapping_ the elements of one Array to the elements of a new Array using a mapping function that you provide.  This is similar to `forEach` but it returns a value, which isn't possible using `forEach`
@@ -240,6 +245,9 @@ for (var i = 0; i < values.length; i++){
 
 console.log('here are some squares:', squares);
 ```
+#### YOU DO
+Map Practice
+[Map REPL](https://repl.it/L34L/2)
 
 ### reduce
 
@@ -262,6 +270,10 @@ And the output is:
 ```
 The sum is 25
 ```
+
+#### YOU DO
+Reduce Practice
+[Reduce REPL](https://repl.it/L349)
 
 ## Resources
 
