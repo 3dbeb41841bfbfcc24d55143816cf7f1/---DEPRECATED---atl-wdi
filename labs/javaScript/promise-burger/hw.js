@@ -76,9 +76,6 @@ const customers = [
 ]
 
 
-kitchen.order("REBEL OUTLAW").then(console.log).catch(console.log)
-
-kitchen.order()
-customers.forEach(function(n, index, customers){
-  
-}
+Promise.all (customers.map((a) => {
+  kitchen.order(a.order).then(console.log)
+}))
