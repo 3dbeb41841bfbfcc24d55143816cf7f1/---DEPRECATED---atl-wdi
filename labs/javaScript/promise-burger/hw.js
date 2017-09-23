@@ -8,6 +8,14 @@ const kitchen = require('./kitchen');
 
 //CODE FOR QUESTION 1 HERE
 kitchen.readMenu().then(console.log).catch(console.log);
+// code below is the same as the string of code above this line 
+/*kitchen.readMenu()
+.then((data) => {
+  console.log(data)
+})
+.catch((data) => {
+  console.log(data)
+})*/
 // Order Some Food
 /* *************************************************************** */
 // 2. For this task, you will use the method `.order` to order a a burger from the menu.  
@@ -40,13 +48,12 @@ const newBurger = {
 }
 
 // CODE FOR QUESTION 4 HERE
-kitchen.addToMenu(newBurger).then(console.log).catch(console.log);
+kitchen.addToMenu(newBurger).then(kitchen.readMenu).then(console.log).catch(console.log);
 // 5. Validate that the new item has been added to the menu by calling `readMenu` again.  
 // We only want to call `readMenu` after we get a response that is successful. 
 // Remember that we can chain promises together the same way that we can chain jQuery methods.
 
 // REFACTOR QUESTION 4 TO ACCOUNT FOR THIS REQUIREMENT
-kitchen.readMenu().then(console.log).catch(console.log);
 // Stretch Goals
 /* *************************************************************** */
 // 6. Let's be honest, people only go to Promise Burger when they are showing out-of-towners around.  
