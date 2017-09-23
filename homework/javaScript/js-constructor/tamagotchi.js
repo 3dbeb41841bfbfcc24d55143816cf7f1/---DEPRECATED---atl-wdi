@@ -11,10 +11,25 @@ class Tamagotchi {
         this.health = 10
     }
     cry() {
-        foodInTummy--;
+        this.foodInTummy--;
         console.log("wwwwwaaaaaahhhnnnnnn")
         console.log(this.name + "has current food in my tummy " + this.foodInTummy);
     };
+    poop() {
+        this.foodInTummy--;
+console.log('plop');
+console.log(this.name + 'has current food' + this.foodInTummy);
+    }
+puke() {
+    this.health--;
+console.log('too much beer hhuuurrrllllll');
+console.log(this.name + 'has current health =' + this.health)
+};
+yawn() {
+    this.restedness--;
+    console.log("bruh im tired...");
+    console.log(this.name + "has current restedness of " + this.restedness)
+};
 }
 
 //create new Tamagotchis
