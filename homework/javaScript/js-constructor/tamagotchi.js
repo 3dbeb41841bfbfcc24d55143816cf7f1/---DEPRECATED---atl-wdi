@@ -19,7 +19,7 @@ class Tamagotchi {
         this.foodInTummy--;
 console.log('plop');
 console.log(this.name + 'has current food' + this.foodInTummy);
-    }
+    };
 puke() {
     this.health--;
 console.log('too much beer hhuuurrrllllll');
