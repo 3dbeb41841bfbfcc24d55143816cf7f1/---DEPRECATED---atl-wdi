@@ -37,7 +37,7 @@ class Tamagotchis {
     }
 }
 
-// document.getElementById("feed").onclick = console.log("feed clicked")
+document.getElementById("feed").onclick = console.log("feed clicked")
 
 
 //create new Tamagotchis
