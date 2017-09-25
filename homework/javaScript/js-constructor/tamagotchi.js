@@ -37,9 +37,7 @@ class Tamagotchis {
     }
 }
 
-var feedButton = document.getElementById("feed")
-var restButton = document.getElementById("rest")
-var medicateButton = document.getElementById("medicate")
+// document.getElementById("feed").onclick = console.log("feed clicked")
 
 
 //create new Tamagotchis

@@ -16,5 +16,12 @@ var player = {
   }
 }; //end player
 
+
+// var restButton = document.getElementById("rest").
+// var medicateButton = document.getElementById("medicate")
+
+
+
+
 player.feedTamagotchi(tama)
 player.feedTamagotchi(gotchi)
