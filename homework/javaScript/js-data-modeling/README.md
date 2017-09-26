@@ -31,6 +31,28 @@ This app provides easy access to all your e-mail service providers in one app. T
 
 ```
 Write your answer here or in a separate js file.
+
+User
+id: number,
+username: string,
+password: string,
+
+Email Account
+id: number 
+email address: string
+user: []
+
+var emailAccount = {
+  id: 77093678,
+  email address: yahooguy@gmail.com,
+  user: [{
+    id:09298764
+    username:yahooguy
+    password:betyouwontguess
+  }]
+}
+
+
 ```
 
 ### 2. Radio on the Internet app
@@ -39,7 +61,7 @@ This app hosts a ton of radio stations, each featuring their own playlists of so
 
 
 ```
-Write your answer here or in a separate js file.
+Radio 
 ```
 
 ### 3. Rock Concert App
