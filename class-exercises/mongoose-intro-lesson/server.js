@@ -32,6 +32,9 @@ db.once('open', function () {
 const studentsController = require('./controllers/students_controller')
 app.use('/students', studentsController)
 
+const projectsController = require('./controllers/projects_controller')
+app.use('/students/:studentId/projects', projectsController)
+
 const port = 3000;
 app.listen(port, () => {
     console.log(`Express started on ${port}`)

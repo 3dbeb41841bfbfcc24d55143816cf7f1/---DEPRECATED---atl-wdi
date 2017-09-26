@@ -39,6 +39,10 @@ app.use('/', donutsController);
 //======================
 // LISTENERS
 //======================
+const port = 3000;
+app.listen(port, () => {
+    console.log(`express started on ${port}`)
+})
 //CONNECT MONGOOSE TO "donut_store"
 
 
