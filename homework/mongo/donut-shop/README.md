@@ -11,9 +11,9 @@ In this assignment, you will create a full CRUD MEN (Mongo, Express, Node) Donut
 - gain more practice with Handlebars
 
 ## Setup
-1. In terminal, start your mongo server with `mongod`.
+1. In terminal, make sure your Mongo server is started with `brew services start mongo`.
 
-2. Open a new tab (`cmd + t`) and open your mongo console with `mongo`. Make sure there are no errors/ no other instances of this running.
+2. Open your mongo console with `mongo`. Make sure there are no errors/ no other instances of this running.
 
 3. Open a new tab in terminal (3 altogether, what a pro!) and navigate to `donut_mongoose` inside your homework folder for tonight. You will have full MVC Folders set up for you:
 
