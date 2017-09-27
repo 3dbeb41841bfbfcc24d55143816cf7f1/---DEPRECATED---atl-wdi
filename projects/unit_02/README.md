@@ -6,9 +6,9 @@ This second project is your first foray into **building a full-stack server appl
 
 **This is exciting!** It is a lot, but we have given you the tools over the last few weeks to build what you need; you get to be creative in choosing what sort of application you want to build!
 
-**You will be working with a group for this project**, and you will be designing the app with your group. We hope you will exercise creativity on this project, sketch some wireframes before you start, and write user stories to define what your users will want to do with the app.
+**You will be working individually for this project**, and you will be designing the app yourself. We hope you will exercise creativity on this project, sketch some wireframes before you start, and write user stories to define what your users will want to do with the app.
 
-Your group will need to run your user stories, wireframes, and database design by your instructors to get their feedback and approval before you begin coding! Remember to keep things small and focus on mastering the fundamentals – scope creep/feature creep is the biggest pitfall for any project!
+You will need to run your user stories, wireframes, and database design by your instructors to get their feedback and approval before you begin coding! Remember to keep things small and focus on mastering the fundamentals – scope creep/feature creep is the biggest pitfall for any project!
 
 Identify what you need to build and accomplish to meet project expectations and identify everything else as stretch goals. If you meet your MVP (Minimum Viable Product) ahead of schedule, you can decide which reach goals to focus on for the remainder of your time.
 
