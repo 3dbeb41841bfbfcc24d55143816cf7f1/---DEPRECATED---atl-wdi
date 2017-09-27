@@ -2,15 +2,14 @@
 // REQUIREMENTS
 //======================
 //require express, mongoose, Donut schema, user
-var express = require("express");
-var router = express.Router();
-var mongoose = require("mongoose");
-var Donut = require("../models/donuts.js");
+const express = require("express");
+const router = express.Router();
+const Donut = require("../models/donuts.js");
+const mongoose = require("mongoose");
 
+router.get('/donuts', (request, response) => {
 
-router.get('/donuts', function(req, res) {
-
-	var newDonuts = [
+	const newDonuts = [
 			{
 					name: "Sprinkles",
 					description: "A lotta sprinkles, a lotta yum.",
@@ -39,9 +38,9 @@ router.get('/donuts', function(req, res) {
 	];
 
 
-  Donut.DonutSchema.create(newDonuts, function(err) {
+  Donut.create(newDonuts, function(err) {
         console.log("SEED: NEW PRODUCTS CREATED!");
-        res.redirect('/');
+        response.redirect('/');
   });
 
 });

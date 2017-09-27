@@ -4,8 +4,10 @@
 // require express, router, mongoose, Donut schema
 const express = require('express')
 const router = express.Router()
+const Schema = require("../models/donuts.js");
 const mongoose = require('mongoose')
 
+DonutModel = Schema.DonutModel;
 //======================
 // INDEX
 //======================

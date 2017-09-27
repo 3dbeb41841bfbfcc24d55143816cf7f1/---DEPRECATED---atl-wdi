@@ -10,6 +10,9 @@ var methodOverride = require("method-override");
 var hbs = require("hbs");
 var logger = require('morgan');
 
+mongoose.connect('mongodb://localhost/donut_store');
+mongoose.Promise = global.Promise;
+const db = mongoose.connection
 
 //======================
 // MIDDLEWARE
@@ -32,7 +35,7 @@ app.get('/', (request, response) => {
 //======================
 //for seed file, seed the database
 var seedController = require('./controllers/seeds.js');
-app.use('/seeds', seedController);
+app.use('/seed', seedController);
 
 //for root directory, show all donuts
 var donutsController = require('./controllers/donuts.js');
@@ -44,10 +47,6 @@ app.use('/', donutsController);
 
 
 //CONNECT MONGOOSE TO "donut_store"
-mongoose.connect('mongodb://localhost/donuts');
-
-
-const db = mongoose.connection
 
 // Will log an error if db can't connect to MongoDB
 db.on('error', function (err) {
@@ -55,7 +54,7 @@ db.on('error', function (err) {
 });
 
 // Will log "database has been connected" if it successfully connects.
-db.once('open', function () {
+db.on('open', function () {
     console.log("database has been connected!");
 });
 

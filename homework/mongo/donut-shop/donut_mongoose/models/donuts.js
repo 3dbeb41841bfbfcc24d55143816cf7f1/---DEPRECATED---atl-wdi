@@ -2,7 +2,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-mongoose.Promise=global.Promise;
+mongoose.Promise = global.Promise;
+
 //create your donut schema:
 const DonutSchema = new Schema({
 name: String,
@@ -13,8 +14,7 @@ qty: Number
 
 })
 
-const DonutModel = mongoose.model('Donut', DonutSchema)
+const DonutModel = mongoose.model('Donut', DonutSchema) 
 //export your donut with module.exports()
-module.exports = {
-DonutModel:DonutModel
-}
+module.exports = DonutModel;
+
