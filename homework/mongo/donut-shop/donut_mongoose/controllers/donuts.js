@@ -3,13 +3,25 @@
 //======================
 // require express, router, mongoose, Donut schema
 const express = require('express')
-const router = express.Router
+const router = express.Router()
+const mongoose = require('mongoose')
 
 //======================
 // INDEX
 //======================
 // Create a GET index route "/" that sends all donuts to index.hbs
+router.get('/', (request, response) => {
+    DonutModel.find({})
+        .then((donuts) => {
+            response.render('donuts/index', {
+                donuts: donuts
+            })
 
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+})
 
 
 //======================

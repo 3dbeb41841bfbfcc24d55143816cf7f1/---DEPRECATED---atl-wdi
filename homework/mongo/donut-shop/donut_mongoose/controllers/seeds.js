@@ -39,7 +39,7 @@ router.get('/donuts', function(req, res) {
 	];
 
 
-  Donut.create(newDonuts, function(err) {
+  Donut.DonutSchema.create(newDonuts, function(err) {
         console.log("SEED: NEW PRODUCTS CREATED!");
         res.redirect('/');
   });
