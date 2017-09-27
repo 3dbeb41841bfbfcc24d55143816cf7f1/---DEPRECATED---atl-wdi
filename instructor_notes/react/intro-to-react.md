@@ -93,6 +93,7 @@ Doing the same in Angular requires you to write Angular specific HTML:
 - [Netflix](https://www.netflix.com)
   - Great write-up about why Netflix uses React [here](https://medium.com/netflix-techblog/netflix-likes-react-509675426db)
 - [The New York Times](https://www.nytimes.com/interactive/2014/02/02/fashion/red-carpet-project.html)
+- Plenty of examples at [React.Rocks](https://react.rocks/)
 
 ## When should we use client-side frameworks?
 
