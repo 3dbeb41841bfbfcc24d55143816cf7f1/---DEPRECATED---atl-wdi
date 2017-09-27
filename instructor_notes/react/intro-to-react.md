@@ -72,8 +72,8 @@ Each of these elements could be copied across your whole application, but as we 
 
 ### Apps Built with React (partially or completely):
 
-* Khan Academy
-* Codecademy
+* [Khan Academy](https://www.khanacademy.org/math/algebra/introduction-to-algebra/overview-hist-alg/v/origins-of-algebra)
+* [Codecademy](https://www.codecademy.com/learn/all)
 * Facebook
 * Instagram
 * The New York Times
