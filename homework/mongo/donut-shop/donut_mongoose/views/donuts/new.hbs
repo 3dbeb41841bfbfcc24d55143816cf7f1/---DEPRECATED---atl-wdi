@@ -6,7 +6,22 @@
 
 	<div id="edit-form" class="donut-container-show">
 
-		<<<< YOUR WHOLE FORM GOES HERE >>>>
+		<form action="/donuts" method="POST">
+			<label for="name">Name</label>
+			<input type="text" name="name">
 
+			<label for="description">Description</label>
+			<input type="text" name="description">
+
+			<label for="img">Image URL</label>
+			<input type="text" name="img">
+
+			<label for="price">Price</label>
+			<input type="number" name="price">
+
+			<label for="qty">Amount in stock</label>
+			<input type="number" name="qty">
 	</div>
 </main>
+
+

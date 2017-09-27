@@ -37,7 +37,7 @@ router.get("/new", (request, response) => {
 // SHOW
 //======================
 // Create a GET show route "/:id" that renders the donut's show page
-router.get("/:id", (request, response) => {
+router.get("/donuts/:id", (request, response) => {
     const donutId = request.params.id
 
     DonutModel.findById(donutId)
@@ -116,7 +116,7 @@ router.put("/:id", (request, response) => {
 //======================
 // Create a DELETE delete route "/:id" that deletes the donut and
 // redirects back to index page "/"
-router.delete("/:id", (request, response) => {
+router.delete("donuts/:id", (request, response) => {
     const donutId = request.params.id
 
     DonutModel.findByIdAndRemove(donutId)
