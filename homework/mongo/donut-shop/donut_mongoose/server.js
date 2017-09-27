@@ -9,7 +9,7 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var hbs = require("hbs");
 var logger = require('morgan');
-
+mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/donut_store')
 
 //======================

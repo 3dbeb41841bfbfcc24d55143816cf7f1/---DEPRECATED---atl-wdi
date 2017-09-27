@@ -44,8 +44,11 @@
 			{{!-- <<<< BONUS: BUTTON THAT UPDATES THE COUNT >>>> --}}
 
 		</div>
-
-	<form action="/donuts/{{donuts._id}}?_method=DELETE" method="POST">
-        <input type="submit" value="Delete">
-    </form>
+	<div>
+		<a href="/{{donuts._id}}/edit">Edit this donut</a>
+	</div>
+	
+	<div>
+		<a href="/{{donuts._id}}/delete">Delete</a>
+	</div>
 </main>
