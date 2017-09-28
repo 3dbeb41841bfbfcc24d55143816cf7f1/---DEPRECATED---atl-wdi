@@ -45,10 +45,11 @@ Your app must:
 ### Submit your project to Schoology due date indicated on the class schedule!
 
 ---
-
+<!--
 ### Pair-programming Techniques:
 #### There are several ways to pair-program, but here are a few of the most popular:
-
+-->
+<!--
 * **Ping-Pong** - One programmer implements a unit of code, and the other programmer 
 tests it. Then, the tester implements the next unit of code, and the first 
 programmer tests it. Rinse and repeat.
@@ -61,9 +62,7 @@ is highly encouraged!
 especially important that every developer on the team knows how a feature works, 
 mob programming can be very effective. Mob programming is essentially Driver/Navigator 
 programming, but with the entire team Navigating (by committee) while one programmer 
-writes the code. Switch drivers every 10 minutes.
-
----
+writes the code. Switch drivers every 10 minutes. -->
 
 ### Suggested Ways to Get Started
 
