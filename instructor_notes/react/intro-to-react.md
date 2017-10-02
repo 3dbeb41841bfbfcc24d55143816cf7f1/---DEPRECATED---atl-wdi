@@ -12,23 +12,29 @@ competencies: Front-End Frameworks
 
 ### Objectives
 
-- Describe why learning React is important
+- Describe why React is important
 - Describe some benefits of front-end frameworks
 - Differentiate between a Single Page Application and a Server Rendered Application
 - Describe Web Components
 - Be able to "Think in React"
 
-## Your first front-end framework!
-
 It's finally time to super-charge our front-end workflow! Today, we'll take a look at React, a JavaScript library that allows us to build Single Page Applications (aka SPAs).
 
 ### Why do we need any more front-end tools?
 
-Because even with tools like jQuery and Bootstrap, we are still left with unsolved problems.
+At this point, many of you are just starting to feel comfortable with libraries like jQuery.  Why would we choose to leave behind this widely used library in favor of a newer one like React?  The primary reason for this is that even with these tools, we are still left with some unsolved problems that normally appear as our application grows.
 
-One problem is that there are a lot of common DOM-manipulation scenarios we'll find ourselves repeating over and over again as we build an application. Just because jQuery makes this easier, that doesn't mean we don't have to write the same jQuery code over and over again. Front-end frameworks wrap up many of these common scenarios and do the work for us.
+#### DRY Code
 
-Another problem is that we may have to refresh on every user interaction as new data emerges. Imagine how annoying it would be if Facebook refreshed the page _every_ time you clicked the "Like" button. What about _every_ time you drag something on a Trello board?
+One problem is that there are a lot of common DOM-manipulation scenarios we'll find ourselves repeating over and over again as we build an application. Just because jQuery makes this easier, that doesn't mean we don't have to write the same jQuery code over and over again. Front-End frameworks will allow us to DRY up our code into reusable "Web Components"
+
+#### Page Refresh
+
+Another problem that React will solve for us is that we currently refresh our entire page whenever we make a request to the server or need a new view.  This creates a less than desirable user experience. Imagine how annoying it would be if Facebook refreshed the page _every_ time you clicked the "Like" button, made a comment, or sent a chat message. What about _every_ time you drag something on a Trello board?
+
+#### Developer Tooling
+
+Libraries like React and Angular have their own dedicated dev tools that help developers quickly test and debug their front-end code.  This will allow us to better understand what each part of our code is doing as our codebase grows into thousands of lines of code.
 
 Finally, libraries like React, Vue, and Angular provide patterns to help us write small pieces of UI (called Components) and separate them into their own files.  This helps as we create more and more complex user interactions.
 
@@ -41,11 +47,12 @@ These are just a few of the many examples of problems for which React provides e
 
 ## What is React? Why Should I Learn it?
 
-React is a client-side library created by Facebook that is quickly taking over the development world. React builds on the progress made by previous front-end frameworks, such as EmberJS and AngularJS, but has its own set of goals and priorities.
+React is a client-side library created by Facebook and is currently the most popular front-end library available. React builds on the progress made by previous front-end frameworks, such as EmberJS and AngularJS, but has its own set of goals and priorities.
 
-While many other frameworks focus on the flow of data within a front-end application, React is narrower in focus.  Instead, React focuses solely on building dynamic UIs that are updated efficiently.  We will do this using ONLY JavaScript and an extension called JSX.  This means no more Handlebars to handle our views.
+While many other frameworks focus on the flow of data within a front-end application, React is narrower in focus.  Instead, React focuses solely on building dynamic UIs that are updated efficiently.  We will do this using JavaScript, an extension called JSX, and a build tool called Webpack.  This means no more Handlebars to handle our views!
 
 > “You will become better at JavaScript because React doesn’t come with a templating system. Instead, React pushes you to use the full power of JavaScript to build your user interface. You are going to practice using parts of functional programming with map and filter and also encouraged to use the latest features of JavaScript (including ES6). By not abstracting away data management, React will force you to think about how to architect your app and encourage you to consider concepts like immutability.”
+>
 > -- Christopher Chedeau, React Engineer @ Facebook
 
 ## What is a Web Component?
@@ -60,7 +67,9 @@ While there are many different implementations of Web Components, all share the 
 
 Each of these elements could be copied across your whole application, but as we already know, this wouldn't be DRY at all.
 
-### Benefits of React:
+There are multiple options available to help developers build reusable Web Components.  It seems like every day there is a new JavaScript framework that solves the same problems.  Here's a list of some of the most popular: [Popular JS Frameworks](https://bestof.js.org/tags/framework/)
+
+### Benefits of React
 
 - React solves complex problems using simple JavaScript. This is unlike other frameworks, which require more proprietary knowledge. For example, turning each element of an array into a `<div>` tag in React simply requires a JavaScript `.forEach()` or `.map()`.
 
@@ -118,7 +127,9 @@ Single Page Applications (SPA) are all the rage today. A misconception is that a
 
 ![spa_architecture](https://cloud.githubusercontent.com/assets/25366/8970635/896c4cce-35ff-11e5-96b2-ef7e62784764.png)
 
-Client-side routing requires something known as a **router**. As we will see a little later, the React ecosystem provides for us an easy-to-use router that will greatly simplify the amount of work we have to do to load many different templates within our application.
+Client-side routing requires manipulating the browser's [**history API**](https://developer.mozilla.org/en-US/docs/Web/API/Window/history). This is slightly different than the RESTful Routes we built previously in Express.
+
+As we will see a little later, the React ecosystem provides for us an easy-to-use router that will greatly simplify the amount of work we have to do to load many different templates within our application.
 
 ## Thinking In React
 
@@ -128,7 +139,7 @@ React requires us to think about our web applications in a very specific way. No
 
 ## You Do: Breaking applications down to components
 
-### With a partner, choose a site such as [eBay](http://www.ebay.com), [Pinterest](http://www.pinterest.com), or [Instagram](http://www.instagram.com) and list the following:
+### With a partner, choose a site that is highly interactive such as [eBay](http://www.ebay.com), [Pinterest](http://www.pinterest.com), or [Instagram](http://www.instagram.com) and list the following:
 
 - What are all of the components that make up your page?
 - Are there any components that might be rendered multiple times on the same page?
