@@ -28,15 +28,16 @@ MVC
 Acronyms galore. But let's quickly revisit what these are, and how we have applied them thus far.
 
 RESTful Routes:
+
 | **URL** | **HTTP Verb** |  **Action**|
 |------------|-------------|------------|
-| /photos/         | GET       | index  
-| /photos/new         | GET       | new   
-| /photos          | POST      | create   
-| /photos/:id      | GET       | show       
-| /photos/:id/edit | GET       | edit       
-| /photos/:id      | PATCH/PUT | update    
-| /photos/:id      | DELETE    | destroy  
+| /photos/         | GET       | index  | 
+| /photos/new         | GET    | new    |
+| /photos          | POST      | create  | 
+| /photos/:id      | GET       | show     |  
+| /photos/:id/edit | GET       | edit      | 
+| /photos/:id      | PATCH/PUT | update    |
+| /photos/:id      | DELETE    | destroy  |
 
 ## Steps to Create a Node App
 

@@ -2,7 +2,7 @@
 
 ### Overview
 
-For your 4th project, you'll have the choice of building a MEAN stack app or a Rails + Angular app. Use your imagination! You get to create whatever you want for this app. For this project, you can either work in a group or individually. We're leaving it up to you to form groups **Limit of 3 per group**.
+For your 4th project, you'll have the choice of building a MERN stack app or a Rails + React app. Use your imagination! You get to create whatever you want for this app. This project will be solo.
 
 You'll need to run your user stories, wireframes, and database design by your
 instructors to get their feedback and approval before you begin coding! Remember
@@ -23,10 +23,12 @@ Your app must:
 * **Have at _least_ 3 models** (more if they make sense) – one representing someone
 using your application (a user), and two that represent the main functional ideas
 for your app
+  * **Devise/Passport is not a requirement**
+  * If you don't feel 100% confident that you understand how to work with auth and sessions, build out your user model without Devise.
 * **Have validations on any applicable fields on your models**
 * **Have complete RESTful routes** for at least one of your resources with GET, POST,
 PUT, and DELETE
-* **Use MongoDB or SQL for your database**
+* **Use MongoDB or Postgres SQL for your database**
 * **Use a third-party API** e.g. Google Maps for geolocation, or anything you want.
 * **Include wireframes** that you designed during the planning process
 * **Include User Stories**
@@ -53,7 +55,6 @@ project later in the course and be able to pick up your train of thought, etc.
 Most importantly a **technical demonstration** of your app which:
 
 * Is 5-10 minutes in length
-* If working as a group, **ALL** group members should speak during the presentation
 * Shows off all features of the app
 * Explains the technical details
 * Explains the technical challenges
@@ -64,7 +65,7 @@ Most importantly a **technical demonstration** of your app which:
 
 ### To Submit
 
-* We will use **GAlaxy** to submit as a group Project. (https://ga-laxy.herokuapp.com/)
+* Submit the completed project, wireframes, images, and deployed link to Schoology.
 
 ---
 
@@ -113,39 +114,13 @@ something helps.
 
 * __Deployment and Functionality__: Is your application deployed and functional at a public URL? Is your application free of errors and incomplete functionality?
 
-* __Total__: Your instructors will give you a total score on your project between:
-
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectactions, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
-
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
-
 # Project Week
 
 ## Attendance
 You are required to be present by 10:00 am EDT each day during the project.
 
-## Standups
-We will have student-run stand-ups each morning at 10:15 am EDT where you will answer the following questions:
-
-- What did I work on yesterday
-- What am i trying to get done today
-- What is preventing me from getting this done.
-
-This meeting should take no longer than 15 minutes.
-
-If you have ideas on how you can help a fellow-student with work that they are stuck on, please follow-up with information AFTER the stand up.
-
-## Meetings with instructors
-_Your instructor will contact you to setup a meeting time_
-
-
 ## Where to go for help during project week
 1. Google
 2. Seek out help with your classmates
-3. Seek out help from Sanjeev or Josh
+3. Seek out help from instructors and TAs
 

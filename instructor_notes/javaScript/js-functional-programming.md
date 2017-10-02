@@ -21,9 +21,9 @@ Let's look at another programming paradigm...
 
 ## Why Functional Programming? (10 minutes)
 
-Functional programming has been called the [mustachioed hipster](https://www.smashingmagazine.com/2014/07/dont-be-scared-of-functional-programming/) of the programming paradigms. But it's far from being a new concept. Lisp, one of the first programming languages ever created -- back in the 1950s -- had already embraced the paradigm.
+Though Object Oriented Programming is historically the most popular programming paradigm, functional programming has made a recent resurgence due to the popularity of libraries like React and Redux. But it's far from being a new concept. Lisp, one of the first programming languages ever created -- back in the 1950s -- had already embraced the paradigm.
 
-[Ardent fans](https://www.youtube.com/watch?v=BMUiFMZr7vk&t=1s) have lauded functional programming for its emphasis on writing programs that will result in fewer bugs and more reusable code. The paradigm has historically been used with high-scale systems spanning thousands of networked computers, where it's critical that the program do exactly what's expected every time in the interest of performance and integrity. Many shied away from it, however, because "pure" functional languages are challenging to grasp and the paradigm was perceived as too "computer science-y" and academic.
+[Ardent fans](https://www.youtube.com/watch?v=BMUiFMZr7vk&t=1s) have lauded functional programming for its emphasis on writing programs that will result in fewer bugs and more reusable code. The paradigm has historically been used with high-scale systems spanning thousands of networked computers, where it's critical that the program do exactly what's expected every time in the interest of performance and integrity. Many shied away from it, however, because "pure" functional languages are challenging to grasp and the paradigm was perceived as too "computer science-y" and academic.  Thankfully, many of the new methods in ES5 and ES6 has made functional programming much more approachable.
 
 ***So why is functional programming seeing a resurgence?***
 
@@ -34,9 +34,10 @@ When [Brendan Eich](http://blog.salsitasoft.com/why-now/) created Javascript for
 ## What is Functional Programming? (15 minutes)
 
 Functional programming is characterized by **pure functions** and **function composition** and avoiding:
-* shared state
-* mutable data
-* side-effects
+
+- Shared State
+- Mutable Data
+- Side-Effects
 
 ***Huh?***
 
@@ -75,7 +76,6 @@ increaseAgeBy(2)
   <pre>console.log(age)</pre>
 </details>
 
-
 We can make this function pure by not changing anything outside the function. Instead, we modify the parameter, which is in the scope of the function.
 
 ```js
@@ -85,6 +85,7 @@ function increaseAgeBy(myAge,int){
 }
 increaseAgeBy(age, 2)
 ```
+
 <details>
   <summary>How can you demonstrate the purity?</summary>
   <pre>console.log(age)</pre>
@@ -114,7 +115,7 @@ let instructor = {
 }
 
 function updateName(instructor, newName) {
-  let newInstructor = Object.assign({}, instructor)
+  let newInstructor = {...instructor}
   newInstructor.name = newName
   return newInstructor
 }
@@ -122,7 +123,7 @@ function updateName(instructor, newName) {
 let jamie = updateName(instructor, "Jamie")
 ```
 
-> Object.assign() is the simplest way to make a copy of an existing object
+> let newInstructor = {...instructor} is an example of a destructured object. In other words, it is a clone of the original instructor object.
 
 This example does not violate immutability because the original object (`instructor`) is not directly mutated. Instead, a copy of that object is created, then mutated, and finally returned. This way, the original object `instructor` is still accessible with its original values.
 
@@ -157,7 +158,9 @@ for(let i = 0; i < fruits.length; i++) {
 
 <details>
   <summary>Anyone remember another one we've used quite frequently?</summary>
-  <p>`.on('click')`</p>
+  <p>`.on('click', callback)`</p>
+  <p>`.get('/', callback)`</p>
+  <p>`.listen(port, callback)`</p>
 </details>
 
 ## Examples of functions that take functions as arguments:
@@ -194,6 +197,11 @@ for(let i = 0; i < naysayers.length; i++) {
   }
 }
 ```
+
+#### YOU DO:
+Use `.filter` to solve this problem: 
+[Filter REPL](https://repl.it/L33j)
+
 ### map
 
 The `map` method creates a new array with the results of calling a provided function on every element in the array. You can think of `map` as _mapping_ the elements of one Array to the elements of a new Array using a mapping function that you provide.  This is similar to `forEach` but it returns a value, which isn't possible using `forEach`
@@ -208,6 +216,11 @@ var squares = values.map(function(v) {
 });
 
 //or using ES6
+var squares = values.map((v) => {
+  return v * v;
+});
+
+//or even-shorter using ES6
 var squares = values.map(v => v * v);
 
 console.log('here are some squares:', squares);
@@ -232,6 +245,9 @@ for (var i = 0; i < values.length; i++){
 
 console.log('here are some squares:', squares);
 ```
+#### YOU DO
+Map Practice
+[Map REPL](https://repl.it/L34L/2)
 
 ### reduce
 
@@ -254,6 +270,10 @@ And the output is:
 ```
 The sum is 25
 ```
+
+#### YOU DO
+Reduce Practice
+[Reduce REPL](https://repl.it/L349)
 
 ## Resources
 

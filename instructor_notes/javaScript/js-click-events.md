@@ -64,11 +64,11 @@ We have started learning about the different pieces of JS.  We needed this under
 
 A function is written using the `function` keyword, a function name (optional: depends on whether you are writing a named or anonymous function), followed by a pair of parenthesis `()` with optional arguments, and a code block `{}`.
 
-There are actually three ways we can write functions:
+There are actually four ways we can write functions:
 
 ```javascript
 // anonymous functions, which get passed as arguments, like as a method in an object or as a function reference (which we will discuss in a few minutes)
-var newGreeting = {
+const newGreeting = {
   greeting: function() {
     console.log('hi');
   }
@@ -81,8 +81,13 @@ function newestGreeting() {
   console.log('hello, friend');
 }
 
-// a function expression which is a function that is saved to a variable
-var bestGreeting = function() { 
+// a function expression which is a function that is saved to a variable. This is an example using ES6
+const bestGreeting = () => { 
+  console.log('What\'s happenin\'?');
+}
+
+// a function expression which is a function that is saved to a variable. This is an example that is not using ES6
+const olderGreeting = function() { 
   console.log('What\'s happenin\'?');
 }
 ```
@@ -131,7 +136,7 @@ Functions can be passed as an argument by way of a **function reference** to oth
 Let's define a function called `sayHello()`. It will to take one argument called name, and it will return a string that says `hello, <name>`.  The **return** keyword is mandatory, as it is the only way that the second function will have access to the data in the first function.
 
 ```javascript
-var sayHello = function(name){
+const sayHello = (name) => {
   return 'hello, ' + name;
 }
 ```
@@ -140,7 +145,7 @@ Let's now define a second function called shoutHello().
 
 ```javascript
 // the argument 'callback' here is a function reference
-var shoutHello = function(name, callback) {
+const shoutHello = (name, callback) => {
 
   // the function reference, stored in the argument 'callback', is getting invoked with a parens
   alert(callback(name).toUpperCase()); 
@@ -153,15 +158,15 @@ shoutHello('WDI 10!', sayHello);
 #### Another example using different math operators
 
 ```javascript
-var performMath = function(num1, num2, callback) {
+const performMath = (num1, num2, callback)  => {
   return callback(num1, num2);
 }
 
-var add = function(num1, num2) {
+const add = (num1, num2) => {
   console.log(num1 + num2); 
 }
 
-var subtract = function(num1, num2) {
+const subtract = (num1, num2) => {
   console.log(num1 - num2);
 }
 
@@ -198,6 +203,8 @@ button.addEventListener("click", function(event){
 
 - `.addEventListener` is a function we can call on nodes.
 - The **event listener** function takes two arguments, a string and an anonymous function.
+- The string is an HTML DOM event.  Most of the time we'll be using "click" but there are plenty of others available to you.
+  - [https://developer.mozilla.org/en-US/docs/Web/Events](https://developer.mozilla.org/en-US/docs/Web/Events)
 - the anonymous function takes an argument `event`... a what?!?
 
 An `event`, is another magical object!
@@ -209,7 +216,7 @@ What is the difference?
 
 **Exercise: (20m)** 
 
-Look at the starter code <a href="https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/unit_01/javaScript/in-class-click-events">here</a>. There are three buttons. Add event listeners to all of three buttons.
+Look at the starter code <a href="https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/javaScript/in-class-click-events">here</a>. There are three buttons. Add event listeners to all of three buttons.
 
 1. Button one, when clicked, should trigger an alert saying `"you have clicked button one"`
 2. Button two, when clicked, should trigger a function that creates a `<p>` with the following string:
@@ -227,8 +234,8 @@ Look at the starter code <a href="https://github.com/ATL-WDI-Curriculum/atl-wdi/
 
 #### Exercise #1 - Independent Click Events
 
-[Independent Click Events](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/unit_01/javaScript/independent-click-events)
+[Independent Click Events](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/javaScript/independent-click-events)
 
 #### Exercise #2 - Wendy Bite
 
-[Wendy Bite](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/unit_01/javaScript/wendy-bite)
+[Wendy Bite](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/javaScript/wendy-bite)

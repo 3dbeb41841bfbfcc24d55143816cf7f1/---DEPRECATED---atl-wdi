@@ -60,7 +60,14 @@ function speak (words) {
 __Function Expressions:__
 
 ```javascript
-var speak = function (words) {
+//ES6 syntax
+const speak = (words) => {
+  console.log(words);
+}
+//--OR--
+
+//Before ES6
+const speak = function (words) {
   console.log(words);
 }
 ```
@@ -75,6 +82,7 @@ function speak(words) {
 }
 
 // DOES NOT RESULT IN ERROR
+// Function is hoisted when application is run
 ```
 
 Function expressions, however, must be defined before they are called:
@@ -82,7 +90,7 @@ Function expressions, however, must be defined before they are called:
 ```javascript
 speak('hello, world!');
 
-var speak = function (words) {
+const speak = (words) => {
   console.log(words);
 }
 
@@ -120,19 +128,19 @@ hello();
 //=> hello there!
 ```
 
-JavaScript functions are often defined as methods on objects. To call a function as a method:
+JavaScript functions are often defined as methods on objects. To call a function as a method we use function expressions aka arrow functions:
 
 ```javascript
-var person = {
+const person = {
   name: 'Rihanna',
-  speak: function () {
+  speak: () => {
     console.log('Work, work, work, work, work');
   }
 };
 
 person.speak();
 
-//=> 'Hello, World!'
+//=> 'Work, work, work, work, work'
 ```
 
 <br>
@@ -235,7 +243,7 @@ doSomething(argument);
 We can also use multiple parameters in our functions. A function can take any number of parameters.
 
 ```js
-var multiply = function(num1, num2) {
+const multiply = (num1, num2) => {
     console.log(num1 * num2);
 };
 ```
@@ -286,7 +294,7 @@ function sum (x, y) {
   return x + y;
 }
 
-var z = sum(3, 4);
+const z = sum(3, 4);
 => 7
 ```
 ... or pass it to another function:
@@ -300,13 +308,13 @@ function double (z) {
   return z * 2;
 }
 
-var num = sum(3, 4)
+let num = sum(3, 4)
 => 7
-var numDbl = double(num);
+let numDbl = double(num);
 => 14
 
 // This can also be written:
-var num = double(sum(3,4));
+let num = double(sum(3,4));
 => 14
 ```
 
@@ -317,8 +325,8 @@ function speak (words) {
   return words;
 
   // The following statements will not run:
-  var x = 1;
-  var y = 2;
+  const x = 1;
+  const y = 2;
   console.log(x + y)
 }
 ```
@@ -359,7 +367,7 @@ Before you write a line of JavaScript, you're in what we call the `Global Scope`
 For example, when you declare a variable right away, it's defined globally:
 
 ```javascript
-var name = 'Marc';
+let name = 'Marc';
 ```
 
 Global scope can be confusing when you run into namespace clashes. You don't want to use global scoping for all your variables--because using it correctly is highly complex--but every Javascript program uses the global scope in one way or another, so it’s important to be familiar with it.
@@ -381,10 +389,10 @@ A variable with local scope cannot be referenced outside of that function.
 Take a look at the code below:
 
 ```javascript
-var a = "this is the global scope";
+const a = "this is the global scope";
 
 function myFunction() {
-  var b = "this variable is defined in the local scope";
+  const b = "this variable is defined in the local scope";
 }
 
 myFunction();
@@ -400,7 +408,7 @@ A function can access variables of the parent scope. In other words, a function 
 
 ```javascript
 // Global Scope
-var a = "Hello";
+const a = "Hello";
 
 // This function is defined in the global scope
 function sayHello(name) {
@@ -416,10 +424,10 @@ sayHello("JavaScript");
 When a function is defined inside another function, it is possible to access variables defined in the parent from the child:
 
 ```javascript
-var a = 1;
+const a = 1;
 
 function getScore () {
-  var b = 2,
+  const b = 2,
   c = 3;
 
   function add() {
@@ -431,6 +439,9 @@ function getScore () {
 
 getScore();
 => 6
+
+add()
+=> Outputs an error
 ```
 
 ---
@@ -464,7 +475,7 @@ console.log(window.aValue);
 If a function is part of an object (we then call it a method), `this` refers to the object that has been defined and called:
 
 ```javascript
-var wdi = {
+const wdi = {
   name: "WDI",
   whatsTheName: function() {
     return this.name;
@@ -475,6 +486,8 @@ wdi.whatsTheName();
 => "WDI"
 ```
 
+**IMPORTANT**: Notice that when we use an object method, we use that ES5 function expressions.  This is because the newer arrow functions do not bind to `this`.  In other words, if you need to use a function that includes the `this` keyword, make sure to use the anonymous function syntax.
+
 ## Independent Practice #1 - Write some functions (20 mins)
 
 Work through as many as these exercises as you can within the next 15 mins - use the `js-independent-practice starter-code` provided in your student_labs folder!
@@ -482,7 +495,7 @@ Work through as many as these exercises as you can within the next 15 mins - use
 1. Write a function `lengths` that accepts a single parameter as an argument, namely an array of strings. The function should return an array of numbers where each number is the length of the corresponding string.
 
     ```javascript
-	var words = ["hello", "what", "is", "up", "dude"]
+	const words = ["hello", "what", "is", "up", "dude"]
 	lengths(words)  
 	# => [5, 4, 2, 2, 4]
 	```
@@ -504,27 +517,27 @@ Work through as many as these exercises as you can within the next 15 mins - use
 method should return a string with the order of the words reversed. Don't worry
 about punctuation.
 
-    ```javascript
+```javascript
 	wordReverse("Now I know what a TV dinner feels like")
 	# => "like feels dinner TV a what know I Now"
 	wordReverse("Put Hans back on the line")
 	# => "line the on back Hans Put"
-	```
+```
 
 <br>
 
-## Independent Practice #2 - JS Functions Lab (40 min)
+## Independent Practice #2 - JS Functions Lab 
 
-[js-functions-lab](../student_labs/js-functions-lab) in student labs folder
+[js-functions-lab](../../labs/javaScript/js-functions) in student labs folder
 
-I'll put you into groups. Each group will be responsible for sharing the solution to their assigned problem.
-
+<!-- I'll put you into groups. Each group will be responsible for sharing the solution to their assigned problem. -->
 <br>
 
 <a name="lab1"></a>
-## BONUS Independent Practice #3 - Rolling Dice: Lab (40 min)
+## BONUS Independent Practice #3 - Rolling Dice: Lab
+[JavaScript Dice](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/javaScript/js-dice)
 
-For this lab, you'll be creating a page that displays a random update of two dice every time the user hits the "Roll Dice" button. To get started, open the [app.js file](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/unit_01/javaScript/js-dice/starter-code/js/app.js). Use the HTML and CSS code included in the starter code folder.
+For this lab, you'll be creating a page that displays a random update of two dice every time the user hits the "Roll Dice" button. To get started, open the [app.js file](https://github.com/ATL-WDI-Curriculum/atl-wdi/blob/master/labs/javaScript/js-dice/starter-code/js/app.js). Use the HTML and CSS code included in the starter code folder.
 
 ![](https://i.imgur.com/EEORrtk.png)
 

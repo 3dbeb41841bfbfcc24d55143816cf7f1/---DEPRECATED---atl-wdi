@@ -47,7 +47,7 @@ The **DRY** principle is aimed at reducing repetition within your code.
 
 ## MVC
 
-**Model, View Controller***
+**Model, View Controller**
 
 **MVC** is an application architectural pattern. So far we have been writing everything in the server file, the views directory, and our data file.
 

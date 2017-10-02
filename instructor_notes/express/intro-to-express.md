@@ -52,9 +52,11 @@ With you buddy, discuss the following questions:
 
 ## What is npm?
 
-&#x1F535; **YOU DO:** Take 5 minutes to read and watch this [video] (https://docs.npmjs.com/getting-started/what-is-npm)
+&#x1F535; **YOU DO:** Take 5 minutes to read and watch this [video](https://docs.npmjs.com/getting-started/what-is-npm)
 
 > Summary: **npm** (node package manager), allows us to install dependencies for our Node.js application.
+
+You may also see tutorials refer to a package called `Yarn` for installing packages.  This is an alternative to NPM that is built by Facebook. Both packages pull from the NPM, so anything you see done in Yarn can also be done with NPM. 
 
 <br />
 
@@ -64,9 +66,7 @@ I **HIGHLY** recommend that you pay attention, write the commands down, and refe
 
 <br />
 
-
-
-### STEP 1 - Initialize a Simple Hello World Express Application.
+### STEP 1 - Initialize a Simple Hello World Express Application
 
 In the terminal:
 
@@ -233,7 +233,7 @@ Get together with your buddy. Remember: We are here and you can still ask questi
 
 http://expressjs.com/en/starter/basic-routing.html
 
-1. Write a second route underneath the first that listens for `/greeting` and responds with `'Hey, WDI 11!'`
+1. Write a second route underneath the first that listens for `/greeting` and responds with `'Hey, WDI 12!'`
 
 1. Write a third route underneath the that one that listens for `/rihanna` and responds with `"Work work work work work"`
 
@@ -242,7 +242,7 @@ http://expressjs.com/en/starter/basic-routing.html
 
 ```javascript
 app.get('/greeting', function(req, res) {
-  res.send('HEY, WDI 10!');
+  res.send('HEY, WDI 12!');
 });
 
 app.get('/rihanna', function(req, res) {

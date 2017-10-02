@@ -2,7 +2,7 @@
 
 ## PROJECT Requirements
 
-For your first project you will build a simple game as a Web Application. You may choose from one of the ideas listed below or you may choose another game __with approval from one of the WDI instructors__.
+For your first project you will build a simple game as a Web Application. You must choose from one of the games listed below!
 
 ### Project Objectives
 
@@ -11,7 +11,7 @@ The objectives of this project are to:
 * Demonstrate your ability to use `HTML` and `CSS` to build and style an intuitive web application
 * Demonstrate your competancy in _DOM manipulation_ using JavaScript
 * Publish your source code to _GitHub_ with a solid `README.md` describing the project
-* Deploy your application to a production environment such as [GitHub Pages](https://pages.github.com/) or [BitBalloon](https://www.bitballoon.com/)
+* Deploy your application to a production environment such [BitBalloon](https://www.bitballoon.com/)
 * Present your project in a presentation style format
 
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
@@ -162,9 +162,9 @@ Your app must:
   - Efficient code- if you have your MVP, refactor
   - DRY (Don't Repeat Yourself) code
 * Deploy your game online, where the rest of the world can access it. 
- * Suggested default options for deployment include [Github Pages](https://pages.github.com/) or [BitBalloon](https://www.bitballoon.com/)
+* We suggest you deploy your project to [BitBalloon](https://www.bitballoon.com/).
 
-## Suggested Ways to Get Started
+## How to Get Started
 
 * First design your _MVP_ (Minimum Viable Product). Have a plan for completing an MVP before getting too involved with _advanced_ features.
 * Use _Trello_ to prioritize your User Stories / features. Focus on what is most important / critical to success.
@@ -174,16 +174,12 @@ Your app must:
 
 ## Attendance, expectations of time commitment
 
-Typically students are required to be in class working on their project during regular class hours. And students continue to work on their project in the evening, dedicating the same amount of time if not more as they do on their homework.
+Students are required to be in class working on their project during regular class hours. You are encouraged to continue working on your projects into the evenings on- and off-campus.
 
 ## Standups
 We encourage you to hold your stand-ups in the mornings when you start working to help you all keep each other accountable and help each other out. When you start working each day, reach out on Slack and see if anyone is around to hold a standup!
 
 If you have ideas on how you can help a fellow-student with work that they are stuck on, please follow-up with information AFTER the stand up.
-
-**Tuesday, May 9th**
-<br />
-You will come with your choice of project, pseudo-code, wireframes and user stories
 
 ## Where to go for help during project week
 
@@ -195,12 +191,12 @@ You will come with your choice of project, pseudo-code, wireframes and user stor
 6. Post to Stack Overflow, be sure to follow the format for submitting bug reports, provide lots of context!
 7. Javascript and Jquery [videos](https://www.youtube.com/playlist?list=PLw1xVKFboueks5UMLogE01mdThRU577oa) produced by GA! 
 
-## Formatting your GitHub Issue for atl-wdi-10 to ask for help
+## How to ask for help
 
 *COMMIT/PUSH OFTEN! Your code on GitHub should be up to date. Submitting an issue and linking your classmates to old, out-of-date code will hinder the process.*
 
 1. **WHAT YOU ARE TRYING TO SOLVE:**
-  - Write a detailed explanation of the feature or user story you're working on.
+  - Be able to give a detailed explanation of the feature or user story you're working on.
 
 2. **DETAILED DESCRIPTION OF THE BUG/ERROR:**
   - A detailed description of the problem, the bug, and/or the error. This means: the full steps to reproduce, a link to the file on github, and the line number of where the relevant code is.
@@ -208,10 +204,10 @@ The error(s) returned, copy and pasted/typed out/screenshot, not paraphrased.
   - If there is other code in a different file that is also essential to the functioning of the code that currently works point us to that and explain the relationship.
 
 3. **WHAT I'VE TRIED**
-  - List everything you've done to solve the bug on your own in detail. list all resources you've looked up and tried to implement and provide links. Providing code if you have it surrounded by the md syntax to display nicely is very helpful.
+  - List everything you've done to solve the bug on your own in detail. Show all resources you've looked up and tried to implement and provide links.
 
 4. **QUESTION**
-  - After going through all this what is your questions specifically, more specifically than how can I make this work?
+  - After going through all of these steps, what is your question? ("It's not working!" isn't a question.)
 
 
 ## Project Feedback + Evaluation
@@ -226,18 +222,7 @@ Your project will be evaluated by your instructional team in order to provide yo
 
 * __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
 
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages or something equivalent?
-
-* __Total__: Your instructors will give you a total score on your project between:
-
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
-
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+* __Deployment__: Did you deploy your application to a public url using BitBalloon or something equivalent?
 
 ## Useful Resources
 ​

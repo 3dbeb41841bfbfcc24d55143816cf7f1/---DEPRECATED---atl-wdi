@@ -10,7 +10,7 @@ Your recipes will have `title`, `veggie` and `imageUrl` fields so that you can a
 
 Here's a deployed version of the app for reference: https://recipe-practice-app.herokuapp.com/recipes
 
-Here is solution code from today's Todo app: https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/instructor_notes/unit_02/express/in-class-code-hbs
+Here is solution code from today's Todo app: https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/instructor_notes/express/in-class-code-hbs
 
 <br />
 

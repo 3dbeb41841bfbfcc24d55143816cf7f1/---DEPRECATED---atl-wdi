@@ -51,7 +51,7 @@ The ultimate goal of this lesson is to make our own form that will give the user
 
 First, in following with the principles of SoC, we are going to take our 'todos' route and logic and put it in it's own separate controller.  We are creating our first modular application.
 
-So in your `/labs/unit_02/express` folder, you should see a starter application named `starter-code-hbs` with a bunch of work done already to get us going.
+So in your `/labs/express` folder, you should see a starter application named `starter-code-hbs` with a bunch of work done already to get us going.
 
 <br>
 

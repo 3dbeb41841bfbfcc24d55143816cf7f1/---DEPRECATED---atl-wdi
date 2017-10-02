@@ -165,7 +165,7 @@ var jqObject = $('p'); // This is functionally identical to the version above th
 ```
 
 **Exercise:** (5m) 
-Do the first two prompts in [student_starter](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/unit_01/jQuery/in-class-exercises)
+Do the first two prompts in [student_starter](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/jQuery/in-class-exercises)
 
 #### Selecting a DOM element and changing it's content
 
@@ -245,7 +245,7 @@ In the jQuery code example above, we first select the DIV with `id="container"`,
   </div>
 ```
 
-**Exercise:** Do the next two prompts in [student_starter](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/unit_01/jQuery/in-class-exercises)
+**Exercise:** Do the next two prompts in [student_starter](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/jQuery/in-class-exercises)
 
 
 #### Modifying Styles (CSS) Using jQuery

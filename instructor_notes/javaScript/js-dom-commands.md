@@ -1,7 +1,7 @@
 ---
 title: The DOM and JS in the Browser
 type: lesson
-duration: "1:30"
+duration: "2:00"
 creator:
   name: Colin Hart
 edited: 
@@ -11,10 +11,76 @@ competencies: Programming
 
 ## Learning Objectives
 
+* Use the Elements Panel of the Chrome Dev Tools to interact with the DOM
 * Access elements in the DOM using Vanilla JS
 * Add and remove elements to the DOM using Vanilla JS
 * Manipulate existing elements in the DOM using Vanilla JS
 * Conceptualize load order in the Browser and how we account for it
+
+<br />
+
+## Elements Tab
+
+You can use the Elements panel for a variety of tasks:
+
+- Inspecting the HTML & CSS of a web page
+- Live-editing HTML/CSS on-the-fly
+
+Let's go ahead and play around with some of these tools.
+
+<br />
+
+![We Do](http://i.imgur.com/6Kce0ca.png)
+
+### Modifying CSS On-the-Fly
+
+The Chrome DevTools have made it very easy to quickly test and edit the CSS before incorporating it back into your application. On [http://lifehacker.com/](http://lifehacker.com/) do the following:
+
+- Press `command(⌘) + option + i` to open the inspector view
+  - You can open the DevTools with any shortcut that you like, then press the square with the arrow on the top left corner of the tools section.
+  - Alternatively, try right-clicking on the page and selecting "Inspect Element" at the bottom; or right-clicking on a particular element and selecting "Inspect"
+- Look at the DOM nodes on the left-hand side and select the `body`
+- Look at the CSS responsible for a rendered element in the browser
+
+When you are sure that you have the body selected, in the CSS live-editor on the right, change the CSS property `background` value to `red` by clicking on it:
+
+```css
+body {
+    background: red;
+}
+```
+
+What happened? When we have are looking at CSS via the DOM, we are able to do whatever we want to change it!  But remember that if you refresh the page, everything will re-render in the way that it was originally intentioned and you will lose your changes!  Your browser will have sent a new request and received a new response back - aka the default HTML + CSS files and folders associated with the `lifehacker` endpoint.
+
+A few other things to try:
+
+- Notice that as you start typing background, the css properties autocomplete.
+- After choosing your color, a little colored box will show up (if Chrome recognizes the color that you typed).
+- If you press `SHIFT` and click on the colored box, you can see that the color changes format rgb, hex, etc.
+- If you click on the colored box, you will also see a color selector.
+- If you click on the color you will also get a color selector!
+
+Pretty sweet, eh?
+
+<br />
+
+![You Do](http://i.imgur.com/ylb6WX9.gif)
+
+### YOU DO - Alter the GA logo (5m)
+- Go to the [General Assemb.ly site](https://generalassemb.ly/).  Inspect the General Assemb.ly logo in the top left corner and change the image to an image of your choosing (from somewhere on the internet)
+- Change the values of the logo margin to make the image fit
+- Change the font-family of the first `h1` on the page to Arial and the font-color to red
+
+The goal of this exercise is to try to get you comfortable editing and manipulating the DOM in your browser, as these will come in handy for every one of your projects. <!-- I often use dev tools to play around with the CSS for whatever page I happen to be working on. -->
+
+<br />
+
+![You Do](http://i.imgur.com/ylb6WX9.gif)
+
+### YOU DO (2 min)
+
+- Change the text of the first `h1` on the page to "WDI ATL 10 gets down with Chrome Dev Tools!".
+- If you finish with this task, experiment with what else you can manipulate on the page.
 
 <br />
 
@@ -67,8 +133,8 @@ Let's create a web page and begin to inspect its structure.
 - `cd` into it and create a new file called `index.html`
   - `cd dom-intro-lesson`
   - `touch index.html` 
-- Open the file in Sublime
-  - `subl .`
+- Open the file in VS Code
+  - `code .`
 - Copy this code into the file then open it in Chrome:
   - to open in Chrome, right click on the html page and, click on 'Open in Browser'
 
@@ -117,7 +183,7 @@ We will then come back together as class. Each group will briefly demo and expla
   * document.getElementsByClassName
   * document.getElementsByName
 * **Creation** 
-  * document.querySelector
+  * document.querySelector (*technically a search method*)
   * node.style
   * node.setAttribute
 * **Traversal** 
@@ -288,7 +354,7 @@ With this knowledge of how to manipulate the DOM, you now know the secret weapon
 
 
 <!-- If you have time, you can add the lab back in, but usually the class exercise/presentations take a few minutes -->
-<!-- ---
+---
 
 ![Labtime](http://i.imgur.com/WzTTdIe.jpg)
 
@@ -296,9 +362,9 @@ With this knowledge of how to manipulate the DOM, you now know the secret weapon
 
 ##### Exercise #1 - GA DOM Mod
 
-[GA Dom Instructions (using Vanilla Javascript)](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/tree/master/labs/unit_01/javaScript/ga-dom.md)
+[GA Dom Instructions (using Vanilla Javascript)](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/javaScript/ga-dom.md)
 
-<br /> -->
+<br />
 
 ---
 
@@ -318,3 +384,33 @@ With this knowledge of how to manipulate the DOM, you now know the secret weapon
 * [DOM Enlightenment](http://domenlightenment.com/#1.1)
 * [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
 * [You Don't Know ES6](https://github.com/getify/You-Dont-Know-JS/tree/master/es6%20%26%20beyond)
+
+
+**Quotes for In Class Exercise**
+```js
+const quotes = [{
+  quote: "At any rate, that is happiness; to be dissolved into something completely and great.",
+  author: "Willa Cather",
+  image: "http://www.brainpickings.org/wp-content/uploads/2014/06/willacather.jpg"  
+}, {
+  quote: "In our village, folks say God crumbles up the old moon into stars.",
+  author: "Alexander Solzhenitsyn",
+  image: "http://media.economist.com/images/20080809/3208OB1.jpg"
+}, {
+  quote: "She wasn’t doing a thing that I could see, except standing there leaning on the balcony railing, holding the universe together.",
+  author: "J. D. Salinger",
+  image: "https://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2013/11/28/1385673448859/JD-Salinger-portrait-New--010.jpg"
+}, {
+  quote: "I took a deep breath and listened to the old brag of my heart; I am, I am, I am.",
+  author: "Sylvia Plath",
+  image: "https://vsramblings.files.wordpress.com/2013/05/sylvia-plath-1.jpg"
+}, {
+  quote: "Isn’t it pretty to think so?",
+  author: "Ernest Hemingway",
+  image: "http://arbiteronline.com/files/2013/09/Hemingway-2.jpg"
+}, {
+  quote: "Beauty is an enormous, unmerited gift given randomly, stupidly.",
+  author: "Khaled Hosseini",
+  image: "http://payload181.cargocollective.com/1/1/45850/5922559/khaled_Time68846-1_2048.jpg"
+}]
+```

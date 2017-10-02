@@ -1,9 +1,5 @@
 # JavaScript Promises
 
-## Introduction
-
-Welcome to the Promise land! (sorry) You have been sneakily using promises this whole class, but today, we will illuminate what exactly a promise is, and shed light on best practices to use while playing with promises.
-
 ## Objectives
 
 * Describe the anatomy of a Promise
@@ -13,24 +9,26 @@ Welcome to the Promise land! (sorry) You have been sneakily using promises this 
 
 <br>
 
-## You Do
+## Introduction
 
-&#x1F535; **YOU DO**
+Welcome to the Promise land! Promises drive a lot of modern programming practices, and it is what allows Node apps to operate asynchronously.  Today's lesson largely covers WHY and HOW to use a promise, and starting with the next class we will utilize these concepts to fetch data from MongoDB.
 
-Read this: https://spring.io/understanding/javascript-promises
+### You Do (10 minutes)
+
+Read this: [Promises For Dummies](https://scotch.io/tutorials/javascript-promises-for-dummies)
+
+If you read this yesterday, go through and read it again! What did you pick up this time that you didn't see before?
+
+### Think, Pair, Share
+What are some examples of a Promise in the real world? What's a scenario in which you would want to 'chain' Promises together in the real world?
+
+<!-- https://spring.io/understanding/javascript-promises -->
 
 <br>
 
-## Non-Blocking Code in JavaScript
+### Non-Blocking Code in JavaScript
 
   Pop quiz! In the code below, which word will get printed first?
-
-  ```js
-  console.log('Red');
-  console.log('Blue');
-  ```
-
-  What about now? Try it out for yourself and see what happens.
 
   ```js
   setTimeout(function(){ 
@@ -39,52 +37,65 @@ Read this: https://spring.io/understanding/javascript-promises
   console.log('Blue');
   ```
 
+  What about now? Try it out for yourself and see what happens.
+
+  ```js
+  console.log('Red');
+  console.log('Blue');
+  ```
+
   JavaScript code is _non-blocking_ -- this means that each line of code begins
-  to execute as soon as it possibly can, including before previous lines of
-  code have finished executing.
+  to execute as soon as it possibly can, even if a previous line of code hasn't finished executing.
   
-  > "Isn't that really confusing? How could anyone write code when they can't be
-  > sure about the order in which their lines will run?"
+  ### Synchronicity
+  Check out this setup: 
+  - Jim is the one person in all of Comcast media who can help you with you get your internet to work correctly.
+  - Naturally, Jim is very popular.
+  - Jim is always available by phone, but he can only talk to one person at a time.
+  - Some people naturally want to talk to Jim for a MUCH longer time than others... which angers some of his other customers and increases the total wait time.
 
-  Well, most of the time, each line of code executes so quickly that it isn't
-  noticeable. But when you want to do things that are slow/take a long time,
-  this behavior becomes very important.
+  This is an example of synchronous communication.  In the example, he would listen and address people's problems, but was only able to help one person at a time.
 
-  In the context of web applications, it's especially important to think about
-  JavaScript's non-blocking behavior when your JS code is interfacing with
-  another system or service, since there's no telling how long such a service
-  might take to do its job. The most common examples of this are:
+  Let's use this same metaphor to explain what we mean when we talk about asynchronicity.
+  - Jim buys a answering machine for all of his phone calls.
+  - Customers now leave a message, and wait for Jim to call back.
+  - This allows Jim to respond to messages as soon as he has an answer, without keeping other customers on hold.
 
-  -   Waiting on **DOM events** (driven by user interaction).
 
-  -   Waiting for a **response to an HTTP request**.
+  Promises in JavaScript are like these answering machines.  It allows us to write responses for code that takes a while to prepare.
 
-  -   Waiting for a **database** to retrieve/modify a piece of data.
+  These are some events that use Promises to handle asynchronous code:
+  - Waiting for a **response to an HTTP request**.
+  - Waiting for a **database** to retrieve/modify a piece of data.
+  - Hitting a 3rd party API for **authentication** (Facebook, Twitter, etc)
+  - Waiting on **DOM events** (driven by user interaction).
 
-  -   Waiting for a **timer** to run out.
-
-  -   Waiting for the **filesystem** to read from, or to write to, a file.
-
-  -   Hitting a 3rd party API for **authentication** (Facebook, Twitter, etc)
+  These are some examples of asynchronous code that don't use Promises out of the box:
+  - Waiting for a **timer** to run out.
+  - Waiting for the **filesystem** to read from, or to write to, a file.
 
 In all of these examples, your JavaScript code is _waiting for something to happen_, and there's no telling how long that 'something' will take.
 
-So how can we tell our code to wait for something to finish?
-Node actually uses the same approach that the browser does -- callbacks.
-By setting a callback as an event handler, we can defer its execution until
-the event it's listening for occurs. Future steps can then be triggered
-by more callbacks.
+Even though all of this sounds new, we've already seen an alternative way to handle code that is waiting for something to happen. 
+
+### Think, Pair, Share
+Talk to the person next to you and discuss how we have handled _waiting for something to happen_ before.  Write out 2-3 examples of when and how you have done this previously.
+
+
+## Dealing with Async
+
+So how can we tell our code to wait for something to finish?  Node actually uses the same approach that the browser does -- callbacks.
+
+By setting a callback as an event handler, we can defer its execution until the event it's listening for occurs. Future steps can then be triggered by more callbacks.
 
   ```js
-  var stepTwo = function(num){
-    // ... Do Something ... ///
-  };
+ app.get('/', (req, res) =>{
+   //Do stuff when this route is hit on the server
+ })
 
-  var eventHandler = function(){
-    // ... Do Something ... ///
-    result = 42;
-    stepTwo(42)
-  }
+ $('div').on('click', function(e){
+   //Do stuff when a user makes an interaction in the browser
+ })
   ```
 
 <br>
@@ -102,7 +113,7 @@ by more callbacks.
 
   1. Read in data from a file
   2. Parse the data as CSV content
-  3. Use the content to make an HTTP request.
+  3. Fetch JSON from a 3rd party server.
   4. Take the response and store data into a database.
   5. Send a response back to the user.
 
@@ -142,11 +153,14 @@ Maybe something like this?
   });
   ```
 
+  Or how about this? 
+
+  ![](http://i.imgur.com/EGGwaXP.png)
+
   ![Head Bang](https://media4.giphy.com/media/OT69wDOihxqEw/200w.gif)
 
-  Wow, that's some deep nesting. This code looks really complicated and messy.
-  It's not easy to follow. And on top of all that, it's duplicative -- do you
-  really need a separate system for handling errors at every stage in the
+  Wow, that's some deep nesting. This makes code looks complicated and messy.
+  It's not easy to follow.  And it isn't DRY -- do you really need a separate system for handling errors at every stage in the
   process?
   
 <br>
@@ -160,6 +174,7 @@ But dealing with lots of callbacks can be tricky:
     - [http://callbackhell.com/](http://callbackhell.com/)
 -   Each callback will have to handle it's own errors if necessary.
 -   In complex programs, it will be hard to tell in what order callbacks fire.
+-  As projects become more complex it becomes exponentially harder to refactor and add features.
 
 Fortunately, there's a better way: Promises.
 
@@ -169,217 +184,145 @@ Fortunately, there's a better way: Promises.
 
 ## Why Promises?
 
-Promises are an alternative to directly using callbacks. Promises allow us to write asynchronous code that looks like synchronous code. Promises create the illusion of returning values or throwing errors from within our callbacks. While promises do not replace callbacks--promises depend on callbacks--they provide a layer of abstraction between you and callbacks, enabling you to prevent callback hell.
+Promises are an alternative to directly using callbacks.  The concept of promises in programming have been around for decades, but it first rose to prominence in JavaScript after jQuery introduced something called a deferred object.  This resulted in an explosion of JavaScript libraries vying to find the clearest and most efficient way to handle async code.  Libraries like `bluebird`, `q`, and `async` were very popular options.  As web development became more and more focused on getting data from a variety of endpoints through APIs, these libraries became absolutely necessary for a JavaScript developer.
 
-Promises offer several advantages over callbacks.
+Fast forward to 2015 and the approval of the ES6 spec.  One of the biggest additions to the JavaScript language is a native promise library.  Now we no longer need to import an extra library, because the concept of Promises is built into the language.
 
--   Promises, like callbacks, make asynchronicity explicit.
--   Promises, unlike callbacks, clarify the order of execution.
--   Promises are easier to read than callbacks.
--   Promises can simplify error handling.
+Promises are going to present us with several key advantages over traditional callback functions.
 
+- Promises, like callbacks, make async explicit
+  - This means that we can give specific instructions on what to do with data once it is recieved.
+- Unlike callbacks, Promises clarify the order of execution.
+  - This means that Promises are easier to read and it is clear what happens when.
+- Promises simplify error handling.
 
 ### Anatomy of a Promise
 
-![alt text](diagram2.png)
-
-### Role of a Promise
-
-A promise represents a value that will be available for use in the future, 
-but is not available now. Think of it like an IOU for the actual value. Once
-it **resolves**, it will pass the value it's standing in for to a function you
-provide for it to invoke. Like an IOU, it can also "bounce", or **reject**, and 
-fail to provide the value it's standing in for. Promises also provide a way to 
-deal with this possibility.
-
-Promises are always in one of 3 states:
+A Promise object is a special object in JS that will always have one of 3 states.
 
 - pending
-- rejected
-- resolved
+- rejected (Failure)
+- resolved (Success!)
 
-<br>
-
-## Using a Promise
-
-A promise takes an anonymous function with two parameters; `resolve` and `reject`.
-The promise resolves when `resolve` is called, and is rejected when `reject` is 
-called.
-
-
+This means that a Promise object holds a value that is _promised_ to be given back to you.  When we are working with a Promise object, we need to use two special methods to consume the object when it is either resolved or rejected.
 
 ### `Promise.then` and `Promise.catch`
 
-The value passed to `resolve` will be the argument passed to the resolution 
-handler you register by calling the promise's `then` method. Likewise with the 
-value passed to `reject` and the rejection handler registered by calling 
-the promise's (or a chained promise's) `catch` method.
+`.then` and `.catch` are the two main methods we will be utilizing when working with promises.  Both methods take one argument, a function.  This function has a single argument, which is a value that represents the fulfilled data, or the error message.
 
-Each takes one argument, a function. Here is a
-usage example featuring an arbitrary promise, `somePromise`:
+Here is an example of what a function using promises will look like when we begin using it with MongoDB & Handlebars.
 
 ```js
-somePromise
-    .then(function(resolutionValue) {
-        console.log("somePromise resolved with value " + resolutionValue);
-        doSomethingWith(resolutionValue);
+//Disclaimer: getInfoFromDatabase is just an example method
+
+getInfoFromDatabase()
+  .then(function(data){ //Called when data is successfully fetched
+    console.log("Successfully retrieved data");
+    res.render('/', {
+      data: data
     })
-    .catch(function(rejectionValue) {
-        console.error(rejectionValue instanceof Error ?
-            rejectionValue :
-            "somePromise rejected with value " + rejectionValue);
-    });
+  })
+  .catch(function(error){ //Gets called when data isn't successfully fetched
+    console.error(error)
+
+    res.send("Oh no, something went wrong")
+  });
 ```
 
 #### `.then`
-
 `then` is a method on every `Promise` object. It is used to register an event
-handler for the promise's "resolve" event. When the promise resolves, the handler
-is invoked and passed the value the promise resolved to as its argument.
+handler for the promise's "resolve" (aka success) event. When the promise resolves, function is invoked and passed onto the function via the argument.
 
 #### `.catch`
-
-`catch` is a method on every `Promise` object. It is used to register an event
-handler for the promise's "reject" event. When the promise rejects, the handler
+`catch` is also method on every `Promise` object. It is used to register an event
+handler for the promise's "reject" (aka failure) event. When the promise rejects, the handler
 is invoked and passed the value (usually an `Error` object) the promised rejected
-with as its argument.
+with as its argument.  This handler can be really valuable when trying to debug.
 
+What are some scenarios where you imagine an Error may occur when fetching information from a database?
 
 <br>
 
 ## Promises Example
 
-A promise is like an IOU in real life. Let's say that your kid promises to clean his room by the end of the day. If he doesn't, the promise fails. Further, let's say that we also have a taking out the garbage function that depends on the room successfully being cleaned. Also, once the room has been cleaned and we've taken out the garbage we will get some ice cream as a reward.
+A promise is like an IOU in real life. When you go to a restaurant, you pay money and in return are _promised_ food in the near future.  When you put in your order there can be plenty of orders being worked on at once.  Each order gets delivered as soon as it is finished, and it is delivered for you to eat.  Additionally, there is a possibility that something goes wrong.  Your food is overcooked, your order gets lost, etc.  When something goes wrong, the restaurant will explicitly let you know (hopefully).
 
-```js
-var promiseToCleanTheRoom = new Promise(function(resolve, reject) {
-  // cleaning the room code would go here
-};
+## I DO: Using Promises to fetch data from an API
+Later in the class, we will be using JavaScript to get info from 3rd party servers by utilizing APIs.  In simplest terms, an API is simply a server where various requests can be made and responses can be delivered in JSON.  (We will go into more detail later)
+
+In this example, I am using a database called [OMDB, the Open Movie Database](http://www.omdbapi.com/).  This will allow me to hit an endpoint using a JavaScript library called `axios` and use promises to console log a successful response.
+
+Watch me do this, and focus in on how `.then()` and `.catch()` is allowing us to write clean async code.
+
 ```
+const axios = require("axios")
 
-- We can use the `new Promise()` constructor function to instantiate a new instance of a promise.
-- Promises take a callback function with 2 arguments:
-    - **resolve** means the promise is fulfilled
-    - **reject** means the promise has not been fulfilled 
-
-Let's set up a status based on whether or not the room has been cleaned
-
-```js
-var promiseToCleanTheRoom = new Promise(function(resolve, reject) {
-  // cleaning the room code would go here (e.g.- vaccum, dust, make the bed, etc)
-    
-  var isClean = true;
-
-  if (isClean) {
-    resolve('Clean'); //run this function if true
-  } else {
-    reject('not Clean'); //run this function if false
-  }
-});
-```
-#### Promise Execution
-
-Our promise may take some time to execute which means we're gonna have to wait for it. The `.then` method is called when the promise is resolved. `.then` takes a callback function that will only fire if the promise is resolved. We can pass arguments into the callback.
-
-```js
-var promiseToCleanTheRoom = new Promise(function(resolve, reject) {
-// cleaning the room code would go here (e.g.- vaccum, dust, make the bed, etc)
-    
-  var isClean = true;
-
-  if (isClean) {
-    resolve('Clean'); //run this function if true
-  } else {
-    reject('not Clean'); //run this function if false
-  }
-});
-
-promiseToCleanTheRoom.then(function(fromResolve){
-  console.log(`The room is ${fromResolve}`);
-})
-```
-
-We can chain another method called `.catch` to execute if the promise is rejected:
-
-```js
-var promiseToCleanTheRoom = new Promise(function(resolve, reject) {
-// cleaning the room code would go here (e.g.- vaccum, dust, make the bed, etc)
-    
-  var isClean = true;
-
-  if (isClean) {
-    resolve('Clean'); //run this function if true
-  } else {
-    reject('not Clean'); //run this function if false
-  }
-});
-
-promiseToCleanTheRoom
-  .then(function(fromResolve){
-    console.log(`The room is ${fromResolve}`);
+axios.get("http://www.omdbapi.com/?apikey=d31f1a94&s=starwars")
+  .then((response) => {
+    console.log("Success!")
+    console.log(response.data)
   })
-  .catch(function(fromReject){
-    console.log(`The room is ${fromReject}`);
+  .catch((error) => {
+    console.log("Something went wrong")
+    console.log(error.response.data)
   })
 ```
 
-Update `var isClean = false;` and run the code again. The `.catch` method should execute.
+### Chaining Promises Together
+As you build promises, you may find that you need to make multiple calls to a database or API.  Promises allow developers to take this more advanced logic and still present it in a clean way.
 
-
-#### Let's remove some garbage and get ice cream!
-
-Promises depend on each other. We have to finish one promise before we can start another one. So, we can't remove the garbage until we finish cleaning the room. Further, we can't get some ice cream until we finish taking out the garbage.
-
-Assuming the room has been cleaned, let's add another `.then` method to the chain (remember to set your `var isClean` back to `true`. We'll aso add a `return` statement to pass something onto the next `.then()` handler in the chain. This could be data, a message, etc.
+**AGAIN** Watch me do this.  We will go more in depth on APIs in the future, for now we should focus on the `.then` and `.catch` methods.
 
 ```js
-var promiseToCleanTheRoom = new Promise(function(resolve, reject) {
-// cleaning the room code would go here (e.g.- vaccum, dust, make the bed, etc)
-    
-  var isClean = true;
+const axios = require("axios")
 
-  if (isClean) {
-    resolve('Clean'); //run this function if true
-  } else {
-    reject('not Clean'); //run this function if false
-  }
-});
+//Search for all movies that match Star Wars
+axios.get("http://www.omdbapi.com/?apikey=d31f1a94&s=star%20wars")
+  .then((response) => {
+    //Get the ID of the first response and search for more info on that specific movie.
+    console.log("Search Success!")
+    console.log(response.data)
 
-promiseToCleanTheRoom
-  .then(function(fromResolve){
-    console.log(`The room is ${fromResolve}`);
-    return "Let's take out the garbage!"; // whatever is returned will be passed to the next `.then()` handler
+    const firstId = response.data['Search'][0].imdbID
+    console.log("Id of the first movie", firstId);
+    //Make a second API call to a third party API
+    return axios.get(`http://www.omdbapi.com/?apikey=d31f1a94&i=${firstId}`)
   })
-  .then(function(message){
-    console.log(message);
+  .then((response) => {
+    console.log("Second Api call success!");
+
+    console.log(response.data)
   })
-  .catch(function(fromReject){
-    console.log(`The room is ${fromReject}`);
+  .catch((error) => {
+    console.log("Something went wrong")
+    console.log(error.response.data)
   })
-  
-// The room is Clean
-// Let's take out the garbage!
 ```
 
-<br>
+As our request becomes more complicated, it's now easy to add another `.then()` callback and we can keep our async code in check in a clean way.
 
-&#x1F535; **YOU DO**
+Notice that we only have one `.catch` block at the end.  This is another great feature of promises.  If ANY of our promises fail, then that single `.catch` block will be called and we can guarantee consistent actions across any error.
 
-Add a 3rd `.then()` handler that will console.log "Room cleaned, garbage taken out, let's go get some ice cream!"
-
-<br>
+## Recap
+- Promises allow us to make really complex async code readable and clean.
+- Promises have 3 states. Pending, Resolved, and Rejected
+- We will be consuming Promise objects when we interact with our MongoDB database and when we make API calls to a server.
 
 ## Independent Practice
-[Promises lab starter code](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/tree/master/labs/unit_02/javaScript/promises/js-promises-lab-starter).
-
+[Promises lab starter code](https://github.com/ATL-WDI-Curriculum/atl-wdi-10/tree/master/labs/unit_02/javaScript/promises/js-promises-lab-starter)
 <br>
+## For more info on how to build a Promise object (Only if you feel really cozy with consuming promises)
+  [Promises In The Wild](https://davidwalsh.name/promises)
+  
+  [Building Promises Lab](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/javaScript/promises/js-promises-lab-starter)
+
 
 ## Additional Resources
 
 -   [Clean Room Example Video](https://www.youtube.com/watch?v=s6SH72uAn3Q)
 -   [Promise - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 -   [Promises](https://www.promisejs.org/)
--   [Promisees · Courtesy of ponyfoo.com](http://bevacqua.github.io/promisees/)
+-   [Promises · Courtesy of ponyfoo.com](http://bevacqua.github.io/promisees/)
 -   [wbinnssmith/awesome-promises: A curated list of useful resources for JavaScript Promises](https://github.com/wbinnssmith/awesome-promises)
 -   [How to escape Promise Hell — Medium](https://medium.com/@pyrolistical/how-to-get-out-of-promise-hell-8c20e0ab0513#.4wtj9hlvw)
 -   [Promise on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
