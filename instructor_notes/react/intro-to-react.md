@@ -42,7 +42,7 @@ Finally, libraries like React, Vue, and Angular provide patterns to help us writ
 
 These are just a few of the many examples of problems for which React provides elegant solutions. We'll explore many more ways that React works for us in the coming days.
 
-### You Do (3 minutes)
+### You Do (5 minutes)
 
 - Get with a partner and write down three examples of `DOM manipulations` that you have to manually add to your page more than once per project.
 - Then write down three websites that would have terrible UX if the page reloaded on every click. (You can't use the examples I gave though.)
@@ -71,7 +71,7 @@ Each of these elements could be copied across your whole application, but as we 
 
 There are multiple options available to help developers build reusable Web Components.  It seems like every day there is a new JavaScript framework that solves the same problems.  Here's a list of some of the most popular: [Popular JS Frameworks](https://bestof.js.org/tags/framework/)
 
-### You Do (5 minutes)
+### You Do (3 minutes)
 
 - Work with a partner and look at your previous projects. Try to find pieces of repetitive HTML that could benefit from being separated into web components.
 
