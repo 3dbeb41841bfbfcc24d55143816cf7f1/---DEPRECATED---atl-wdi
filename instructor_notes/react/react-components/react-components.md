@@ -158,7 +158,7 @@ competencies: ReactJS
 
 ### You Do: Nesting Components (15 minutes)
 
-Just like our `<App />` component now contains some `</Movie />` components, any one component may contain several other components. Let's test this out by nesting a `<Review />` component inside of a `<Movie /> `.
+Just like our `<App />` component now contains some `<Movie />` components, any one component may contain several other components. Let's test this out by nesting a `<Review />` component inside of a `<Movie /> `.
 
 > Remember, you'll need to create the component first, and then require and nest it inside of a parent component.
 
