@@ -36,11 +36,13 @@ Another problem that React will solve for us is that we currently refresh our en
 
 Libraries like React and Angular have their own dedicated dev tools that help developers quickly test and debug their front-end code.  This will allow us to better understand what each part of our code is doing as our codebase grows into thousands of lines of code.
 
+#### Better Separation of Concerns
+
 Finally, libraries like React, Vue, and Angular provide patterns to help us write small pieces of UI (called Components) and separate them into their own files.  This helps as we create more and more complex user interactions.
 
 These are just a few of the many examples of problems for which React provides elegant solutions. We'll explore many more ways that React works for us in the coming days.
 
-### You Do (5 minutes)
+### You Do (3 minutes)
 
 - Get with a partner and write down three examples of `DOM manipulations` that you have to manually add to your page more than once per project.
 - Then write down three websites that would have terrible UX if the page reloaded on every click. (You can't use the examples I gave though.)
@@ -69,6 +71,11 @@ Each of these elements could be copied across your whole application, but as we 
 
 There are multiple options available to help developers build reusable Web Components.  It seems like every day there is a new JavaScript framework that solves the same problems.  Here's a list of some of the most popular: [Popular JS Frameworks](https://bestof.js.org/tags/framework/)
 
+### You Do (5 minutes)
+
+- Work with a partner and look at your previous projects. Try to find pieces of repetitive HTML that could benefit from being separated into web components.
+
+
 ### Benefits of React
 
 - React solves complex problems using simple JavaScript. This is unlike other frameworks, which require more proprietary knowledge. For example, turning each element of an array into a `<div>` tag in React simply requires a JavaScript `.forEach()` or `.map()`.
@@ -92,17 +99,6 @@ Doing the same in Angular requires you to write Angular specific HTML:
 - Makes us more productive when developing web apps requiring less code from the developer.
 - Provides a lot of powerful and easy-to-use tooling, out of the box.
 - Was designed with testing in mind.
-
-### Apps Built with React (partially or completely):
-
-- [Khan Academy](https://www.khanacademy.org/math/algebra/introduction-to-algebra/overview-hist-alg/v/origins-of-algebra)
-- [Codecademy](https://www.codecademy.com/learn/all)
-- [Facebook](https://www.facebook.com)
-- [Instagram](https://www.instagram.com)
-- [Netflix](https://www.netflix.com)
-  - Great write-up about why Netflix uses React [here](https://medium.com/netflix-techblog/netflix-likes-react-509675426db)
-- [The New York Times](https://www.nytimes.com/interactive/2014/02/02/fashion/red-carpet-project.html)
-- Plenty of examples at [React.Rocks](https://react.rocks/)
 
 ## When should we use client-side frameworks?
 
@@ -130,6 +126,17 @@ Single Page Applications (SPA) are all the rage today. A misconception is that a
 Client-side routing requires manipulating the browser's [**history API**](https://developer.mozilla.org/en-US/docs/Web/API/Window/history). This is slightly different than the RESTful Routes we built previously in Express.
 
 As we will see a little later, the React ecosystem provides for us an easy-to-use router that will greatly simplify the amount of work we have to do to load many different templates within our application.
+
+### Apps Built with React (partially or completely):
+
+- [Khan Academy](https://www.khanacademy.org/math/algebra/introduction-to-algebra/overview-hist-alg/v/origins-of-algebra)
+- [Codecademy](https://www.codecademy.com/learn/all)
+- [Facebook](https://www.facebook.com)
+- [Instagram](https://www.instagram.com)
+- [Netflix](https://www.netflix.com)
+  - Great write-up about why Netflix uses React [here](https://medium.com/netflix-techblog/netflix-likes-react-509675426db)
+- [The New York Times](https://www.nytimes.com/interactive/2014/02/02/fashion/red-carpet-project.html)
+- Plenty of examples at [React.Rocks](https://react.rocks/)
 
 ## Thinking In React
 
