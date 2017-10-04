@@ -71,6 +71,11 @@ Each of these elements could be copied across your whole application, but as we 
 
 There are multiple options available to help developers build reusable Web Components.  It seems like every day there is a new JavaScript framework that solves the same problems.  Here's a list of some of the most popular: [Popular JS Frameworks](https://bestof.js.org/tags/framework/)
 
+### You Do (5 minutes)
+
+- Work with a partner and look at your previous projects. Try to find pieces of repetitive HTML that could benefit from being separated into web components.
+
+
 ### Benefits of React
 
 - React solves complex problems using simple JavaScript. This is unlike other frameworks, which require more proprietary knowledge. For example, turning each element of an array into a `<div>` tag in React simply requires a JavaScript `.forEach()` or `.map()`.
