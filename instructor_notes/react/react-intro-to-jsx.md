@@ -31,7 +31,7 @@ If you've ever written HTML strings within JavaScript, you know that the experie
 
 ## JSX
 
-JSX was created by Facebook to provide a descriptive and clean way to structure the HTML that React sends to the DOM. Before JSX, developers would render HTML through the `React.createElement()` method.
+JSX was chosen by Facebook to provide a descriptive and clean way to structure the HTML that React sends to the DOM. Before JSX, developers would render HTML through the `React.createElement()` method.
 
 ```js
 const HelloWorld = React.createElement({
