@@ -36,6 +36,8 @@ Another problem that React will solve for us is that we currently refresh our en
 
 Libraries like React and Angular have their own dedicated dev tools that help developers quickly test and debug their front-end code.  This will allow us to better understand what each part of our code is doing as our codebase grows into thousands of lines of code.
 
+#### Better Separation of Concerns
+
 Finally, libraries like React, Vue, and Angular provide patterns to help us write small pieces of UI (called Components) and separate them into their own files.  This helps as we create more and more complex user interactions.
 
 These are just a few of the many examples of problems for which React provides elegant solutions. We'll explore many more ways that React works for us in the coming days.
