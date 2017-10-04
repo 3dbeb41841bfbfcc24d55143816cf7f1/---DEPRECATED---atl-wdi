@@ -31,7 +31,7 @@ competencies: ReactJS
 * In our components directory, let's create a new Movie component:
 
 ```bash
-touch src/components/Movie.js
+  $ touch src/components/Movie.js
 ```
 
 > NOTE: The naming convention for React components is `ComponentName.js`, as seen above.
@@ -53,7 +53,7 @@ touch src/components/Movie.js
 ```
 
 <details>
-  <summary>If we start our server now with `yarn start`, what do we expect to see?</summary>
+  <summary>If we start our server now with `npm start`, what do we expect to see?</summary>
   <p>We wouldn't see anything! We haven't yet told our `<App />` component about the `<Movie />`.</p>
 </details>
 
@@ -77,7 +77,7 @@ touch src/components/Movie.js
   export default App;
 ```
 
-* If we start our server now using `yarn start`, we should see "Ima Movie!" appear in the browser. Let's break down what just happened.
+* If we start our server now using `npm start`, we should see "Ima Movie!" appear in the browser. Let's break down what just happened.
 
   * First, we required the `Movie` component into the `App` component where we wanted to nest it.
   * Once we had required the component, all we had to do was use the `<Movie />` tag inside of our HTML to show the component. It's like we created our own custom HTML tag!
