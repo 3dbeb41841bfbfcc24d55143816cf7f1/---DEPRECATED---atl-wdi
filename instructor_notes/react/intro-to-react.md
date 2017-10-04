@@ -95,17 +95,6 @@ Doing the same in Angular requires you to write Angular specific HTML:
 - Provides a lot of powerful and easy-to-use tooling, out of the box.
 - Was designed with testing in mind.
 
-### Apps Built with React (partially or completely):
-
-- [Khan Academy](https://www.khanacademy.org/math/algebra/introduction-to-algebra/overview-hist-alg/v/origins-of-algebra)
-- [Codecademy](https://www.codecademy.com/learn/all)
-- [Facebook](https://www.facebook.com)
-- [Instagram](https://www.instagram.com)
-- [Netflix](https://www.netflix.com)
-  - Great write-up about why Netflix uses React [here](https://medium.com/netflix-techblog/netflix-likes-react-509675426db)
-- [The New York Times](https://www.nytimes.com/interactive/2014/02/02/fashion/red-carpet-project.html)
-- Plenty of examples at [React.Rocks](https://react.rocks/)
-
 ## When should we use client-side frameworks?
 
 ### When To Use Client Side Frameworks
@@ -132,6 +121,17 @@ Single Page Applications (SPA) are all the rage today. A misconception is that a
 Client-side routing requires manipulating the browser's [**history API**](https://developer.mozilla.org/en-US/docs/Web/API/Window/history). This is slightly different than the RESTful Routes we built previously in Express.
 
 As we will see a little later, the React ecosystem provides for us an easy-to-use router that will greatly simplify the amount of work we have to do to load many different templates within our application.
+
+### Apps Built with React (partially or completely):
+
+- [Khan Academy](https://www.khanacademy.org/math/algebra/introduction-to-algebra/overview-hist-alg/v/origins-of-algebra)
+- [Codecademy](https://www.codecademy.com/learn/all)
+- [Facebook](https://www.facebook.com)
+- [Instagram](https://www.instagram.com)
+- [Netflix](https://www.netflix.com)
+  - Great write-up about why Netflix uses React [here](https://medium.com/netflix-techblog/netflix-likes-react-509675426db)
+- [The New York Times](https://www.nytimes.com/interactive/2014/02/02/fashion/red-carpet-project.html)
+- Plenty of examples at [React.Rocks](https://react.rocks/)
 
 ## Thinking In React
 
