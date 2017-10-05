@@ -55,7 +55,7 @@ const User = React.createElement(
 }
 ```
 
-While this rendered HTML extremely effectively and fast to load, it can be difficult to parse and understand.  Because of this, JSX was created to provide developers a more expressive and familiar way to write elements to be rendered to the DOM.  JSX is written out as a mark-up language, just like HTML.
+While this rendered HTML extremely efficiently, it can be difficult to parse and understand.  Because of this, JSX was created to provide developers a more expressive and familiar way to write elements to be rendered to the DOM.  JSX is written out as a mark-up language, just like HTML.
 
 ```js
 const Element = <h1>Hello World</h1>;
