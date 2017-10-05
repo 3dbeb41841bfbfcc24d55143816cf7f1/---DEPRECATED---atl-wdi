@@ -36,7 +36,7 @@ Use the deployed version of the app to build your own version.  We've created a 
   * Navbar
   * SplashImage
 
-We have also provided css for you in `index.css`.  Many of the classes match the component names, take a look at the CSS or look at the deployed version to get an idea of where to apply the classes.  
+We have also provided css for you in `index.css`.  Many of the classes match the component names, take a look at the CSS or look at the deployed version using the element tabs in chrome dev tools to get an idea of where to apply the classes.  
 
 ## Hints
   * Import the location and menu items using the import command. Example: `import menuData from '../pizzaData.js`
