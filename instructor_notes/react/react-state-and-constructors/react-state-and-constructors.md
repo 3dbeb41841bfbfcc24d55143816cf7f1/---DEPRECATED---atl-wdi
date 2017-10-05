@@ -13,6 +13,7 @@ competencies: Front-end frameworks
 
 * Discuss the need for `state` in front-end applications
 * Manipulate state within a React application
+* Differentiate between state and props
 * Discuss the need to share `state` across different parts of the application
 * Share state across multiple React components
 * Use Constructors to manage state and set up default values
