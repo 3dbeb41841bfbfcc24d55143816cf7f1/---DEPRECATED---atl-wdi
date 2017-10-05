@@ -34,10 +34,12 @@ While storing values in our `state` is really this simple, the complexity of `st
 ## How is state different from props?
 In many ways state and props operate similarly.  Both are plain JS Objects that hold data about your application and both of them trigger a render when they are updated.  However, there are some important differences between the two.
 
-**Props Are Owned by a Parent Component, State is Owned by the Component**
+### Props Are Owned by a Parent Component, State is Owned by the Component
+
 * When we refer to props, that means that it has been passed down from a parent component.
   `<Movie title={"Blade Runner 2049"} year={2017} />`
 * State is declared within the component.
+
 ```javascript
   ...
   constructor(){
@@ -49,9 +51,16 @@ In many ways state and props operate similarly.  Both are plain JS Objects that 
   }
   ...
 ```
-**Props Are Immutable, State is Not**
-* It is impossible to directly change a components `prop` values
+
+### Props Are Immutable, State is Not
+
+* It is impossible to directly change a components `prop` values. Props are `read-only` values
 * State is able to be mutated via `this.setState()`
+
+### State can be passed down into another component's props, but not vice-versa
+
+* We will often pass parts of a component's state down to child components.  The child gains the value in it's own `props`
+* Child components cannot pass state up to a parent.  (Remember Unidirectional Data Flow)
 
 ## Managing State (CodeAlong)
 
@@ -227,7 +236,7 @@ Now that we've created a variable to hold our sale item, we'll want to give our 
 * First, we'll add the button and input field to our page:
 
 ```javascript
-  import React, {Component} from 'react';
+  import React, { Component } from 'react';
 
   class HomePage extends Component {
 
@@ -304,18 +313,16 @@ Now that we've created a variable to hold our sale item, we'll want to give our 
 
 * If we open our `React Dev Tools` in Chrome, we can now toggle the value of `this.state.editSaleItem` and see our input go in and out of the page! This is pretty neat, but it will be even cooler once we've hooked it up to a button.
 
-Let's start by building a function to handle this behavior. Since we'll be toggling the value of `editSaleItem` each time the button is clicked, we'll create a function called `_toggleEditSaleItem()` on our component class. Each time the function runs it will flip the value of `this.state.editSaleItem`. Here's an example:
+Let's start by building a function to handle this behavior. Since we'll be toggling the value of `editSaleItem` each time the button is clicked, we'll create a function called `toggleEditSaleItem()` on our component class. Each time the function runs it will flip the value of `this.state.editSaleItem`. Here's an example:
 
 ```javascript
   ...
-    _toggleEditSaleItem = () => {
+    toggleEditSaleItem = () => {
       const editSaleItem = !this.state.editSaleItem;
       this.setState({editSaleItem});
     };
   ...
 ```
-
-> NOTE: The underscore in front of the method name is a common style choice of React developers. This indicates that this method is "private" to this particular component class. In other words, this method will only be used within this component.
 
 * Not quite what we expected to see? There's a little bit more going on here than we previously described. Let's explore what this function is doing:
 
@@ -336,7 +343,7 @@ The use of `setState()` is a best practice and will allow us to avoid many commo
 * Just like our jQuery days, we'll need to add some kind of `event listener` to our toggle button so it will run our function. Fortunately, React has several pre-built `events` that will handle all of this functionality for us. We simply need to build a function, and tell the button to trigger the function `onClick()`:
 
 ```javascript
-  <button onClick={this._toggleEditSaleItem}>
+  <button onClick={this.toggleEditSaleItem}>
     Edit Sale Item
   </button>
 ```
@@ -368,7 +375,7 @@ class HomePage extends Component {
     };
   }
 
-  _toggleEditSaleItem = () => {
+  toggleEditSaleItem = () => {
     const editSaleItem = !this.state.editSaleItem;
     this.setState({editSaleItem});
   };
@@ -380,7 +387,7 @@ class HomePage extends Component {
           <div>
             <span>Currently On Sale: { this.state.itemCurrentlyOnSale }!</span>
             <span>
-              <button onClick={this._toggleEditSaleItem}>
+              <button onClick={this.toggleEditSaleItem}>
                 { this.state.editSaleItem ? 'Hide' : 'Edit Sale Item' }
               </button>
             </span>
@@ -418,7 +425,7 @@ Now that we are able to toggle our text-input on and off, it's time to update ou
       };
     }
 
-    _toggleEditSaleItem = () => {
+    toggleEditSaleItem = () => {
       const editSaleItem = !this.state.editSaleItem;
       this.setState({editSaleItem});
     };
@@ -430,7 +437,7 @@ Now that we are able to toggle our text-input on and off, it's time to update ou
             <div>
               <span>Currently On Sale: { this.state.itemCurrentlyOnSale }!</span>
               <span>
-                <button onClick={this._toggleEditSaleItem}>
+                <button onClick={this.toggleEditSaleItem}>
                   { this.state.editSaleItem ? 'Hide' : 'Edit Sale Item' }
                 </button>
               </span>
@@ -454,7 +461,7 @@ Our input field is now disabled. When we try to change our text value, nothing h
 
 ```javascript
   ...
-  _handleItemCurrentlyOnSaleChange = (event) => {
+  handleItemCurrentlyOnSaleChange = (event) => {
     const itemCurrentlyOnSale = event.target.value;
     this.setState({itemCurrentlyOnSale});
   };
@@ -469,7 +476,7 @@ Our input field is now disabled. When we try to change our text value, nothing h
     this.state.editSaleItem ?
       <div>
         <input 
-          onChange={this._handleItemCurrentlyOnSaleChange}
+          onChange={this.handleItemCurrentlyOnSaleChange}
           value={this.state.itemCurrentlyOnSale} 
           type="text" />
       </div>
@@ -541,7 +548,7 @@ Let's build an Admin view that will allow us to create some Products for our har
     this.state.editSaleItem ?
       <div>
         <input
-            onChange={this._handleItemCurrentlyOnSaleChange}
+            onChange={this.handleItemCurrentlyOnSaleChange}
             value={this.state.itemCurrentlyOnSale}
             type="text"
         />
@@ -667,7 +674,7 @@ This `ProductList` will need access to the same `productList` we passed into our
 
 ## Adding Some Products
 
-* Now that we're able to view our product list, it's time to add some new products. As always, to update our existing information we'll need a form. Let's add a new `ProuctForm` to our `AdminView`. Just as before, we'll need to use an `onChange()` function to update our Component's state. Let's create a `newProduct` on the state to keep track of the form's changes.
+* Now that we're able to view our product list, it's time to add some new products. As always, to update our existing information we'll need a form. Let's add a new `ProductForm` to our `AdminView`. Just as before, we'll need to use an `onChange()` function to update our Component's state. Let's create a `newProduct` on the state to keep track of the form's changes.
 
 ```jsx
 	
@@ -684,7 +691,7 @@ This `ProductList` will need access to the same `productList` we passed into our
       }
     }
 
-    _handleNewProductChange = (event) => {
+    handleNewProductChange = (event) => {
       const attributeName = event.target.name;
       const attributeValue = event.target.value;
 
@@ -698,9 +705,9 @@ This `ProductList` will need access to the same `productList` we passed into our
       return (
           <div>
             <form>
-              <div><input name="productName" type="text" placeholder="Name" onChange={this._handleNewProductChange}/></div>
-              <div><input name="description" type="text" placeholder="Description" onChange={this._handleNewProductChange}/></div>
-              <div><input name="price" type="number" min="0.00" step="0.01" placeholder="Price" onChange={this._handleNewProductChange}/></div>
+              <div><input name="productName" type="text" placeholder="Name" onChange={this.handleNewProductChange}/></div>
+              <div><input name="description" type="text" placeholder="Description" onChange={this.handleNewProductChange}/></div>
+              <div><input name="price" type="number" min="0.00" step="0.01" placeholder="Price" onChange={this.handleNewProductChange}/></div>
               <div><input type="submit" value="Create New Product"/></div>
             </form>
           </div>
@@ -723,7 +730,7 @@ This `ProductList` will need access to the same `productList` we passed into our
 
 ```
 
-* If we take a look at this `_handleNewProductChange` function, we'll see some fancy new syntax. Just as we did with our toggle on the HomePage, we need to make a copy of the state value we are updating, instead of updating the state itself. the `{...this.state.newProduct}` block that you see is using a great new Javascript feature known as the `spread operator`. 
+* If we take a look at this `handleNewProductChange` function, we'll see some fancy new syntax. Just as we did with our toggle on the HomePage, we need to make a copy of the state value we are updating, instead of updating the state itself. the `{...this.state.newProduct}` block that you see is using a great new Javascript feature known as the `spread operator`. 
 
 This `...` syntax tells Javascript to make a copy of our `this.state.newProduct` object. The copy will have all of the previous info that our `newProduct` contained, but we can now edit this object without updating our `state` directly. We'll use our event info to change the `newProduct` object and then `.setState()` to store it back to our `state` itself.
 
@@ -755,7 +762,7 @@ This `...` syntax tells Javascript to make a copy of our `this.state.newProduct`
   ...
   <AdminView 
     productList={this.state.productList} 
-    addNewProductToProductList={this.)_addNewProductToProductList}/>
+    addNewProductToProductList={this.addNewProductToProductList}/>
   ...
 ```
 
@@ -774,7 +781,7 @@ This `...` syntax tells Javascript to make a copy of our `this.state.newProduct`
 ```jsx
   // src/components/ProductForm.js
   ...
-   _addNewProduct = (event) => {
+   addNewProduct = (event) => {
     event.preventDefault();
     this.props.addNewProductToProductList(this.state.newProduct);
   };
@@ -782,10 +789,10 @@ This `...` syntax tells Javascript to make a copy of our `this.state.newProduct`
 
   ...
   <div>
-    <form onSubmit={this._addNewProduct}>
-      <div><input name="productName" type="text" placeholder="Name" onChange={this._handleNewProductChange}/></div>
-      <div><input name="description" type="text" placeholder="Description" onChange={this._handleNewProductChange}/></div>
-      <div><input name="price" type="number" min="0.00" step="0.01" placeholder="Price" onChange={this._handleNewProductChange}/></div>
+    <form onSubmit={this_addNewProduct}>
+      <div><input name="productName" type="text" placeholder="Name" onChange={this.handleNewProductChange}/></div>
+      <div><input name="description" type="text" placeholder="Description" onChange={this.handleNewProductChange}/></div>
+      <div><input name="price" type="number" min="0.00" step="0.01" placeholder="Price" onChange={this.handleNewProductChange}/></div>
       <div><input type="submit" value="Create New Product"/></div>
     </form>
   </div>
