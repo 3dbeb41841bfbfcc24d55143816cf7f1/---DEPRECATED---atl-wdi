@@ -6,9 +6,9 @@ This second project is your first foray into **building a full-stack server appl
 
 **This is exciting!** It is a lot, but we have given you the tools over the last few weeks to build what you need; you get to be creative in choosing what sort of application you want to build!
 
-**You will be working with a group for this project**, and you will be designing the app with your group. We hope you will exercise creativity on this project, sketch some wireframes before you start, and write user stories to define what your users will want to do with the app.
+**You will be working individually for this project**, and you will be designing the app yourself. We hope you will exercise creativity on this project, sketch some wireframes before you start, and write user stories to define what your users will want to do with the app.
 
-Your group will need to run your user stories, wireframes, and database design by your instructors to get their feedback and approval before you begin coding! Remember to keep things small and focus on mastering the fundamentals – scope creep/feature creep is the biggest pitfall for any project!
+You will need to run your user stories, wireframes, and database design by your instructors to get their feedback and approval before you begin coding! Remember to keep things small and focus on mastering the fundamentals – scope creep/feature creep is the biggest pitfall for any project!
 
 Identify what you need to build and accomplish to meet project expectations and identify everything else as stretch goals. If you meet your MVP (Minimum Viable Product) ahead of schedule, you can decide which reach goals to focus on for the remainder of your time.
 
@@ -35,6 +35,7 @@ Your app must:
 * A **working full-stack application, built by you**, hosted on Heroku
 * A **link to your hosted working app** in the URL section of your Github repo
 * A **git repository hosted on Github**, with a link to your hosted project,  and frequent commits dating back to the **very beginning** of the project. Commit early, commit often.  Make your commit messages descriptive.
+    * Your git repo should have **at least** 30 commits
 * **A ``readme.md`` file** with explanations of the technologies used, the approach was taken, unsolved problems, and notes to yourself so you can come back to your project later in the course and be able to pick up your train of thought, etc.
 * **Wireframes of your app**, hosted somewhere & linked in your readme
 * A link in your ``readme.md`` to the **PUBLICLY-accessible** **user stories you created/your trello board- with given, when, then statements for each story.**
@@ -45,10 +46,11 @@ Your app must:
 ### Submit your project to Schoology due date indicated on the class schedule!
 
 ---
-
+<!--
 ### Pair-programming Techniques:
 #### There are several ways to pair-program, but here are a few of the most popular:
-
+-->
+<!--
 * **Ping-Pong** - One programmer implements a unit of code, and the other programmer 
 tests it. Then, the tester implements the next unit of code, and the first 
 programmer tests it. Rinse and repeat.
@@ -61,9 +63,7 @@ is highly encouraged!
 especially important that every developer on the team knows how a feature works, 
 mob programming can be very effective. Mob programming is essentially Driver/Navigator 
 programming, but with the entire team Navigating (by committee) while one programmer 
-writes the code. Switch drivers every 10 minutes.
-
----
+writes the code. Switch drivers every 10 minutes. -->
 
 ### Suggested Ways to Get Started
 

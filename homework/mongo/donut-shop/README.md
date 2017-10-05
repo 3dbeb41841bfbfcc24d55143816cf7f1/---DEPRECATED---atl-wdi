@@ -11,9 +11,9 @@ In this assignment, you will create a full CRUD MEN (Mongo, Express, Node) Donut
 - gain more practice with Handlebars
 
 ## Setup
-1. In terminal, start your mongo server with `mongod`.
+1. In terminal, make sure your Mongo server is started with `brew services start mongo`.
 
-2. Open a new tab (`cmd + t`) and open your mongo console with `mongo`. Make sure there are no errors/ no other instances of this running.
+2. Open your mongo console with `mongo`. Make sure there are no errors/ no other instances of this running.
 
 3. Open a new tab in terminal (3 altogether, what a pro!) and navigate to `donut_mongoose` inside your homework folder for tonight. You will have full MVC Folders set up for you:
 
@@ -119,7 +119,7 @@ There is a seed file for you in `controllers/seeds.js`. To populate some data to
 
 - Make sure `nodemon` is running in terminal, and the mongoose connection and port 3000 are LISTENING
 - Do the next step **only once**:
-- Open up a browser and visit `localhost:3000/seed/newproducts`. This should automatically populate the page.
+- Open up a browser and visit `localhost:3000/seed/donuts`. This should automatically populate the page.
 - You can confirm in your Mongo DB these items are there in the `mongo` terminal:
   - `show dbs` to view all databases
   - `use donut_store` to use our database for this app
@@ -128,14 +128,14 @@ There is a seed file for you in `controllers/seeds.js`. To populate some data to
 - :dart: Git add, git commit -m "successfully seeded Donut data"
 
 <details><summary>:shit: Oh no! I messed up..</summary>
-- Each time you visit `localhost:3000/seed/newproducts` you will seed those donut objects. Doing this more than 1x will duplicate your items.
+- Each time you visit `localhost:3000/seed/donuts` you will seed those donut objects. Doing this more than 1x will duplicate your items.
 
 - If you want to drop your donut collection, in the terminal tab that has mongo open enter:
   - `show dbs` to view all databases
   - `use donut_store` to use our database for this app
   - `show collections` to see our donut collection
   - `db.donuts.drop()` to delete **all** of your donut records
-- To re-populate your database, you will have to visit `localhost:3000/seed/newproducts` again and repeat part 3.
+- To re-populate your database, you will have to visit `localhost:3000/seed/donuts` again and repeat part 3.
 </details>
 
 ### Part 4 and 5: Set Up and Test your controllers
