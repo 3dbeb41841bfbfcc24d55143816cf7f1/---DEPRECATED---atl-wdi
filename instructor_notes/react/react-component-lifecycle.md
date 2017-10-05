@@ -22,7 +22,7 @@ competencies: Front-end frameworks
 
 When building a React application, EVERYTHING is a component.  In React, we usually create a component by extending the `React.Component` method.  When we extend the `Component` class, we gain the methods that allow us to build a stateful component.  So far, we've only been working with the `render` method, but there are several other functions we have access to when building React apps.  These methods get executed every time a component is mounted, updated, or unmounted.
 
-**NOTE** Remember that this applies only of STATEFUL components, these methods are not available in Stateless (aka Dumb) components.
+**NOTE** Remember that this only applies to `stateful` components, these methods are not available in `stateless` (aka `dumb`) components.
 
 <div style="width: 100vw; height: 40vh;">
   <img style="float: left; width: 40vw; padding: 0px 15px;" src="http://imgur.com/BrWR7kt.jpg" />
