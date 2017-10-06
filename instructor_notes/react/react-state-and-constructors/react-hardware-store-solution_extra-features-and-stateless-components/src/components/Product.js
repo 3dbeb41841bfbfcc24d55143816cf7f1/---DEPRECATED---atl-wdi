@@ -1,68 +1,68 @@
-import React from 'react';
+import React from 'react'
 
 const Product = (props) => {
-  const product = props.product;
+  const product = props.product
 
-  const _deleteProduct = () => {
-    props.deleteProductFromListById(props.id);
-  };
+  const deleteProduct = () => {
+    props.deleteProductFromListById(props.id)
+  }
 
-  const _addToCart = () => {
-    props.addProductToCart(props.id);
-  };
+  const addToCart = () => {
+    props.addProductToCart(props.id)
+  }
 
-  const _removeFromCart = () => {
-    props.removeProductFromCart(props.id);
-  };
+  const removeFromCart = () => {
+    props.removeProductFromCart(props.id)
+  }
 
-  const _showOptions = () => {
-    const viewMode = props.viewMode;
+  const showOptions = () => {
+    const viewMode = props.viewMode
 
     const adminOptions =
         <div>
-          <button onClick={_deleteProduct}>Delete</button>
-        </div>;
+          <button onClick={deleteProduct}>Delete</button>
+        </div>
 
     const shopOptions =
         <div>
-          <button onClick={_addToCart}>Add To Cart</button>
-        </div>;
+          <button onClick={addToCart}>Add To Cart</button>
+        </div>
 
     const cartOptions =
         <div>
-          <button onClick={_removeFromCart}>Remove From Cart</button>
-        </div>;
+          <button onClick={removeFromCart}>Remove From Cart</button>
+        </div>
 
     switch (viewMode) {
       case 'ADMIN':
-        return adminOptions;
+        return adminOptions
       case 'SHOP':
-        return shopOptions;
+        return shopOptions
       case 'CART':
-        return cartOptions;
+        return cartOptions
       default:
-        return null;
+        return null
     }
-  };
+  }
 
   const priceFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumFractionDigits: 2,
-  });
-  const formattedPrice = priceFormatter.format(product.price);
+    minimumFractionDigits: 2
+  })
+  const formattedPrice = priceFormatter.format(product.price)
 
   return (
-      <div className="product-display">
-        <h3>{product.productName}</h3>
-        <div>Description: {product.description}</div>
-        <div>Price: {formattedPrice}</div>
-        {product.quantity ? <div>Quantity: {product.quantity}</div>
-            : null}
+    <div className="product-display">
+      <h3>{product.productName}</h3>
+      <div>Description: {product.description}</div>
+      <div>Price: {formattedPrice}</div>
+      {product.quantity ? <div>Quantity: {product.quantity}</div>
+        : null}
 
-        {_showOptions()}
-      </div>
-  );
-};
+      {showOptions()}
+    </div>
+  )
+}
 
-export default Product;
+export default Product
