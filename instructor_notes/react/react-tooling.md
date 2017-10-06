@@ -28,7 +28,7 @@ Let's create our first React application! We'll run the following commands in ou
 	$ create-react-app first-react-app 
 	```    
 3. `cd first-react-app`
-4. Once you are inside the `first-react-app` directory, run `yarn start`
+4. Once you are inside the `first-react-app` directory, run `npm start`
 
 ### What just happened?
 
@@ -37,8 +37,7 @@ Magic just happened! If everything is working correctly, you should now be stari
 * First, we installed the `create-react-app` CLI tool. This is an officially-supported tool that will configure for you a fresh React application, without you having to do any configuration of your own. What does this tool do for us?
 	* If we look into the file structure of the application, the tool gives us a `/src`, `/node_modules` and a `/public` folder. 
 	* The `/src` folder contains all of the code that makes our React app "tick." We'll explore this folder over the next few days.
-	* The tool also sets up a `/node_modules` directory in our React app that manages our dependencies and application scripts. `Yarn` is a wrapper around the `npm` tool we use with Node that adds additional features `npm` does not have. We'll use this tool to start and stop our application, just like we use `npm` with Express.
-	
+	* The tool also sets up a `/node_modules` directory in our React app that contains our dependencies.
 	* If we look at the `/public` folder, we will see a few auto-generated files, including an `index.html`. We won't need to touch any of these files, as all of the code that the browser sees is automatically provided through a tool called Webpack!
 
 #### What is Webpack?	

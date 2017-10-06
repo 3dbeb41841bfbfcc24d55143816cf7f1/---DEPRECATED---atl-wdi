@@ -16,6 +16,7 @@ competencies: Front-End Frameworks
 - Understand what JSX is and why it is different than HTML.
 - Identify differences in syntax between HTML and JSX.
 - Loop through arrays of data and apply it to JSX rendering.
+- Describe what `props` relates to in React
 - Insert data from `props` to JSX
 
 ### Preparation
@@ -26,11 +27,11 @@ competencies: Front-End Frameworks
 
 <br>
 
-If you've ever written HTML within JavaScript, you know that the experience can be a huge pain.  Developers are required to write and concatenate strings that get converted to HTML after being appended to the DOM. Many times this looks really messy (i.e. `"<h1>" + firstName + " " + lastName + "</h1> `) even with ES6 string templates!  For this reason, we use a tool called JSX to easily and cleanly write expressive statements that sends HTML to the DOM.
+If you've ever written HTML strings within JavaScript, you know that the experience can be a huge pain.  Developers are required to write and concatenate strings that get converted to HTML after being appended to the DOM. Many times this looks really messy (i.e. `"<h1>" + firstName + " " + lastName + "</h1> `) even with ES6 string templates!  For this reason, we use a tool called JSX to easily and cleanly write expressive statements that sends HTML to the DOM.
 
 ## JSX
 
-JSX was created by Facebook to provide a descriptive and clean way to structure the HTML that React sends to the DOM. Before JSX, developers would render HTML through the `React.createElement()` method.
+JSX was chosen by Facebook to provide a descriptive and clean way to structure the HTML that React sends to the DOM. Before JSX, developers would render HTML through the `React.createElement()` method.
 
 ```js
 const HelloWorld = React.createElement({
@@ -54,7 +55,7 @@ const User = React.createElement(
 }
 ```
 
-While this rendered HTML extremely effectively, it can be difficult to parse and understand.  Because of this, JSX created to provide developers a more expressive and familiar way to write elements to be rendered to the DOM.  JSX is written out as a mark-up language, just like HTML.
+While this rendered HTML extremely effectively and fast to load, it can be difficult to parse and understand.  Because of this, JSX was created to provide developers a more expressive and familiar way to write elements to be rendered to the DOM.  JSX is written out as a mark-up language, just like HTML.
 
 ```js
 const Element = <h1>Hello World</h1>;
@@ -68,10 +69,10 @@ const User = (
   </div>
 )
 ```
-I know the question you are all asking... "How is this valid JavaScript? This would cause errors in other JavaScript apps!"  And you're right!  JSX is actually a language extension to JavaScript that will convert this 'HTML in JS' into pure JavaScript.  When Webpack is bundling your React code, it converts the JSX syntax into the `React.createElement()` method seen above.
+I know the question you are all asking... "How is this valid JavaScript? This would cause errors in other JavaScript apps!"  And you're right!  JSX is actually a language extension to JavaScript that will convert this 'HTML in JS' into pure JavaScript.  When Webpack & create-react-app is bundling your React code, it converts the JSX syntax into the `React.createElement()` method seen above.
 
 ### CodeAlong: React Portfolio Page
-Let's jump in head first and learn JSX by doing.  Today we will build a simple portfolio page using just React and JSX. 
+Let's jump in head first and learn JSX by doing.  Today we will build a simple portfolio page using just React and JSX.
 
 #### Getting Started
 Navigate to your in-class directory and run `create-react-app react-portfolio`
@@ -79,8 +80,8 @@ Navigate to your in-class directory and run `create-react-app react-portfolio`
 ```bash
 create-react-app react-portfolio
 cd react-portfolio
-code . # or subl . or atom .
-yarn start # or npm start
+code .
+npm start
 ```
 
 We now have a basic page that allows us to get started building our portfolio.  Let's first take a deep dive into the starter code that `create-react-app` gave us. Specifically, let's look at the `App.js` file.
@@ -111,7 +112,7 @@ export default App;
 
 **render(){}**: Every time you create a React Component class, you will use the `render` function. Render is one of several **lifecycle methods** built into React.  We'll go in-depth on what that means later in class. This function tells React what the output of your component will be upon it's initial creation and every time it updates.  We will **always** return JSX code in this function.
 
-**return ()**: Since render is just a regular method call, we have to `return` something.  The JSX return is often more than 1 line.  When we have more than 1 line, we wrap the entire JSX statement in `()`.
+**return ()**: Since render is just a regular method call, we have to `return` something.  Here we write the JSX that we want our component to output.  When we have more than 1 line, we wrap the entire JSX statement in `()`.
 
 **className**: One of the most noticeable differences between HTML and JSX is the use of `className` rather than `class`. Since we write JSX within JavaScript files, we cannot use keywords within the JavaScript language.  This means we shouldn't use names like `class` and `for` when using JSX.  Instead, JSX provides `className` and `htmlFor` as replacements.  Most other HTML attributes will be exactly the same in JSX.  You can see all of the available attributes here: [Tags and Attributes](https://zhenyong.github.io/react/docs/tags-and-attributes.html)
 
@@ -119,15 +120,25 @@ export default App;
 
 ### Import/Export
 We already know that you can import and export JavaScript methods through the new ES6 module system. You can also import static objects like photos and CSS very easily.
+
 ```js
 import logo from './logo.svg';
 import './App.css';
 ```
-In this example, we can see that we can import static files two different ways. 
-  * Import it as a named variable that can be later referenced in JSX. 
-  * Import the file without a name, which just signals to Webpack to load the content and make it available at runtime.
+vs
+```js
+const logo = require('./logo.svg');
+require('./App.css');
+```
+
+In this example, we can see that we can import static files two different ways.
+
+- Import it as a named variable that can be later referenced in JSX.
+- Import the file without a name, which just signals to Webpack to load the content and make it available at runtime.
 
 In addition to making this a clean and easy way to refer to your static assets, this also allows Webpack to convert your images into a data URI.  This allows your page to load quicker and make less requests to the server.
+
+> Take note that this is specific for CLIENT side JavaScript.  You cannot use this syntax in Node just yet.
 
 #### We Do: Profile Page
 Now that we've seen an example of some valid JSX, let's create a few components to build out our Portfolio. The first thing we should do is focus on keeping our file directory clean.  Before we create any new files, lets create a `components` directory inside of `src`.  This will hold all of the components we will be building during the codealong.  Within the components directory, let's create a file called `Profile.jsx`.  Your directory should look something like this.
@@ -197,7 +208,7 @@ Once we properly import our `Profile` component, we should see a big "Hello Worl
 
 #### Adding onto the Profile component
 
-Let's beef up our Profile component with a picture and our name. 
+Let's beef up our Profile component with a picture and our name.
 
 ```js
 import React, { Component } from 'react';
@@ -219,7 +230,7 @@ export default Profile;
 
 **GOTCHA**: When rendering JSX, there can only be one top-level element. Having multiple elements without a container element will always throw an error.  We generally fix that by wrapping the JSX with a `<div></div>` tag.
 
-After wrapping the tags in a div, we should see the first bit of our profile page. Hooray! 
+After wrapping the tags in a div, we should see the first bit of our profile page. Hooray!
 
 #### Building out a Specializations component
 Now that we have built out all the info we need for a splash page, let's add some more content to the page.  Next up, we want to build a section of the portfolio page that will show of what technologies we know.  Let's look at the wire-frame of what we want to build.
@@ -231,7 +242,7 @@ Now that we have built out all the info we need for a splash page, let's add som
 
 * Use JSX to add a `h2` tag that says "I specialize in..."
 
-* Follow along with the wire-frame to create 3 specialization cards. Use a service like [Placehold.it](https://placeholder.com) for temporary pictures.
+* Follow along with the wire-frame to create 3 specialization cards.
 
 * Specialty data:
 ```
@@ -254,15 +265,18 @@ Specialty 3
 #### DRYing up your code with loops and props
 You may have noticed that we've repeated a lot of JSX within the Specialties component.  This is a bad practice.  The React philosophy is to make your components very small and ideally reusable.  We have 3 component's here that all look pretty similar, so lets extract them into their own smaller component.
 
-Let's create a `Specialization` component that will contain a single specialization.  We will then pass data into this generic component using React's unidirectional data flow.
+Let's create a `Specialization` component that will contain a single specialization.  We will then pass data into this generic component by taking advantage of React's unidirectional data flow.
 
 ### Unidirectional Data Flow
+
 Data flow in React works in one direction to make the logic of your application simpler.  Because of this philosophy, we can only pass data from Parent element to Child element.  We are able to pass this data in JSX by adding attributes to the child elements. This data then is sent to a special object called `this.props`.
 
-#### this.props
+### this.props
+
 `this.props` is how we are able to retrieve data that is passed down from Parent to Child element.  `this.props` allows us to write out reusable and dynamic JSX code. We can create multiple of the same element, and have it render different HTML in the DOM based on what elements we pass through the parent component.
 
 Let's look at this example of a Parent/Child relationship.
+
 ```js
 class Taco extends Component{
   render(){
@@ -282,7 +296,9 @@ class Tacos extends Component{
   }
 }
 ```
+
 Will output
+
 ```html
   <div>
     <h1>I love Guacamole tacos!</h1>

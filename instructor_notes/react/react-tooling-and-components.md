@@ -24,7 +24,7 @@ Let's create our first React application! We'll run the following commands in ou
 
 1. `npm install --global create-react-app`
 2. in your `~/ga` folder, run this command:
- 	```
+ 	```bash
 	$ create-react-app first-react-app 
 	```    
 3. `cd first-react-app`
@@ -35,7 +35,7 @@ Let's create our first React application! We'll run the following commands in ou
 Magic just happened! If everything is working correctly, you should now be staring at a fresh browser tab with a live React application running inside of it. All we had to do was run a few terminal commands. Let's explore what just happened.
 
 * First, we installed the `create-react-app` CLI tool. This is an officially-supported tool that will configure for you a fresh React application, without you having to do any configuration of your own. What does this tool do for us?
-	* If we look into the file structure of the application, the tool gives us a `/src`, `/node_modules` and a `/public` folder. 
+  * If we look into the file structure of the application, the tool gives us a `/src`, `/node_modules` and a `/public` folder. 
 	* The `/src` folder contains all of the code that makes our React app "tick." We'll explore this folder over the next few days.
 	* The tool also sets up a `/node_modules` directory in our React app that manages our dependencies and application scripts. `Yarn` is a wrapper around the `npm` tool we use with Node that adds additional features `npm` does not have. We'll use this tool to start and stop our application, just like we use `npm` with Express.
 	

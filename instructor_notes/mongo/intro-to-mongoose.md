@@ -372,15 +372,14 @@ First let's create an instance of our Student model. Below is an example that de
 var frankie = new StudentModel({ name: "Frankie P.", age: 30 });
 
 // Then we save it to the database using .save
-frankie.save(function(err, student) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  else {
+
+frankie.save()
+  .then((student) => {
     console.log(student);
-  }
-});
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 ```
 
 Run `node db/schema.js` in the Terminal to run it. We can also consolidate this code into a single `.create` method, like so...
@@ -388,15 +387,13 @@ Run `node db/schema.js` in the Terminal to run it. We can also consolidate this 
 ```js
 // in the db/schema.js
 
-StudentModel.create({ name: 'Frankie Q.', age: 31 }, function (err, student) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  else {
+StudentModel.create({ name: 'Frankie Q.', age: 31 })
+  .then((student) {
     console.log(student);
-  }
-});
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 ```
 
 #### Why do we have two different ways to persist something to a database?
@@ -428,14 +425,13 @@ var project1 = new ProjectModel({ title: "memory game", unit: "JS" });
 anna.projects.push(project1);
 
 // In order to save that project to the student, we need to call `.save()` on the student -- not the project.
-anna.save(function(err, student) {
-  if (err) {
-    console.log(err);
-  }
-  else {
-    console.log(student + " was saved to our db!");
-  }
-});
+anna.save()
+  .then((anna) => {
+    console.log(anna)
+  })
+  .catch((error) => {
+
+  })
 ```
 
 Run `node db/schema.js` in the Terminal to run the code.
@@ -489,41 +485,47 @@ var StudentModel = Schema.StudentModel;
 var ProjectModel = Schema.ProjectModel;
 
 // First we clear the database of existing students and projects.
-StudentModel.remove({}, function(err) {
-  console.log(err);
-});
+StudentModel.remove({})
+  .then(() => {
+    console.log('All students deleted!')
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 
-ProjectModel.remove({}, function(err) {
-  console.log(err);
-});
+ProjectModel.remove({})
+  .then(() => {
+    console.log('All projects deleted!')
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 
 // Now, we will generate instances of a Student and of their Project.
-var becky = new StudentModel({name: "Becky"});
-var brandon = new StudentModel({name: "Brandon"});
-var steve = new StudentModel({name: "Steve"});
+const project1 = new ProjectModel({title: "Project 1!!!", unit: "JS"})
+const project2 = new ProjectModel({title: "Project 2!!!", unit: "Express"})
+const project3 = new ProjectModel({title: "Project 3!!!", unit: "Angular"})
+const project4 = new ProjectModel({title: "Project 4!!!", unit: "Rails"})
 
-var project1 = new ProjectModel({title: "Project 1!!", unit: "JS"});
-var project2 = new ProjectModel({title: "Project 2!!", unit: "Express"});
-var project3 = new ProjectModel({title: "Project 3!!", unit: "Angular"});
-var project4 = new ProjectModel({title: "Project 4!!", unit: "Rails"});
+const projects = [project1, project2, project3, project4]
 
-// create two arrays that we can iterate over
-var students = [becky, brandon, steve];
-var projects = [project1, project2, project3, project4];
+const becky = new StudentModel({name: "Becky" , projects: projects})
+const brandon = new StudentModel({name: "Brandon", projects: projects})
+const steve = new StudentModel({name: "Steve", projects: projects})
 
-// Here we assign some projects to each student.
-students.forEach(function(student, i){
-  student.projects.push(projects[i], projects[i + 1]);
+const students = [becky, brandon, steve];
 
-  student.save(function(err) {
-    if(err) {
-      console.log(err);
-      return;
-    }
-    
-    console.log(student);
-  });
-});
+StudentModel.insertMany(students)
+  .then(() => {
+    console.log(`Added ${students.length} students to database.`)
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+  .then(() => {
+    db.close()
+  })
+
 ```
 Now, seed your database by running `node db/seeds.js` in your terminal. Use Ctrl + C to exit running Node.
 
@@ -593,65 +595,67 @@ $ touch controllers/students_controller.js
 ```js
 // in the controllers/students_controller.js
 
-var Schema = require("../db/schema.js");
-var StudentModel = Schema.StudentModel;
-var ProjectModel = Schema.ProjectModel;
+const express = require('express')
+const router = express.Router()
 
-var studentsController = {
-  index: function() {
-    StudentModel.find({})
-    .exec(function(err, students) {
-      if (err) { 
-        console.log(err);
-        return;
-      }
+const Schema = require("../db/schema.js")
+const StudentModel = Schema.StudentModel
+const ProjectModel = Schema.ProjectModel
 
-      students.forEach(function(student) {
-        console.log(student);
-      });
-    });
-  }
-};
+router.get('/', (request, response) => {
+  StudentModel.find({})
+    .then((students) => {
+      response.render('students/index', { 
+        students: students
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
 
-studentsController.index();
+module.exports = router
+
 ```
-Run `node controllers/students_controller.js` in the terminal.
-
-> Every model method that accepts query conditions can be executed by means of a callback or the `exec()` method (which is essentially a Mongoose-y promise). http://mongoosejs.com/docs/promises.html
 
 Now let's create a `show` method...
 
+
 ```js
-// in controllers/students_controller.js
+// in the controllers/students_controller.js
 
-var studentsController = {
-  index: function(){
-    StudentModel.find({})
-    .exec(function(err, students) {
-      if (err) {
-        console.log(err);
-        return;
-      }
+const express = require('express')
+const router = express.Router()
 
-      students.forEach(function(student){
-        console.log(student);
-      });
-    });
-  },
-  show: function(req) {
-    StudentModel.findOne({"name": req.name})
-    .exec(function(err, student) {
-      if (err) { 
-        console.log(err);
-        return;
-      }
-      
-      console.log(student);
-    });
-  }
-};
+const Schema = require("../db/schema.js")
+const StudentModel = Schema.StudentModel
+const ProjectModel = Schema.ProjectModel
 
-studentsController.show({name: "Becky"});
+router.get('/', (request, response) => {
+  StudentModel.find({})
+    .then((students) => {
+      response.send('students/index', { 
+        students: students
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
+
+router.get('/:studentId', (request, response) => {
+  const studentId = request.params.studentId
+
+  StudentModel.findById(studentId)
+    .then((student) => {
+      response.render('students/show', {
+        student: student
+      })
+    })
+})
+
+module.exports = router
+
 ```
 
 <br />
@@ -673,45 +677,53 @@ Then use the [Mongoose documentation](http://mongoosejs.com/docs/api.html#query-
   <summary>**This is how to update...**</summary>
 
   ```js
-  // in controllers/students_controller.js
+  // in the controllers/students_controller.js
 
-  var studentsController = {
-    index: function(){
-      StudentModel.find({})
-      .exec(function(err, students) {
-        if (err) {
-          console.log(err);
-          return;
-        }
+  const express = require('express')
+  const router = express.Router()
 
-        students.forEach(function(student){
-          console.log(student);
-        });
-      });
-    },
-    show: function(req) {
-      StudentModel.findOne({"name": req.name})
-      .exec(function(err, student) {
-        if (err) { 
-          console.log(err);
-          return;
-        }
-        
-        console.log(student);
-      });
-    },
-    // This method takes two arguments: (1) the old instance and (2) what we want to update it with.
-    update: function(req, update) {
-      StudentModel.findOneAndUpdate({ name: req.name }, { name: update.name }, { new: true })
-      .exec(function(err, student) {
-        if (err) { console.log(err); }
-        
-        console.log(student);
-      });
-    }
-  };
+  const Schema = require("../db/schema.js")
+  const StudentModel = Schema.StudentModel
+  const ProjectModel = Schema.ProjectModel
 
-  studentsController.update({name: "Becky"}, {name: "Sarah"});
+  router.get('/', (request, response) => {
+    StudentModel.find({})
+      .then((students) => {
+        response.send('students/index', { 
+          students: students
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  })
+
+  router.get('/:studentId', (request, response) => {
+    const studentId = request.params.studentId
+
+    StudentModel.findById(studentId)
+      .then((student) => {
+        response.render('students/show', {
+          student: student
+        })
+      })
+  })
+
+  router.put('/:studentId', (request, response) => {
+    const studentId = request.params.studentId
+    const updatedStudent = request.body
+
+    StudentModel.findByIdAndUpdate(studentId, updatedStudent, {new: true})
+      .then((student) => {
+        console.log(`${student.name} updated!`)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  })
+
+  module.exports = router
+
   ```
 
   > **Important:** We are inserting {new: true} as an additional option. If we do not, we will get the old document as the return value -- not the updated one.
@@ -723,52 +735,65 @@ Then use the [Mongoose documentation](http://mongoosejs.com/docs/api.html#query-
   <summary>**This is how to delete...**</summary>
 
   ```js
-  // in controllers/students_controller.js
+  // in the controllers/students_controller.js
 
-  var studentsController = {
-    index: function(){
-      StudentModel.find({})
-      .exec(function(err, students) {
-        if (err) {
-          console.log(err);
-          return;
-        }
+  const express = require('express')
+  const router = express.Router()
 
-        students.forEach(function(student){
-          console.log(student);
-        });
-      });
-    },
-    show: function(req) {
-      StudentModel.findOne({"name": req.name})
-      .exec(function(err, student) {
-        if (err) { 
-          console.log(err);
-          return;
-        }
-        
-        console.log(student);
-      });
-    },
-    update: function(req, update) {
-      StudentModel.findOneAndUpdate({ name: req.name }, { name: update.name }, { new: true })
-      .exec(function(err, student) {
-        if (err) { console.log(err); }
-        
-        console.log(student);
-      });
-    },
-    destroy: function(req) {
-      StudentModel.findOneAndRemove({name: req.name})
-      .exec(function(err, student) {
-        if (err) { console.log(err); }
-        
-        console.log(student);
-      });
-    }
-  };
+  const Schema = require("../db/schema.js")
+  const StudentModel = Schema.StudentModel
+  const ProjectModel = Schema.ProjectModel
 
-  studentsController.destroy({name: "Steve"});
+  router.get('/', (request, response) => {
+    StudentModel.find({})
+      .then((students) => {
+        response.send('students/index', { 
+          students: students
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  })
+
+  router.get('/:studentId', (request, response) => {
+    const studentId = request.params.studentId
+
+    StudentModel.findById(studentId)
+      .then((student) => {
+        response.render('students/show', {
+          student: student
+        })
+      })
+  })
+
+  router.put('/:studentId', (request, response) => {
+    const studentId = request.params.studentId
+    const updatedStudent = request.body
+
+    StudentModel.findByIdAndUpdate(studentId, updatedStudent, {new: true})
+      .then((student) => {
+        response.redirect(`/students/${studentId}`)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  })
+
+  router.delete('/:studentId', (request, response) => {
+    const studentId = request.params.studentId
+
+    StudentModel.findByIdAndRemove(studentId)
+      .then(() => {
+        response.redirect('/students')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  })
+
+  module.exports = router
+
   ```
 
 </details>
@@ -866,32 +891,6 @@ var StudentSchema = new Schema({
     ]
   },
 });
-```
->This custom validator will make sure that your user's password is at least six characters long, or it will prevent it from saving the document.
-
-* `.pre` validation: middleware/functions that are passed control during the execution of asynchronous functions.
-
-By using `.pre`, these are executed before the validations happen.
-
-```js
-StudentSchema.pre("save", function(next) {
-    var self = this;
-
-    StudentModel.findOne({email : this.email}, 'email', function(err, results) {
-        if(err) {
-            next(err);
-        }
-        else if(results) {
-            console.warn('results ', results);
-            self.invalidate("email", "email must be unique");
-            next(new Error("email must be unique"));
-        }
-        else {
-            next();
-        }
-    });
-});
-
 ```
 
 -----
