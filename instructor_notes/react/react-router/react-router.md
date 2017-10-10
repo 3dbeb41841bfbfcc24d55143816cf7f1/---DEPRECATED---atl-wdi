@@ -5,6 +5,7 @@
 * Describe the difference between server-side and client-side routing
 * Add client-side routing to our React apps using React Router
 * Set up React Router to enable common browser behavior
+* Understand built in React Router components (Route, Router, Switch, Link, Redirect)
 
 ## Client-side Routing
 
@@ -18,16 +19,17 @@ needs to know where the data lives. Server `routes` help us keep track of this i
 In the browser, things are a little different. When we build Single-Page Applications, we render 
 our data inside of the browser. The data lives on a server, so our data's "addresses" have 
 been defined elsewhere. We only need to know what these pre-defined addresses are to consume them. 
-We'll still have a lot of different `views` for our data however, and we won't want to 
+We'll still have a lot of different `views` for our data, and we won't want to 
 show all of them on the page at once. Client-side `routing` is how we'll describe 
 which views we are showing on the page at any given time.
 
+## Routing in React
+There is no way to handle client-side routing in the React library.  Instead, there are multiple libraries available to handle this specific task.  The most popular library is called `React Router`.  This library is hands down the most popular solution for client-side routing.  Recently, `React Router` made a major overhaul to their library with the release of `v4`.  In the newest version, the team behind `React Router` refactored the library to make everything just a regular React components.  Some online tutorials have not yet updated their libraries, so we recommend using the [official docs](https://reacttraining.com/react-router/)
+
 ## Setting up React Router
 
-While React does not have routing built-in out-of-the-box, the React community has developed a 
-tool to help us solve this problem. [React Router](https://github.com/ReactTraining/react-router)
-is very simple to set up and use, and it will allow us to swap out sets of components using familiar 
-"routing" patterns, rather than writing lots of complicated `if-statements` in our Javascript.
+React Router is going to allow us to swap out sets of components using familiar 
+"routing" patterns, rather than writing lots of complicated `if-statements` in our JavaScript.
 
 To demonstrate the power of this tool, we're going to build a personal banking application, where we can
 independently display the Debits and Credits made to each account.
@@ -62,7 +64,7 @@ React applications, we'll want to use the `BrowserRouter`.
     Let's go into our `App.js` and pull in the `BrowserRouter` as a component called `Router`. 
 Let's also take the opportunity to clear out our React boilerplate and replace it with "Hello, World!":
     
-    ```jsx harmony
+```jsx harmony
     import React, {Component} from 'react';
     import {BrowserRouter as Router} from 'react-router-dom';
     
@@ -77,7 +79,7 @@ Let's also take the opportunity to clear out our React boilerplate and replace i
     }
     
     export default App;
-    ```
+  ```
 
 * Once we've imported our Router, the only set-up left is to wrap our top-level component inside 
 of a `<Router />` component, like so:
@@ -107,7 +109,7 @@ to us. Let's explore!
 
 * Let's add a Home component to our application. The first thing we'll need to do is create our component:
 
-    ```jsx harmony
+```jsx harmony
     // src/components/Home.js
     
     import React, { Component } from 'react';
@@ -124,7 +126,7 @@ to us. Let's explore!
     }
     
     export default Home;
-    ```
+```
 
 * Now that we have a nicely packaged `Home` component, we'll want to display this component on the 
 page instead of the obligatory "Hello, World!". We could simply mount this component on the `App.js` 
@@ -150,16 +152,16 @@ within our `App.js`. Let's try it out:
 
     ```jsx harmony
     import React, {Component} from 'react';
-    import {BrowserRouter as Router, Route} from 'react-router-dom';
+    import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
     import Home from './components/Home';
     
     class App extends Component {
       render() {
         return (
             <Router>
-              <div>
+              <Switch>
                 <Route exact path="/" component={Home}/>
-              </div>
+              </Switch>
             </Router>
         );
       }
@@ -182,6 +184,8 @@ any other component. All we have to do is import it and mount it with some props
 that we are using tell the `Route` to mount a `Home` component any time the browser sees a request to 
 _exactly_ the '/' route. The `exact` prop is very important, so the browser doesn't show 
 our `Home` page when we add any other paths after the initial `/`.
+
+**By Default, more than one route can be rendered at a time. We don't have a use case to show multiple routes, so we will wrap our code in a `<Switch>` component to make sure we only show the results of one route at a time. For more info about switch, check out [this link](https://reacttraining.com/react-router/web/api/Switch)** 
 
 ### Passing Props to Routes
 * Now let's add some `props` to our `Home` component! On our banking home page, we'll want 
@@ -248,12 +252,12 @@ as a prop each time it loads the `Home` component. We might try something like t
     ```jsx harmony
     <Route exact path="/" component={<Home accountBalance={this.state.accountBalance}/>}/>
     ```
-    
+
 * ...but if we check the browser we'll see that this throws an error. `Route` components expect us to 
 pass a "reference" to a component as our `component=` prop. This means we can't pass an already-built 
 component, like the one above. Fortunately, there is a very simple alternative:
     
-    ```jsx harmony
+```jsx harmony
     ...
     render() {
     
@@ -268,13 +272,15 @@ component, like the one above. Fortunately, there is a very simple alternative:
       );
     }
     ...
-    ```
+```
 
 * The `component` prop won't accept a pre-built component, but React Router has provided 
 an alternative `render` method that will. All we have to do is save our component as a variable 
 and pass it straight in as a `prop`.
 
     Now we can refresh the page and see our `Home` page with a proper `AccountBalance`.
+    
+  * Notice the difference between the `render` and `component` prop.  If you need to pass props at the `Router` level, you must use render... otherwise use the `component` prop.
     
 ### Linking to Routes
 
@@ -301,7 +307,7 @@ Let's build out a `UserProfile` page and create a `Route` for it in our `App.js`
     
     export default UserProfile;
     ```
-    
+  
     ```jsx harmony
     // src/App.js
     
@@ -382,6 +388,83 @@ or above the `Link` in our tree of components.**
 * We are now able to view our `UserProfile` component through the `Home` page link, but we are left stranded 
 once we get there. Let's improve our user experience by adding a link back to the `Home` component inside of 
 the `UserProfile` component.
+
+### Programattic Redirects
+
+While the `<Link>` component is really powerful, it requires a user interaction to navigate to another route.  There are plenty of use cases that require a redirect outside of user clicks.  One common example is wanting to redirect after a form is submitted.  When this happens, we need to use the `<Redirect>` component that is build into React Router.  Let's take a look at this mock `Sign In` component that we can add to our bank.
+
+```js
+  // App.js
+  ...
+  mockLogIn = (logInInfo) => {
+    const newUser = {...this.state.currentUser}
+    newUser.userName = logInInfo.userName
+    this.setState({currentUser: newUser})
+  }
+  ...
+  const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} {...this.props}/>)
+  ...
+  <Route exact path="/login" render={LogInComponent}/>
+  ...
+```
+
+```js
+// Login.js
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+
+class LogIn extends Component {
+  constructor () {
+    super()
+    this.state = {
+      user: {
+        userName: '',
+        password: ''
+      },
+      redirect: false
+    }
+  }
+
+  handleChange = (e) => {
+    const updatedUser = {...this.state.user}
+    const inputField = e.target.name
+    const inputValue = e.target.value
+    updatedUser[inputField] = inputValue
+
+    this.setState({user: updatedUser})
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.mockLogIn(this.state.user)
+    this.setState({redirect: true})
+  }
+
+  render () {
+    if (this.state.redirect) {
+      return (<Redirect to="/userProfile"/>)
+    }
+
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label htmlFor="userName">User Name</label>
+            <input type="text" name="userName" onChange={this.handleChange} value={this.state.user.userName} />
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input type="password" name="password" />
+          </div>
+          <button>Log In</button>
+        </form>
+      </div>
+    )
+  }
+}
+
+export default LogIn
+```
 
 ### LAB: Adding Debits and Credits
 
