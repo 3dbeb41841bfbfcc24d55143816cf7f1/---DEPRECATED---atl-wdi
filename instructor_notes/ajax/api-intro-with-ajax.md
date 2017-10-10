@@ -245,8 +245,8 @@ Let's start out by cloning some starter code. The starter code is generated from
 ```bash
   git clone https://github.com/ATL-WDI-Exercises/react-ajax
   cd react-ajax
-  yarn #Or npm install 
-  yarn start #Or npm start
+  npm install 
+  npm start
 ```
 
 If everything installed correctly, you should see a `Hello World!` page.
