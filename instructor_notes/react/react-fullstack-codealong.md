@@ -59,7 +59,7 @@ We're going to be building a lean Express app that will focus mainly on retrievi
 
 ```
 npm init -y
-npm install --save express dotenv body-parser mongoose
+npm install express dotenv body-parser mongoose
 touch server.js
 ```
 
