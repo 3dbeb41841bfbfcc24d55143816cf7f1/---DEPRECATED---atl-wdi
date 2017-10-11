@@ -2,17 +2,17 @@ import React from "react";
 
 // Update this Movie component with info from OMDB
 // BONUS: Use OMDB's Poster API to add a poster to each movie.
-const Movie = ({ title, year, director, genre, plot }) => {
+const Movie = ({ movie }) => {
   return (
     <section id="movie-listing">
       <div className="movie">
-        <h3>{title}</h3>
+        <h3>{movie.Title}</h3>
         <p>
-          <strong>Released:</strong> {year}<br />
-          <strong>Directed By:</strong> {director}<br />
-          <em>Genre:{genre}</em>
+          <strong>Released:</strong> {movie.Year}<br />
+          <strong>Directed By:</strong> {movie.Director}<br />
+          <em>Genre:{movie.Genre}</em>
         </p>
-        <p>{plot}</p>
+        <p>{movie.Plot}</p>
       </div>
     </section>
   );
