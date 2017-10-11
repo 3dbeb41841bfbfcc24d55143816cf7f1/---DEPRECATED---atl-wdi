@@ -47,11 +47,11 @@ Let's start up our application and make sure everything looks good before we mov
 ### Installing React Router:
 
 
-React Router is packaged up nicely in `npm`. We can use `yarn` to quickly pull the Router 
+React Router is packaged up nicely in `npm`. We can use `npm` to quickly pull the Router 
 code into our application. The package we'll need is `react-router-dom`:
 
 ```bash
-$ yarn add react-router-dom
+$ npm add react-router-dom
 ```
 
 ### Setting Up the Router:
