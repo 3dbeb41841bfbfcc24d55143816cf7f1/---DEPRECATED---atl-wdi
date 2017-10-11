@@ -33,24 +33,24 @@ class App extends Component {
     
   }
 
-  _searchById = (id) => {
-    // event.preventDefault()
-    const id = event.target.id.value
-    axios.get(`http://www.omdbapi.com/?apikey=d31f1a94&i=${id}`)
-      .then((response) => {
+  // _searchById = (id) => {
+  //   // event.preventDefault()
+  //   const id = event.target.id.value
+  //   axios.get(`http://www.omdbapi.com/?apikey=d31f1a94&i=${id}`)
+  //     .then((response) => {
         
-        console.log(response)
-          this.setState({
-            title: response.data.Title,
-            year: response.data.Year,
-            director: response.data.Director,
-            genre: response.data.Genre,
-            plot: response.data.Plot
-          }).catch((error) => {
-            console.log(error)
-          })
-      })
-  }
+  //       console.log(response)
+  //         this.setState({
+  //           title: response.data.Title,
+  //           year: response.data.Year,
+  //           director: response.data.Director,
+  //           genre: response.data.Genre,
+  //           plot: response.data.Plot
+  //         }).catch((error) => {
+  //           console.log(error)
+  //         })
+  //     })
+  // }
 
   componentWillMount() {
     
