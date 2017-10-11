@@ -9,14 +9,14 @@ const Search = () => {
       <div className="search">
         <form id="title-search-form" method="get">
           <input type="text" name="title" placeholder="Enter movie title" />
-          <input type="submit" value="Search for this title" />
+          <input onSubmit={(event) => this.props._searchByTitle}type="submit" value="Search for this title" />
         </form>
       </div>
 
       <div className="search">
         <form id="id-search-form" method="get">
           <input type="text" name="id" placeholder="Enter omdb movie ID" />
-          <input type="submit" value="Search by ID" />
+          <input onSubmit={(event) => this.props._searchById} type="submit" value="Search by ID" />
         </form>
       </div>
 
