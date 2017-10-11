@@ -3,14 +3,11 @@ import React, { Component } from 'react'
 class Search extends Component {
   // Update the forms to utilize methods being passed down from App.js,
   // along with the Handle Change Functions to update state
-
-  constructor() {
-    super();
-    state = {
-      title: "",
-      id: ""
-    }
+  state = {
+    title: "",
+    id: ""
   }
+
     // Use this function to update the state as a user types in the "title" input
   handleTitleChange = (event) => {
     event.preventDefault()
