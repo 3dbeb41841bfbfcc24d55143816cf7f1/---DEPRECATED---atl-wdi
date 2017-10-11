@@ -12,7 +12,7 @@ competencies: Full-Stack Applications
 
 ### Objectives
 *After this lesson, students will be able to:*
-- Use MongoDB and Mongoose to persist data to be served to the UI.
+- Use MongoDB and Mongoose to persist data to be served to a React UI.
 - Build an Express server that serves information in a JSON format.
 - Connect API to React via `axios`
 - Deploy the full stack application to Heroku
@@ -22,37 +22,25 @@ We've learned a lot about the modern tooling and practicing around the React eco
 ## MERN Stack
 When you see MERN stack, this is typically just a shorthand way of saying that the application is a full-stack JavaScript app.  The tools that we use for MERN apps are: Mongo (Mongoose), Express, React, and Node.  While there are some boilerplate tools to build out a full MERN stack app, we are going to build our own using `create-react-app` and the Express and Mongo patterns we've used in the past.  This allows us to fully understand our application and prevents introducing a bunch of code that we haven't written and understand.
 
-## Full Stack Jeopardy
-Today we are going to be building a full stack version of Jeopardy!  We will be storing all of our questions in a Mongo database, serving that info via Express, and serving the views using React. Cool!  
+## Idea Board
+Today we are going to be taking advantage of the data persistance of an API and the single page polish that React brings!  Our app is an idea tracker where a user can write out different ideas and save them to a database.  Kinda like leaving post-it notes in the browser!
 
-Before we get started writing our app.  Let's consider the user stories for what we want to build.
+This app will have 2 models- Users and Ideas (which will live inside of users)
 
-### User Stories
-**Client-Side**
-- Given I am a User, When I load the app, Then I am presented an option to play a new game and enter a username.
-- Given I am a User, When I load the app, Then I can select a previously created match to continue.
-- Given I am a User, When I load the app, Then I am able to add new categories and questions to the game.
-- Given I am a User, When I begin a game, Then am presented with a game that has a Jeopardy board, my points, and my name.
-- Given I am a User, When I click on a board value, Then I am given a Jeopardy question.
-- Given I am a User, When I answer a question correctly, Then the game updates the score and disables the question
-
-**Server Side**
-- Given I am a UI, When I make a GET API call for Game, Then I am given an array of Objects to populate a game board
-- Given I am a UI, When I make a POST API call for Game, Then I am able to generate a new Game and with randomly selected categories.
-- Given I am a UI, When I make a PUT API call for Game, Then I am able to update the score of a given game.
-- Given I am a UI, When I make a POST API call for Category, Then I am able to save a new Category of questions.
-
+Here's a GIF representation of the how this may look, though we will also add the ability for a user to 'log in'
+![idea board](https://slack-imgs.com/?c=1&url=https%3A%2F%2Fcdn-images-1.medium.com%2Fmax%2F1600%2F1*SMKZC-Ej73wFOmqNT-JQ7Q.gif)
 
 ### You Do
-Work with the students around you for the next 10 minutes.
-Given these user stories, wireframe what you think the UI will look like.  Document what Components you think we will need in order to build a Jeopardy game with a `Home` route, a `Game` route, and an `AddCategory` route.
+Work with the students around you for the next 10 minutes.  Write out some user stories, sketch some wireframes, and think about out our data model may look like.
 
-Additionally, think about the API routes that we will need.  What sorts of data do we need to save to a database? What routes do we need to make available to the React app?
+Additionally, think about the API routes that we will need. What components do you think we will need? What routes do we need to make available to the React app?
 
 ## Getting Started
-Go ahead and create a repo on github called `fullstack-react-jeopardy`. Make sure to include the `.gitignore` for Node apps.
+Today we will start our project in github instead of locally... just to show an alternative way of getting your project up and running.
 
-After creating the repo, go ahead and clone it locally into your `exercises` folder.
+Go ahead and create a repo on github called `idea-board`. Make sure to include the `.gitignore` for Node apps and a `README`.
+
+After creating the repo, go ahead and clone it locally into your class-exercises folder.
 
 ## Express Set Up
 We're going to be building a lean Express app that will focus mainly on retrieving and serving API information. To start, we are only going to install `express`, `dotenv`, `body-parser`, and `mongoose`
@@ -73,7 +61,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI); //mongodb://localhost/fullstack-jeopardy
+mongoose.connect(process.env.MONGODB_URI); //mongodb://localhost/idea-board
 
 const connection = mongoose.connection;
 connection.on('connected', () => {
@@ -81,7 +69,7 @@ connection.on('connected', () => {
 }); 
 
 // If the connection throws an error
-connection.on('error', (err) => {  
+connection.on('error', (err) => {
   console.log('Mongoose default connection error: ' + err);
 }); 
 
@@ -99,12 +87,11 @@ app.listen(PORT, () => {
 Let's start our app and test that it is working.
 
 > COMMIT!
-[Step 1](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-1)
 
 ## Integrating create-react-app
 Before we start working building out our models and controllers, let's first connect our Express app to React. Use `create-react-app` to get our UI up and running.
 ```bash
-# Inside of Fullstack-React-Jeopardy
+# Inside of Idea-Board
 create-react-app client
 ```
 
@@ -129,19 +116,20 @@ You may have gotten an error that looks something like this:
 ```bash
 ? Something is already running on port 3000. Probably:
   node server.js
-  in /path_to_directory/FullStack-React-Jeopardy
+  in /path_to_directory/Idea-Board
 Would you like to run the app on another port instead? (Y/n)
 ```
 
-Webpack uses the port 3000 when ever we start our application.  This conflicts with our Express server that is also attached to port 3000.  In order to fix this, we will change our Express app to listen on 3001. 
+Webpack uses the port 3000 when ever we start our application.  This conflicts with our Express server that is also attached to port 3000.  In order to fix this, we will change our Express app to listen on 3001.
 
 Now we can run both servers at the same time. We can do that by starting our server in one window and our React app in another.  However, there is a tool we can use to run both of these servers within the same window.
 
 ## Concurrently
+
 In order to run both our server and app at the same time, we are going to use an npm library called [`concurrently`](https://www.npmjs.com/package/concurrently). `concurrently` is going to allow us to run both our api server and webpack server at the same time.
 
 ```bash
-# Inside fullstack-jeopardy directory
+# Inside idea-board directory
 npm install concurrently --save
 ```
 ```json
@@ -149,7 +137,7 @@ npm install concurrently --save
 ...
 "scripts": {
   "start": "node server.js",
-  "dev": "concurrently \"nodemon server.js\" \"cd ./client  && yarn start \" ",
+  "dev": "concurrently \"nodemon server.js\" \"cd ./client  && npm start \" ",
   "test": "echo \"Error: no test specified\" && exit 1"
 },
 ...
@@ -158,7 +146,57 @@ npm install concurrently --save
 Now we can run `npm run dev` and our application will start on both port 3000 and 3001! Let's verify both are working by visiting both ports in the browser.
 
 > COMMIT
-[Step 2](https://github.com/king0120/inclass-fullstack-jeopardy/tree/step-2)
+
+## Deploying The App
+Now that we have an extremely basic Express and React app, let's go ahead and deploy early.  This will be similar to the way we previously deployed server-rendered apps, but with a couple additional steps.
+
+### Building a Production React App
+When we develop React Apps, we use a bunch of extra tools that are unnecessary for a production environment (auto-reloading, error messaging, dev server, etc).  When we are ready to push our app into production, we can use a special script to get a prod ready version of our app.
+
+Within our client folder, we can run a command called `npm run build`.  This will take all of the code that we've been running through webpack and bundle it all into a minified build ready for production deployment.  That will live inside a `build` directory.
+
+After we build the app, we need to let Express know that it needs to be aware of the new static files. Finally, we need to make a get route at the index that will serve the `index.html` of the built production React app.
+
+```js
+...
+  app.use(express.static(__dirname + '/client/build/'));
+...
+  app.get('/', (req,res) => {
+    res.sendFile(__dirname + '/client/build/index.html')
+  })
+...
+```
+
+We can test the production app now, by running `node server.js`.  If our app looks like what we intend, then we can proceed with deploying our app.
+
+Let's update the `package.json` to help Heroku understand more about our app.  We will add a script called `postinstall` which will instruct Heroku to execute the same steps to prepare the app as we took manually.
+
+```js
+...
+  //Set the Heroku version of Node to the most recent available.
+  "engines": {
+    "node": "8.6.0"
+  },
+...
+  "scripts": {
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd ./client  && npm start \" ",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    //Will install the client packages and build the minified UI in Heroku.
+    "postinstall": "cd client && npm install && npm run build"
+  },
+...
+```
+
+Now we can proceed our Heroku deployment like normal.
+
+```bash
+heroku create inclass-idea-board
+heroku addons:create mongolab:sandbox
+git add -A
+git commit -m "commit message" 
+git push heroku master
+```
 
 ## Setting up a Database
 Now that we've verified that we can run both apps at the same time, let's start building out the Schemas for our database.
@@ -383,7 +421,7 @@ class Home extends Component {
 export default Home;
 ```
 
-Unfortunately, when we load our UI we get an error! 
+Unfortunately, when we load our UI we get an error!
 
 ```
 XMLHttpRequest cannot load localhost:3001/api/game. Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https.
@@ -825,53 +863,6 @@ Now there are definitely some improvements we can make here, for example we can 
 We now have a fully feature rich Jeopardy game with multiple routes and a persistent database.  Let's wrap up today by deploying the application on Heroku.
 
 > COMMIT
-
-## Deploying The App
-In order to deploy the app we need to follow several of the same steps that did previously when deploying MEN apps, but with a couple additional steps.
-
-### Building a Production React App
-Within our client folder, we can run a command through `npm` or `yarn` called build.  This will take all of the code that we've been running through webpack and bundle it all into a minified build ready for production deployment.  That will live inside a `build` directory.  
-
-After we build the app, we need to let Express know that it needs to be aware of the new static files. Afterwards, we need to make a get route at the index that will serve the `index.html` of the built production React app.
-
-```js
-...
-  app.use(express.static(__dirname + '/client/build/'));
-...
-  app.get('/', (req,res) => {
-    res.sendFile(__dirname + '/client/build/index.html')
-  })
-...
-```
-We can test the production app now, by running `node server.js`.  If our app looks like what we intend, then we can proceed with deploying our app. 
-
-Let's update the `package.json` to help Heroku understand more about our app.
-```js
-...
-  //Set the Heroku version of Node to the most recent available.
-  "engines": {
-    "node": "8.1.2"
-  },
-...
-  "scripts": {
-    "start": "node server.js",
-    "dev": "concurrently \"nodemon server.js\" \"cd ./client  && yarn start \" ",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    //Will install the client packages and build the minified UI in Heroku.
-    "postinstall": "cd client && npm install && npm run build"
-  },
-...
-```
-
-Now we can proceed our Heroku deployment like normal.
-
-```bash
-heroku create inclass-wdi-jeopardy
-heroku addons:create mongolab:sandbox
-git add -A
-git commit -m "commit message"
-git push heroku master
-```
 
 SUCCESS! We've now build a full stack MERN app in just one day!
 >COMMIT 
