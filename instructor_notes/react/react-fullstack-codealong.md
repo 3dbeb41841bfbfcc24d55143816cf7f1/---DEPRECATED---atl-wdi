@@ -210,10 +210,12 @@ Create a new directory called `db` and create a `schema.js` within there. Create
 * Idea has title, description, and created(Date)
   * Make sure the default value for title and description is something similar to "New Title" and "New Description"
 
+**Take a look at [Sample Project Two](https://github.com/dphurley/sample_project_two) if you need a refresh on how to do this**
+
 > COMMIT
 
 ## Seed Data
-Now that we have 3 models, let's go ahead and supply some seed data.  Let's populate a seeds file with one User with a few ideas.
+Now that we have out 2 models, let's go ahead and supply some seed data.  Let's populate a seeds file with one User with a few ideas.
 
 ```js
 require('dotenv').config()
@@ -252,10 +254,11 @@ Now that we have data within our database, let's use Express to retrieve that in
 
 ```js
 // ./server.js
-  app.use('/api/users', UserController);
-// ./controllers/games
+  app.use('/api/users', UsersController)
+  `
+// ./controllers/users
 const express = require('express')
-const User = require('../models/user')
+const { User } = require('../db/schema')
 const router = express.Router()
 
 router.get('/', (req, res) => {
@@ -278,11 +281,12 @@ We will need to build more routes later in the app, but this will work for the m
 > COMMIT
 > DEPLOY
 
-### Scaffolding out our Jeopardy UI.
-For the UI of our game, lets get started by building out a client side router using `react-router`.
+### Scaffolding out our Idea Page UI.
+For the UI of our game, lets get started by building out a client side router using `react-router`. We'll also install our other dependencies
+
 ```bash
 # inside of client directory
-npm i react-router-dom
+npm i react-router-dom axios styled-components
 ```
 To start, our app will have 3 separate views:
   - `HomePage`
@@ -295,8 +299,9 @@ Within our `components` folder, we will go ahead and create a basic component fo
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import styled from 'styled-components'
-import Home from './components/Home'
-import LogIn from './components/LogIn'
+import HomePage from './components/HomePage'
+import LogInPage from './components/LogInPage'
+import IdeaPage from './components/IdeaPage'
 
 class App extends Component {
   render () {
@@ -335,11 +340,7 @@ Create the home page element with a greeting and a `Link` to the LogIn component
 
 ## LogIn
 
-In order to make API calls, we'll install Axios into our client directory.
-
-```bash
-npm i axios
-```
+In order to make API calls, we'll use Axios.
 
 ```jsx
 import React, { Component } from 'react'
@@ -352,7 +353,7 @@ class LogIn extends Component {
   }
 
   getAllUsers = () => {
-    axios.get('/api/users').then(res => {
+    axios.get('localhost:3001/api/users').then(res => {
       this.setState({users: res.data})
     })
   }
@@ -460,7 +461,7 @@ import styled from 'styled-components'
 class IdeaView extends Component {
   state = {
     user: {
-      userName: 'Jamie'
+      userName: 'Bob'
     },
     ideas: [{
       id: 1,
@@ -468,16 +469,16 @@ class IdeaView extends Component {
       description: 'world'
     }, {
       id: 2,
-      title: 'hello',
-      description: 'world'
+      title: 'hola',
+      description: 'mundo'
     }, {
       id: 3,
-      title: 'hello',
-      description: 'world'
+      title: 'goodnight',
+      description: 'moon'
     }, {
       id: 4,
-      title: 'hello',
-      description: 'world'
+      title: 'greetings',
+      description: 'earthlings'
     }]
   }
 
@@ -486,7 +487,7 @@ class IdeaView extends Component {
       <div>
         <div>
           <h1>{this.state.user.userName}'s Idea Board</h1>
-          <button onClick={this.createIdea}>New Idea</button>
+          <button>New Idea</button>
         </div>
         <div>
           {ideas.map(idea => {
@@ -509,7 +510,7 @@ export default IdeaView
 
 ## You Do
 
-Now that we have the static starter code, let's clean things up and add some styling. Take the code above and refactor it into smaller components.  Nest, use `styled-components` to add some styling to the page.  As a reminder, we ideally want our app to look something like this.
+Now that we have the static starter code, let's clean things up and add some styling. Take the code above and refactor it into smaller components.  Next, use `styled-components` to add some styling to the page.  As a reminder, we ideally want our app to look something like this.
 
 ![idea board](https://slack-imgs.com/?c=1&url=https%3A%2F%2Fcdn-images-1.medium.com%2Fmax%2F1600%2F1*SMKZC-Ej73wFOmqNT-JQ7Q.gif)
 
