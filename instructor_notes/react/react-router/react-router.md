@@ -51,7 +51,7 @@ React Router is packaged up nicely in `npm`. We can use `npm` to quickly pull th
 code into our application. The package we'll need is `react-router-dom`:
 
 ```bash
-$ npm add react-router-dom
+$ npm i react-router-dom
 ```
 
 ### Setting Up the Router:
