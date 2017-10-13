@@ -158,6 +158,7 @@ Within our client folder, we can run a command called `npm run build`.  This wil
 After we build the app, we need to let Express know that it needs to be aware of the new static files. Finally, we need to make a get route at the index that will serve the `index.html` of the built production React app.
 
 ```js
+// inside of server.js
 ...
   app.use(express.static(__dirname + '/client/build/'));
 ...
