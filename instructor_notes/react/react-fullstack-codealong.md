@@ -179,11 +179,12 @@ Let's update the `package.json` to help Heroku understand more about our app.  W
     "node": "8.6.0"
   },
 ...
+//Postinstall will install the client packages and build the minified UI in Heroku.
+
   "scripts": {
     "start": "node server.js",
     "dev": "concurrently \"nodemon server.js\" \"cd ./client  && npm start \" ",
     "test": "echo \"Error: no test specified\" && exit 1",
-    //Will install the client packages and build the minified UI in Heroku.
     "postinstall": "cd client && npm install && npm run build"
   },
 ...
