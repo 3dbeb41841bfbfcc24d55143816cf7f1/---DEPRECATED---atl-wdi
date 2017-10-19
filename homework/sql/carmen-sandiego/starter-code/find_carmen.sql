@@ -5,4 +5,8 @@
 "San-Marino"
 4. SELECT * FROM city where countrycode='SMR'
 "Serravalle"
-5.
+5. The capital of San Marino is San Marino
+6.SELECT * FROM city WHERE name LIKE 'Serr%'
+Serra, Brazil
+7.SELECT * FROM city where population=91084
+She be in Santa Monica dawg
