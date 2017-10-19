@@ -244,12 +244,6 @@ Constraints act as limits on the data that can go in a column.
 
 > [And many more...](http://www.postgresql.org/docs/8.1/static/ddl-constraints.html)
 
-### Example: Garnet
-
-[Here's the super scary schema we use in Garnet.](https://github.com/ga-dc/garnet/blob/master/db/schema.rb) 😱
-
-![garnet_erd](images/Garnet_ERD.png)
-
 ### Defining a Schema
 
 Next we're going to build a schema for a database in a sample application. It can change later on if we need to add / remove tables or columns, but we'll start with something simple.
