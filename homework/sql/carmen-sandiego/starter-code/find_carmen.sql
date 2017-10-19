@@ -6,7 +6,7 @@
 4. SELECT * FROM city where countrycode='SMR'
 "Serravalle"
 5. The capital of San Marino is San Marino
-6.SELECT * FROM city WHERE name LIKE 'Serr%'
-Serra, Brazil
+6.SELECT name FROM city WHERE id ="211"
+Brasilia, Brazil
 7.SELECT * FROM city where population=91084
 She be in Santa Monica dawg
