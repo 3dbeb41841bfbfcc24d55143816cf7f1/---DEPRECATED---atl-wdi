@@ -666,7 +666,7 @@ Finally, let's tie this event to an individual idea.  We COULD attach that to a 
 ## You Do
 Check out the [Synthetic Event docs](https://reactjs.org/docs/events.html) and find the event that allows us to trigger the update whenever a user leaves an input.
 
-> COMMIT 
+> COMMIT
 > DEPLOY
 
 We did it! We now have an app that updates our ideas in real time.  And through using React, we built it in a scalable and easy to read way.
