@@ -17,7 +17,7 @@
 
 ## Framing
 
-![SQL](../images/SQL-vs.-NoSql.png)
+![SQL](../images/sql-v-nosql.png)
 
 *via [SQL vs. NoSQL- What you need to know](http://dataconomy.com/sql-vs-nosql-need-know/)*
 
