@@ -48,7 +48,7 @@ Note the differences between a SQL (e.g.- Postgres) and a No-SQL database (e.g.-
 
 The most popular type of database is a **relational** database. How do they work?
 
-![SQL tables](./images/sql-is-fun.jpg)
+![SQL tables](../images/sql-is-fun.jpg)
 
 *Tabular!*
 
