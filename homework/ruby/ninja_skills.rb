@@ -40,16 +40,70 @@
 # puts "#{name} is a #{what_do}."
 
 #Arrays 
-myFirstArray = []
-myFirstArray = ["a", "b", "c", "d", "e", 1, 2, 3, 4]
-puts myFirstArray.last
-puts myFirstArray.first 
-myFirstArray[1] = "Joe"
-myFirstArray[2] = 3
-myFirstArray.push(true)
-myFirstArray.push(myFirstArray[3].class)
-puts myFirstArray
+# myFirstArray = []
+# myFirstArray = ["a", "b", "c", "d", "e", 1, 2, 3, 4]
+# puts myFirstArray.last
+# puts myFirstArray.first 
+# myFirstArray[1] = "Joe"
+# myFirstArray[2] = 3
+# myFirstArray.push(true)
+# myFirstArray.push(myFirstArray[3].class)
 
+#Hashes
+# myFavoriteAnimals = {
+#     :Edgar => "donkey",
+#     :Bill => "platypus",
+#     :Bob => "horse",
+#     :Hank => "mouse",
+#     :Joe => "shrew"
+# }
+# myFavoriteAnimals[:Edgar] = "bear"
+# puts myFavoriteAnimals
+
+# myFavoriteMovies = {
+
+# }
+# myFavoriteMovies[:StarWars] = "awesome"
+# puts myFavoriteMovies
+
+#Ranges
+firstRange = (1..10)
+range_to_arr = firstRange.to_a
+second_range = (1...1000)
+second_range_to_array = second_range.to_a
+
+# firstRange.each do |num|
+#     num_to_str = num.to_s
+#     puts num_to_str
+# end
+
+# x = 0
+# numbers = []
+
+# while x < 50
+#     numbers.push(second_range_to_array[x])
+#     x += 1
+# end
+
+# puts numbers
+
+# range_times_two=[]
+
+# firstRange.each do |num|
+#     range_times_two.push(num * 2)
+# end
+
+# puts range_times_two
+
+odd_strings = firstRange.map do |num|
+    if num.even?
+        num.to_s
+    else
+        num
+    end
+end
+
+puts odd_strings
 
 
 
