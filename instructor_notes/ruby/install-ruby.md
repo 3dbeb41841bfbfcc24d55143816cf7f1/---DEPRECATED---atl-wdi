@@ -35,9 +35,6 @@ In your bash terminal:
 # rbenv enables us to download Ruby
 brew install rbenv
 
-# ruby-build enables us to install multiple Ruby versions
-brew install ruby-build
-
 # list all the available Ruby versions
 rbenv install -l
 

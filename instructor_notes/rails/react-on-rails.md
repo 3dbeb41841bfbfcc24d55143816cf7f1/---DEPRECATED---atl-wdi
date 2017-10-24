@@ -50,7 +50,7 @@ This sets up our Ruby on Rails API and generates our file structure.  At this po
 {
   "name": "YOUR PROJECT NAME",
   "engines": {
-    "node": "8.2.1"
+    "node": "8.7.0"
   },
   "scripts": {
     "build": "cd client && npm install && npm run build && cd ..",
@@ -177,7 +177,7 @@ class Api::ArtistsController < ApplicationController
 
   def create
     @artist = Artist.create!(artist_params)
-    redirect_to artist_path(@artist)
+    redirect_to api_artist_path(@artist)
   end
 
   def show
@@ -188,13 +188,13 @@ class Api::ArtistsController < ApplicationController
   def update
     @artist = Artist.find(params[:id])
     @artist.update!(artist_params)
-    redirect_to artist_path(@artist)
+    redirect_to api_artist_path(@artist)
   end
 
   def destroy
     @artist = Artist.find(params[:id])
     @artist.destroy
-    redirect_to artists_path
+    redirect_to api_artists_path
   end
 
   private
@@ -261,7 +261,7 @@ We set up our React app during an earlier step, but we still have a couple steps
 Let's go into our client directory and install a few libraries to use in out React project.
 
 ```bash
-  yarn add styled-components axios react-router-dom
+  npm i styled-components axios react-router-dom
 ```
 
 Next we need to add React Router to our project and make a few client-side routes to control the flow of our app.
