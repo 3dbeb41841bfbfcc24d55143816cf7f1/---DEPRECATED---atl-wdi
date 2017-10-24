@@ -21,3 +21,14 @@ puts e
 
 d = e 
 puts d
+
+# challenge 4
+
+christine = "Hi, I'm Christine"
+likesTo = "long walks to the pink trap house"
+puts christine + " and I like " + likesTo
+g = "2"
+gToNumber = 2
+puts g + gToNumber
+# error; g.to_i will puts a value 4 as an integer in terminal
+# gToNumber.to_s will puts string '22' in terminal
