@@ -322,10 +322,10 @@ class ArtistList extends Component {
   }
 
   componentWillMount(){
-    this._fetchArtists();
+    this.fetchArtists();
   }
 
-  _fetchArtists = async () => {
+  fetchArtists = async () => {
     try {
       const res = await axios.get('/api/artists');
       await this.setState({artists: res.data});
@@ -363,7 +363,7 @@ export default ArtistList;
 You probably noticed above that we didn't use a `.then` & `.catch` block in the above code.  Instead we used some keywords you many not be familiar with, `async` and `await`.  This is a new feature of ES7, can be used with `create-react-app`, and was introduced in Node 8.  Basically, this new syntax makes asynchronous code look a little cleaner.  It achieves the same purpose as traditional promises.
 
 ```jsx
-  _fetchArtists = () => {
+  fetchArtists = () => {
     axios.get('/api/artists').then(res => {
       return this.setState({artists: res.data});
     }).catch(err => {
@@ -375,7 +375,7 @@ You probably noticed above that we didn't use a `.then` & `.catch` block in the 
 vs
 
 ```jsx
-  _fetchArtists = async () => {
+  fetchArtists = async () => {
     try {
       const res = await axios.get('/api/artists');
       await this.setState({artists: res.data});
@@ -413,10 +413,10 @@ class Artist extends Component {
 
   componentWillMount() {
     const artistId = this.props.match.params.id;
-    this._fetchArtists(artistId)
+    this.fetchArtists(artistId)
   }
 
-  _fetchArtists = async (artistId) => {
+  fetchArtists = async (artistId) => {
     try {
       const response = await axios.get(`/api/artists/${artistId}/songs`)
       await this.setState({artist: response.data.artist, songs: response.data.songs});
@@ -510,6 +510,17 @@ DeviseTokenAuth.setup do |config|
 end
 ```
 
+Additionally, `devise_token_auth` also tries to send a confirmation e-mail whenever a new user is created.  We can get rid of that by removing `:confirmable` from the User model.
+```ruby
+class User < ActiveRecord::Base
+  # Include default devise modules.
+  devise :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :trackable, :validatable,
+          :confirmable, :omniauthable
+  include DeviseTokenAuth::Concerns::User
+end
+```
+
 Run `rails db:migrate`. After we migrate, we should have the basic auth set up for our back end rails server.
 
 **COMMIT**
@@ -584,17 +595,17 @@ class SignUpLogIn extends Component {
     }
   }
 
-  _signUp = (e) => {
+  signUp = (e) => {
     e.preventDefault();
     this.setState({redirect: true})
   }
 
-  _signIn = (e) => {
+  signIn = (e) => {
     e.preventDefault();
     this.setState({redirect: true})
   }
 
-  _handleChange = (e) => {
+  handleChange = (e) => {
     const newState = {...this.state};
     newState[e.target.name] = e.target.value;
     this.setState(newState);
@@ -606,22 +617,22 @@ class SignUpLogIn extends Component {
     }
     return (
       <div>
-        <form onSubmit={this._signUp}>
+        <form onSubmit={this.signUp}>
           <div>
             <label htmlFor="email">E-mail: </label>
-            <input onChange={this._handleChange} type="text" name="email" value={this.state.email} />
+            <input onChange={this.handleChange} type="text" name="email" value={this.state.email} />
           </div>
           <div>
             <label htmlFor="password">Password: </label>
-            <input onChange={this._handleChange} type="text" name="password" value={this.state.password} />
+            <input onChange={this.handleChange} type="text" name="password" value={this.state.password} />
           </div>
           <div>
             <label htmlFor="password">Confirm Password: </label>
-            <input onChange={this._handleChange} type="text" name="password_confirmation" value={this.state.password_confirmation} />
+            <input onChange={this.handleChange} type="text" name="password_confirmation" value={this.state.password_confirmation} />
           </div>
           
           <button>Sign Up</button>
-          <button onClick={this._signIn}>Log In</button>
+          <button onClick={this.signIn}>Log In</button>
         </form>
       </div>
     );
@@ -673,7 +684,7 @@ Before continuing, let's lock down our controllers by adding `before_action :aut
 We now need to focus on our SignUpLogIn component and set up the axios call that will handle the POST request for signing up and signing in.
 
 ```jsx
-  _signUp = async (e) => {
+  signUp = async (e) => {
     e.preventDefault();
     const payload = {
       email: this.state.email,
@@ -715,7 +726,7 @@ export function saveAuthTokens(headers){
 Now we need to import this in our SignUpLogIn component and add the function after the response of your Axios post.
 
 ```js
-  _signUp = async (e) => {
+  signUp = async (e) => {
     e.preventDefault();
     const payload = {
       email: this.state.email,
