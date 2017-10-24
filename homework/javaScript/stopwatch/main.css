@@ -7,6 +7,7 @@ See LICENSE for details.
 body {
   padding: 10px 20% 10px;
   text-align: center;
+  font-family: 'Orbitron', sans-serif;
 }
 
 main, aside {

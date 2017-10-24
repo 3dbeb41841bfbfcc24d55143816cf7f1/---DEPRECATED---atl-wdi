@@ -60,14 +60,45 @@ track of whether tasks have been completed, it will also keep track of
 how long each task took to complete. Tasks can be grouped into 'projects' to
 keep them organized.
 
-> Answer here
+var tasks = {
+  title: 
+  description:
+  dateStart
+  dateDue:
+  projectType:
+  duration:
+  completionStatus:
+}
+var projects = {
+  projectName:
+  tasksForProject:
+  projectStart
+  projectEnd:
+}
+This would allow you to create detailed tasks with start/end dates as well as time to complete them. They can be grouped into projects that can have their own start and end dates.
 
 ### 2. Photo Sharing App
 
 In this app, users can upload photos to their accounts and share them with others. These photos can be grouped into albums.
 
-> Answer here
+var users = {
+  username:
+  aboutMe:
+  pics: 
+  albums:
+}
 
+var photos = {
+  title: 
+  datePosted:
+  hostURL:
+}
+
+var albums = {
+  title:
+  photoSet:
+}
+Each user would have a profile page with all of their albums and photos. The albums can be customized to have particular photos grouped together. 
 ### 3. Home Automation Manager
 
 This app will be a tool for managing a home automation system; it will keep
@@ -75,16 +106,45 @@ track of the time and temperature of the house that it monitors, and use that
 information to turn on and off different lights and adjust the thermostat up
 and down.
 
-> Answer here
+const lights = {
+  timesToActivate:
+  timesToDeactivate:
+  lightLocations:
+  brightness:
+}
 
+const temp = {
+  defaultTemp:
+  tempAtCertainTimes: 
+  
+}
+Users can set a default temp, and set it to a different one at different parts of the day. Users can adjust the lights to turn on or dim at certain parts of the day as well.
 ### 4. Sneaker Store
 
 This app will allow customers to browse a list of products (sneakers, in this
 case), add those products to a cart, and save that cart as a past order once the
 purchase is complete.
 
-> Answer here
-
+var products = {
+  description:
+  price:
+  colors: 
+  brand:
+  search:
+}
+var users = {
+  email:
+  billingInfo:
+  mailingInfo:
+  cartsSaved:
+}
+var checkout = {
+  name: 
+  mailingAdd:
+  billingInfo:
+  orderDetails:
+}
+Users can search through all the products by a particular brand or color. Users can save their info for repeat orders
 ## Representing Abstractions in Code
 
 Once you've chosen the abstractions that your app will use, the next step is to
@@ -139,7 +199,7 @@ var exampleLine = {
 
 What are some advantages and disadvantages of choosing these representations? Please give at least one example of each.
 
-> Answer here
+It has descriptions of each station and where they're located, which is good. However, if the app is supposed to tell you where to get off, or how many stops are left to your destination, it doesn't appear to have a way to tell you that as currently written.
 
 ### 6. Doctor Appointment App
 
@@ -242,7 +302,9 @@ Under what circumstances might one representation be a better choice than the
 other? Are there any circumstances in which the other representation might be
 the better choice?
 
-> Answer here
+In the first approach, it seems like it would be difficult to track the appointments of individual patients since they all branch off the individual doctors. If the app was solely for doctors tracking their own individual appts it might be a good choice.
+
+In the second approach, the patients and doctors are separate objects, so I would think that would be easier to keep track of both doctors and patients.
 
 ## Tying It Together
 
@@ -253,13 +315,48 @@ You've been tasked with building an in-browser tic-tac-toe game.
 a.  What are some possible entities that your application might use to model its
     data? Please pick at least two, with at least two properties apiece.
 
-  > Answer here
+GameBoard 
+  Declare a size
+  Make clickable squares
+  Define moves
+
+Players 
+  Define players 1 & 2
+  Player 1 = X, player 2 = O
+
+ScoreBoard //To keep track of games won and lost
+  wins:
+  losses:
+
+Moves 
+  //18 possible moves, x or o in each of the 9 squares
+}
 
 b.  How might those entities be represented in JavaScript code?
 
-  > Answer here
+ var gameBoard = { 
+  size:
+  //9 individual squares
+  clickableSquares: {
+    blank:
+    x:
+    o:
+  }
+  xsAndOs:
+}
+var players = {
+  playerOne: "X"
+  playerTwo: "O"
+}
+var scoreBoard { //To keep track of games won and lost
+  wins:
+  losses:
+}
+var moves = {
+  //18 possible moves, x or o in each of the 9 squares
+}
 
 c.  Justify your choices in a) and b). Why these entities? Why these
     representations?
 
-  > Answer here
+You obviously have to have 2 players for tic-tac-toe and you have to make it so players can effectively take turns. The app has to generate the board to start play, and there are 18 possible moves for the players to make: each square can be either an x or an O. It would make sense for each square to have a blank state, an x state, and an o state. I would then write some sort of conditional to execute when there are 3 x's or o's in a row.

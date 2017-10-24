@@ -9,7 +9,8 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var hbs = require("hbs");
 var logger = require('morgan');
-
+mongoose.Promise = global.Promise
+mongoose.connect('mongodb://localhost/donut_store')
 
 //======================
 // MIDDLEWARE
@@ -36,10 +37,28 @@ app.use('/seed', seedController);
 var donutsController = require('./controllers/donuts.js');
 app.use('/', donutsController);
 
+
 //======================
 // LISTENERS
 //======================
 //CONNECT MONGOOSE TO "donut_store"
+const db = mongoose.connection
 
+// Will log an error if db can't connect to MongoDB
+db.on('error', function (err) {
+    console.log(err);
+});
+
+// Will log "database has been connected" if it successfully connects.
+db.once('open', function () {
+    console.log("database has been connected!");
+});
+
+
+
+const port = 3000;
+app.listen(port, () => {
+    console.log(`Express started on ${port}`)
+})
 
 //CREATE THE MONGOOSE CONNECTION and SET APP TO LISTEN to 3000

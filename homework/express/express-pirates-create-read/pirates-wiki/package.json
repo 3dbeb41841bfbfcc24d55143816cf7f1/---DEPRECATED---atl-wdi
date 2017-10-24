@@ -1,7 +1,6 @@
 {
   "name": "pirates_crud_part_one_solution",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,9 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.14.2",
+    "body-parser": "^1.18.1",
     "express": "^4.13.4",
     "hbs": "^2.9.0",
+    "method-override": "^2.3.9",
     "morgan": "^1.6.1"
-  }
+  },
+  "description": ""
 }

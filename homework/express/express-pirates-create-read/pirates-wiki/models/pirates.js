@@ -1,4 +1,4 @@
-module.exports = [
+allThePirates = [
 	{
 	  name: 'Anne Bonny',
 	  birthplace: 'Kinsale, Ireland',
@@ -91,3 +91,4 @@ module.exports = [
 	  nickname: "Captain Kidd"
 	}
 ];
+module.exports = {allThePirates}

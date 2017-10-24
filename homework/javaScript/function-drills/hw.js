@@ -10,7 +10,13 @@
 // Input: an array of numbers
 // Output: the sum of the numbers that were passed in
 // Edge Case: If the array is empty, return 0
-var sumOfNums = function(numsArray){
+var arrayOne = [1, 2, 3, 4];
+var sumOfNums = arrayOne.reduce(function(accumulator, currentValue) {
+  return accumulator + currentValue;
+});
+console.log(sumOfNums);
+  
+
   // Your Code Here
 };
 
@@ -18,24 +24,52 @@ var sumOfNums = function(numsArray){
 // Input: an array of numbers
 // Output: an array of the numbers from the first array that are strictly
 //         greater (i.e. greater than but not equal to) than 10
-var numsGreaterThanTen = function(numsArray){
-  // Your Code Here
-};
+var numsArray = [1, 13, 14, 4, 16];
+var greaterThanTen = [];
+function numsGreaterThanTen() {
+  for (var i = 0; i < numsArray.length; i++) {
+    if (numsArray[i] > 10) {
+      greaterThanTen.push(numsArray[i]);
+    }
+  }
+}
+numsGreaterThanTen(numsArray);
+greaterThanTen;
+
+
 
 // #3
 // Input: an array of numbers
 // Output: `true` if ALL numbers passed in are strictly greater than 10;
 //         `false` otherwise
 // Edge Case: If the input array is empty, the function should return `true`.
-var allGreaterThanTen = function(numsArray){
-  // Your Code Here
+var areTheyBigger = true;
+numsArray = [19, 17];
+function allGreaterThanTen(numsArray) {
+  for (var i = 0; i < numsArray.length; i++) {
+    if (numsArray[i] < 10) {
+      areTheyBigger = false;
+    }
+  }
+}
+allGreaterThanTen(numsArray);
+areTheyBigger;
 };
 
 // #4
 // Input: an array of words
 // Output: an array of all words from the first array with five or more letters
-var wordsWithAtLeastFiveLetters = function(words){
-  // Your Code Here
+var words = ["things", "stuff", "pandas", "blue", ""];
+var bigWords = [];
+function wordsWithAtLeastFiveLetters(words) {
+  for (var i = 0; i < words.length; i++) {
+    if (words[i].length >= 5) {
+      bigWords.push(words[i]);
+    }
+  }
+}
+wordsWithAtLeastFiveLetters(words);
+bigWords;
 };
 
 // #5
@@ -43,15 +77,35 @@ var wordsWithAtLeastFiveLetters = function(words){
 // Output: `true` if ALL words start with the letter 'a' (case-insensitive),
 //          `false` otherwise
 // Edge Case: If the array is empty, the function should return `true`.
-var allStartingWithA = function(words){
-  // Your Code Here
+var words = ["aardvark"];
+function allStartingWithA(words) {
+  for (var i = 0; i < words.length; i++) {
+    if (words[i].charAt(0) !== "a" || words[i].charAt(0) !== "A") {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+}
+allStartingWithA(words);
 };
 
 // #6
 // Input: an array of words
 // Output: `true` if there are ANY words that start with the letter 'b'
 //          (case-insensitive), `false` otherwise
-var anyStartingWithB = function(words){
+var anyBs = false; 
+var words = ["aardvark", "ox", "cat", "dog"];
+function anyStartingWithB(words) { 
+  for (var i = 0; i < words.length; i++) {
+    if (words[i].charAt(0) === ("b" || "B")) {
+      anyBs = true;
+    }
+  }
+}
+anyStartingWithB(words);
+anyBs;
   // Your Code Here
 };
 
@@ -61,16 +115,47 @@ var anyStartingWithB = function(words){
 //          `false` otherwise
 //    Assume that vowels are 'a', 'e', 'i', 'o', and 'u' (NOT 'y')
 // Edge Case: If `n` is less than zero, return `null`.
-var hasAtLeastNVowels = function(word, n){
-  // Your Code Here
-};
-
+var vowels = ["a", "e", "i", "o", "u"]
+var hasAtLeastNVowelsvar = function(word) {
+  for (var i = 0; i < word.length; i++) {
+    for (var j = 0; j < vowels.length; j++) {
+      if (word[i] === vowels[j]) {
+        vowels.push([j]);
+          if (vowels.length >= 2) {
+            return true;
+          }
+          else {
+            return false;
+          }
+      }
+      else {
+        return false;
+      }
+    }
+  }
+}
+hasAtLeastNVowels("a");
 // #8
 // Input: an array of words
 // Output: an array of words from the original array that have at least two
 //          vowels
-var wordsWithAtLeastTwoVowels = function(words){
-  // Your Code Here
+var vowels = ["a", "e", "i", "o", "u"];
+var hasAtLeastNVowels = function(word, n) {
+  for (var i = 0; i < word.length; i++) {
+    for (var j = 0; j < vowels.length; j++) {
+      if (word.charAt(i) === vowels[j]) {
+        var vowelArray = word[i];
+          if (vowelArray.length >= n) {
+            return true;
+        }
+    }
+    else {
+      return false;
+    }
+  }
+}
+}
+hasAtLeastNVowels("something", 3);
 };
 
 // #9

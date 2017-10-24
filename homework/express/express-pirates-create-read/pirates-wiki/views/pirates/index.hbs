@@ -1,0 +1,18 @@
+<h1>These are all the fuggin pirates</h1>
+
+<ul>
+  {{#each pirates}}
+    <li>name: {{name}}</li>
+    <li>birthplace: {{birthplace}}</li>
+    <li>death_year: {{death_year}}</li>
+    <li>base: {{base}}</li>
+    <li>nickname: {{nickname}}</li>
+    <div><a href="/pirates/{{@index}}/edit">Edit</a></div>
+    <form action="/pirates/{{@index}}?_method=DELETE" method="POST">
+      <input type="submit" value="DELETE"/>
+    </form>
+    <br>
+  {{/each}}
+</ul>
+
+<a href="/pirates/new">Add a pirate!</a>

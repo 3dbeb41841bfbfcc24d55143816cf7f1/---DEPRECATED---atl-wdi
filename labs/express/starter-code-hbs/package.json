@@ -4,13 +4,15 @@
   "description": "An app to build your own custom burger",
   "main": "server.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.1",
     "ejs": "^2.4.1",
-    "express": "^4.13.4",
+    "express": "^4.15.4",
     "hbs": "^4.0.0",
     "morgan": "^1.6.1"
   }

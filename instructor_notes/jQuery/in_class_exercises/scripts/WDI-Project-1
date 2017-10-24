@@ -1,0 +1,110 @@
+const wordBank = [//all word/def pairs for gameplay
+    {
+        word: "element",
+        blanks: [],
+        definition: "An individual component of an HTML document or web page. (7 letters)",
+       
+    },
+
+    {
+        word: "selector",
+        blanks: [],
+        definition: "Are used to select the element(s) you want to style. (8 letters)",
+        
+    },
+
+    {
+        word: "function",
+        blanks: [],
+        definition: "A reusuable block of code that does something in a script (8 letters)",
+       
+    },
+    
+    {
+        word: "variable",
+        blanks: [],
+        definition: "Something that you assign a value to. (8 letters)",
+       
+    },
+
+    {
+        word: "loop",
+        blanks: [],
+        definition: "A kind of function that carries out a block of code a specified # of times. (4 letters)",
+        
+    },
+    
+    {
+        word: "jquery",
+        blanks: [],
+        definition: "A library of functions that allows developers to manipulate the DOM more efficiently. (6 letters)",
+
+    }
+]
+
+$(document).ready(function(){
+    let randWord = Math.floor(Math.random() * wordBank.length) 
+    let wordInPlay = wordBank[randWord].word
+    let blanksInPlay = wordBank[randWord].blanks
+    let defInPlay = wordBank[randWord].definition
+    let wordArray = wordInPlay.split("")
+    $("#startButton").click(function() {
+        $("#hint").html(defInPlay)
+        $("#blanks").html(blanksInPlay)
+        for (var i = 0; i < wordInPlay.length; i++) {
+            $("#blanks").html("_")
+            
+        }
+    });
+    $(".letter").click(function() {
+        $(this).prop("disabled", true)
+    });
+    $(".letter").click(function() {
+        let letterVal = ($(this).attr('value'))
+        for (var i = 0; i < wordArray.length; i++) {
+            if (letterVal === wordArray[i]) {
+                blanksInPlay.splice([i], 1, letterVal)
+                $("#blanks").html(blanksInPlay)
+            }
+        }
+    });
+    function resets() {
+        wordInPlay = ""
+        blanksInPlay = ""
+        defInPlay = ""
+        letterVal = ""
+        wordArray = []
+        failCount = 0
+    }
+    $(".letter").click(function() {
+        let letterVal = ($(this).attr('value'))
+        let winCount = document.getElementById("winCount")
+        let failCount = document.getElementById("failCount")
+        let bodyCount = document.getElementById("bodyCount")
+        if (wordInPlay === blanksInPlay.join("")) {
+            $(".letter").prop("disabled", false)
+            setTimeout(function() { $("#hint").html("You win!") }, 1500);
+            var number = winCount.innerHTML
+            number++
+            winCount.innerHTML = number
+            //$("#nextButton").show
+            resets()
+        }
+        if (!wordInPlay.includes(letterVal)) {
+            
+            var number = failCount.html
+            number++
+            failCount.innerHTML = number
+        }
+        if (number === 6) {
+            $(".letter").prop("disabled", false)
+            setTimeout(function() { $("#hint").html("You lost :(") }, 1500);
+            $(".start").hide()
+            $(".lose").show()
+            num = bodyCount.innerHTML
+            num++
+            bodyCount.innerHTML = number
+            resets()
+        }
+    });
+});

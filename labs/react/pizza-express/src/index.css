@@ -84,6 +84,7 @@ a:visited{
   color: white;
   text-shadow: 1px 2px 2px #000;
   font-size: 2.5rem;
+  text-align: center
 }
 
 .menu-container{
@@ -129,6 +130,7 @@ a:visited{
   color: white;
   text-shadow: 1px 2px 2px #000;
   font-size: 2.5rem;
+  text-align: center
 }
 
 .locations{
@@ -143,6 +145,7 @@ a:visited{
   width: 30%;
   padding: 10px;
   border: 2px solid rgba(255,255,255,.85);
+  text-align: center
 } 
 
  /* Contact Styles  */
@@ -151,8 +154,10 @@ a:visited{
   color: white;
   text-shadow: 1px 2px 2px #000;
   font-size: 2.5rem;
+  text-align: center
 }
 
 .contact{
   color: rgba(255,255,255,.85);
+  text-align: center
 }

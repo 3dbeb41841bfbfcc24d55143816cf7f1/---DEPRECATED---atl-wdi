@@ -1,0 +1,13 @@
+<h1>Create a new todo</h1>
+<form method="POST" action="/todos">
+  <div>
+    <label for="description">description:</label>
+    <input name="description">
+  </div>
+  <div>
+    <label for="urgent">urgent: </label>
+    <span>yes</span><input type='radio' name='urgent' value="true" checked>
+    <span>no</span><input type='radio' name='urgent' value="false"/>
+    <button>submit</button>
+  </div>
+</form>
