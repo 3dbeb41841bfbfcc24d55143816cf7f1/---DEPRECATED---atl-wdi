@@ -95,17 +95,28 @@ second_range_to_array = second_range.to_a
 
 # puts range_times_two
 
-odd_strings = firstRange.map do |num|
-    if num.even?
-        num.to_s
+# odd_strings = firstRange.map do |num|
+#     if num.even?
+#         num.to_s
+#     else
+#         num
+#     end
+# end
+
+# puts odd_strings
+
+# Sum of natural numbers
+
+sum = 0
+(1..1000).each do |num|
+    if num % 3 != 0 || num % 5 != 0
+        next
     else
-        num
+        sum += num
     end
 end
 
-puts odd_strings
-
-
+puts sum
 
 
 
