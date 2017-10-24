@@ -67,10 +67,10 @@
 # puts myFavoriteMovies
 
 #Ranges
-firstRange = (1..10)
-range_to_arr = firstRange.to_a
-second_range = (1...1000)
-second_range_to_array = second_range.to_a
+# firstRange = (1..10)
+# range_to_arr = firstRange.to_a
+# second_range = (1...1000)
+# second_range_to_array = second_range.to_a
 
 # firstRange.each do |num|
 #     num_to_str = num.to_s
@@ -107,18 +107,24 @@ second_range_to_array = second_range.to_a
 
 # Sum of natural numbers
 
-sum = 0
-(1..1000).each do |num|
-    if num % 3 != 0 || num % 5 != 0
-        next
-    else
-        sum += num
-    end
+# sum = 0
+# (1..1000).each do |num|
+#     if num % 3 != 0 || num % 5 != 0
+#         next
+#     else
+#         sum += num
+#     end
+# end
+
+# puts sum
+
+# Prime numbers
+
+def check_prime(num)
+    puts Prime.instance.prime?(num)
 end
 
-puts sum
-
-
+check_prime(19)
 
 
 
