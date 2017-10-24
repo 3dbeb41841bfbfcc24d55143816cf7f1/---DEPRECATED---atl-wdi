@@ -29,6 +29,16 @@ likesTo = "long walks to the pink trap house"
 puts christine + " and I like " + likesTo
 g = "2"
 gToNumber = 2
-puts g + gToNumber
+puts g.to_i + gToNumber
 # error; g.to_i will puts a value 4 as an integer in terminal
 # gToNumber.to_s will puts string '22' in terminal
+
+#challenge 5
+
+#challenge 6
+myFirstArray = [] 
+myFirstArray = ["adam", "brad", "casey", "doug", "ethel", 1, 2, 3, 4]
+puts myFirstArray[8]
+puts myFirstArray[0]
+myFirstArray[1] = "Joe"
+myFirstArray[2] = 3
