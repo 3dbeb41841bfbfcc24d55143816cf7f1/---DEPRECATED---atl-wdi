@@ -329,8 +329,6 @@ Author.joins("JOIN books ON books.author_id = author.id")
 ```
 
 ## Exercise
-[Libary SQL](https://github.com/ATL-WDI-Curriculum/atl-wdi-9/tree/master/unit_04/w11d04/student_labs/library_sql) but with ActiveRecord.
+[Libary SQL](https://github.com/ATL-WDI-Curriculum/atl-wdi/tree/master/labs/sql/library_sql) but with ActiveRecord.
 
-[Basic Queries](https://github.com/ATL-WDI-Curriculum/atl-wdi-9/blob/master/unit_04/w11d04/student_labs/library_sql/basic_queries.sql)
-
-[Advanced Queries](https://github.com/ATL-WDI-Curriculum/atl-wdi-9/blob/master/unit_04/w11d05/instructor_notes/sql_advanced_sol.sql)
+Complete both Basic and Advanced queries using Active Record.
