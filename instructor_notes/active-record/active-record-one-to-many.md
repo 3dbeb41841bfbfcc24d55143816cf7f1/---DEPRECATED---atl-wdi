@@ -26,11 +26,9 @@ _After this lesson, students will be able to:_
 - Access and use `rails console`
 - Perform CRUD actions on one model
 
-
 ## Framing: Review One-to-Many Relationships (5 min)
 
-
-Previously, we created a Rails app using an `Artist` as our model. In this lesson, we're gonna add a `Song` model that will belong to the `Artist`. Since an `Artist` typically has many songs we're gonna create a One to Many Relationship between the two models.
+We are going to build another music app today to explore one-to-many relationships in ActiveRecord. We've explored one-to-many relationships previously with Mongoose, and we'll be able to explore many similarities and differences between how Mongoose and ActiveRecord handle this behavior as ODM / ORMs.
 
 **YOU DO**- What are some other examples of one-to-many relationships that you can think of?
 
@@ -38,25 +36,32 @@ Previously, we created a Rails app using an `Artist` as our model. In this lesso
 * A `Album` has many  `Songs`
 * A `Movie` has many `Actors`
 
-In our Muse app, an `Artist` will have many instances of  `Song`.
+In our app, an `Artist` will have many instances of  `Song`.
 We need a way to represent this type of many to many relationship!
 
 ## Primary and Foreign keys
 
 Here is an example of a one-to-many relationship from the Rails Docs. 
 
-
 ![](screenshots/rails-has-many-diagram.png)
 <br>
 
-Note that both authors and books each have their own `id` field. These are primary keys. 
+Note that both Artists and Songs each have their own `id` field. These are primary keys. 
 
-Now, how can we relate the books that belong to a given author? We add an `author_id` field, or foreign key, to the books table. The `author_id` will be the `id` of the author who wrote  the book.
+Now, how can we relate the Songs that belong to a given Artist? We add an `artist_id` field, or foreign key, to the `songs` table. The `artist_id` will be the `id` of the Artist who wrote the Song.
 
 
 <br>
 
-### Generating the Model / Migration (5 min)
+### Generating the Models / Migrations (5 min)
+
+First we'll need to generate our Artist model. 
+
+1. From the command line, generate our `Artist` model:
+
+    ```bash
+    rails g model Artist name
+    ```
 
 We can generate the `Song` model just like our `Artist` model! If we specify the attributes (i.e.
 columns on the command line, Rails will automatically generate the correct migration for us.)
@@ -70,8 +75,10 @@ columns on the command line, Rails will automatically generate the correct migra
     ```
     - We'll see shortly that `artist:references` will add a foreign key field of `artist_id` to our songs table
 
+**CFU: If we needed to manually add an `artist_id` column, how would we accomplish this?**
 
-2. Run `rails db:migrate`. This will generate a Song model, with `artist_id`, `title`, and `genre` columns. We can look at `db/schema.rb` file to confirm:
+
+2. Run `rails db:migrate`. This will generate the Artist and Song models, with `artist_id` added to the Song. We can look at `db/schema.rb` file to confirm:
 
     ![](screenshots/schema.png)
 
@@ -81,7 +88,7 @@ columns on the command line, Rails will automatically generate the correct migra
 
 ### Adding the Active Record Relationships (5 min)
 
-We need to update our models to indicate the associations between them. For Muse, our models should look like so:
+We need to update our models to indicate the associations between them. For our app, the models should look like so:
 
 ```ruby
 # app/models/artist.rb
@@ -115,35 +122,40 @@ end
 
 Cool, like before, let me give you some song data to seed your database with songs:
 
-1. Add this above your Artist seeds in db/seeds.rb:
+1. Add this above your seeds in `db/seeds.rb`:
 
 ```ruby
 Artist.destroy_all
 ```
 
-1. Add this below your Artist seeds in db/seeds.rb:
+1. Add these Artist and Song seeds in db/seeds.rb:
 
 ```ruby
-Song.create(artist_id: 1, title: "Umbrella", genre: "Pop")
-Song.create(artist_id: 2, title: "Shake It Off", genre: "Pop")
-Song.create(artist_id: 3, title: "Pressure", genre: "Rock")
-Song.create(artist_id: 4, title: "Hotline Bling", genre: "Rap")
-Song.create(artist_id: 5, title: "Lemonade", genre: "R&B")
+Artist.create(name: 'Rihanna')
+Artist.create(name: 'Nancy Sinatra & Lee Hazlewood')
+Artist.create(name: 'The Replacements')
+Artist.create(name: 'Taylor Swift')
+Artist.create(name: 'Oingo Boingo')
+
+Song.create(artist_id: 1, title: 'Umbrella', genre: 'Pop')
+Song.create(artist_id: 2, title: 'Summer Wine', genre: 'Pop')
+Song.create(artist_id: 3, title: 'I.O.U.', genre: 'Punk')
+Song.create(artist_id: 4, title: 'Out of the Woods', genre: 'Pop')
+Song.create(artist_id: 5, title: 'Dead Man's Party', genre: 'Oingo Boingo')
 ```
     
 3. `rails db:seed`
 
-4. Cool, let's go into `rails c` and make sure that our database has our Songs:
+4. Cool, let's go into `rails c` and make sure that our database has our Aritsts and Songs:
 
 ```ruby
+Artist.all
 Song.all
 
 # Let's checkout  all of Rihanna's songs
 rihanna = Artist.first
 rihanna.songs
 ```
-
-5. get add and `git commit -m "added has_many songs to artists and seeded the songs"`
 
 <br>
 
@@ -307,7 +319,8 @@ Using Active Record Associations:
 
 In this lesson we:
 
-- Created a `Song` model for our Muse app
+- Created some Artists
+- Created a `Song` model that belongs to the Artist model
 - Established a one-to-many relationship between `Artist` and `Song`
 - Practiced CRUD with Active Record associations
 
@@ -315,6 +328,9 @@ In this lesson we:
 
 ![Imgur](http://i.imgur.com/WzTTdIe.jpg)
 
-## Labtime
+# BONUS - Many to Many relationships!
 
-Add onto the `books-app` you started yesterday that was based on the previous lessons. Go through this lesson and instead of `Song` add a `Book` model to your app.
+Realistically, a Song could have many Artists. Let's re-build our relationships using Active Record to describe this relationship. 
+
+To accomplish this we'll need to use `join tables` and ActiveRecord's `has_many_through` attribute.
+
