@@ -5,11 +5,8 @@ import Movie from './components/Movie';
 import example from './omdbExample.json'
 
 class App extends Component {
-  constructor(){
-    super();
-    state = {
-      movie: example
-    }
+  state = {
+    movie: example
   }
 
   //Update these methods to make axios calls to OMDB and update this.state.movie with the response from the server
