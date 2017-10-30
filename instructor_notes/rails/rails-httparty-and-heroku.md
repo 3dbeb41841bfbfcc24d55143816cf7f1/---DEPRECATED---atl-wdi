@@ -131,12 +131,10 @@ We're going to be building this app from scratch!  Let's get started by going to
   rails new pokemon_vs_starwars -d postgresql
 ```
 
-Now let's hop into the Gemfile and add HTTParty and bootstrap for styling.
+Now let's hop into the Gemfile and add HTTParty.
 
 ``` ruby
 gem 'httparty'
-gem 'bootstrap-sass'
-gem 'bootswatch-rails'
 ```
 
 Now let's think about how to architect our application. 
