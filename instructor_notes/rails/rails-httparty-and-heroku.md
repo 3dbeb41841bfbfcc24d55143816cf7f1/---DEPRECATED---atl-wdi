@@ -8,7 +8,7 @@
 
 ## Framing 
 
-As you build applications, it's almost innevitable that you will run into a situation to communicate with an API.  Thankfully, there are plenty of Ruby Gems out there to do a lot of work for us, but not every API has a gem associated with it.
+As you build applications, it's almost inevitable that you will run into a situation to communicate with an API.  Thankfully, there are plenty of Ruby Gems out there to do a lot of work for us, but not every API has a gem associated with it.
 
 In todays lesson, we will go into depth on how to call an API through a gem called HTTParty.  Through this gem, we will be able to easily retrieve data from any kind of API.
 
@@ -135,8 +135,6 @@ Now let's hop into the Gemfile and add HTTParty and bootstrap for styling.
 
 ``` ruby
 gem 'httparty'
-gem 'bootstrap-sass'
-gem 'bootswatch-rails'
 ```
 
 Now let's think about how to architect our application. 
