@@ -45,7 +45,7 @@ If you're not sure about something, be comfortable searching the `Ruby Docs` and
 ## Challenge 4: Strings
 1.  Create a variable `christine` and set it equal to the string "Hi, I'm Christine"
 2.  Create a variable `likesTo` and set it equal to the String "long walks on the beach, kinda."
-3.  Using string interpolation and the variables `tims` and `likesTo` puts the following string to the terminal:
+3.  Using string interpolation and the variables `christine` and `likesTo` puts the following string to the terminal:
     `"Hi, I'm Christine and I like long walks on the beach, kinda."`
 4.  Create a variable `g` and set it equal to the string "2"
 5.  Create a variable `gToNumber` and set it equal to the Integer 2

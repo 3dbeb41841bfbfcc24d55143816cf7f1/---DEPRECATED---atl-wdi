@@ -84,7 +84,7 @@ This sets up our Ruby on Rails API and generates our file structure.  At this po
 
 6. After installing `foreman`, create a file titled `Procfile.dev` and paste the following code.
 ```
-web: cd client && PORT=3000 npm start
+web: sh -c 'cd client && PORT=3000 npm start'
 api: rails s -p 3001
 ```
 
@@ -138,13 +138,13 @@ Let's use the resources command to generate nested routes for our two models
 Rails.application.routes.draw do
   namespace :api do
     resources :artists do
-      resources :songs, only: [:index, :show]
+      resources :songs
     end
   end
 end
 ```
 
-Let's see all of the routes we now have available by running `rails c`
+Let's see all of the routes we now have available by running `rails routes`
 
 **COMMIT**
 
@@ -177,24 +177,27 @@ class Api::ArtistsController < ApplicationController
 
   def create
     @artist = Artist.create!(artist_params)
-    redirect_to api_artist_path(@artist)
+
+    render json: @artist
   end
 
   def show
     @artist = Artist.find(params[:id])
+
     render json: @artist
   end
 
   def update
     @artist = Artist.find(params[:id])
     @artist.update!(artist_params)
-    redirect_to api_artist_path(@artist)
+
+    render json: @artist
   end
 
   def destroy
-    @artist = Artist.find(params[:id])
-    @artist.destroy
-    redirect_to api_artists_path
+    @artist = Artist.find(params[:id]).delete
+
+    render status: :ok
   end
 
   private
@@ -245,7 +248,7 @@ web: rails s
 
 ## Front End: React
 
-Now we have a working API. Let hone in on building our React UI. 
+Now we have a working API. Let's start building our React UI!
 
 ### You Do
 Look at these 3 wireframes for the Tunr UI and determine what types of React components we will need for this app.
@@ -268,30 +271,32 @@ Next we need to add React Router to our project and make a few client-side route
 
 ```jsx
 // App.js
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React, {Component} from "react";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import ArtistList from "./components/ArtistList";
 import Artist from "./components/Artist";
 import "./App.css";
 
 class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <div>
-            <h1>Tunr</h1>
-            <div>
-              <Link to="/">Artists</Link>
-              <Link to="/artist/1">Single Artist</Link>
-            </div>
-          </div>
-          <Route exact path="/" component={ArtistList} />
-          <Route path="/artist/:id" component={Artist} />
-        </div>
-      </Router>
-    );
-  }
+    render() {
+        return (
+            <Router>
+                <div className="App">
+
+                    <div>
+                        <h1>Tunr</h1>
+                        <div>
+                            <div><Link to="/">All Artists</Link></div>
+                        </div>
+                    </div>
+
+                    <Route exact path="/" component={ArtistList}/>
+                    <Route path="/artist/:id" component={Artist}/>
+
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
@@ -313,47 +318,47 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class ArtistList extends Component {
-  constructor(){
-    super();
-    this.state = {
-      error: '',
-      artists: []
+    constructor(){
+        super();
+        this.state = {
+            error: '',
+            artists: []
+        }
     }
-  }
 
-  componentWillMount(){
-    this.fetchArtists();
-  }
+    componentWillMount(){
+        this.fetchArtists();
+    }
 
-  fetchArtists = async () => {
-    try {
-      const res = await axios.get('/api/artists');
-      await this.setState({artists: res.data});
-      return res.data;
-    }
-    catch (err) {
-      console.log(err)
-      await this.setState({error: err.message})
-      return err.message
-    }
-    
-  }
+    fetchArtists = async () => {
+        try {
+            const res = await axios.get('/api/artists');
+            await this.setState({artists: res.data});
+            return res.data;
+        }
+        catch (err) {
+            console.log(err)
+            await this.setState({error: err.message})
+            return err.message
+        }
 
-  render() {
-    if (this.state.error){
-      return <div>{this.state.error}</div>
     }
-    return (
-      <div>
-        <h1>All Artists</h1>
-        {this.state.artists.map(artist => (
-          <div>
-            <Link to={`/artist/${artist.id}`} >{artist.name}</Link> 
-          </div>
-        ))}
-      </div>
-    );
-  }
+
+    render() {
+        if (this.state.error){
+            return <div>{this.state.error}</div>
+        }
+        return (
+            <div>
+                <h1>All Artists</h1>
+                {this.state.artists.map(artist => (
+                    <div key={artist.id}>
+                        <Link to={`/artist/${artist.id}`} >{artist.name}</Link>
+                    </div>
+                ))}
+            </div>
+        );
+    }
 }
 
 export default ArtistList;
@@ -367,6 +372,7 @@ You probably noticed above that we didn't use a `.then` & `.catch` block in the 
     axios.get('/api/artists').then(res => {
       return this.setState({artists: res.data});
     }).catch(err => {
+      console.log(err)
       this.setState({error: err.message})
     })
   }
@@ -376,18 +382,17 @@ vs
 
 ```jsx
   fetchArtists = async () => {
-    try {
-      const res = await axios.get('/api/artists');
-      await this.setState({artists: res.data});
-      return res.data;
+      try {
+          const res = await axios.get('/api/artists');
+          await this.setState({artists: res.data});
+          return res.data;
+      }
+      catch (err) {
+          console.log(err)
+          await this.setState({error: err.message})
+          return err.message
+      }
     }
-    catch (err) {
-      console.log(err)
-      await this.setState({error: err.message})
-      return err.message
-    }
-    
-  }
 ```
 
 For more info about async/await check out these links: 
@@ -399,53 +404,55 @@ Let's also go ahead and create a view that allows us to see info about a specifi
 
 ```jsx
 // client/components/Artist.js
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 
 class Artist extends Component {
-  constructor() {
-    super();
-    this.state = {
-      artist: {},
-      songs: [],
-    };
-  }
-
-  componentWillMount() {
-    const artistId = this.props.match.params.id;
-    this.fetchArtists(artistId)
-  }
-
-  fetchArtists = async (artistId) => {
-    try {
-      const response = await axios.get(`/api/artists/${artistId}/songs`)
-      await this.setState({artist: response.data.artist, songs: response.data.songs});
-      return response.data;
+    constructor() {
+        super();
+        this.state = {
+            artist: {},
+            songs: [],
+        };
     }
-    catch (err) {
-      await this.setState({error: err.message})
-      return err.message
-    }
-  } 
 
-  render() {
-    return (
-      <div>
-        <img src={this.state.artist.photo_url} alt="" />
-        <h1>{this.state.artist.name}</h1>
-        {this.state.songs.map(song => (
-          <div key={song.id}>
-            <h4>{song.title}</h4>
-            <audio controls src={song.preview_url}></audio>
-          </div>
-        ))}
-      </div>
-    );
-  }
+    componentWillMount() {
+        const artistId = this.props.match.params.id;
+        this.fetchArtistAndSongData(artistId)
+    }
+
+    fetchArtistAndSongData = async (artistId) => {
+        try {
+            const artistResponse = await axios.get(`/api/artists/${artistId}`)
+            const songsResponse = await axios.get(`/api/artists/${artistId}/songs`)
+            await this.setState({
+                artist: artistResponse.data,
+                songs: songsResponse.data
+            });
+        }
+        catch (error) {
+            console.log(error)
+            await this.setState({error: error.message})
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <img src={this.state.artist.photo_url} alt=""/>
+                <h1>{this.state.artist.name}</h1>
+                {this.state.songs.map(song => (
+                    <div key={song.id}>
+                        <h4>{song.title}</h4>
+                        <audio controls src={song.preview_url}></audio>
+                    </div>
+                ))}
+            </div>
+        );
+    }
 }
 
-export default Artist;  
-
+export default Artist;
 ```
 
 With this component, we now have the ability to traverse between an all artists and individual artist view.  
