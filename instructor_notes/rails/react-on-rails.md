@@ -30,6 +30,11 @@ This means they have a "single point of contact" with your data. This has two ad
 The trade off here is the need to write more JavaScript.
 
 ### Getting Started
+
+We are going to build this today (but you will make it look a lot prettier): https://react-on-rails-solution.herokuapp.com/
+
+The solution code is located in the directory next to this lesson if you get lost!
+
 Lets start out by setting up our environment.
 
 1. Create a Rails API application
