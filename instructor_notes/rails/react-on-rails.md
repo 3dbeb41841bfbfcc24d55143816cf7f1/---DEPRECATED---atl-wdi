@@ -84,7 +84,7 @@ This sets up our Ruby on Rails API and generates our file structure.  At this po
 
 6. After installing `foreman`, create a file titled `Procfile.dev` and paste the following code.
 ```
-web: cd client && PORT=3000 npm start
+web: sh -c 'cd client && PORT=3000 npm start'
 api: rails s -p 3001
 ```
 
