@@ -144,7 +144,7 @@ Rails.application.routes.draw do
 end
 ```
 
-Let's see all of the routes we now have available by running `rails c`
+Let's see all of the routes we now have available by running `rails routes`
 
 **COMMIT**
 
