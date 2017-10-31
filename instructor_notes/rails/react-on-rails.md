@@ -245,7 +245,7 @@ web: rails s
 
 ## Front End: React
 
-Now we have a working API. Let hone in on building our React UI. 
+Now we have a working API. Let's start building our React UI!
 
 ### You Do
 Look at these 3 wireframes for the Tunr UI and determine what types of React components we will need for this app.
