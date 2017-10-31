@@ -138,7 +138,7 @@ Let's use the resources command to generate nested routes for our two models
 Rails.application.routes.draw do
   namespace :api do
     resources :artists do
-      resources :songs, only: [:index, :show]
+      resources :songs
     end
   end
 end
@@ -177,24 +177,27 @@ class Api::ArtistsController < ApplicationController
 
   def create
     @artist = Artist.create!(artist_params)
-    redirect_to api_artist_path(@artist)
+
+    render json: @artist
   end
 
   def show
     @artist = Artist.find(params[:id])
+
     render json: @artist
   end
 
   def update
     @artist = Artist.find(params[:id])
     @artist.update!(artist_params)
-    redirect_to api_artist_path(@artist)
+
+    render json: @artist
   end
 
   def destroy
-    @artist = Artist.find(params[:id])
-    @artist.destroy
-    redirect_to api_artists_path
+    @artist = Artist.find(params[:id]).delete
+
+    render status: :ok
   end
 
   private
