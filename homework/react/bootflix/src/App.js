@@ -5,23 +5,20 @@ import Movie from './components/Movie';
 import example from './omdbExample.json'
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      movie: example
-    }
+  state = {
+    movie: example
   }
 
   //Update these methods to make axios calls to OMDB and update this.state.movie with the response from the server
-  _searchByTitle = () => {
+  searchByTitle = () => {
     console.log("Search by Title");
   }
 
-  _searchById = () => {
+  searchById = () => {
     console.log("Search by ID");
   }
 
-  //Pass _searchByTitle, _searchById, and this.state.movie to it's appropriate child components.
+  //Pass searchByTitle, searchById, and this.state.movie to it's appropriate child components.
   render() {
     return (
       <div className="App">
