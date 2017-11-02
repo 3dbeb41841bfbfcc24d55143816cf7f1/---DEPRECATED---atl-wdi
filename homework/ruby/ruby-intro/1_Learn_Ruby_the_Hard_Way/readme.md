@@ -99,7 +99,7 @@ Please answer the following questions in the spaces provided.
 1.  How do you write an `if` statement in Ruby?
 
   ```ruby
-    # your answer here
+    
   ```
 
 2.  Please write code that would take the string "007", reverse it,
