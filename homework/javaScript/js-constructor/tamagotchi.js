@@ -34,7 +34,10 @@ yawn() {
 
 //create new Tamagotchis
 var deshaun = new Tamagotchi('deshaun', 'gangsta');
+console.log(deshaun);
 var welvin = new Tamagotchi('welvin', 'bottle nose dolphin');
+console.log(welvin);
+
 
 deshaun.cry();
 welvin.cry();
