@@ -98,6 +98,31 @@ Bands
 
 This app will allow customers to browse a list of coffeeshops nearby, order drinks off of their menu, add those drinks to a shopping cart, and save that cart as a past order once the purchase is complete.
 
+```
+User
+id: number;
+username: string;
+password: string;
+saved orders: [];
+
+Coffee Shop
+id: number;
+name: string;
+menu: [];
+address: string;
+
+Drink
+id: number;
+name: string;
+price: number;
+size: string;
+description: string;
+
+
+
+
+```
+
 ### 5. Team Tracker App
 
 This app shows you all the latest stats from your favorite sports teams. You can view individual player stats and full team stats.
@@ -134,7 +159,7 @@ stats: {};
 Q. When you were creating relationships between the models, what were some thoughts or questions you had to help guide a connection between them?
 
 ```
-<p>Who is this app for and what is it trying to accomplish . What models are a big factor in making the app fulfill its desired purpose. </p>
+Who is this app for and what is it trying to accomplish . What models are a big factor in making the app fulfill its desired purpose.
 ```
 
 ### Reading and Videos for Tomorrow
