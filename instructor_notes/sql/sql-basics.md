@@ -17,7 +17,7 @@
 
 ## Framing
 
-![SQL](./images/sql-nosql-comparison-dataconomy.png)
+![SQL](../images/sql-v-nosql.png)
 
 *via [SQL vs. NoSQL- What you need to know](http://dataconomy.com/sql-vs-nosql-need-know/)*
 
@@ -48,7 +48,7 @@ Note the differences between a SQL (e.g.- Postgres) and a No-SQL database (e.g.-
 
 The most popular type of database is a **relational** database. How do they work?
 
-![SQL tables](./images/sql-is-fun.jpg)
+![SQL tables](../images/sql-is-fun.jpg)
 
 *Tabular!*
 
@@ -106,11 +106,6 @@ While this is a bit technical, it's worth clarifying some terminology...
 [Install Postgres Doc](getting_postgres.md) 
 
 ## Exploring Postgres (15 minutes / 1:05)
-
-Note: We are learning this to be able to read it. We'll look stuff up when we want to write it!
-
-But there have been times GA grads need to use it (4 months later)!
-![SQL](./images/screenshot_kibble.png)
 
 Start by spotlight searching (`command-space`) for Postgres and launching `Postgres.app`. Once you see the elephant in your Mac menu bar, you'll know Postgres is running.
 
@@ -248,7 +243,7 @@ Constraints act as limits on the data that can go in a column.
 
 [Here's the super scary schema we use in Garnet.](https://github.com/ga-dc/garnet/blob/master/db/schema.rb) 😱
 
-![garnet_erd](images/Garnet_ERD.png)
+![garnet_erd](../images/Garnet_ERD.png)
 
 ### Defining a Schema
 

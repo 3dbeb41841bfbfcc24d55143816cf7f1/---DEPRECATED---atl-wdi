@@ -248,9 +248,16 @@ name = "John"
 full_name = "John\nDoe"
 # => "John\nDoe"
 
+single_quote = 'John\nDoe'
+# => "John\nDoe"
+
 puts full_name
 # John
 # Doe
+# => nil
+
+puts single_quote
+# John\nDoe
 # => nil
 ```
 
@@ -271,11 +278,11 @@ Not only can you concatenate strings, now you can multiply them too! Remember we
 Sometimes you will want to print out a string that incorporates a variable. For example...
 
 ```rb
-my_name = "Jamie"
-# => "Jamie"
+my_name = "Jim"
+# => "Jim"
 
 puts "Hi my name is: " + my_name
-# Hi my name is: Jamie
+# Hi my name is: Jim
 # => nil
 ```
 
@@ -568,7 +575,7 @@ wdi_class = {
     morning: "Ruby Basics",
   }
 }  
-# => {:teacher=>"Jamie", :students=>["Yacko", "Wacko", "Dot"], :classroom=>2, :in_session=>true, :schedule=>{:morning=>"Ruby Basics"}}
+# => {:teacher=>"John", :students=>["Yacko", "Wacko", "Dot"], :classroom=>2, :in_session=>true, :schedule=>{:morning=>"Ruby Basics"}}
 ```
 
 Accessing hash values...

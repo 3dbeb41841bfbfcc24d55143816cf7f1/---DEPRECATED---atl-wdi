@@ -30,6 +30,11 @@ This means they have a "single point of contact" with your data. This has two ad
 The trade off here is the need to write more JavaScript.
 
 ### Getting Started
+
+We are going to build this today (but you will make it look a lot prettier): https://react-on-rails-solution.herokuapp.com/
+
+The solution code is located in the directory next to this lesson if you get lost!
+
 Lets start out by setting up our environment.
 
 1. Create a Rails API application
@@ -50,7 +55,7 @@ This sets up our Ruby on Rails API and generates our file structure.  At this po
 {
   "name": "YOUR PROJECT NAME",
   "engines": {
-    "node": "8.2.1"
+    "node": "8.7.0"
   },
   "scripts": {
     "build": "cd client && npm install && npm run build && cd ..",
@@ -84,7 +89,7 @@ This sets up our Ruby on Rails API and generates our file structure.  At this po
 
 6. After installing `foreman`, create a file titled `Procfile.dev` and paste the following code.
 ```
-web: cd client && PORT=3000 npm start
+web: sh -c 'cd client && PORT=3000 npm start'
 api: rails s -p 3001
 ```
 
@@ -138,13 +143,13 @@ Let's use the resources command to generate nested routes for our two models
 Rails.application.routes.draw do
   namespace :api do
     resources :artists do
-      resources :songs, only: [:index, :show]
+      resources :songs
     end
   end
 end
 ```
 
-Let's see all of the routes we now have available by running `rails c`
+Let's see all of the routes we now have available by running `rails routes`
 
 **COMMIT**
 
@@ -177,24 +182,27 @@ class Api::ArtistsController < ApplicationController
 
   def create
     @artist = Artist.create!(artist_params)
-    redirect_to artist_path(@artist)
+
+    render json: @artist
   end
 
   def show
     @artist = Artist.find(params[:id])
+
     render json: @artist
   end
 
   def update
     @artist = Artist.find(params[:id])
     @artist.update!(artist_params)
-    redirect_to artist_path(@artist)
+
+    render json: @artist
   end
 
   def destroy
-    @artist = Artist.find(params[:id])
-    @artist.destroy
-    redirect_to artists_path
+    @artist = Artist.find(params[:id]).delete
+
+    render status: :ok
   end
 
   private
@@ -245,7 +253,7 @@ web: rails s
 
 ## Front End: React
 
-Now we have a working API. Let hone in on building our React UI. 
+Now we have a working API. Let's start building our React UI!
 
 ### You Do
 Look at these 3 wireframes for the Tunr UI and determine what types of React components we will need for this app.
@@ -261,37 +269,39 @@ We set up our React app during an earlier step, but we still have a couple steps
 Let's go into our client directory and install a few libraries to use in out React project.
 
 ```bash
-  yarn add styled-components axios react-router-dom
+  npm i styled-components axios react-router-dom
 ```
 
 Next we need to add React Router to our project and make a few client-side routes to control the flow of our app.
 
 ```jsx
 // App.js
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React, {Component} from "react";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import ArtistList from "./components/ArtistList";
 import Artist from "./components/Artist";
 import "./App.css";
 
 class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <div>
-            <h1>Tunr</h1>
-            <div>
-              <Link to="/">Artists</Link>
-              <Link to="/artist/1">Single Artist</Link>
-            </div>
-          </div>
-          <Route exact path="/" component={ArtistList} />
-          <Route path="/artist/:id" component={Artist} />
-        </div>
-      </Router>
-    );
-  }
+    render() {
+        return (
+            <Router>
+                <div className="App">
+
+                    <div>
+                        <h1>Tunr</h1>
+                        <div>
+                            <div><Link to="/">All Artists</Link></div>
+                        </div>
+                    </div>
+
+                    <Route exact path="/" component={ArtistList}/>
+                    <Route path="/artist/:id" component={Artist}/>
+
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
@@ -313,47 +323,47 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class ArtistList extends Component {
-  constructor(){
-    super();
-    this.state = {
-      error: '',
-      artists: []
+    constructor(){
+        super();
+        this.state = {
+            error: '',
+            artists: []
+        }
     }
-  }
 
-  componentWillMount(){
-    this._fetchArtists();
-  }
+    componentWillMount(){
+        this.fetchArtists();
+    }
 
-  _fetchArtists = async () => {
-    try {
-      const res = await axios.get('/api/artists');
-      await this.setState({artists: res.data});
-      return res.data;
-    }
-    catch (err) {
-      console.log(err)
-      await this.setState({error: err.message})
-      return err.message
-    }
-    
-  }
+    fetchArtists = async () => {
+        try {
+            const res = await axios.get('/api/artists');
+            await this.setState({artists: res.data});
+            return res.data;
+        }
+        catch (err) {
+            console.log(err)
+            await this.setState({error: err.message})
+            return err.message
+        }
 
-  render() {
-    if (this.state.error){
-      return <div>{this.state.error}</div>
     }
-    return (
-      <div>
-        <h1>All Artists</h1>
-        {this.state.artists.map(artist => (
-          <div>
-            <Link to={`/artist/${artist.id}`} >{artist.name}</Link> 
-          </div>
-        ))}
-      </div>
-    );
-  }
+
+    render() {
+        if (this.state.error){
+            return <div>{this.state.error}</div>
+        }
+        return (
+            <div>
+                <h1>All Artists</h1>
+                {this.state.artists.map(artist => (
+                    <div key={artist.id}>
+                        <Link to={`/artist/${artist.id}`} >{artist.name}</Link>
+                    </div>
+                ))}
+            </div>
+        );
+    }
 }
 
 export default ArtistList;
@@ -363,10 +373,11 @@ export default ArtistList;
 You probably noticed above that we didn't use a `.then` & `.catch` block in the above code.  Instead we used some keywords you many not be familiar with, `async` and `await`.  This is a new feature of ES7, can be used with `create-react-app`, and was introduced in Node 8.  Basically, this new syntax makes asynchronous code look a little cleaner.  It achieves the same purpose as traditional promises.
 
 ```jsx
-  _fetchArtists = () => {
+  fetchArtists = () => {
     axios.get('/api/artists').then(res => {
       return this.setState({artists: res.data});
     }).catch(err => {
+      console.log(err)
       this.setState({error: err.message})
     })
   }
@@ -375,19 +386,18 @@ You probably noticed above that we didn't use a `.then` & `.catch` block in the 
 vs
 
 ```jsx
-  _fetchArtists = async () => {
-    try {
-      const res = await axios.get('/api/artists');
-      await this.setState({artists: res.data});
-      return res.data;
+  fetchArtists = async () => {
+      try {
+          const res = await axios.get('/api/artists');
+          await this.setState({artists: res.data});
+          return res.data;
+      }
+      catch (err) {
+          console.log(err)
+          await this.setState({error: err.message})
+          return err.message
+      }
     }
-    catch (err) {
-      console.log(err)
-      await this.setState({error: err.message})
-      return err.message
-    }
-    
-  }
 ```
 
 For more info about async/await check out these links: 
@@ -399,53 +409,55 @@ Let's also go ahead and create a view that allows us to see info about a specifi
 
 ```jsx
 // client/components/Artist.js
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 
 class Artist extends Component {
-  constructor() {
-    super();
-    this.state = {
-      artist: {},
-      songs: [],
-    };
-  }
-
-  componentWillMount() {
-    const artistId = this.props.match.params.id;
-    this._fetchArtists(artistId)
-  }
-
-  _fetchArtists = async (artistId) => {
-    try {
-      const response = await axios.get(`/api/artists/${artistId}/songs`)
-      await this.setState({artist: response.data.artist, songs: response.data.songs});
-      return response.data;
+    constructor() {
+        super();
+        this.state = {
+            artist: {},
+            songs: [],
+        };
     }
-    catch (err) {
-      await this.setState({error: err.message})
-      return err.message
-    }
-  } 
 
-  render() {
-    return (
-      <div>
-        <img src={this.state.artist.photo_url} alt="" />
-        <h1>{this.state.artist.name}</h1>
-        {this.state.songs.map(song => (
-          <div key={song.id}>
-            <h4>{song.title}</h4>
-            <audio controls src={song.preview_url}></audio>
-          </div>
-        ))}
-      </div>
-    );
-  }
+    componentWillMount() {
+        const artistId = this.props.match.params.id;
+        this.fetchArtistAndSongData(artistId)
+    }
+
+    fetchArtistAndSongData = async (artistId) => {
+        try {
+            const artistResponse = await axios.get(`/api/artists/${artistId}`)
+            const songsResponse = await axios.get(`/api/artists/${artistId}/songs`)
+            await this.setState({
+                artist: artistResponse.data,
+                songs: songsResponse.data
+            });
+        }
+        catch (error) {
+            console.log(error)
+            await this.setState({error: error.message})
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <img src={this.state.artist.photo_url} alt=""/>
+                <h1>{this.state.artist.name}</h1>
+                {this.state.songs.map(song => (
+                    <div key={song.id}>
+                        <h4>{song.title}</h4>
+                        <audio controls src={song.preview_url}></audio>
+                    </div>
+                ))}
+            </div>
+        );
+    }
 }
 
-export default Artist;  
-
+export default Artist;
 ```
 
 With this component, we now have the ability to traverse between an all artists and individual artist view.  
@@ -507,6 +519,17 @@ Before running a migration, lets configure some of the settings for `devise_toke
 ```ruby
 DeviseTokenAuth.setup do |config|
   config.change_headers_on_each_request = false
+end
+```
+
+Additionally, `devise_token_auth` also tries to send a confirmation e-mail whenever a new user is created.  We can get rid of that by removing `:confirmable` from the User model.
+```ruby
+class User < ActiveRecord::Base
+  # Include default devise modules.
+  devise :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :trackable, :validatable,
+          :confirmable, :omniauthable
+  include DeviseTokenAuth::Concerns::User
 end
 ```
 
@@ -584,17 +607,17 @@ class SignUpLogIn extends Component {
     }
   }
 
-  _signUp = (e) => {
+  signUp = (e) => {
     e.preventDefault();
     this.setState({redirect: true})
   }
 
-  _signIn = (e) => {
+  signIn = (e) => {
     e.preventDefault();
     this.setState({redirect: true})
   }
 
-  _handleChange = (e) => {
+  handleChange = (e) => {
     const newState = {...this.state};
     newState[e.target.name] = e.target.value;
     this.setState(newState);
@@ -606,22 +629,22 @@ class SignUpLogIn extends Component {
     }
     return (
       <div>
-        <form onSubmit={this._signUp}>
+        <form onSubmit={this.signUp}>
           <div>
             <label htmlFor="email">E-mail: </label>
-            <input onChange={this._handleChange} type="text" name="email" value={this.state.email} />
+            <input onChange={this.handleChange} type="text" name="email" value={this.state.email} />
           </div>
           <div>
             <label htmlFor="password">Password: </label>
-            <input onChange={this._handleChange} type="text" name="password" value={this.state.password} />
+            <input onChange={this.handleChange} type="text" name="password" value={this.state.password} />
           </div>
           <div>
             <label htmlFor="password">Confirm Password: </label>
-            <input onChange={this._handleChange} type="text" name="password_confirmation" value={this.state.password_confirmation} />
+            <input onChange={this.handleChange} type="text" name="password_confirmation" value={this.state.password_confirmation} />
           </div>
           
           <button>Sign Up</button>
-          <button onClick={this._signIn}>Log In</button>
+          <button onClick={this.signIn}>Log In</button>
         </form>
       </div>
     );
@@ -673,7 +696,7 @@ Before continuing, let's lock down our controllers by adding `before_action :aut
 We now need to focus on our SignUpLogIn component and set up the axios call that will handle the POST request for signing up and signing in.
 
 ```jsx
-  _signUp = async (e) => {
+  signUp = async (e) => {
     e.preventDefault();
     const payload = {
       email: this.state.email,
@@ -715,7 +738,7 @@ export function saveAuthTokens(headers){
 Now we need to import this in our SignUpLogIn component and add the function after the response of your Axios post.
 
 ```js
-  _signUp = async (e) => {
+  signUp = async (e) => {
     e.preventDefault();
     const payload = {
       email: this.state.email,
