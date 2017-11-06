@@ -61,7 +61,25 @@ This app hosts a ton of radio stations, each featuring their own playlists of so
 
 
 ```
-Radio 
+User 
+id: number ;
+username: string;
+playlists: []
+
+playlists
+id: number 
+name: string
+genre: string
+popularity: number
+songs: []
+
+songs 
+id: number
+name: string
+artist: string
+genre: string
+
+
 ```
 
 ### 3. Rock Concert App
@@ -69,7 +87,11 @@ Radio
 This app will be a tool for managing all of your favorite bands' concerts; it will keep track of their tour dates, ticket purchasing, and next recommended show.
 
 ```
-Write your answer here or in a separate js file.
+Users
+
+Bands
+
+
 ```
 
 ### 4. Coffee To-Go App
@@ -81,7 +103,29 @@ This app will allow customers to browse a list of coffeeshops nearby, order drin
 This app shows you all the latest stats from your favorite sports teams. You can view individual player stats and full team stats.
 
 ```
-Write your answer here or in a separate js file.
+User
+id: number;
+username: string;
+password: string;
+favorite teams: [];
+
+Sports 
+id: number; 
+name: string;
+teams: [];
+
+Teams
+id: number;
+sport: string;
+players: [];
+stats: {};
+
+Players
+id: number;
+team: string;
+sport: string;
+stats: {};
+
 ```
 
 
@@ -90,7 +134,7 @@ Write your answer here or in a separate js file.
 Q. When you were creating relationships between the models, what were some thoughts or questions you had to help guide a connection between them?
 
 ```
-Write your answer here or in a separate js file.
+Who is this app for and what is it trying to accomplish . What models are a big factor in making the app fulfill its desired purpose. 
 ```
 
 ### Reading and Videos for Tomorrow
