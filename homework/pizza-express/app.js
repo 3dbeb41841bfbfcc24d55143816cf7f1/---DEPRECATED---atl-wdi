@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 const indexController = require('./controllers/index.js')
-const toppingsController = require('./controllers/topping.js')
+const toppingsController = require('./controllers/toppings.js')
 
 app.use(express.static(__dirname + '/public'))
 
