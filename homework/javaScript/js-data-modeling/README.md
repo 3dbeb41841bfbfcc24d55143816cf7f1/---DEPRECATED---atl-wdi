@@ -134,7 +134,7 @@ stats: {};
 Q. When you were creating relationships between the models, what were some thoughts or questions you had to help guide a connection between them?
 
 ```
-Who is this app for and what is it trying to accomplish . What models are a big factor in making the app fulfill its desired purpose. 
+<p>Who is this app for and what is it trying to accomplish . What models are a big factor in making the app fulfill its desired purpose. </p>
 ```
 
 ### Reading and Videos for Tomorrow
