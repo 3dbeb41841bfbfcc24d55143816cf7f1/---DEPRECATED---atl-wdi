@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 
 import styled, {keyframes} from 'styled-components'
 import {fadeOut} from 'react-animations'
+import PostForm from "./PostForm";
 
 const fadeOutAnimation = keyframes`${fadeOut}`
 
@@ -12,7 +13,7 @@ const PostWrapper = styled.div`
     flex-direction: column;
     align-items: center; 
     margin-bottom: 35px;
-    padding: 0px 25px;
+    padding: 25px 25px;
     text-align: center;
     background: white;
     animation: ${props => {
@@ -34,15 +35,17 @@ const OptionButton = styled.button`
     text-decoration: none;
     background: white;
     font-size: 20px;
-    padding: 25px 30px;
+    padding: 0px 30px;
+    cursor: pointer;
     
     &:focus {
         outline: none;
     }   
     
     &:hover {
-        color: #e24626;
+        color: #BA324F;
     }
+    
 `
 
 
@@ -50,33 +53,62 @@ class Post extends Component {
 
     state = {
         fadeOut: false,
-        fadeOutTime: 150
+        fadeOutTime: 150,
+        showEditForm: false
     }
 
     deletePost = async () => {
         await this.setState({fadeOut: true})
         await setTimeout(
-            () => {this.props.deletePost(this.props.id)},
+            () => {
+                this.props.deletePost(this.props.id)
+            },
             this.state.fadeOutTime * .25
         )
     }
 
+    showEditForm = async () => {
+        this.setState({showEditForm: true})
+    }
+
+    showPostContent = async () => {
+        this.setState({showEditForm: false})
+    }
+
     render() {
+
+        const restrictedOptions = (
+            <div>
+                <OptionButton onClick={this.deletePost}>
+                    <i className="fa fa-trash-o" aria-hidden="true"/>
+                </OptionButton>
+                <OptionButton onClick={this.showEditForm}>
+                    <i className="fa fa-pencil-square-o" aria-hidden="true"/>
+                </OptionButton>
+            </div>
+        )
+
+        const postDisplay = (
+            <div>
+                <div><h2>{this.props.title}</h2></div>
+                <div>{this.props.content}</div>
+
+                <PostOptions>
+                    {this.props.belongs_to_current_user ? restrictedOptions : null}
+                </PostOptions>
+            </div>
+        )
+
+        const postForm = (
+            <PostForm {...this.props} showPostContent={this.showPostContent}/>
+        )
+
         return (
-                <PostWrapper fadeOut={this.state.fadeOut} fadeOutTime={this.state.fadeOutTime}>
+            <PostWrapper fadeOut={this.state.fadeOut} fadeOutTime={this.state.fadeOutTime}>
 
-                    <div><h2>{this.props.title}</h2></div>
-                    <div>{this.props.content}</div>
-                    <PostOptions>
-                        <OptionButton onClick={this.deletePost}>
-                            <i className="fa fa-trash-o" aria-hidden="true"></i>
-                        </OptionButton>
-                        <OptionButton>
-                            <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </OptionButton>
-                    </PostOptions>
+                { this.state.showEditForm ? postForm : postDisplay }
 
-                </PostWrapper>
+            </PostWrapper>
         )
     }
 

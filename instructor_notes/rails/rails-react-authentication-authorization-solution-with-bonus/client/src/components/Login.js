@@ -42,6 +42,7 @@ const LoginButton = styled.button`
   color: white;
   background-color: #BA324F;
   text-decoration: none;
+  cursor: pointer;
 `
 
 class LogIn extends Component {

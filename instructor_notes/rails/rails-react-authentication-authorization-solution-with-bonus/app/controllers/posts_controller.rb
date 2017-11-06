@@ -11,7 +11,7 @@ class PostsController < ApplicationController
             id: post.id,
             title: post.title,
             content: post.content,
-            belongs_to_current_user: post.user == user
+            belongs_to_current_user: post.user == current_user
         }
       end
     end
