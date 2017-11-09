@@ -172,6 +172,16 @@ api: rails s -p 3001
 $ npm install axios react-router-dom
 ```
 
+Before we start coding, we'll want to set up a proxy, too:
+
+```json
+./client/package.json
+
+...
+"proxy": "http://localhost:3001",
+...
+```
+
 Then we'll add our new `SignUpLogIn` component in `./client/src/components/SignUpLogIn.js`:
 
 ```js
