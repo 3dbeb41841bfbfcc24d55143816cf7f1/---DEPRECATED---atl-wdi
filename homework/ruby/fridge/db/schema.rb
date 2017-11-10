@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20171026210349) do
   create_table "refrigerators", force: :cascade do |t|
     t.string "location"
     t.string "brand"
-    t.integer "size"
+    t.float "size"
     t.boolean "food"
     t.boolean "drink"
     t.datetime "created_at", null: false

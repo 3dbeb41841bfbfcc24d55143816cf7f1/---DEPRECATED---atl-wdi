@@ -5,12 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
- 
+Refrigerator.destroy_all
 
-samsung = Refrigerator.create(location: , brand:"Samsung", size:)
-lg = Refrigerator.create(location brand size)
-frigidaire = Refrigerator.create(location brand size)
+samsung = Refrigerator.create(location:"China" , brand: "Samsung", size:34.3, food: true, drink: true)
+lg = Refrigerator.create(location:"South Korea", brand:"LG", size:31.0, food: true, drink: true)
 
-burger
-pizza
-taco
+
+burger = Food.create(name:"burger",weight:8,vegan:false)
+pizza Food.create(name:"pizza", weight:5, vegan:false)
+
+beer = Drink.create(name:"beer", size:12, alcoholic:true)
+water = Drink.create(name:"water", size:20, alcoholic:false)
