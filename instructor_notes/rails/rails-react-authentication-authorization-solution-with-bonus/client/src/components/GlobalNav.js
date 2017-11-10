@@ -42,6 +42,7 @@ const SessionButton = styled.button`
   color: white;
   background-color: #4BA3C3;
   text-decoration: none;
+  cursor: pointer;
 `
 
 const GlobalNav = (props) => {

@@ -62,7 +62,22 @@ class App extends Component {
             this.setState({
                 error: errorMessage
             })
+        }
+    }
 
+    editPost = async (postId, title, content) => {
+        try {
+            const payload = {
+                title,
+                content
+            }
+            await axios.patch(`/posts/${postId}`, payload)
+
+            const posts = await this.getPosts()
+            this.setState({posts})
+
+        } catch(error) {
+            console.log(error)
         }
     }
 
@@ -85,7 +100,8 @@ class App extends Component {
         const PostsComponent = () => (
             <PostsList
                 posts={this.state.posts}
-                deletePost={this.deletePost}/>
+                deletePost={this.deletePost}
+                editPost={this.editPost}/>
         )
         const SignUpLogInComponent = () => (
             <SignUpLogIn setUserSignedIn={this.setUserSignedIn}/>

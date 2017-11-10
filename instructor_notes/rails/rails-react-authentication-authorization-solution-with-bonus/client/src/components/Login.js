@@ -3,7 +3,7 @@ import {saveAuthTokens} from '../util/sessionHeaderUtil'
 import axios from 'axios'
 import styled from 'styled-components'
 
-const SignUpLogInWrapper = styled.div`
+const LogInWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +12,10 @@ const SignUpLogInWrapper = styled.div`
   z-index: 3;
 `
 
-const SignUpInput = styled.input`
+const LoginInputWrapper = styled.div`
+`
+
+const LoginInput = styled.input`
   padding: 0px 10px;
   height: 30px;
   margin-bottom: 15px;
@@ -21,33 +24,32 @@ const SignUpInput = styled.input`
   width: 70%;
 `
 
-const SignUpFormWrapper = styled.div`
+const LoginFormWrapper = styled.div`
   width: 100%
 `
 
-const SignUpButtonWrapper = styled.div`
+const LoginButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
 `
 
-const SignUpButton = styled.button`
+const LoginButton = styled.button`
   border: none;
-  margin: 0px 6px;
   padding: 10px 15px;
   border-radius: 5%;
   text-align: center;
   color: white;
   background-color: #BA324F;
   text-decoration: none;
+  cursor: pointer;
 `
 
-class SignUp extends Component {
+class LogIn extends Component {
 
     state = {
         email: '',
-        password: '',
-        password_confirmation: ''
+        password: ''
     }
 
     handleChange = (event) => {
@@ -56,17 +58,15 @@ class SignUp extends Component {
         this.setState(newState)
     }
 
-    signUp = async (event) => {
+    logIn = async (event) => {
         event.preventDefault()
 
         try {
             const payload = {
                 email: this.state.email,
-                password: this.state.password,
-                password_confirmation: this.state.password_confirmation
+                password: this.state.password
             }
-            const response = await axios.post('/auth', payload)
-
+            const response = await axios.post('/auth/sign_in', payload)
             saveAuthTokens(response.headers)
 
             this.props.setUserSignedIn()
@@ -78,40 +78,33 @@ class SignUp extends Component {
 
     render() {
         return (
-            <SignUpLogInWrapper>
-                <h1>Sign Up</h1>
-                <SignUpFormWrapper>
+            <LogInWrapper>
+                <h1>Log In</h1>
+                <LoginFormWrapper>
                     <form>
-                        <div>
-                            <SignUpInput onChange={this.handleChange}
+                        <LoginInputWrapper>
+                            <LoginInput onChange={this.handleChange}
                                         type="text"
                                         name="email"
                                         placeholder="email"
                                         value={this.state.email}/>
-                        </div>
-                        <div>
-                            <SignUpInput onChange={this.handleChange}
+                        </LoginInputWrapper>
+                        <LoginInputWrapper>
+                            <LoginInput onChange={this.handleChange}
                                         type="password"
                                         name="password"
                                         placeholder="password"
                                         value={this.state.password}/>
-                        </div>
-                        <div>
-                            <SignUpInput onChange={this.handleChange}
-                                        type="password"
-                                        name="password_confirmation"
-                                        placeholder="confirm password"
-                                        value={this.state.password_confirmation}/>
-                        </div>
+                        </LoginInputWrapper>
                     </form>
-                </SignUpFormWrapper>
-                <SignUpButtonWrapper>
-                    <SignUpButton onClick={this.signUp}>Sign Up</SignUpButton>
-                </SignUpButtonWrapper>
+                </LoginFormWrapper>
+                <LoginButtonWrapper>
+                    <LoginButton onClick={this.logIn}>Log In</LoginButton>
+                </LoginButtonWrapper>
 
-            </SignUpLogInWrapper>
+            </LogInWrapper>
         )
     }
 }
 
-export default SignUp
+export default LogIn

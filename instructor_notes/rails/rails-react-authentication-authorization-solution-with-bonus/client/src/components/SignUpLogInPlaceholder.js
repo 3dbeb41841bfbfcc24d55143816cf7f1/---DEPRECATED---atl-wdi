@@ -5,6 +5,7 @@ const SignUpLogInPlaceholderWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    cursor: pointer;
     text-align: center;
     width: 300px;
     z-index: 3;

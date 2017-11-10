@@ -24,7 +24,7 @@ Once we have `authenticated` a `User`, we will then need to set up strict rules 
 To demonstrate the importance of authentication and authorization, we are going to build a site for `Users` to anonymously post their secret thoughts (kind of like [PostSecret](https://postsecret.com/).) Because of the need for `User` anonymity, it will be very important that we only let the right `User` perform certain actions on the site. Our first task will be verifying that a `User` is who they say they are (via `authentication`), and our second will be to prevent them from interfacing with other `Users'` data (via `authorization`.) 
 
 ```
-A deployed example can be found here: https://afternoon-lowlands-61379.herokuapp.com
+A deployed example can be found here: https://warm-island-51970.herokuapp.com
 Email: bob_loblaw@lawblog.com
 Password: blahblah
 ```
@@ -170,6 +170,16 @@ api: rails s -p 3001
 
 ```bash
 $ npm install axios react-router-dom
+```
+
+Before we start coding, we'll want to set up a proxy, too:
+
+```json
+./client/package.json
+
+...
+"proxy": "http://localhost:3001",
+...
 ```
 
 Then we'll add our new `SignUpLogIn` component in `./client/src/components/SignUpLogIn.js`:
