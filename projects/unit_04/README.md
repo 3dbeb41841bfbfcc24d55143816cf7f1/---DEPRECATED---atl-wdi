@@ -25,6 +25,7 @@ using your application (a user), and two that represent the main functional idea
 for your app
   * **Devise/Passport is not a requirement**
   * If you don't feel 100% confident that you understand how to work with auth and sessions, build out your user model without Devise.
+  * The creator of `devise_token_auth` has provided this template for integrating the library into an existing model.  Check it out in the link [here](https://github.com/lynndylanhurley/devise_token_auth/wiki/Setup-migrations-for-an-existing-User-table)
 * **Have validations on any applicable fields on your models**
 * **Have complete RESTful routes** for at least one of your resources with GET, POST,
 PUT, and DELETE
