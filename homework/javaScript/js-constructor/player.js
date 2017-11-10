@@ -16,7 +16,7 @@ var player = {
   }
 }; //end player
   
-player.feedTamagotchi();
-player.medicateTamagotchi();
-player.knockOutTamagotchi();
+player.feedTamagotchi(welvin);
+player.medicateTamagotchi(welvin);
+player.knockOutTamagotchi(welvin);
 
