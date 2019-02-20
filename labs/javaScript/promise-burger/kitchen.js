@@ -118,7 +118,7 @@ const order = name =>
       if (item) {
         resolve(item);
       } else {
-        reject("I'm sorry, we have any " + name);
+        reject("I'm sorry, we don't have any " + name);
       }
     }, 500);
   });

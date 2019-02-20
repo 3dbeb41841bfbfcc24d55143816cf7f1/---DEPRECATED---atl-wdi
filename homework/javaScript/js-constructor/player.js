@@ -1,7 +1,7 @@
 console.log('player file is loaded');
 
 var player = {
-  name: "Neo",
+  name: "neo",
   feedTamagotchi: function(tamagotchi) {
     tamagotchi.foodInTummy++;
     console.log('YUM!!! ' + tamagotchi.name + ' has been fed and now has: ' + tamagotchi.foodInTummy + ' in the tummy');
@@ -15,3 +15,8 @@ var player = {
     console.log(tamagotchi.name + ' got some Zzzzs! Restedness: ' + tamagotchi.restedness);
   }
 }; //end player
+  
+player.feedTamagotchi(welvin);
+player.medicateTamagotchi(welvin);
+player.knockOutTamagotchi(welvin);
+

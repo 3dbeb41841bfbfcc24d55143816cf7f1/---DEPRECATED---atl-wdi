@@ -1,0 +1,9 @@
+<div>
+    <h1>{{student.name}}'s Projects</h1>
+
+    {{#each student.projects}}
+    <div>
+        {{this.title}} - {{this.unit}}
+    </div>
+    {{/each}}
+</div>

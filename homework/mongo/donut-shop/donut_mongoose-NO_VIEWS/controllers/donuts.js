@@ -2,13 +2,19 @@
 // REQUIREMENTS
 //======================
 // require express, router, mongoose, Donut schema
+const express = require('express');
+const router  = express.Router();
+const mongoose = require('mongoose')
+const donutSchema = require('./')
 
 
 //======================
 // INDEX
 //======================
 // Create a GET index route "/" that sends all donuts to index.hbs
-
+app.get('/', (req,res) => {
+    res.send('./donuts/index')
+})
 
 
 //======================
@@ -62,3 +68,4 @@
 // EXPORTS
 //======================
 // export router with module.exports
+module.exports = router;

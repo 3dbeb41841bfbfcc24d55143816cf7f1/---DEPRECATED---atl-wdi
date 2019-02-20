@@ -10,6 +10,9 @@ var methodOverride = require("method-override");
 var hbs = require("hbs");
 var logger = require('morgan');
 
+mongoose.connect('mongodb://localhost/donut_store');
+mongoose.Promise = global.Promise;
+const db = mongoose.connection
 
 //======================
 // MIDDLEWARE
@@ -24,7 +27,9 @@ app.set('views', './views');
 
 app.use(express.static(__dirname + 'public'));
 app.use( logger('dev'));
-
+app.get('/', (request, response) => {
+    response.redirect('/donuts')
+})
 //======================
 // CONTROLLERS
 //======================
@@ -39,7 +44,24 @@ app.use('/', donutsController);
 //======================
 // LISTENERS
 //======================
+
+
 //CONNECT MONGOOSE TO "donut_store"
+
+// Will log an error if db can't connect to MongoDB
+db.on('error', function (err) {
+    console.log(err);
+});
+
+// Will log "database has been connected" if it successfully connects.
+db.on('open', function () {
+    console.log("database has been connected!");
+});
+
 
 
 //CREATE THE MONGOOSE CONNECTION and SET APP TO LISTEN to 3000
+const port = 3000;
+app.listen(port, () => {
+    console.log(`express started on ${port}`)
+})

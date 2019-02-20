@@ -1,0 +1,15 @@
+{
+  "name": "pirate-jokes",
+  "version": "1.0.0",
+  "description": "pirate jokes homework",
+  "main": "main.js",
+  "dependencies": {
+    "node-notifier": "^5.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leon Carswell",
+  "license": "ISC"
+}

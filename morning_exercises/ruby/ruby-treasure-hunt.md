@@ -25,102 +25,72 @@ Ready.... Set..... Go!!!
 ### The Clues (1pt Each):
 
 1.   What method would turn "marc" into "cram"?
-
-  ```
-  your answer here
-  ```
+// .reverse
 
 2.   What method could you use that returns a boolean to check if "pickle" includes the substring "ick"?
 
-  ```
-  your answer here
-  ```
+// .include?
 
 3.  What method would check to see if `249092` is an odd number?
 
-  ```
-  your answer here
-  ```
+// .odd?
 
 4.   What method would turn `"winter is coming"` into `["winter", "is", "coming"]`?
 
-  ```
-  your answer here
-  ```
+//.split
 
 5.   What method could replace all vowels in `"banana"` and replace them with `!` so it returns `b!n!n!`?
 
-  ```
-  your answer here
-  ```
+// .gsub(/[a]/, '!')
 
 6.  Which method can check to see if `"vanilla"` is a key for `cupcake = {"chocolate" => 4, "strawberry" => 0, "vanilla" => 3}` ?
 
-  ```
-  your answer here
-  ```
+has_key?
 
 7.   What method can I use on `weather` to find how many key/value pairs exist in `weather = {:snow => true, :rain => false, :sun => false}` so it returns `3`?
 
-  ```
-  your answer here
-  ```
+.keys.count
 
 8.  What method can you call on `tally` to flip the key/value pairs in `tally = {"x" => 100, "y" => 200}` into  a new hash `{100 => "x", 200 => "y"}`?
 
-  ```
-  your answer here
-  ```
+
 
 9.   What method can you call to shuffle `[2, 4, 6]` into `[4, 2, 6]`?
 
-  ```
-  your answer here
-  ```
+//.shuffle
+// .sample
 
 10.  What Array method can turn `["b","b","q"]` into `"b-b-q"`?
 
-  ```
-  your answer here
-  ```
+.join
 
 11.   What method would return `"McDonald's"` from `"mCdONALD'S"`?
 
-  ```
-  your answer here
-  ```
+.swapcase
 
 12.   What method can turn `{"small" => 3, "medium" => 5, "large" => 12}` into `[["small", 3], ["medium", 5], ["large", 12]]`?
 
-  ```
-  your answer here
-  ```
+.to_a
+(  .to_h returns the array back to hash)
 
 13.   What method can randomly select 1 or more elements from an array?
 
-  ```
-  your answer here
-  ```
+.sample
 
 14. What Array method can turn `[[1,1], [2,2], [3,3,3]]` into `[1,1,2,2,3,3,3]`?
 
-  ```
-  your answer here
-  ```
+.flatten
+
 15. Which method could you use to git rid of all whitespace in `"   bat  m   a   n   "`?
 
-  ```
-  your answer here
-  ```
+.delete(' ') ((easier to do ))
+
+.gsub(/ /, "")
 
 16. What method can you call to get rid of all duplicate elements in `["Luke", "Yoda", "Yoda", "Boba", "Luke"]` so that it returns `["Luke", "Yoda", "Boba"]`?
 
-  ```
-  your answer here
-  ```
+.uniq
 
 17. What method would let you add `"Posh"` in the beginning of our array `["Ginger", "Sporty", "Scary", "Baby"]` so that it becomes `["Posh", "Ginger", "Sporty", "Scary", "Baby"]`?
 
-  ```
-  your answer here
-  ```
+.unshift
